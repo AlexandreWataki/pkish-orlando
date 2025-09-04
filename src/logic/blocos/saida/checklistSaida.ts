@@ -1,0 +1,30 @@
+const blocoChecklistDocumentos = {
+  titulo: '✅ Checklist Final + Documentos para o Retorno',
+  tipo: 'informativa',
+  descricao: [
+    'Checklist de Preparação para o Retorno:',
+    'Revise cada item antes de sair para o aeroporto para evitar esquecimentos.',
+    'Itens essenciais:',
+    'Celular carregado e com internet (chip ou eSIM)',
+    'Passaporte e documentos de viagem',
+    'Bagagens prontas e identificadas',
+    'Conferir banheiros, armários e embaixo da cama',
+    'Guardar carregadores e eletrônicos',
+    'Conferir compras e lembranças',
+    'Revisar tempo até o aeroporto',
+    'Transporte confirmado',
+    'Check-out feito e chaves devolvidas',
+    'Documentos e Cuidados no Embarque:',
+    'Prepare documentos com antecedência e mantenha-os na bagagem de mão.',
+    'Passaporte com visto válido e carimbo de entrada nos EUA',
+    'Passagem aérea de retorno',
+    'Confirmação do hotel (impresso ou digital)',
+    'Cartões usados na viagem',
+    'Recibos de compras (especialmente itens de alto valor)',
+    'Declaração de bens se acima de US$ 1.000 por pessoa',
+    'Receita médica para medicamentos controlados',
+    'Etiquetas de bagagem',
+  ].join('\n'),
+};
+
+export default blocoChecklistDocumentos;

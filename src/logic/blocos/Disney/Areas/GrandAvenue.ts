@@ -1,0 +1,111 @@
+export const GrandAvenue = {
+  parque: "Hollywood Studios",
+  regiao: "Grand Avenue",
+  latitude: 28.3551,
+  longitude: -81.5615,
+  descricao:
+    "Inspirada em Los Angeles, a Grand Avenue oferece uma atmosfera urbana com opções gastronômicas e atrações temáticas como Muppets e ambientes modernos.",
+  imagem: "grandavenue.png",
+  atracoes: [
+    {
+      id: "muppet-vision-3d",
+      titulo: "Muppet*Vision 3D",
+      subtitulo: "Grand Avenue",
+      tipo: "Show 3D com fantoches",
+      tipoPerfil: ["familiares", "interativas"],
+      alturaMinima: 0,
+      filaExpress: true,
+      tempoMedioFila: 20,
+      filaAceitavel: 15,
+      idadeRecomendada: "Todas as idades",
+      atracaoSemFila: false,
+      turnoRecomendado: "tarde",
+      descricao:
+        "Espetáculo divertido com os Muppets em 3D, efeitos especiais e piadas clássicas. Ideal para relaxar entre atrações mais intensas.",
+      icone: "🎭",
+      imagem: "muppet-vision.jpg",
+      regiao: "Grand Avenue",
+      parque: "Hollywood Studios"
+    },
+    {
+      id: "baseline-tap-house",
+      titulo: "Baseline Tap House",
+      subtitulo: "Grand Avenue",
+      tipo: "Bar e lanches",
+      tipoPerfil: ["tematicas", "imersivas"],
+      alturaMinima: 0,
+      filaExpress: false,
+      tempoMedioFila: 5,
+      filaAceitavel: 10,
+      idadeRecomendada: "Maiores de 18",
+      atracaoSemFila: true,
+      turnoRecomendado: "noite",
+      descricao:
+        "Local moderno com cervejas artesanais e petiscos californianos. Excelente para adultos descansarem no fim do dia.",
+      icone: "🍺",
+      imagem: "baseline-taphouse.jpg",
+      regiao: "Grand Avenue",
+      parque: "Hollywood Studios"
+    },
+    {
+      id: "grand-street-photo",
+      titulo: "Grand Street Photo Spot",
+      subtitulo: "Grand Avenue",
+      tipo: "Ponto para fotos temáticas",
+      tipoPerfil: ["tematicas", "familiares"],
+      alturaMinima: 0,
+      filaExpress: false,
+      tempoMedioFila: 0,
+      filaAceitavel: 0,
+      idadeRecomendada: "Todas as idades",
+      atracaoSemFila: true,
+      turnoRecomendado: "manha",
+      descricao:
+        "Cenário de rua urbana ideal para tirar fotos estilosas. Detalhes remetem à arquitetura de Los Angeles.",
+      icone: "📸",
+      imagem: "grand-photo.jpg",
+      regiao: "Grand Avenue",
+      parque: "Hollywood Studios"
+    },
+    {
+      id: "grand-avenue-walk",
+      titulo: "Passeio pela Grand Avenue",
+      subtitulo: "Grand Avenue",
+      tipo: "Exploração urbana",
+      tipoPerfil: ["imersivas", "tematicas"],
+      alturaMinima: 0,
+      filaExpress: false,
+      tempoMedioFila: 0,
+      filaAceitavel: 0,
+      idadeRecomendada: "Todas as idades",
+      atracaoSemFila: true,
+      turnoRecomendado: "manha",
+      descricao:
+        "Caminhe por calçadas arborizadas com detalhes arquitetônicos da Califórnia. Uma pausa tranquila com clima de cidade grande.",
+      icone: "🚶‍♂️",
+      imagem: "grand-walk.jpg",
+      regiao: "Grand Avenue",
+      parque: "Hollywood Studios"
+    },
+    {
+      id: "muppet-shop",
+      titulo: "Stage 1 Company Store",
+      subtitulo: "Grand Avenue",
+      tipo: "Loja temática dos Muppets",
+      tipoPerfil: ["interativas", "familiares"],
+      alturaMinima: 0,
+      filaExpress: false,
+      tempoMedioFila: 0,
+      filaAceitavel: 0,
+      idadeRecomendada: "Todas as idades",
+      atracaoSemFila: true,
+      turnoRecomendado: "tarde",
+      descricao:
+        "Loja colorida com produtos dos Muppets, itens colecionáveis e brinquedos exclusivos. Ideal após o show Muppet*Vision 3D.",
+      icone: "🛍️",
+      imagem: "muppet-store.jpg",
+      regiao: "Grand Avenue",
+      parque: "Hollywood Studios"
+    }
+  ]
+};

@@ -1,0 +1,51 @@
+export const ProductionCentral = {
+  parque: "Universal Studios Florida",
+  descricao: "Área inspirada nos bastidores do cinema, com uma montanha-russa icônica e um simulador 3D de ação eletrizante.",
+  imagem: "production-central.png",
+  latitude: 28.4710,
+  longitude: -81.4690,
+  atracoes: [
+    {
+      id: "hollywood-rip-ride-rockit",
+      titulo: "Hollywood Rip Ride Rockit",
+      subtitulo: "Production Central",
+      tipo: "Montanha-russa com música",
+      tipoPerfil: ["radicais", "tematicas", "imersivas"],
+      alturaMinima: 130,
+      filaExpress: true,
+      tempoMedioFila: 60,
+      filaAceitavel: 50,
+      idadeRecomendada: "A partir de 12 anos",
+      atracaoSemFila: false,
+      turnoRecomendado: "tarde",
+      descricao: "Escolha sua trilha sonora e encare um lift vertical de 90° com quedas e curvas em alta velocidade. Assentos da frente dão mais emoção.",
+      icone: "🎸",
+      imagem: "hollywood-rip-ride-rockit.jpg",
+      regiao: "Production Central",
+      parque: "Universal Studios Florida",
+      latitude: 28.4712,
+      longitude: -81.4691
+    },
+    {
+      id: "transformers-the-ride-3d",
+      titulo: "Transformers: The Ride 3D",
+      subtitulo: "Production Central",
+      tipo: "Simulador 3D",
+      tipoPerfil: ["radicais", "interativas", "imersivas"],
+      alturaMinima: 107,
+      filaExpress: true,
+      tempoMedioFila: 40,
+      filaAceitavel: 30,
+      idadeRecomendada: "A partir de 10 anos",
+      atracaoSemFila: false,
+      turnoRecomendado: "manha",
+      descricao: "Batalha 3D entre Autobots e Decepticons com muita ação e efeitos especiais — Express Pass aqui ajuda bastante.",
+      icone: "🤖",
+      imagem: "transformers-the-ride-3d.jpg",
+      regiao: "Production Central",
+      parque: "Universal Studios Florida",
+      latitude: 28.4713,
+      longitude: -81.4694
+    }
+  ]
+};

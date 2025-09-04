@@ -1,0 +1,51 @@
+export const Hollywood = {
+  parque: "Universal Studios Florida",
+  descricao: "Área com clima de Hollywood clássico, com shows ao vivo e efeitos especiais que celebram o cinema.",
+  imagem: "hollywood.png",
+  latitude: 28.4731,
+  longitude: -81.4680,
+  atracoes: [
+    {
+      id: "the-bourne-stuntacular",
+      titulo: "The Bourne Stuntacular",
+      subtitulo: "Hollywood",
+      tipo: "Show de dublês",
+      tipoPerfil: ["familiares", "tematicas", "imersivas"],
+      alturaMinima: 0,
+      filaExpress: true,
+      tempoMedioFila: 35,
+      filaAceitavel: 25,
+      idadeRecomendada: "Todas as idades",
+      atracaoSemFila: false,
+      turnoRecomendado: "tarde",
+      descricao: "Show cinematográfico com dublês, telas gigantes e efeitos ao vivo que simulam perseguições e cenas de ação.",
+      icone: "🎬",
+      imagem: "the-bourne-stuntacular.jpg",
+      regiao: "Hollywood",
+      parque: "Universal Studios Florida",
+      latitude: 28.4734,
+      longitude: -81.4686
+    },
+    {
+      id: "horror-make-up-show",
+      titulo: "Universal Orlando’s Horror Make-Up Show",
+      subtitulo: "Hollywood",
+      tipo: "Show de efeitos especiais",
+      tipoPerfil: ["familiares", "interativas", "tematicas"],
+      alturaMinima: 0,
+      filaExpress: true,
+      tempoMedioFila: 25,
+      filaAceitavel: 15,
+      idadeRecomendada: "Todas as idades",
+      atracaoSemFila: false,
+      turnoRecomendado: "manha",
+      descricao: "Apresentação divertida que revela truques de maquiagem e efeitos práticos usados em filmes de terror.",
+      icone: "🎭",
+      imagem: "horror-make-up-show.jpg",
+      regiao: "Hollywood",
+      parque: "Universal Studios Florida",
+      latitude: 28.4728,
+      longitude: -81.4681
+    }
+  ]
+};
