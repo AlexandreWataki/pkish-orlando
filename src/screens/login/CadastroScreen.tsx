@@ -33,7 +33,7 @@ const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 export default function CadastroScreen() {
   const navigation = useNavigation<any>();
   const { markVisited } = useParkisheiro();
-  const { signUp } = useAuth();
+  const { signUp } = useAuth(); // <<< pega signUp do contexto
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -56,7 +56,7 @@ export default function CadastroScreen() {
     if (loading) return;
 
     const nomeOk = nome.trim();
-    const emailOk = email.trim().toLowerCase();
+    const emailOk = email.trim().toLowerCase(); // será usado como username
     const senhaOk = senha.trim();
 
     if (!nomeOk || !emailOk || !senhaOk) {
@@ -74,70 +74,42 @@ export default function CadastroScreen() {
 
     setLoading(true);
     try {
-      // 1) cadastro (assinatura: register(email, senha, nome?))
-      const rCad = await api.register(emailOk, senhaOk, nomeOk);
-      if (!rCad.ok) {
-        const { code, status, message } = rCad.error;
+      // 0) reachability
+      await api.health();
 
-        if (code === 'NETWORK') {
-          Alert.alert('Falha de rede', 'Não foi possível alcançar o servidor.');
-          return;
-        }
-        if (code === 'TIMEOUT') {
-          Alert.alert('Tempo esgotado', 'Não consegui falar com o servidor. Confira sua rede e tente novamente.');
-          return;
-        }
-        if (code === 'HTTP_409') {
-          Alert.alert('Usuário já existe', 'Este email já está cadastrado.');
-          return;
-        }
+      // 1) cadastro
+      await api.register(emailOk, senhaOk);
 
-        // Demais erros HTTP
-        Alert.alert('Erro no cadastro', message || (status ? `Erro HTTP ${status}` : 'Tente novamente.'));
-        return;
-      }
+      // 2) login
+      await api.login(emailOk, senhaOk);
 
-      // 2) login (para obter token/usuário, se necessário)
-      const rLogin = await api.login(emailOk, senhaOk);
-      if (!rLogin.ok) {
-        const { code, status, message } = rLogin.error;
-        if (code === 'HTTP_401') {
-          Alert.alert('Erro no login', 'Credenciais inválidas após cadastro.');
-          return;
-        }
-        if (code === 'NETWORK') {
-          Alert.alert('Falha de rede', 'Não foi possível conectar ao servidor para efetuar o login.');
-          return;
-        }
-        if (code === 'TIMEOUT') {
-          Alert.alert('Tempo esgotado', 'Servidor demorou no login. Tente novamente.');
-          return;
-        }
-        Alert.alert('Erro no login', message || (status ? `Erro HTTP ${status}` : 'Tente novamente.'));
-        return;
-      }
+      // 3) persiste sessão via contexto (formato { username, token? })
+      await signUp({ username: emailOk });
 
-      // 3) sessão: persiste via contexto
-      const { token, user } = rLogin.data;
-      const usernameFinal = user?.username ?? user?.email ?? emailOk;
-
-      await signUp({ username: usernameFinal, token });
-
-      // 4) notifica (se houver listeners)
+      // 4) notifica quem ainda depende do evento (fallback)
       DeviceEventEmitter.emit('auth:changed');
 
       Alert.alert('Sucesso', 'Cadastro realizado e login efetuado!');
-      navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
+
+      // 5) navegação: ajuste o destino conforme seu fluxo
+      // Ex.: voltar para tela anterior ou ir para o AppStack
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        navigation.navigate('Inicio');
+      }
     } catch (e: any) {
       const raw = String(e?.message || '');
       const msg = raw.toLowerCase();
 
-      if (raw.includes('já existe') || raw.includes('409') || msg.includes('exists')) {
+      if (raw.includes('já existe') || raw.includes('409')) {
         Alert.alert('Usuário já existe', 'Este email já está cadastrado.');
-      } else if (msg.includes('tempo esgotado') || msg.includes('timeout') || msg.includes('abort')) {
+      } else if (msg.includes('tempo esgotado') || msg.includes('timeout')) {
         Alert.alert('Tempo esgotado', 'Não consegui falar com o servidor. Confira sua rede e tente novamente.');
       } else if (msg.includes('network')) {
         Alert.alert('Falha de rede', 'Não foi possível alcançar o servidor.');
+      } else if (msg.includes('preencha usuário e senha')) {
+        Alert.alert('Erro', 'Servidor recusou: preencha usuário e senha.');
       } else {
         Alert.alert('Erro no cadastro', raw || 'Tente novamente.');
       }
@@ -176,7 +148,6 @@ export default function CadastroScreen() {
             autoCapitalize="words"
             autoComplete="name"
             textContentType="name"
-            editable={!loading}
           />
 
           <TextInput
@@ -189,7 +160,6 @@ export default function CadastroScreen() {
             autoCapitalize="none"
             autoComplete="email"
             textContentType="emailAddress"
-            editable={!loading}
           />
 
           <View style={styles.inputRow}>
@@ -203,13 +173,11 @@ export default function CadastroScreen() {
               autoCapitalize="none"
               autoComplete="password-new"
               textContentType="newPassword"
-              editable={!loading}
             />
             <TouchableOpacity
               style={styles.eyeBtn}
               onPress={() => setMostrarSenha((v) => !v)}
               accessibilityLabel="Mostrar/ocultar senha"
-              disabled={loading}
             >
               <Ionicons name={mostrarSenha ? 'eye-off' : 'eye'} size={20} color="#003e63" />
             </TouchableOpacity>
@@ -225,22 +193,12 @@ export default function CadastroScreen() {
             <Ionicons name="person-add" size={20} color="#fff" style={{ marginLeft: 8 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.buttonSecondary}
-            onPress={irLogin}
-            activeOpacity={0.9}
-            disabled={loading}
-          >
+          <TouchableOpacity style={styles.buttonSecondary} onPress={irLogin} activeOpacity={0.9} disabled={loading}>
             <Text style={styles.buttonText}>Ir para Login</Text>
             <Ionicons name="log-in" size={20} color="#fff" style={{ marginLeft: 8 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.buttonTertiary}
-            onPress={voltarInicio}
-            activeOpacity={0.9}
-            disabled={loading}
-          >
+          <TouchableOpacity style={styles.buttonTertiary} onPress={voltarInicio} activeOpacity={0.9} disabled={loading}>
             <Text style={styles.buttonText}>Voltar ao Início</Text>
             <Ionicons name="arrow-back" size={20} color="#fff" style={{ marginLeft: 8 }} />
           </TouchableOpacity>
