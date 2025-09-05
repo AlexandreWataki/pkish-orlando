@@ -1,36 +1,34 @@
-// app.config.js
-import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 
 const exists = (p) => fs.existsSync(path.resolve(process.cwd(), p));
 
-// IDs configuráveis por .env (com defaults seguros)
+// IDs via env (configure no EAS: Project → Secrets)
 const ANDROID_PACKAGE = process.env.ANDROID_PACKAGE || 'com.example.roteirovisivel';
-const IOS_BUNDLE_ID = process.env.IOS_BUNDLE_ID || 'com.example.roteirovisivel';
+const IOS_BUNDLE_ID  = process.env.IOS_BUNDLE_ID  || 'com.example.roteirovisivel';
 
-// build numbers (incrementar quando publicar)
+// build numbers
 const ANDROID_VERSION_CODE = Number(process.env.ANDROID_VERSION_CODE || 1);
-const IOS_BUILD_NUMBER = process.env.IOS_BUILD_NUMBER || '1';
+const IOS_BUILD_NUMBER     = process.env.IOS_BUILD_NUMBER || '1';
+
+// API host/port (opcional)
+const API_HOST = process.env.API_HOST || '';
+const API_PORT = Number(process.env.API_PORT || 3000);
 
 export default {
   expo: {
     name: 'Disney',
     slug: 'roteiro-visivel-app',
 
-    // Versão de produto (sem impactar código nativo)
+    // Produto
     version: '1.0.0',
-
-    // SDK 54 + runtime por SDK (mantém OTA compatível)
+    // SDK 54: ok usar runtimeVersion por policy
     runtimeVersion: { policy: 'sdkVersion' },
-    // Manter este campo ajuda ferramentas/diagnóstico
-    sdkVersion: '54.0.0',
 
     orientation: 'portrait',
     assetBundlePatterns: ['**/*'],
-    updates: { fallbackToCacheTimeout: 0 },
+    updates: { url: undefined, fallbackToCacheTimeout: 0 },
 
-    // Ícones/Splash só entram se existirem
     ...(exists('./assets/icon.png') ? { icon: './assets/icon.png' } : {}),
     ...(exists('./assets/splash.png')
       ? {
@@ -38,16 +36,6 @@ export default {
             image: './assets/splash.png',
             resizeMode: 'contain',
             backgroundColor: '#ffffff',
-          },
-        }
-      : {}),
-    ...(exists('./assets/adaptive-icon.png')
-      ? {
-          android: {
-            adaptiveIcon: {
-              foregroundImage: './assets/adaptive-icon.png',
-              backgroundColor: '#ffffff',
-            },
           },
         }
       : {}),
@@ -67,26 +55,32 @@ export default {
     android: {
       package: ANDROID_PACKAGE,
       versionCode: ANDROID_VERSION_CODE,
-      // Permissões mínimas para áudio/vídeo (ajuste conforme uso real)
       permissions: [
         'INTERNET',
-        'RECORD_AUDIO', // necessário se gravar áudio com expo-audio
+        'RECORD_AUDIO',
         'WAKE_LOCK',
         'FOREGROUND_SERVICE',
       ],
-      // adaptiveIcon já configurado acima se o arquivo existir
+      ...(exists('./assets/adaptive-icon.png')
+        ? {
+            adaptiveIcon: {
+              foregroundImage: './assets/adaptive-icon.png',
+              backgroundColor: '#ffffff',
+            },
+          }
+        : {}),
     },
 
     web: {
       ...(exists('./assets/favicon.png') ? { favicon: './assets/favicon.png' } : {}),
     },
 
-    // Plugins usados no seu projeto (SDK 54: migração expo-av -> expo-audio/video)
+    // ✅ SDK 54: use expo-audio / expo-video (não use expo-av)
     plugins: [
       'expo-file-system',
       'expo-audio',
       'expo-video',
-      // Descomente se quiser forçar sdks/targets específicos:
+      // Se precisar pin de sdks nativos, descomente:
       // [
       //   'expo-build-properties',
       //   {
@@ -97,10 +91,15 @@ export default {
     ],
 
     extra: {
-      // Disponível em Constants.expoConfig.extra e process.env.EXPO_PUBLIC_WEATHER_API_KEY no app
       WEATHER_API_KEY: process.env.EXPO_PUBLIC_WEATHER_API_KEY,
-      // Mantém o projectId se você estiver usando EAS (opcional; EAS injeta automaticamente)
-      // eas: { projectId: '...' },
+      API_HOST,
+      API_PORT,
+      // scheme útil para abrir o dev client via deep link
+      // (opcional) ex.: roteiros://
+      // scheme: 'roteiros',
     },
+
+    // (Opcional) defina um scheme se quiser deep link personalizado:
+    // scheme: 'roteiros',
   },
 };

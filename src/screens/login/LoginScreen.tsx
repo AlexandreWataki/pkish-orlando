@@ -29,7 +29,7 @@ export default function LoginScreen() {
   const { markVisited } = useParkisheiro();
   const { signIn } = useAuth();
 
-  const [email, setEmail] = useState('');
+  const [emailOuUser, setEmailOuUser] = useState('');
   const [senha, setSenha] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,6 @@ export default function LoginScreen() {
     try {
       setLoading(true);
       await signIn({ username: DEMO_USER.username });
-      // como o Router troca de stack quando user existe, só reset por garantia:
       navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
     } finally {
       setLoading(false);
@@ -52,33 +51,50 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     if (loading) return;
 
-    const emailOk = email.trim().toLowerCase();
+    const input = emailOuUser.trim();
     const senhaOk = senha.trim();
 
-    // 1) atalho: credencial pronta (fatec/123) — bypass de validação/servidor
-    if (emailOk === DEMO_USER.username && senhaOk === DEMO_USER.password) {
-      await entrarComoDemo();
+    if (!input || !senhaOk) {
+      Alert.alert('Erro', 'Preencha usuário/e-mail e senha.');
       return;
     }
 
-    // 2) fluxo normal (via backend)
-    if (!emailOk || !senhaOk) {
-      Alert.alert('Erro', 'Preencha email e senha.');
-      return;
-    }
-    if (!isEmail(emailOk)) {
-      Alert.alert('Erro', 'Informe um email válido.');
+    // Atalho demo
+    if (input.toLowerCase() === DEMO_USER.username && senhaOk === DEMO_USER.password) {
+      await entrarComoDemo();
       return;
     }
 
     setLoading(true);
     try {
-      await api.login(emailOk, senhaOk);            // autentica no servidor
-      await signIn({ username: emailOk });          // salva sessão via contexto
+      const r = await api.login(input, senhaOk);
+
+      if (!r.ok) {
+        const { code, status, message } = r.error;
+        if (code === 'HTTP_401') {
+          Alert.alert('Credenciais inválidas', 'Usuário ou senha incorretos.');
+          return;
+        }
+        if (code === 'NETWORK') {
+          Alert.alert('Falha de rede', 'Não foi possível conectar ao servidor.');
+          return;
+        }
+        if (code === 'TIMEOUT') {
+          Alert.alert('Tempo esgotado', 'Servidor demorou a responder.');
+          return;
+        }
+        Alert.alert('Erro', message || (status ? `Erro HTTP ${status}` : 'Falha no login.'));
+        return;
+      }
+
+      // Sucesso
+      const { token, user } = r.data;
+      const usernameFinal = user?.username ?? user?.email ?? input;
+      await signIn({ username: usernameFinal, token });
       navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
     } catch (e: any) {
       const msg = String(e?.message || '');
-      if (msg.includes('401') || msg.toLowerCase().includes('incorret')) {
+      if (msg.includes('401')) {
         Alert.alert('Credenciais inválidas', 'Usuário ou senha incorretos.');
       } else if (msg.toLowerCase().includes('network')) {
         Alert.alert('Falha de rede', 'Não foi possível conectar ao servidor.');
@@ -109,18 +125,18 @@ export default function LoginScreen() {
       <View style={styles.formWrapper}>
         <TextInput
           style={styles.input}
-          placeholder="Email ou 'fatec' para demo"
-          value={email}
-          onChangeText={setEmail}
+          placeholder="Email ou usuário"
+          value={emailOuUser}
+          onChangeText={setEmailOuUser}
           placeholderTextColor="#555"
           autoCapitalize="none"
-          keyboardType="email-address"
+          keyboardType="default"
         />
 
         <View style={styles.inputRow}>
           <TextInput
             style={[styles.input, { flex: 1, marginVertical: 0 }]}
-            placeholder="Senha (ou '123' para demo)"
+            placeholder="Senha"
             value={senha}
             onChangeText={setSenha}
             placeholderTextColor="#555"
@@ -142,16 +158,17 @@ export default function LoginScreen() {
           <Ionicons name="log-in" size={20} color="#fff" style={{ marginLeft: 8 }} />
         </TouchableOpacity>
 
-        {/* Botão opcional para demo em um toque, sem digitar */}
-        <TouchableOpacity
-          style={styles.buttonDemo}
-          onPress={entrarComoDemo}
-          activeOpacity={0.9}
-          disabled={loading}
-        >
-          <Text style={styles.buttonText}>Demo (fatec / 123)</Text>
-          <Ionicons name="flash" size={20} color="#fff" style={{ marginLeft: 8 }} />
-        </TouchableOpacity>
+        {__DEV__ && (
+          <TouchableOpacity
+            style={styles.buttonDemo}
+            onPress={entrarComoDemo}
+            activeOpacity={0.9}
+            disabled={loading}
+          >
+            <Text style={styles.buttonText}>Demo (fatec / 123)</Text>
+            <Ionicons name="flash" size={20} color="#fff" style={{ marginLeft: 8 }} />
+          </TouchableOpacity>
+        )}
 
         <TouchableOpacity
           style={styles.buttonSecondary}
@@ -220,7 +237,7 @@ const styles = StyleSheet.create({
   },
   buttonDemo: {
     width: LARGURA_CARD,
-    backgroundColor: '#2f855a', // verde para destacar demo
+    backgroundColor: '#2f855a',
     borderRadius: 10,
     paddingVertical: PADDING_VERTICAL,
     alignItems: 'center',
