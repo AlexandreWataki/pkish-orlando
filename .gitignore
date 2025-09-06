@@ -4,26 +4,18 @@ node_modules/
 dist/
 web-build/
 *.tsbuildinfo
-
 .env
 .env*.local
-
 *.key
 *.pem
 *.jks
 *.p8
 *.p12
 *.mobileprovision
-
 npm-debug.*
 yarn-debug.*
 yarn-error.*
 .DS_Store
 .metro-health-check*
 *.orig.*
-
 app-example
-
-# 👉 manter o projeto em managed (EAS gera nativo no build)
-android/
-ios/
