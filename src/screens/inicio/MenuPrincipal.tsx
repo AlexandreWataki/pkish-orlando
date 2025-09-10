@@ -217,23 +217,17 @@ export default function MenuPrincipal() {
           </View>
         ))}
 
+        {/* Botão Clube de Vantagens Orlando */}
         <View style={styles.cardWrapper}>
           <BotaoMenuNeon
-            titulo="Roteiro Inteligente Orlando"
-            emoji="💡"
-            subtitulo="Requer créditos de IA"
-            onPress={async () => {
-              const key = (await getApiKey(parkisheiroAtual?.id)) ?? (await getApiKey());
-              if (!key) {
-                navigation.navigate('ConfiguracoesAPIKey', { returnTo: 'IAventureSe' } as any);
-                return;
-              }
-              navigation.navigate('IAventureSe');
-            }}
+            titulo="Clube de Vantagens Orlando"
+            emoji="🎟️"
+            subtitulo="Promoções e Descontos Exclusivos"
+            onPress={() => navigation.navigate('Promocoes')}
           />
         </View>
 
-        {/* ÚLTIMO: Voltar ao Cadastro / Login — azul clarinho, borda branca, boneco branco, SEM sombra */}
+        {/* ÚLTIMO: Voltar ao Cadastro / Login */}
         <View style={styles.cardWrapper}>
           <BotaoMenuCard
             titulo="Voltar ao Cadastro / Login"

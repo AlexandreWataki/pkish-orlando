@@ -41,10 +41,8 @@ import PerfilAtracoesScreen from '@/screens/perfis/PerfilAtracoesScreen';
 // dias
 import DiaDetalheScreen from '@/screens/dias/DiaDetalheScreen';
 
-// IA
-import IAventureSeScreen from '@/IA/IAventureSeScreen';
-import ConfiguracoesAPIKeyScreen from '@/IA/ConfiguracoesAPIKeyScreen';
-import IAResultadoScreen from '@/IA/IAResultadoScreen';
+// 🛍️ Clube de Vantagens / Promoções (nova)
+import PromocoesScreen from '@/IA/PromocoesScreen';
 
 // ▶️ player de YouTube
 import YouTubePlayerScreen from '@/logic/media/YouTubePlayerScreen';
@@ -52,7 +50,6 @@ import YouTubePlayerScreen from '@/logic/media/YouTubePlayerScreen';
 // 🧾 WebView para cardápio
 import MenuWebScreen from '@/logic/menu/MenuWebScreen';
 
-import type { DiaGerado } from '@/IA/gerarComIA';
 import { enableLayoutAnimationAndroidLegacy } from '@/logic/types/enableLayoutAnimationAndroidLegacy';
 
 // 🔇 Desabilitar logs em produção
@@ -68,27 +65,36 @@ if (!__DEV__) {
 export type Turnos = { manha: string[]; tarde: string[]; noite: string[] };
 
 export type RootStackParamList = {
+  // Splash / Auth
   Splash: undefined;
   Inicio: undefined;
   Login: undefined;
   Cadastro: undefined;
+
+  // App principal
   MenuPrincipal: undefined;
   Calendario: undefined;
   TiposdeDias: undefined;
   DistribuicaodeDias: undefined;
   'Aeroporto&Hotel': undefined;
+
+  // Conteúdo
   TelaAtracoes: undefined;
   TelaRefeicoes: undefined;
+
+  // Perfis
   PerfilComprasPorDiaScreen: undefined;
   PerfilDescansoPorDiaScreen: undefined;
   PerfilAtracoes: undefined;
   PerfilRefeicoes: undefined;
+
+  // Dias
   DiaCompleto: { diaId?: string } | undefined;
-  IAventureSe: undefined;
-  IAResultado:
-    | { roteiroGerado?: DiaGerado[] | string; usarIAParaTurnos?: boolean }
-    | Record<string, any>;
-  ConfiguracoesAPIKey: undefined;
+
+  // 🛍️ Promoções
+  Promocoes: undefined;
+
+  // Mídia/Web
   YouTubePlayer: { title?: string; idOrUrl: string };
   MenuWeb: { url: string; title?: string };
 };
@@ -127,14 +133,18 @@ export default function App() {
             <Stack.Screen name="Aeroporto&Hotel" component={TelaAeroportoHotel} />
             <Stack.Screen name="TelaAtracoes" component={TelaAtracoes} />
             <Stack.Screen name="TelaRefeicoes" component={TelaRefeicoes} />
+
+            {/* Perfis */}
             <Stack.Screen name="PerfilComprasPorDiaScreen" component={PerfilComprasPorDiaScreen} />
             <Stack.Screen name="PerfilDescansoPorDiaScreen" component={PerfilDescansoPorDiaScreen} />
             <Stack.Screen name="PerfilAtracoes" component={PerfilAtracoesScreen} />
             <Stack.Screen name="PerfilRefeicoes" component={PerfilRefeicoesScreen} />
+
+            {/* Dias */}
             <Stack.Screen name="DiaCompleto" component={DiaDetalheScreen} />
-            <Stack.Screen name="IAventureSe" component={IAventureSeScreen} />
-            <Stack.Screen name="IAResultado" component={IAResultadoScreen} />
-            <Stack.Screen name="ConfiguracoesAPIKey" component={ConfiguracoesAPIKeyScreen} />
+
+            {/* 🛍️ Clube de Vantagens / Promoções */}
+            <Stack.Screen name="Promocoes" component={PromocoesScreen} />
 
             {/* ▶️ Vídeo YouTube */}
             <Stack.Screen

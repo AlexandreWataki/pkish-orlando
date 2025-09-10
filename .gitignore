@@ -1,9 +1,25 @@
+# Dependências
 node_modules/
+
+# Expo
 .expo/
 .expo-shared/
-dist/
 web-build/
+dist/
+
+# Build nativo (gerados por expo run:*)
+android/
+ios/
+
+# Cache / temporários
 *.tsbuildinfo
+*.orig.*
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Configs locais
 .env
 .env*.local
 *.key
@@ -12,10 +28,15 @@ web-build/
 *.p8
 *.p12
 *.mobileprovision
-npm-debug.*
-yarn-debug.*
-yarn-error.*
+
+# IDE / SO
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Metro bundler
 .metro-health-check*
-*.orig.*
+
+# Exemplos / arquivos de teste locais
 app-example

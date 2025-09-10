@@ -1,9 +1,5 @@
 // app.config.js
 import 'dotenv/config';
-import fs from 'fs';
-import path from 'path';
-
-const exists = (p) => fs.existsSync(path.resolve(process.cwd(), p));
 
 export default {
   expo: {
@@ -11,35 +7,85 @@ export default {
     slug: 'roteiro-visivel-app',
     version: '1.0.0',
     orientation: 'portrait',
-    runtimeVersion: { policy: 'sdkVersion' }, // EAS inferirá a SDK pela dependência "expo"
-    updates: { fallbackToCacheTimeout: 0 },
+    userInterfaceStyle: 'light',
 
-    ...(exists('./assets/icon.png') ? { icon: './assets/icon.png' } : {}),
+    // Mantém o app compatível com cache por versão do SDK
+    sdkVersion: '54.0.0',
+    runtimeVersion: { policy: 'sdkVersion' },
 
+    // Atualizações OTA (ajuste conforme sua estratégia)
+    updates: {
+      url: undefined,              // não usar EAS Update ainda
+      fallbackToCacheTimeout: 0    // usa bundle embarcado no primeiro start
+    },
+
+    assetBundlePatterns: ['**/*'],
+
+    // Ícones e splash (troque pelos seus arquivos)
+    icon: './assets/icon.png',
+    splash: {
+      image: './assets/splash.png',
+      resizeMode: 'contain',
+      backgroundColor: '#001F3F'
+    },
     ios: {
-      // para iOS (quando for buildar iOS), é obrigatório:
-      // bundleIdentifier: 'com.seuorg.disney',
+      supportsTablet: true,
+      bundleIdentifier: 'com.seuorg.roteirovisivelapp', // troque pelo seu reverso de domínio
+      infoPlist: {
+        // Só adicione chaves de privacidade se realmente usar os recursos:
+        // NSMicrophoneUsageDescription: 'Usamos o microfone para gravar notas de voz no app.',
+      }
     },
-
     android: {
-      package: 'com.roteirovisivel.disney',   // obrigatório para Android
+      // TROQUE PELO SEU ID FINAL ANTES DE PUBLICAR NO GOOGLE PLAY
+      package: 'com.seuorg.roteirovisivelapp',
       versionCode: 1,
-      adaptiveIcon: exists('./assets/adaptive-icon.png')
-        ? { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#FFFFFF' }
-        : undefined,
+
+      adaptiveIcon: {
+        foregroundImage: './assets/adaptive-icon.png',
+        backgroundColor: '#001F3F'
+      },
+
+      // Permissões mínimas (evite as que a Play reprova como SYSTEM_ALERT_WINDOW)
+      permissions: [
+        'INTERNET',
+        'VIBRATE'
+        // Adicione apenas se realmente gravar áudio:
+        // 'RECORD_AUDIO'
+      ],
+
+      // O targetSdkVersion é gerenciado pelo Expo (não fixe manualmente)
+      blockedPermissions: [
+        // Garante que nada legado vaze pro Manifest:
+        'android.permission.WRITE_EXTERNAL_STORAGE',
+        'android.permission.READ_EXTERNAL_STORAGE',
+        'android.permission.SYSTEM_ALERT_WINDOW'
+      ],
+
+      // Se usar deep links, você pode definir intentFilters aqui depois.
+      // intentFilters: [...]
     },
 
-    plugins: ['expo-file-system', 'expo-audio', 'expo-video'],
-
+    // Web (opcional)
     web: {
-      ...(exists('./assets/favicon.png') ? { favicon: './assets/favicon.png' } : {}),
+      bundler: 'metro',
+      favicon: './assets/favicon.png'
     },
+
+    // Plugins que você realmente usa (evite plugin sobrando)
+    plugins: [
+      'expo-file-system',
+      'expo-audio',
+      'expo-video'
+      // Adicione aqui outros plugins que você efetivamente usa:
+      // 'expo-secure-store',
+      // 'expo-splash-screen',
+      // 'expo-linking',
+    ],
 
     extra: {
-      eas: {
-        projectId: process.env.EAS_PROJECT_ID || '5af40461-d503-48ee-8235-db931cb08ab1',
-      },
-      WEATHER_API_KEY: process.env.EXPO_PUBLIC_WEATHER_API_KEY,
-    },
-  },
+      // Use EAS Secrets para valores sensíveis. Aqui, só chaves públicas.
+      EXPO_PUBLIC_WEATHER_API_KEY: process.env.EXPO_PUBLIC_WEATHER_API_KEY
+    }
+  }
 };
