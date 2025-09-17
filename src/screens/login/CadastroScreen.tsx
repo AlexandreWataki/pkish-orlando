@@ -11,7 +11,6 @@ import {
   Alert,
   Image,
   StatusBar,
-  DeviceEventEmitter,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,7 +18,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { useParkisheiro } from '@/contexts/ParkisheiroContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { api } from '@/services/api';
 
 import logo from '../../assets/imagens/logo4.png';
 import frase from '../../assets/imagens/frase.png';
@@ -33,7 +31,7 @@ const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 export default function CadastroScreen() {
   const navigation = useNavigation<any>();
   const { markVisited } = useParkisheiro();
-  const { signUp } = useAuth(); // <<< pega signUp do contexto
+  const { signUp } = useAuth(); // assinatura: signUp(usernameOuEmail: string, senha: string)
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -52,11 +50,14 @@ export default function CadastroScreen() {
     return nomeOk && emailOk && senhaOk;
   }, [nome, email, senha]);
 
+  const navegarHome = () =>
+    navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
+
   const handleCadastro = async () => {
     if (loading) return;
 
     const nomeOk = nome.trim();
-    const emailOk = email.trim().toLowerCase(); // será usado como username
+    const emailOk = email.trim().toLowerCase(); // usaremos como username
     const senhaOk = senha.trim();
 
     if (!nomeOk || !emailOk || !senhaOk) {
@@ -72,44 +73,22 @@ export default function CadastroScreen() {
       return;
     }
 
-    setLoading(true);
     try {
-      // 0) reachability
-      await api.health();
-
-      // 1) cadastro
-      await api.register(emailOk, senhaOk);
-
-      // 2) login
-      await api.login(emailOk, senhaOk);
-
-      // 3) persiste sessão via contexto (formato { username, token? })
-      await signUp({ username: emailOk });
-
-      // 4) notifica quem ainda depende do evento (fallback)
-      DeviceEventEmitter.emit('auth:changed');
-
-      Alert.alert('Sucesso', 'Cadastro realizado e login efetuado!');
-
-      // 5) navegação: ajuste o destino conforme seu fluxo
-      // Ex.: voltar para tela anterior ou ir para o AppStack
-      if (navigation.canGoBack()) {
-        navigation.goBack();
-      } else {
-        navigation.navigate('Inicio');
-      }
+      setLoading(true);
+      // signUp já registra e faz login; depois persiste no contexto
+      await signUp(emailOk, senhaOk);
+      Alert.alert('Sucesso', 'Cadastro realizado!');
+      navegarHome();
     } catch (e: any) {
       const raw = String(e?.message || '');
       const msg = raw.toLowerCase();
 
-      if (raw.includes('já existe') || raw.includes('409')) {
+      if (raw.includes('já existe') || raw.includes('409') || /duplic/i.test(msg)) {
         Alert.alert('Usuário já existe', 'Este email já está cadastrado.');
-      } else if (msg.includes('tempo esgotado') || msg.includes('timeout')) {
+      } else if (/timeout|tempo esgotado/i.test(msg)) {
         Alert.alert('Tempo esgotado', 'Não consegui falar com o servidor. Confira sua rede e tente novamente.');
-      } else if (msg.includes('network')) {
+      } else if (/network|fetch|failed to/i.test(msg)) {
         Alert.alert('Falha de rede', 'Não foi possível alcançar o servidor.');
-      } else if (msg.includes('preencha usuário e senha')) {
-        Alert.alert('Erro', 'Servidor recusou: preencha usuário e senha.');
       } else {
         Alert.alert('Erro no cadastro', raw || 'Tente novamente.');
       }

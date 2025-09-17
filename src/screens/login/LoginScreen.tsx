@@ -10,7 +10,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { useParkisheiro } from '@/contexts/ParkisheiroContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { api } from '@/services/api';
 
 import logo from '../../assets/imagens/logo4.png';
 import frase from '../../assets/imagens/frase.png';
@@ -19,17 +18,12 @@ const LARGURA_CARD = 240;
 const PADDING_VERTICAL = 12;
 const FONTE_PADRAO = 12;
 
-// credencial pronta (demo)
-const DEMO_USER = { username: 'fatec', password: '123' };
-
-const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
   const { markVisited } = useParkisheiro();
-  const { signIn } = useAuth();
+  const { signIn } = useAuth(); // assinatura: signIn(usernameOuEmail: string, senha: string)
 
-  const [email, setEmail] = useState('');
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,49 +32,29 @@ export default function LoginScreen() {
     markVisited('LoginScreen');
   }, []);
 
-  const entrarComoDemo = async () => {
-    try {
-      setLoading(true);
-      await signIn({ username: DEMO_USER.username });
-      // como o Router troca de stack quando user existe, só reset por garantia:
-      navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const navegarHome = () =>
+    navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
 
   const handleLogin = async () => {
     if (loading) return;
 
-    const emailOk = email.trim().toLowerCase();
+    const userOk = usernameOrEmail.trim();
     const senhaOk = senha.trim();
 
-    // 1) atalho: credencial pronta (fatec/123) — bypass de validação/servidor
-    if (emailOk === DEMO_USER.username && senhaOk === DEMO_USER.password) {
-      await entrarComoDemo();
+    if (!userOk || !senhaOk) {
+      Alert.alert('Erro', 'Preencha usuário/e-mail e senha.');
       return;
     }
 
-    // 2) fluxo normal (via backend)
-    if (!emailOk || !senhaOk) {
-      Alert.alert('Erro', 'Preencha email e senha.');
-      return;
-    }
-    if (!isEmail(emailOk)) {
-      Alert.alert('Erro', 'Informe um email válido.');
-      return;
-    }
-
-    setLoading(true);
     try {
-      await api.login(emailOk, senhaOk);            // autentica no servidor
-      await signIn({ username: emailOk });          // salva sessão via contexto
-      navigation.reset({ index: 0, routes: [{ name: 'MenuPrincipal' }] });
+      setLoading(true);
+      await signIn(userOk, senhaOk);
+      navegarHome();
     } catch (e: any) {
       const msg = String(e?.message || '');
-      if (msg.includes('401') || msg.toLowerCase().includes('incorret')) {
+      if (msg.includes('401') || /incorret/i.test(msg)) {
         Alert.alert('Credenciais inválidas', 'Usuário ou senha incorretos.');
-      } else if (msg.toLowerCase().includes('network')) {
+      } else if (/network|fetch|timeout/i.test(msg)) {
         Alert.alert('Falha de rede', 'Não foi possível conectar ao servidor.');
       } else {
         Alert.alert('Erro', msg || 'Não foi possível entrar. Tente novamente.');
@@ -109,25 +83,25 @@ export default function LoginScreen() {
       <View style={styles.formWrapper}>
         <TextInput
           style={styles.input}
-          placeholder="Email ou 'fatec' para demo"
-          value={email}
-          onChangeText={setEmail}
+          placeholder="Usuário ou e-mail"
+          value={usernameOrEmail}
+          onChangeText={setUsernameOrEmail}
           placeholderTextColor="#555"
           autoCapitalize="none"
-          keyboardType="email-address"
+          keyboardType="default"
         />
 
         <View style={styles.inputRow}>
           <TextInput
             style={[styles.input, { flex: 1, marginVertical: 0 }]}
-            placeholder="Senha (ou '123' para demo)"
+            placeholder="Senha"
             value={senha}
             onChangeText={setSenha}
             placeholderTextColor="#555"
             secureTextEntry={!mostrarSenha}
             autoCapitalize="none"
           />
-          <TouchableOpacity style={styles.eyeBtn} onPress={() => setMostrarSenha((v) => !v)}>
+          <TouchableOpacity style={styles.eyeBtn} onPress={() => setMostrarSenha(v => !v)}>
             <Ionicons name={mostrarSenha ? 'eye-off' : 'eye'} size={20} color="#003e63" />
           </TouchableOpacity>
         </View>
@@ -140,17 +114,6 @@ export default function LoginScreen() {
         >
           <Text style={styles.buttonText}>{loading ? 'Entrando...' : 'Entrar'}</Text>
           <Ionicons name="log-in" size={20} color="#fff" style={{ marginLeft: 8 }} />
-        </TouchableOpacity>
-
-        {/* Botão opcional para demo em um toque, sem digitar */}
-        <TouchableOpacity
-          style={styles.buttonDemo}
-          onPress={entrarComoDemo}
-          activeOpacity={0.9}
-          disabled={loading}
-        >
-          <Text style={styles.buttonText}>Demo (fatec / 123)</Text>
-          <Ionicons name="flash" size={20} color="#fff" style={{ marginLeft: 8 }} />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -176,8 +139,18 @@ export default function LoginScreen() {
 
       <Image source={frase} style={styles.frase} resizeMode="contain" />
 
+      {/* Logo clicável para ir direto ao MenuPrincipal */}
       <View style={styles.bottomContainer}>
-        <Image source={logo} style={styles.logo} resizeMode="contain" />
+        <TouchableOpacity
+          onPress={navegarHome}
+          activeOpacity={0.8}
+          disabled={loading}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          accessibilityRole="button"
+          accessibilityLabel="Ir para o menu principal"
+        >
+          <Image source={logo} style={styles.logo} resizeMode="contain" />
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -215,16 +188,6 @@ const styles = StyleSheet.create({
     paddingVertical: PADDING_VERTICAL,
     alignItems: 'center',
     marginTop: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  buttonDemo: {
-    width: LARGURA_CARD,
-    backgroundColor: '#2f855a', // verde para destacar demo
-    borderRadius: 10,
-    paddingVertical: PADDING_VERTICAL,
-    alignItems: 'center',
-    marginTop: 8,
     flexDirection: 'row',
     justifyContent: 'center',
   },

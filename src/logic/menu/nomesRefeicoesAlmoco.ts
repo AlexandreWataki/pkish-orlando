@@ -1,373 +1,277 @@
+// ⚠️ Importa apenas do módulo de tipos compartilhados para evitar require cycle.
 import type { NomeMenu } from "./nomesRefeicoes.shared";
-import { normalizeNome } from "./nomesRefeicoes.shared";
 
-/** Gera link de BUSCA no Instagram (fallback seguro). */
-const igSearch = (nome: string) =>
-  `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(nome + " Orlando")}`;
-
-/** Mapeia marcas por padrão no nome → perfil oficial no Instagram. */
-const BRAND_IG: Array<{ pattern: RegExp; url: string }> = [
-  { pattern: /\bthe capital grille\b/i, url: "https://www.instagram.com/thecapitalgrille/" },
-  { pattern: /\bfirst watch\b/i, url: "https://www.instagram.com/firstwatch/" },
-  { pattern: /\bfive guys\b/i, url: "https://www.instagram.com/fiveguys/" },
-  { pattern: /\bgreen kitchen\b/i, url: "https://www.instagram.com/greenkitchenorlando/" },
-
-  { pattern: /\bolive garden\b/i, url: "https://www.instagram.com/olivegarden/" },
-  { pattern: /\brainforest\s*caf[eé]\b/i, url: "https://www.instagram.com/rainforest_cafe/" },
-  { pattern: /\bcheddar'?s\b/i, url: "https://www.instagram.com/cheddarskitchen/" },
-  { pattern: /\bsubway\b/i, url: "https://www.instagram.com/subway/" },
-  { pattern: /\bjason'?s deli\b/i, url: "https://www.instagram.com/jasonsdeli/" },
-
-  { pattern: /\blong\s*horn\b/i, url: "https://www.instagram.com/longhornsteaks/" },
-  { pattern: /\bmedieval times\b/i, url: "https://www.instagram.com/medievaltimes/" },
-  { pattern: /\bcracker barrel\b/i, url: "https://www.instagram.com/crackerbarrel/" },
-  { pattern: /\bwendy'?s\b/i, url: "https://www.instagram.com/wendys/" },
-  { pattern: /\bnature'?s table\b/i, url: "https://www.instagram.com/naturestable/" },
-
-  { pattern: /\bcolumbia restaurant\b/i, url: "https://www.instagram.com/columbiarestaurant/" },
-  { pattern: /\btijuana flats\b/i, url: "https://www.instagram.com/tijuanaflats/" },
-  { pattern: /\bvitality bowls\b/i, url: "https://www.instagram.com/vitalitybowls/" },
-
-  { pattern: /\bhouse of blues\b/i, url: "https://www.instagram.com/houseofblues/" },
-  { pattern: /\bt-?rex\b/i, url: "https://www.instagram.com/t_rexcafe/" },
-  { pattern: /\bd-?luxe burger\b/i, url: "https://www.instagram.com/disneysprings/" }, // perfil do DS
-  { pattern: /\bblaze\b.*pizza\b/i, url: "https://www.instagram.com/blazepizza/" },
-
-  { pattern: /\bwestgate\b/i, url: "https://www.instagram.com/westgateresorts/" },
-  { pattern: /\bperkins\b/i, url: "https://www.instagram.com/perkinsrestaurant/" },
-  { pattern: /\bmc ?donald'?s\b/i, url: "https://www.instagram.com/mcdonalds/" },
-  { pattern: /\bfreshii\b/i, url: "https://www.instagram.com/freshii/" },
-
-  { pattern: /\bmiller'?s ale house\b/i, url: "https://www.instagram.com/millers_ale_house/" },
-  { pattern: /\bpanera\b/i, url: "https://www.instagram.com/panerabread/" },
-  { pattern: /\btaco bell\b/i, url: "https://www.instagram.com/tacobell/" },
-  { pattern: /\bbolay\b/i, url: "https://www.instagram.com/bolay/" },
-
-  { pattern: /\bapplebee'?s\b/i, url: "https://www.instagram.com/applebees/" },
-  { pattern: /\bflippers\b.*pizz/i, url: "https://www.instagram.com/flipperspizzeria/" },
-  { pattern: /\bpopeyes\b/i, url: "https://www.instagram.com/popeyes/" },
-  { pattern: /\btropical smooth/i, url: "https://www.instagram.com/tropicalsmoothiecafe/" },
-
-  { pattern: /\b7-?eleven\b/i, url: "https://www.instagram.com/7eleven/" },
-
-  { pattern: /\bihop\b/i, url: "https://www.instagram.com/ihop/" },
-  { pattern: /\bburger\s*king\b/i, url: "https://www.instagram.com/burgerking/" },
-  { pattern: /\bsmoothie\s*king\b/i, url: "https://www.instagram.com/smoothieking/" },
-  { pattern: /\bdomino'?s\b/i, url: "https://www.instagram.com/dominos/" },
-  { pattern: /\bfresh kitchen\b/i, url: "https://www.instagram.com/eatfreshkitchen/" },
-
-  { pattern: /\bthe whiskey\b/i, url: "https://www.instagram.com/thewhiskeyorlando/" },
-  { pattern: /\bdragonfly\b/i, url: "https://www.instagram.com/dragonflyrestaurants/" },
-  { pattern: /\bthe h orlando\b/i, url: "https://www.instagram.com/thehorlando/" },
-  { pattern: /\bchili'?s\b/i, url: "https://www.instagram.com/chilis/" },
-  { pattern: /\bclean eatz\b/i, url: "https://www.instagram.com/cleaneatz/" },
-
-  { pattern: /\bhyatt regency\b/i, url: "https://www.instagram.com/hyattregencyorlandoairport/" },
-  { pattern: /\bhemisphere\b/i, url: "https://www.instagram.com/hemisphereorlando/" },
-  { pattern: /\bbar louie\b/i, url: "https://www.instagram.com/barlouie/" },
-
-  { pattern: /\bhamburger mary'?s\b/i, url: "https://www.instagram.com/hamburgermarysorlando/" },
-  { pattern: /\bjimmy john'?s\b/i, url: "https://www.instagram.com/jimmyjohns/" },
-  { pattern: /\bsanctum\b/i, url: "https://www.instagram.com/thesanctumkitchen/" },
-
-  { pattern: /\bthe porch\b/i, url: "https://www.instagram.com/theporchorlando/" },
-
-  { pattern: /\byellow dog eats\b/i, url: "https://www.instagram.com/yellowdogeats/" },
-  { pattern: /\bpeach valley\b/i, url: "https://www.instagram.com/peachvalleycafe/" },
-  { pattern: /\bgreenbeat\b/i, url: "https://www.instagram.com/greenbeatlife/" },
-
-  { pattern: /\bcrooked can\b/i, url: "https://www.instagram.com/crookedcan/" },
-
-  { pattern: /\bbahama breeze\b/i, url: "https://www.instagram.com/bahamabreezeislandgrille/" },
-  { pattern: /\bchick-?fil-?a\b/i, url: "https://www.instagram.com/chickfila/" },
-
-  { pattern: /\bthe crooked spoon\b/i, url: "https://www.instagram.com/crookedspoonclermont/" },
-
-  { pattern: /\bzeta asia\b/i, url: "https://www.instagram.com/waldorforlando/" }, // perfil do hotel
-  { pattern: /\bla luce\b/i, url: "https://www.instagram.com/laluceorlando/" },
-  { pattern: /\bwaldorf astoria orlando\b/i, url: "https://www.instagram.com/waldorforlando/" },
-
-  { pattern: /\bdisney springs|disneyworld|chef mickey|contempo caf[eé]|steakhouse 71|bay lake\b/i,
-    url: "https://www.instagram.com/disneyparks/" },
-
-  { pattern: /\bhash house a go go\b/i, url: "https://www.instagram.com/hashhouseagogo/" },
-  { pattern: /\bapplebee'?s\b/i, url: "https://www.instagram.com/applebees/" },
-
-  { pattern: /\bteak neighborhood grill\b/i, url: "https://www.instagram.com/teakorlando/" },
-  { pattern: /\bwonderworks|outta control\b/i, url: "https://www.instagram.com/wonderworksorlando/" },
-  { pattern: /\btaco maker\b/i, url: "https://www.instagram.com/tacomaker/" },
-
-  { pattern: /\bravenous pig\b/i, url: "https://www.instagram.com/theravenouspig/" },
-  { pattern: /\bbosphorous\b/i, url: "https://www.instagram.com/bosphorous_orlando/" },
-  { pattern: /\bhillstone\b/i, url: "https://www.instagram.com/hillstonerestaurant/" },
-  { pattern: /\bburgerfi\b/i, url: "https://www.instagram.com/burgerfi/" },
-  { pattern: /\bcreate your nature\b/i, url: "https://www.instagram.com/createyournature/" },
-
-  { pattern: /\btexas roadhouse\b/i, url: "https://www.instagram.com/texasroadhouse/" },
-  { pattern: /\bplanet hollywood\b/i, url: "https://www.instagram.com/planethollywood/" },
-
-  { pattern: /\bcheesecake factory\b/i, url: "https://www.instagram.com/cheesecakefactory/" },
-  { pattern: /\bp\.?f\.?\s*chang'?s\b/i, url: "https://www.instagram.com/pfchangs/" },
-  { pattern: /\bbrio italian\b/i, url: "https://www.instagram.com/brioitaliangrille/" },
-  { pattern: /\bchipotle\b/i, url: "https://www.instagram.com/chipotlemexicangrill/" },
-
-  { pattern: /\brocco'?s tacos\b/i, url: "https://www.instagram.com/roccostacos/" },
-  { pattern: /\bmelting pot\b/i, url: "https://www.instagram.com/themeltingpot/" },
-  { pattern: /\bmoe'?s southwest\b/i, url: "https://www.instagram.com/moes/" },
-  { pattern: /\btoo much sauce\b/i, url: "https://www.instagram.com/toomuchsaucefl/" },
-
-  { pattern: /\bdenny'?s\b/i, url: "https://www.instagram.com/dennysdiner/" },
-  { pattern: /\bbroadway pizza bar\b/i, url: "https://www.instagram.com/broadwaypizzabar/" },
-];
-
-/** Resolve o melhor link do Instagram (oficial por marca ou busca). */
-function resolveIG(nome: string): string {
-  const hit = BRAND_IG.find((b) => b.pattern.test(nome));
-  return hit ? hit.url : igSearch(nome);
-}
-
-export const NOMES_REFEICOES_ALMOCO: NomeMenu[] = [
+/**
+ * Perfis oficiais (ou de loja/unidade) no Instagram para marcas/grandes redes.
+ * Se não houver no mapa, caímos no fallback de busca do Instagram (segue abaixo).
+ *
+ * IMPORTANTE: As chaves PRECISAM ser únicas. Para unidades repetidas, diferencie pelo bairro/região.
+ */
+const IG_MAP: Record<string, string> = {
   // 1 - International Drive
-  { nome: "The Capital Grille", menuUrl: resolveIG("The Capital Grille") },
-  { nome: "First Watch Lunch I-Drive", menuUrl: resolveIG("First Watch") },
-  { nome: "Five Guys I-Drive Lunch", menuUrl: resolveIG("Five Guys") },
-  { nome: "Green Kitchen I-Drive", menuUrl: resolveIG("Green Kitchen Orlando") },
+  "The Capital Grille": "https://www.instagram.com/thecapitalgrille/",
+  "First Watch Lunch I-Drive": "https://www.instagram.com/firstwatch/",
+  "Five Guys I-Drive Lunch": "https://www.instagram.com/fiveguys/",
+  "Green Kitchen I-Drive": "https://www.instagram.com/greenkitchenorlando/",
 
   // 2 - Lake Buena Vista
-  { nome: "Olive Garden Lake Buena Vista", menuUrl: resolveIG("Olive Garden") },
-  { nome: "Rainforest Cafe Lunch", menuUrl: resolveIG("Rainforest Cafe") },
-  { nome: "Cheddar's Scratch Kitchen Lunch", menuUrl: resolveIG("Cheddar's") },
-  { nome: "Subway Vineland Lunch", menuUrl: resolveIG("Subway") },
-  { nome: "Jason’s Deli Lake Buena Vista", menuUrl: resolveIG("Jason's Deli Lake Buena Vista") },
-
-  // 3 - Kissimmee
-  { nome: "LongHorn Steakhouse Kissimmee", menuUrl: resolveIG("LongHorn Steakhouse") },
-  { nome: "Medieval Times Lunch", menuUrl: resolveIG("Medieval Times") },
-  { nome: "Cracker Barrel Kissimmee", menuUrl: resolveIG("Cracker Barrel") },
-  { nome: "Wendy’s Kissimmee Lunch", menuUrl: resolveIG("Wendy's") },
-  { nome: "Nature’s Table Kissimmee", menuUrl: resolveIG("Nature's Table") },
-
-  // 4 - Celebration
-  { nome: "Columbia Restaurant Lunch", menuUrl: resolveIG("Columbia Restaurant Celebration") },
-  { nome: "Cafe D’Antonio Celebration", menuUrl: resolveIG("Cafe D’Antonio Celebration") },
-  { nome: "Market Street Cafe Lunch", menuUrl: resolveIG("Market Street Cafe Celebration") },
-  { nome: "Tijuana Flats Lunch", menuUrl: resolveIG("Tijuana Flats") },
-  { nome: "Vitality Bowls Celebration", menuUrl: resolveIG("Vitality Bowls Celebration") },
+  "Olive Garden Lake Buena Vista": "https://www.instagram.com/olivegarden/",
+  "Rainforest Cafe Lunch": "https://www.instagram.com/rainforest_cafe/",
+  "Cheddar's Scratch Kitchen Lunch": "https://www.instagram.com/cheddarskitchen/",
+  "Subway Vineland Lunch": "https://www.instagram.com/subway/",
+  "Jason’s Deli Lake Buena Vista": "https://www.instagram.com/jasonsdeli/",
+    
+ // 3 - Kissimmee
+"LongHorn Steakhouse Kissimmee": "https://www.instagram.com/longhornsteaks/",
+"Medieval Times Kissimmee": "https://www.instagram.com/medievaltimes/",
+"Cracker Barrel Kissimmee": "https://www.instagram.com/crackerbarrel/",
+"Wendy’s Kissimmee": "https://www.instagram.com/wendys/",
+"Nature’s Table Kissimmee": "https://www.instagram.com/naturestable/",
+ 
+// 4 - Celebration
+  "Columbia Restaurant Lunch": "https://www.instagram.com/columbiarestaurant/",
+  "Cafe D’Antonio Celebration": "https://www.instagram.com/explore/search/keyword/",
+  "Market Street Cafe Lunch": "https://www.instagram.com/explore/search/keyword/",
+  "Tijuana Flats Lunch": "https://www.instagram.com/tijuanaflats/",
+  "Vitality Bowls Celebration": "https://www.instagram.com/vitalitybowls/",
 
   // 5 - Disney Springs
-  { nome: "House of Blues Lunch", menuUrl: resolveIG("House of Blues Orlando") },
-  { nome: "T-Rex Cafe Lunch", menuUrl: resolveIG("T-Rex Cafe") },
-  { nome: "D-Luxe Burger Lunch", menuUrl: resolveIG("D-Luxe Burger Disney Springs") },
-  { nome: "Earl of Sandwich Lunch", menuUrl: resolveIG("Earl of Sandwich Disney Springs") },
-  { nome: "Blaze Pizza Lunch", menuUrl: resolveIG("Blaze Pizza Disney Springs") },
+  "House of Blues Lunch": "https://www.instagram.com/houseofblues/",
+  "T-Rex Cafe Lunch": "https://www.instagram.com/t_rexcafe/",
+  "D-Luxe Burger Lunch": "https://www.instagram.com/disneysprings/",
+  "Earl of Sandwich Lunch": "https://www.instagram.com/earlofsandwich/",
+  "Blaze Pizza Lunch": "https://www.instagram.com/blazepizza/",
 
   // 6 - Windsor Hills
-  { nome: "Drafts Sports Bar & Grill", menuUrl: resolveIG("Drafts Sports Bar Westgate") },
-  { nome: "Minnie’s Cafe Lunch", menuUrl: resolveIG("Minnie's Cafe Disney") },
-  { nome: "Perkins Restaurant & Bakery", menuUrl: resolveIG("Perkins Restaurant") },
-  { nome: "McDonald's Formosa Blvd", menuUrl: resolveIG("McDonald's") },
-  { nome: "Freshii Windsor Hills", menuUrl: resolveIG("Freshii") },
+  "Drafts Sports Bar & Grill (Windsor Hills)": "https://www.instagram.com/westgateresorts/",
+  "Minnie’s Cafe Lunch": "https://www.instagram.com/disneyparks/",
+  "Perkins Restaurant & Bakery (Windsor Hills)": "https://www.instagram.com/perkinsrestaurant/",
+  "McDonald's Formosa Blvd": "https://www.instagram.com/mcdonalds/",
+  "Freshii Windsor Hills": "https://www.instagram.com/freshii/",
 
   // 7 - ChampionsGate
-  { nome: "Miller’s Ale House", menuUrl: resolveIG("Miller's Ale House") },
-  { nome: "Blue Coast Asian Grill", menuUrl: resolveIG("Blue Coast Asian Grill") },
-  { nome: "Panera Bread ChampionsGate", menuUrl: resolveIG("Panera Bread") },
-  { nome: "Taco Bell ChampionsGate", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Bolay ChampionsGate", menuUrl: resolveIG("Bolay") },
+  "Miller’s Ale House ChampionsGate": "https://www.instagram.com/millers_ale_house/",
+  "Blue Coast Asian Grill": "https://www.instagram.com/explore/search/keyword/",
+  "Panera Bread ChampionsGate": "https://www.instagram.com/panerabread/",
+  "Taco Bell ChampionsGate": "https://www.instagram.com/tacobell/",
+  "Bolay ChampionsGate": "https://www.instagram.com/bolay/",
 
   // 8 - Four Corners
-  { nome: "Applebee’s Four Corners", menuUrl: resolveIG("Applebee's") },
-  { nome: "Flippers Pizzeria Lunch", menuUrl: resolveIG("Flippers Pizzeria") },
-  { nome: "Perkins Family Restaurant", menuUrl: resolveIG("Perkins Restaurant") },
-  { nome: "Popeyes Louisiana Kitchen", menuUrl: resolveIG("Popeyes") },
-  { nome: "Tropical Smoothie Cafe", menuUrl: resolveIG("Tropical Smoothie Cafe") },
+  "Applebee’s Four Corners": "https://www.instagram.com/applebees/",
+  "Flippers Pizzeria Lunch": "https://www.instagram.com/flipperspizzeria/",
+  "Perkins Family Restaurant": "https://www.instagram.com/perkinsrestaurant/",
+  "Popeyes Louisiana Kitchen": "https://www.instagram.com/popeyes/",
+  "Tropical Smoothie Cafe": "https://www.instagram.com/tropicalsmoothiecafe/",
+
+    // 9 - Vineland Premium Outlets (Almoço)
+  "The Cheesecake Factory Vineland": "https://www.instagram.com/cheesecakefactory/",
+  "Benihana Orlando": "https://www.instagram.com/benihana/",
+  "BJ's Restaurant & Brewhouse Vineland": "https://www.instagram.com/bjsrestaurants/",
+  "Panera Bread Vineland": "https://www.instagram.com/panerabread/",
+  "Olive Garden Vineland": "https://www.instagram.com/olivegarden/",
+
+
 
   // 9 - Reunion
-  { nome: "Eleven at Reunion Resort", menuUrl: resolveIG("Eleven Reunion Resort") },
-  { nome: "Grand Lobby Sushi Bar", menuUrl: resolveIG("Grand Lobby Sushi Bar Reunion") },
-  { nome: "Traditions at Nicklaus Clubhouse", menuUrl: resolveIG("Traditions Nicklaus Clubhouse Reunion") },
-  { nome: "7-Eleven Lunch", menuUrl: resolveIG("7-Eleven") },
-  { nome: "Nature’s Table Reunion", menuUrl: resolveIG("Nature's Table") },
+  "Eleven at Reunion Resort": "https://www.instagram.com/explore/search/keyword/",
+  "Grand Lobby Sushi Bar": "https://www.instagram.com/explore/search/keyword/",
+  "Traditions at Nicklaus Clubhouse": "https://www.instagram.com/explore/search/keyword/",
+  "7-Eleven Lunch": "https://www.instagram.com/7eleven/",
+  "Nature’s Table Reunion": "https://www.instagram.com/naturestable/",
 
   // 10 - Davenport
-  { nome: "Ovation Bistro & Bar", menuUrl: resolveIG("Ovation Bistro & Bar Davenport") },
-  { nome: "Giovanni’s Pizza Lunch", menuUrl: resolveIG("Giovanni’s Pizza Davenport") },
-  { nome: "IHOP Davenport", menuUrl: resolveIG("IHOP") },
-  { nome: "Burger King Davenport", menuUrl: resolveIG("Burger King") },
-  { nome: "Smoothie King Davenport", menuUrl: resolveIG("Smoothie King") },
+  "Ovation Bistro & Bar": "https://www.instagram.com/explore/search/keyword/",
+  "Giovanni’s Pizza Lunch": "https://www.instagram.com/explore/search/keyword/",
+  "IHOP Davenport": "https://www.instagram.com/ihop/",
+  "Burger King Davenport": "https://www.instagram.com/burgerking/",
+  "Smoothie King Davenport": "https://www.instagram.com/smoothieking/",
 
   // 11 - Westgate Lakes
-  { nome: "Drafts Sports Bar & Grill", menuUrl: resolveIG("Drafts Sports Bar Westgate") },
-  { nome: "Villa Italiano Chophouse", menuUrl: resolveIG("Villa Italiano Chophouse Westgate") },
-  { nome: "Cordovano Joe’s Pizza", menuUrl: resolveIG("Cordovano Joe’s Pizza Westgate") },
-  { nome: "Subway Westgate", menuUrl: resolveIG("Subway") },
-  { nome: "Juice Bar Westgate", menuUrl: resolveIG("Westgate Lakes Juice Bar") },
+  "Drafts Sports Bar & Grill (Westgate Lakes)": "https://www.instagram.com/westgateresorts/",
+  "Villa Italiano Chophouse": "https://www.instagram.com/explore/search/keyword/",
+  "Cordovano Joe’s Pizza": "https://www.instagram.com/explore/search/keyword/",
+  "Subway Westgate": "https://www.instagram.com/subway/",
+  "Juice Bar Westgate": "https://www.instagram.com/westgateresorts/",
 
   // 12 - Vista Cay
-  { nome: "Spencer’s for Steaks and Chops", menuUrl: resolveIG("Spencer’s for Steaks and Chops Hilton Orlando") },
-  { nome: "NYPD Pizza Vista Cay", menuUrl: resolveIG("NYPD Pizza Orlando") },
-  { nome: "The Bistro – Vista Cay", menuUrl: resolveIG("The Bistro Vista Cay") },
-  { nome: "Domino’s Pizza", menuUrl: resolveIG("Domino's Pizza") },
-  { nome: "Fresh Kitchen Vista Cay", menuUrl: resolveIG("Fresh Kitchen Orlando") },
+  "Spencer’s for Steaks and Chops": "https://www.instagram.com/explore/search/keyword/",
+  "NYPD Pizza Vista Cay": "https://www.instagram.com/explore/search/keyword/",
+  "The Bistro – Vista Cay": "https://www.instagram.com/explore/search/keyword/",
+  "Domino’s Pizza": "https://www.instagram.com/dominos/",
+  "Fresh Kitchen Vista Cay": "https://www.instagram.com/eatfreshkitchen/",
 
   // 14 - Dr. Phillips
-  { nome: "The Whiskey Orlando", menuUrl: resolveIG("The Whiskey Orlando") },
-  { nome: "Dragonfly Robata Grill & Sushi", menuUrl: resolveIG("Dragonfly Orlando") },
-  { nome: "The H Orlando", menuUrl: resolveIG("The H Orlando") },
-  { nome: "Taco Bell Dr. Phillips", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Clean Eatz Dr. Phillips", menuUrl: resolveIG("Clean Eatz") },
+  "The Whiskey Orlando": "https://www.instagram.com/thewhiskeyorlando/",
+  "Dragonfly Robata Grill & Sushi": "https://www.instagram.com/dragonflyrestaurants/",
+  "The H Orlando": "https://www.instagram.com/thehorlando/",
+  "Taco Bell Dr. Phillips": "https://www.instagram.com/tacobell/",
+  "Clean Eatz Dr. Phillips": "https://www.instagram.com/cleaneatz/",
 
-  // 16 - Orlando Airport Area
-  { nome: "McCoy's Bar & Grill", menuUrl: resolveIG("Hyatt Regency Orlando Airport") },
-  { nome: "Hemisphere Restaurant", menuUrl: resolveIG("Hemisphere Orlando") },
-  { nome: "Chili's Orlando Airport", menuUrl: resolveIG("Chili's") },
-  { nome: "Wendy’s Airport Blvd", menuUrl: resolveIG("Wendy's") },
-  { nome: "Nature’s Table Airport Plaza", menuUrl: resolveIG("Nature's Table") },
+// 16 - Orlando Airport Area
+"Chili’s Grill & Bar – Orlando Airport": "https://www.instagram.com/chilis/",
+"Another Broken Egg Cafe": "https://www.instagram.com/anotherbrokenegg/",
+"Rock & Brews - Lee Vista": "https://www.instagram.com/rockbrews/",
+"Bar Louie - Orlando Airport": "https://www.instagram.com/barlouie/",
+"Nature’s Table Airport": "https://www.instagram.com/naturestable/",
 
-  // 17 - Downtown Orlando
-  { nome: "Hamburger Mary's", menuUrl: resolveIG("Hamburger Mary's Orlando") },
-  { nome: "Ceviche Tapas Orlando", menuUrl: resolveIG("Ceviche Tapas Orlando") },
-  { nome: "The Stubborn Mule", menuUrl: resolveIG("The Stubborn Mule Orlando") },
-  { nome: "Jimmy John’s", menuUrl: resolveIG("Jimmy John's") },
-  { nome: "The Sanctum Cafe", menuUrl: resolveIG("The Sanctum Kitchen Orlando") },
+// 17 - Downtown Orlando
+  "Hamburger Mary's Orlando": "https://www.instagram.com/hamburgermarysorlando/",
+  "Cindy’s Cuban Café": "https://www.instagram.com/cindyscafeorlando/",
+  "The Stubborn Mule": "https://www.instagram.com/thestubbornmuleorlando/",
+  "Planted Kitchen": "https://www.instagram.com/plantedinorlando/",
+  "Dunkin’ Downtown Orlando": "https://www.instagram.com/dunkin/",
 
   // 18 - Hunter's Creek
-  { nome: "The Porch South Orange", menuUrl: resolveIG("The Porch Orlando") },
-  { nome: "La Fiesta Mexican Grill", menuUrl: resolveIG("La Fiesta Mexican Grill Hunter's Creek") },
-  { nome: "Miller’s Ale House", menuUrl: resolveIG("Miller's Ale House") },
-  { nome: "Taco Bell Hunter’s Creek", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Bolay Hunter’s Creek", menuUrl: resolveIG("Bolay") },
+  "The Porch South Orange": "https://www.instagram.com/theporchorlando/",
+  "La Fiesta Mexican Grill": "https://www.instagram.com/explore/search/keyword/",
+  "Miller’s Ale House Hunter’s Creek": "https://www.instagram.com/millers_ale_house/",
+  "Taco Bell Hunter’s Creek": "https://www.instagram.com/tacobell/",
+  "Bolay Hunter’s Creek": "https://www.instagram.com/bolay/",
 
   // 19 - Windermere
-  { nome: "Yellow Dog Eats", menuUrl: resolveIG("Yellow Dog Eats") },
-  { nome: "Bella Tuscany", menuUrl: resolveIG("Bella Tuscany Windermere") },
-  { nome: "Peach Valley Cafe", menuUrl: resolveIG("Peach Valley Cafe") },
-  { nome: "McDonald’s Windermere", menuUrl: resolveIG("McDonald's") },
-  { nome: "Greenbeat Windermere", menuUrl: resolveIG("Greenbeat Windermere") },
+  "Yellow Dog Eats": "https://www.instagram.com/yellowdogeats/",
+  "Bella Tuscany": "https://www.instagram.com/explore/search/keyword/",
+  "Peach Valley Cafe": "https://www.instagram.com/peachvalleycafe/",
+  "McDonald’s Windermere": "https://www.instagram.com/mcdonalds/",
+  "Greenbeat Windermere": "https://www.instagram.com/greenbeatlife/",
 
   // 20 - Winter Garden
-  { nome: "MoonCricket Grille", menuUrl: resolveIG("MoonCricket Grille Winter Garden") },
-  { nome: "Crooked Can Brewing Company", menuUrl: resolveIG("Crooked Can Brewing Company") },
-  { nome: "Urban on Plant Kitchen & Bar", menuUrl: resolveIG("Urban on Plant Kitchen & Bar") },
-  { nome: "Taco Bell Winter Garden", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Plant Street Market – Press’d", menuUrl: resolveIG("Plant Street Market Press'd") },
+  "MoonCricket Grille": "https://www.instagram.com/explore/search/keyword/",
+  "Crooked Can Brewing Company": "https://www.instagram.com/crookedcan/",
+  "Urban on Plant Kitchen & Bar": "https://www.instagram.com/explore/search/keyword/",
+  "Taco Bell Winter Garden": "https://www.instagram.com/tacobell/",
+  "Plant Street Market – Press’d": "https://www.instagram.com/explore/search/keyword/",
 
   // 21 - Altamonte Springs
-  { nome: "Bahama Breeze", menuUrl: resolveIG("Bahama Breeze Altamonte Springs") },
-  { nome: "Kobe Japanese Steakhouse", menuUrl: resolveIG("Kobe Japanese Steakhouse") },
-  { nome: "Cracker Barrel Old Country Store", menuUrl: resolveIG("Cracker Barrel") },
-  { nome: "Chick-fil-A Altamonte", menuUrl: resolveIG("Chick-fil-A") },
-  { nome: "Vitality Bowls Altamonte", menuUrl: resolveIG("Vitality Bowls Altamonte") },
+  "Bahama Breeze": "https://www.instagram.com/bahamabreezeislandgrille/",
+  "Kobe Japanese Steakhouse": "https://www.instagram.com/kobesteakhouse/",
+  "Cracker Barrel Old Country Store": "https://www.instagram.com/crackerbarrel/",
+  "Chick-fil-A Altamonte": "https://www.instagram.com/chickfila/",
+  "Vitality Bowls Altamonte": "https://www.instagram.com/vitalitybowls/",
 
   // 22 - Clermont
-  { nome: "Chili’s Grill & Bar Clermont", menuUrl: resolveIG("Chili's Clermont") },
-  { nome: "The Crooked Spoon Gastropub", menuUrl: resolveIG("The Crooked Spoon Clermont") },
-  { nome: "Bob Evans Clermont", menuUrl: resolveIG("Bob Evans") },
-  { nome: "Taco Bell Clermont", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Vitality Bowls Clermont", menuUrl: resolveIG("Vitality Bowls Clermont") },
+  "Chili’s Grill & Bar Clermont": "https://www.instagram.com/chilis/",
+  "The Crooked Spoon Gastropub": "https://www.instagram.com/crookedspoonclermont/",
+  "Bob Evans Clermont": "https://www.instagram.com/bobevansfarms/",
+  "Taco Bell Clermont": "https://www.instagram.com/tacobell/",
+  "Vitality Bowls Clermont": "https://www.instagram.com/vitalitybowls/",
 
   // 23 - Oak Ridge
-  { nome: "Applebee’s Grill + Bar", menuUrl: resolveIG("Applebee's") },
-  { nome: "Café Tu Tu Tango", menuUrl: resolveIG("Cafe Tu Tu Tango Orlando") },
-  { nome: "Perkins Restaurant & Bakery", menuUrl: resolveIG("Perkins Restaurant") },
-  { nome: "Pollo Tropical Oak Ridge", menuUrl: resolveIG("Pollo Tropical") },
-  { nome: "Smoothie King Oak Ridge", menuUrl: resolveIG("Smoothie King") },
+  "Applebee’s Grill + Bar": "https://www.instagram.com/applebees/",
+  "Café Tu Tu Tango": "https://www.instagram.com/explore/search/keyword/",
+  "Perkins Restaurant & Bakery (Oak Ridge)": "https://www.instagram.com/perkinsrestaurant/",
+  "Pollo Tropical Oak Ridge": "https://www.instagram.com/pollotropical/",
+  "Smoothie King Oak Ridge": "https://www.instagram.com/smoothieking/",
 
   // 24 - Maingate East
-  { nome: "Olive Garden Maingate East", menuUrl: resolveIG("Olive Garden") },
-  { nome: "Pirate’s Dinner Adventure Lunch", menuUrl: resolveIG("Pirate’s Dinner Adventure Orlando") },
-  { nome: "Cracker Barrel Old Country Store", menuUrl: resolveIG("Cracker Barrel") },
-  { nome: "Taco Bell Maingate East", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Nature’s Table Maingate East", menuUrl: resolveIG("Nature's Table") },
+  "Olive Garden Maingate East": "https://www.instagram.com/olivegarden/",
+  "Pirate’s Dinner Adventure Lunch": "https://www.instagram.com/explore/search/keyword/",
+  "Cracker Barrel Maingate East": "https://www.instagram.com/crackerbarrel/",
+  "Taco Bell Maingate East": "https://www.instagram.com/tacobell/",
+  "Nature’s Table Maingate East": "https://www.instagram.com/naturestable/",
 
   // 25 - Maingate West
-  { nome: "Ford's Garage Sunset Walk", menuUrl: resolveIG("Ford's Garage Sunset Walk") },
-  { nome: "Logan’s Roadhouse", menuUrl: resolveIG("Logan's Roadhouse") },
-  { nome: "Bob Evans Maingate West", menuUrl: resolveIG("Bob Evans") },
-  { nome: "Wendy’s Maingate West", menuUrl: resolveIG("Wendy's") },
-  { nome: "Freshii Maingate West", menuUrl: resolveIG("Freshii") },
+  "Ford's Garage Sunset Walk": "https://www.instagram.com/explore/search/keyword/",
+  "Logan’s Roadhouse": "https://www.instagram.com/explore/search/keyword/",
+  "Bob Evans Maingate West": "https://www.instagram.com/bobevansfarms/",
+  "Wendy’s Maingate West": "https://www.instagram.com/wendys/",
+  "Freshii Maingate West": "https://www.instagram.com/freshii/",
 
   // 26 - Bonnet Creek
-  { nome: "Zeta Asia at Hilton Bonnet Creek", menuUrl: resolveIG("Zeta Asia Waldorf Astoria Orlando") },
-  { nome: "La Luce at Hilton Bonnet Creek", menuUrl: resolveIG("La Luce Orlando") },
-  { nome: "Harvest Bistro", menuUrl: resolveIG("Waldorf Astoria Orlando Harvest Bistro") },
-  { nome: "Subway Bonnet Creek", menuUrl: resolveIG("Subway") },
-  { nome: "Spoon & Sprout Bonnet Creek", menuUrl: resolveIG("Hilton Bonnet Creek dining") },
+  "Zeta Asia at Hilton Bonnet Creek": "https://www.instagram.com/waldorforlando/",
+  "La Luce at Hilton Bonnet Creek": "https://www.instagram.com/laluceorlando/",
+  "Harvest Bistro": "https://www.instagram.com/waldorforlando/",
+  "Subway Bonnet Creek": "https://www.instagram.com/subway/",
+  "Spoon & Sprout Bonnet Creek": "https://www.instagram.com/explore/search/keyword/",
 
-  // 27 - Bay Lake
-  { nome: "Contempo Café", menuUrl: resolveIG("Contempo Cafe Disney") },
-  { nome: "Chef Mickey's Lunch", menuUrl: resolveIG("Chef Mickey's Disney") },
-  { nome: "Gas Station Deli Bay Lake", menuUrl: resolveIG("Gas Station Deli Orlando") },
-  { nome: "Bay Lake Greens & Bowls", menuUrl: resolveIG("Bay Lake dining Disney") },
 
   // 28 - Flamingo Crossings
-  { nome: "Five Guys Flamingo", menuUrl: resolveIG("Five Guys") },
-  { nome: "Hash House A Go Go", menuUrl: resolveIG("Hash House A Go Go") },
-  { nome: "Applebee's Flamingo", menuUrl: resolveIG("Applebee's") },
-  { nome: "Taco Bell Flamingo", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Green Fork Café", menuUrl: resolveIG("Green Fork Cafe Orlando") },
+  "Five Guys Flamingo": "https://www.instagram.com/fiveguys/",
+  "Hash House A Go Go": "https://www.instagram.com/hashhouseagogo/",
+  "Applebee's Flamingo": "https://www.instagram.com/applebees/",
+  "Taco Bell Flamingo": "https://www.instagram.com/tacobell/",
+  "Green Fork Café": "https://www.instagram.com/explore/search/keyword/",
 
   // 29 - MetroWest
-  { nome: "Teak Neighborhood Grill", menuUrl: resolveIG("Teak Neighborhood Grill") },
-  { nome: "Outta Control Magic Show Lunch", menuUrl: resolveIG("WonderWorks Orlando") },
-  { nome: "Metro Diner", menuUrl: resolveIG("Metro Diner") },
-  { nome: "Taco Maker MetroWest", menuUrl: resolveIG("Taco Maker Orlando") },
-  { nome: "Fresh Kitchen MetroWest", menuUrl: resolveIG("Fresh Kitchen Orlando") },
+  "Teak Neighborhood Grill": "https://www.instagram.com/teakorlando/",
+  "Outta Control Magic Show Lunch": "https://www.instagram.com/wonderworksorlando/",
+  "Metro Diner": "https://www.instagram.com/metrodiner/",
+  "Taco Maker MetroWest": "https://www.instagram.com/tacomaker/",
+  "Fresh Kitchen MetroWest": "https://www.instagram.com/eatfreshkitchen/",
 
   // 30 - Winter Park
-  { nome: "The Ravenous Pig", menuUrl: resolveIG("The Ravenous Pig") },
-  { nome: "Bosphorous Turkish Cuisine", menuUrl: resolveIG("Bosphorous Turkish Cuisine Winter Park") },
-  { nome: "Hillstone Restaurant", menuUrl: resolveIG("Hillstone Winter Park") },
-  { nome: "BurgerFi Winter Park", menuUrl: resolveIG("BurgerFi") },
-  { nome: "Create Your Nature", menuUrl: resolveIG("Create Your Nature Winter Park") },
+  "The Ravenous Pig": "https://www.instagram.com/theravenouspig/",
+  "Bosphorous Turkish Cuisine": "https://www.instagram.com/bosphorous_orlando/",
+  "Hillstone Restaurant": "https://www.instagram.com/hillstonerestaurant/",
+  "BurgerFi Winter Park": "https://www.instagram.com/burgerfi/",
+  "Create Your Nature": "https://www.instagram.com/createyournature/",
 
   // 31 - Osceola Parkway
-  { nome: "Texas Roadhouse Osceola", menuUrl: resolveIG("Texas Roadhouse") },
-  { nome: "Planet Hollywood Lunch", menuUrl: resolveIG("Planet Hollywood Orlando") },
-  { nome: "Perkins Restaurant Osceola", menuUrl: resolveIG("Perkins Restaurant") },
-  { nome: "Burger King Osceola Parkway", menuUrl: resolveIG("Burger King") },
-  { nome: "Tropical Smoothie Café Osceola", menuUrl: resolveIG("Tropical Smoothie Cafe") },
+  "Texas Roadhouse Osceola": "https://www.instagram.com/texasroadhouse/",
+  "Planet Hollywood Lunch": "https://www.instagram.com/planethollywood/",
+  "Perkins Restaurant Osceola": "https://www.instagram.com/perkinsrestaurant/",
+  "Burger King Osceola Parkway": "https://www.instagram.com/burgerking/",
+  "Tropical Smoothie Café Osceola": "https://www.instagram.com/tropicalsmoothiecafe/",
 
   // 32 - Millenia Area
-  { nome: "The Cheesecake Factory Millenia", menuUrl: resolveIG("The Cheesecake Factory Millenia") },
-  { nome: "P.F. Chang’s Millenia", menuUrl: resolveIG("P.F. Chang's") },
-  { nome: "Brio Italian Grille", menuUrl: resolveIG("Brio Italian Grille") },
-  { nome: "Chipotle Millenia", menuUrl: resolveIG("Chipotle Mexican Grill") },
-  { nome: "Bolay Millenia", menuUrl: resolveIG("Bolay") },
+  "The Cheesecake Factory Millenia": "https://www.instagram.com/cheesecakefactory/",
+  "P.F. Chang’s Millenia": "https://www.instagram.com/pfchangs/",
+  "Brio Italian Grille": "https://www.instagram.com/brioitaliangrille/",
+  "Chipotle Millenia": "https://www.instagram.com/chipotlemexicangrill/",
+  "Bolay Millenia": "https://www.instagram.com/bolay/",
 
   // 33 - Southchase
-  { nome: "Miller's Ale House Southchase", menuUrl: resolveIG("Miller's Ale House") },
-  { nome: "Chuy's Tex-Mex Southchase", menuUrl: resolveIG("Chuy's Restaurant") },
-  { nome: "Perkins Restaurant & Bakery", menuUrl: resolveIG("Perkins Restaurant") },
-  { nome: "Pollo Tropical Southchase", menuUrl: resolveIG("Pollo Tropical") },
-  { nome: "Tropical Smoothie Cafe Southchase", menuUrl: resolveIG("Tropical Smoothie Cafe") },
+  "Miller's Ale House Southchase": "https://www.instagram.com/millers_ale_house/",
+  "Chuy's Tex-Mex Southchase": "https://www.instagram.com/chuysrestaurant/",
+  "Perkins Restaurant & Bakery (Southchase)": "https://www.instagram.com/perkinsrestaurant/",
+  "Pollo Tropical Southchase": "https://www.instagram.com/pollotropical/",
+  "Tropical Smoothie Cafe Southchase": "https://www.instagram.com/tropicalsmoothiecafe/",
 
   // 34 - Baldwin Park
-  { nome: "Seito Sushi Baldwin", menuUrl: resolveIG("Seito Sushi Baldwin Park") },
-  { nome: "The Osprey Tavern", menuUrl: resolveIG("The Osprey Orlando") },
-  { nome: "Gators Dockside Baldwin", menuUrl: resolveIG("Gators Dockside Baldwin Park") },
-  { nome: "Tijuana Flats Baldwin Park", menuUrl: resolveIG("Tijuana Flats Baldwin Park") },
-  { nome: "Green Kitchen Baldwin Park", menuUrl: resolveIG("Green Kitchen Baldwin Park") },
+  "Seito Sushi Baldwin": "https://www.instagram.com/seitobp/",
+  "The Osprey Tavern": "https://www.instagram.com/theospreyorlando/",
+  "Gators Dockside Baldwin": "https://www.instagram.com/gatorsdockside/",
+  "Tijuana Flats Baldwin Park": "https://www.instagram.com/tijuanaflats/",
+  "Green Kitchen Baldwin Park": "https://www.instagram.com/greenkitchenorlando/",
 
   // 35 - Sand Lake Road Area
-  { nome: "Rocco's Tacos and Tequila Bar", menuUrl: resolveIG("Rocco's Tacos Orlando") },
-  { nome: "The Melting Pot Orlando", menuUrl: resolveIG("The Melting Pot") },
-  { nome: "The Whiskey", menuUrl: resolveIG("The Whiskey Orlando") },
-  { nome: "Moe’s Southwest Grill", menuUrl: resolveIG("Moe's Southwest Grill") },
-  { nome: "Too Much Sauce", menuUrl: resolveIG("Too Much Sauce Orlando") },
+  "Rocco's Tacos and Tequila Bar": "https://www.instagram.com/roccostacos/",
+  "The Melting Pot Orlando": "https://www.instagram.com/themeltingpot/",
+  "The Whiskey": "https://www.instagram.com/thewhiskeyorlando/",
+  "Moe’s Southwest Grill": "https://www.instagram.com/moes/",
+  "Too Much Sauce": "https://www.instagram.com/toomuchsaucefl/",
 
   // 36 - North Kissimmee
-  { nome: "Medieval Times Lunch Hall", menuUrl: resolveIG("Medieval Times Orlando") },
-  { nome: "Broadway Pizza Bar", menuUrl: resolveIG("Broadway Pizza Bar Kissimmee") },
-  { nome: "Denny’s North Kissimmee", menuUrl: resolveIG("Denny's") },
-  { nome: "Taco Bell North Kissimmee", menuUrl: resolveIG("Taco Bell") },
-  { nome: "Nature’s Table Kissimmee", menuUrl: resolveIG("Nature's Table") },
-].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base" }));
+  "Medieval Times Lunch Hall": "https://www.instagram.com/medievaltimes/",
+  "Broadway Pizza Bar": "https://www.instagram.com/broadwaypizzabar/",
+  "Denny’s North Kissimmee": "https://www.instagram.com/dennysdiner/",
+  "Taco Bell North Kissimmee": "https://www.instagram.com/tacobell/",
+  "Nature’s Table North Kissimmee": "https://www.instagram.com/naturestable/",
 
-export const MENU_LOOKUP_ALMOCO: Map<string, string> = new Map(
-  NOMES_REFEICOES_ALMOCO.map((i) => [normalizeNome(i.nome), i.menuUrl])
+
+// 37 - Four Corners
+"Chili’s Grill & Bar – Four Corners": "https://www.instagram.com/chilis/",
+"Sr. Tequila Mexican Grill": "https://www.instagram.com/srtequilamexicangrill/",
+"Friar Tuck – British Fish & Chips": "https://www.instagram.com/friartuckfishnchips/",
+"Orlando Cat Café": "https://www.instagram.com/orlandocatcafe/",
+"I Love NY Pizza – Cagan Crossings": "https://www.instagram.com/ilovenypizza_clermont/",
+// 30 - Winter Park
+"The Glass Knife": "https://www.instagram.com/theglassknife/",
+"Barnie’s Coffee & Tea Co. – Park Ave": "https://www.instagram.com/barniescoffee/",
+"Foxtail Coffee Co. – Winter Park": "https://www.instagram.com/foxtailcoffee/",
+"First Watch – Winter Park": "https://www.instagram.com/firstwatch/",
+"Keke’s Breakfast Café – Winter Park": "https://www.instagram.com/kekesbreakfastcafe/",
+
+
+};
+
+/** Fallback: gera link de BUSCA do Instagram pelo nome do restaurante. */
+const igSearch = (nome: string) =>
+  `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(nome)}`;
+
+export const NOMES_REFEICOES_ALMOCO: NomeMenu[] = Object.keys(IG_MAP).map((nome) => ({
+  nome,
+  menuUrl: IG_MAP[nome] || igSearch(nome),
+})).sort((a, b) =>
+  a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base" })
 );
-
-export function getMenuUrlAlmoco(nome: string): string {
-  return MENU_LOOKUP_ALMOCO.get(normalizeNome(nome)) || "";
-}

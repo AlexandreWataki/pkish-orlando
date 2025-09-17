@@ -10,7 +10,8 @@ export const cafesProximos = [
   destaque: "Steaks, hambúrgueres gourmet e saladas em ambiente refinado. Prato sugerido: Dry-Aged NY Strip.",
   latitude: 28.4375,
   longitude: -81.4699,
-}, // confirmado em Pointe Orlando. :contentReference[oaicite:0]{index=0}
+  instagram: "https://www.instagram.com/thecapitalgrille/",
+},
 
 {
   nome: "Maggiano's Little Italy (Pointe Orlando)",
@@ -21,7 +22,8 @@ export const cafesProximos = [
   destaque: "Massas e clássicos italianos em ambiente aconchegante. Prato sugerido: Chicken Parmesan.",
   latitude: 28.4360,
   longitude: -81.4702,
-}, // confirmado em Pointe Orlando. :contentReference[oaicite:2]{index=2}
+  instagram: "https://www.instagram.com/maggianoslittleitaly/",
+},
 
 {
   nome: "Shake Shack – ICON Park",
@@ -32,7 +34,8 @@ export const cafesProximos = [
   destaque: "Hambúrgueres e batatas artesanais servidos rapidamente. Prato sugerido: ShackBurger com crinkle-cut fries.",
   latitude: 28.4441,
   longitude: -81.4707,
-}, // unidade do ICON Park. 
+  instagram: "https://www.instagram.com/shakeshack/",
+},
 
 {
   nome: "Nature’s Table (Convention Center)",
@@ -43,7 +46,20 @@ export const cafesProximos = [
   destaque: "Saladas, wraps e bowls leves dentro do centro de convenções. Prato sugerido: Chicken Caesar Wrap.",
   latitude: 28.425,
   longitude: -81.462,
-}, // presença na I-Drive (OCCC). :contentReference[oaicite:4]{index=4}
+  instagram: "https://www.instagram.com/naturestable/",
+},
+
+{
+  nome: "Seito Sushi Baldwin Park",
+  regiao: "International Drive",
+  tipo: "Tematico",
+  acesso: "4898 New Broad St, Orlando, FL 32814",
+  precoMedio: 41,
+  destaque: "Culinária japonesa moderna em ambiente sofisticado. Prato sugerido: Sushi Combo Brunch.",
+  latitude: 28.5674,
+  longitude: -81.3276,
+  instagram: "https://www.instagram.com/seitobp/",
+},
 
 
 
@@ -102,6 +118,68 @@ export const cafesProximos = [
   latitude: 28.3706,
   longitude: -81.5213,
 }, // quiosques listados no diretório de Disney Springs. :contentReference[oaicite:9]{index=9}
+// 3 - Kissimmee
+
+{
+  nome: "LongHorn Steakhouse Kissimmee",
+  regiao: "Kissimmee",
+  tipo: "Americano",
+  acesso: "5351 W Irlo Bronson Memorial Hwy, Kissimmee, FL 34746",
+  precoMedio: 28,
+  destaque: "Churrascaria americana especializada em cortes grelhados. Prato sugerido: Renegade Sirloin.",
+  latitude: 28.3347,
+  longitude: -81.5022,
+  instagram: "https://www.instagram.com/longhornsteaks/",
+},
+
+{
+  nome: "Medieval Times Kissimmee",
+  regiao: "Kissimmee",
+  tipo: "Tematico",
+  acesso: "4510 W Vine St, Kissimmee, FL 34746",
+  precoMedio: 55,
+  destaque: "Jantar-show em castelo medieval com cavaleiros e batalhas ao vivo. Prato sugerido: Roasted Chicken Feast.",
+  latitude: 28.3108,
+  longitude: -81.4715,
+  instagram: "https://www.instagram.com/medievaltimes/",
+},
+
+{
+  nome: "Cracker Barrel Kissimmee",
+  regiao: "Kissimmee",
+  tipo: "Conforto",
+  acesso: "2859 W Vine St, Kissimmee, FL 34741",
+  precoMedio: 18,
+  destaque: "Rede tradicional com comida caseira sulista e loja country. Prato sugerido: Chicken n’ Dumplins.",
+  latitude: 28.3035,
+  longitude: -81.4398,
+  instagram: "https://www.instagram.com/crackerbarrel/",
+},
+
+{
+  nome: "Wendy’s Kissimmee",
+  regiao: "Kissimmee",
+  tipo: "Economico",
+  acesso: "3250 Vineland Rd, Kissimmee, FL 34746",
+  precoMedio: 9,
+  destaque: "Rede de fast-food com hambúrgueres frescos e lanches rápidos. Prato sugerido: Dave’s Single.",
+  latitude: 28.3359,
+  longitude: -81.4955,
+  instagram: "https://www.instagram.com/wendys/",
+},
+
+{
+  nome: "Nature’s Table Kissimmee",
+  regiao: "Kissimmee",
+  tipo: "Saudavel",
+  acesso: "410 W Vine St, Kissimmee, FL 34741",
+  precoMedio: 14,
+  destaque: "Opções leves como saladas, wraps e smoothies preparados na hora. Prato sugerido: Turkey Club Wrap.",
+  latitude: 28.3050,
+  longitude: -81.4198,
+  instagram: "https://www.instagram.com/naturestable/",
+},
+
 
 // 4 - Celebration
 {
@@ -169,6 +247,7 @@ export const cafesProximos = [
   destaque: "Culinária americana com toque caribenho. Prato típico: Jerk Chicken.",
   latitude: 28.2910,
   longitude: -81.4073,
+  instagram: "https://www.instagram.com/savionsplace/",
 },
 {
   nome: "El Tapatio Mexican Restaurant",
@@ -179,6 +258,7 @@ export const cafesProximos = [
   destaque: "Pratos mexicanos autênticos e saborosos. Prato típico: Enchiladas Verdes.",
   latitude: 28.3037,
   longitude: -81.4264,
+  instagram: "https://www.instagram.com/eltapatiokissimmee/",
 },
 {
   nome: "Joanie's Diner",
@@ -189,6 +269,7 @@ export const cafesProximos = [
   destaque: "Diner tradicional com pratos simples e caseiros. Prato típico: Country Breakfast Platter.",
   latitude: 28.3001,
   longitude: -81.4162,
+  instagram: "https://www.instagram.com/joaniesdiner/",
 },
 {
   nome: "Panda Express Kissimmee",
@@ -199,6 +280,7 @@ export const cafesProximos = [
   destaque: "Comida chinesa rápida e acessível. Prato típico: Orange Chicken.",
   latitude: 28.3039,
   longitude: -81.4275,
+  instagram: "https://www.instagram.com/officialpandaexpress/",
 },
 {
   nome: "Raw Juice Bar Kissimmee",
@@ -209,6 +291,7 @@ export const cafesProximos = [
   destaque: "Sucos naturais, smoothies e opções veganas. Prato típico: Açaí Energy Bowl.",
   latitude: 28.3036,
   longitude: -81.4267,
+  instagram: "https://www.instagram.com/rawjuicebar/",
 },
 
 // 6 - Westgate Lakes
@@ -273,6 +356,7 @@ export const cafesProximos = [
   destaque: "Pratos sazonais com ingredientes frescos e grelhados. Prato típico: Cedar Plank Salmon.",
   latitude: 28.4510,
   longitude: -81.4820,
+  instagram: "https://www.instagram.com/seasons52/",
 },
 {
   nome: "Christini's Ristorante Italiano",
@@ -283,6 +367,7 @@ export const cafesProximos = [
   destaque: "Restaurante italiano refinado com pratos clássicos. Prato típico: Veal Chop Alla Milanese.",
   latitude: 28.4514,
   longitude: -81.4890,
+  instagram: "https://www.instagram.com/christinisorlando/",
 },
 {
   nome: "The Venetian Chop House",
@@ -293,6 +378,7 @@ export const cafesProximos = [
   destaque: "Carnes premium e frutos do mar em ambiente sofisticado. Prato típico: Prime Ribeye Steak.",
   latitude: 28.4516,
   longitude: -81.4824,
+  instagram: "https://www.instagram.com/venetianchophouse/",
 },
 {
   nome: "Tijuana Flats Dr. Phillips",
@@ -303,6 +389,7 @@ export const cafesProximos = [
   destaque: "Tex-Mex descontraído com preços acessíveis. Prato típico: Chicken Chimichanga.",
   latitude: 28.4515,
   longitude: -81.4888,
+  instagram: "https://www.instagram.com/tijuanaflats/",
 },
 {
   nome: "Pressed Juice Bar Dr. Phillips",
@@ -313,59 +400,62 @@ export const cafesProximos = [
   destaque: "Sucos prensados a frio e bowls nutritivos. Prato típico: Açaí Protein Bowl.",
   latitude: 28.4513,
   longitude: -81.4891,
+  instagram: "https://www.instagram.com/pressedjuicebar/",
 },
 
-// 8 - Pointe Orlando
+// 37 - Four Corners (Cagan Crossings / US-27 & US-192)
 {
-  nome: "The Oceanaire Seafood Room",
-  regiao: "Pointe Orlando",
+  nome: "Chili’s Grill & Bar – Four Corners",
+  regiao: "Four Corners",
   tipo: "Americano",
-  acesso: "9101 International Dr, Orlando, FL 32819",
-  precoMedio: 44,
-  destaque: "Frutos do mar frescos em ambiente sofisticado. Prato típico: Crab Cakes.",
-  latitude: 28.4354,
-  longitude: -81.4701,
+  acesso: "708 Cagan View Rd, Clermont, FL 34714",
+  precoMedio: 22,
+  destaque: "Clássicos americanos e combos para família. Prato sugerido: Oldtimer Cheeseburger + chips & salsa.",
+  latitude: 28.3548,
+  longitude: -81.6819,
 },
 {
-  nome: "Maggiano's Little Italy Pointe",
-  regiao: "Pointe Orlando",
+  nome: "Sr. Tequila Mexican Grill",
+  regiao: "Four Corners",
   tipo: "Tematico",
-  acesso: "9101 International Dr, Orlando, FL 32819",
-  precoMedio: 30,
-  destaque: "Culinária italiana clássica e porções generosas. Prato típico: Chicken Parmesan.",
-  latitude: 28.4355,
-  longitude: -81.4700,
+  acesso: "16745 Cagan Crossings Blvd, Clermont, FL 34714",
+  precoMedio: 25,
+  destaque: "Mexicano festivo com margaritas e porções generosas. Prato sugerido: Fajitas mistas.",
+  latitude: 28.3566,
+  longitude: -81.6835,
 },
 {
-  nome: "The Pub Orlando",
-  regiao: "Pointe Orlando",
+  nome: "Friar Tuck – British Fish & Chips",
+  regiao: "Four Corners",
   tipo: "Conforto",
-  acesso: "9101 International Dr, Orlando, FL 32819",
-  precoMedio: 28,
-  destaque: "Pub britânico com pratos tradicionais e cervejas. Prato típico: Fish & Chips.",
-  latitude: 28.4356,
-  longitude: -81.4702,
+  acesso: "601 Cagan Park Ave, Clermont, FL 34714",
+  precoMedio: 18,
+  destaque: "Fish & chips estilo britânico e tortas salgadas. Prato sugerido: Cod & Chips com mushy peas.",
+  latitude: 28.3577,
+  longitude: -81.6843,
 },
 {
-  nome: "Johnny Rockets Pointe Orlando",
-  regiao: "Pointe Orlando",
-  tipo: "Economico",
-  acesso: "9101 International Dr, Orlando, FL 32819",
-  precoMedio: 11,
-  destaque: "Lanches americanos clássicos em estilo retrô. Prato típico: Original Burger com batata frita.",
-  latitude: 28.4357,
-  longitude: -81.4703,
-},
-{
-  nome: "Tropical Smoothie Café Pointe",
-  regiao: "Pointe Orlando",
+  nome: "Orlando Cat Café",
+  regiao: "Four Corners",
   tipo: "Saudavel",
-  acesso: "9101 International Dr, Orlando, FL 32819",
-  precoMedio: 12,
-  destaque: "Smoothies e refeições leves e nutritivas. Prato típico: Island Green Smoothie.",
-  latitude: 28.4358,
-  longitude: -81.4704,
+  acesso: "532 Cagan Park Ave, Clermont, FL 34714",
+  precoMedio: 15,
+  destaque: "Cafés, chás e snacks leves com lounge de gatos adotáveis. Prato sugerido: Iced latte + muffin de blueberry.",
+  latitude: 28.3573,
+  longitude: -81.6846,
 },
+{
+  nome: "I Love NY Pizza – Cagan Crossings",
+  regiao: "Four Corners",
+  tipo: "Economico",
+  acesso: "532 Cagan Park Ave, Clermont, FL 34714",
+  precoMedio: 12,
+  destaque: "Fatias à moda NY e calzones. Prato sugerido: Pepperoni slice + garlic knots.",
+  latitude: 28.3572,
+  longitude: -81.6847,
+},
+
+
 // 9 - Vineland Premium Outlets
 {
   nome: "The Cheesecake Factory Vineland",
@@ -377,6 +467,7 @@ export const cafesProximos = [
   latitude: 28.3854,
   longitude: -81.4882,
 },
+
 {
   nome: "Benihana Orlando",
   regiao: "Vineland Premium Outlets",
@@ -387,6 +478,7 @@ export const cafesProximos = [
   latitude: 28.3858,
   longitude: -81.4891,
 },
+
 {
   nome: "BJ's Restaurant & Brewhouse Vineland",
   regiao: "Vineland Premium Outlets",
@@ -397,6 +489,7 @@ export const cafesProximos = [
   latitude: 28.3860,
   longitude: -81.4894,
 },
+
 {
   nome: "Panda Express Vineland",
   regiao: "Vineland Premium Outlets",
@@ -407,6 +500,7 @@ export const cafesProximos = [
   latitude: 28.3856,
   longitude: -81.4888,
 },
+
 {
   nome: "Green Leaf's Vineland",
   regiao: "Vineland Premium Outlets",
@@ -417,6 +511,60 @@ export const cafesProximos = [
   latitude: 28.3859,
   longitude: -81.4886,
 },
+
+
+// 10 - Davenport
+{
+  nome: "IHOP Davenport",
+  regiao: "Davenport",
+  tipo: "Americano",
+  acesso: "43600 US-27, Davenport, FL 33837",
+  precoMedio: 17,
+  destaque: "Rede americana famosa por panquecas, ovos e cafés da manhã completos. Prato típico: Strawberry Banana Pancakes.",
+  latitude: 28.2331,
+  longitude: -81.6489,
+},
+{
+  nome: "Ovation Bistro & Bar",
+  regiao: "Davenport",
+  tipo: "Tematico",
+  acesso: "42605 US-27, Davenport, FL 33837",
+  precoMedio: 32,
+  destaque: "Restaurante temático com carnes e brunch diferenciado. Prato típico: Smoked Brisket Hash.",
+  latitude: 28.2329,
+  longitude: -81.6491,
+},
+{
+  nome: "Perkins Restaurant & Bakery Davenport",
+  regiao: "Davenport",
+  tipo: "Conforto",
+  acesso: "43521 US-27, Davenport, FL 33837",
+  precoMedio: 20,
+  destaque: "Café tradicional americano com panquecas e padaria própria. Prato típico: Brioche French Toast Platter.",
+  latitude: 28.2333,
+  longitude: -81.6494,
+},
+{
+  nome: "Burger King Davenport",
+  regiao: "Davenport",
+  tipo: "Economico",
+  acesso: "44149 US-27, Davenport, FL 33897",
+  precoMedio: 7,
+  destaque: "Rede fast-food com opções acessíveis de café da manhã. Prato típico: Croissan’wich de bacon e ovo.",
+  latitude: 28.2335,
+  longitude: -81.6487,
+},
+{
+  nome: "Smoothie King Davenport",
+  regiao: "Davenport",
+  tipo: "Saudavel",
+  acesso: "39871 US-27, Davenport, FL 33837",
+  precoMedio: 12,
+  destaque: "Smoothies nutritivos e bowls energéticos para começar o dia. Prato típico: Gladiator Protein Smoothie.",
+  latitude: 28.2337,
+  longitude: -81.6485,
+},
+
 
 // 10 - Disney Springs
 {
@@ -522,17 +670,17 @@ export const cafesProximos = [
   longitude: -81.4709,
   menuUrl: "https://www.westgateresorts.com/hotels/florida/orlando/westgate-lakes-resort/dining/"
 },
-
 // 12 - Vista Cay
 {
-  nome: "Vista Cay Diner",
+  nome: "Spoleto Italian Kitchen",
   regiao: "Vista Cay",
   tipo: "Americano",
-  acesso: "9924 Universal Blvd, Orlando, FL 32819",
-  precoMedio: 16,
-  destaque: "Pratos clássicos americanos como ovos e bacon. Prato típico: Combo de panquecas com bacon.",
-  latitude: 28.4260,
-  longitude: -81.4601,
+  acesso: "7600 Dr Phillips Blvd Suite 18, Orlando, FL 32819",
+  precoMedio: 18,
+  destaque: "Culinária italiana casual onde você monta sua própria massa ou salada. Prato típico: Pasta personalizada com molho Alfredo.",
+  latitude: 28.4258,
+  longitude: -81.4602,
+  instagram: "https://www.instagram.com/spoleto_usa/",
 },
 {
   nome: "NYPD Pizza Café",
@@ -540,19 +688,21 @@ export const cafesProximos = [
   tipo: "Tematico",
   acesso: "2589 S Hiawassee Rd, Orlando, FL 32835",
   precoMedio: 24,
-  destaque: "Pizzaria temática no estilo Nova Iorque. Prato típico: Pepperoni Pizza Slice.",
+  destaque: "Pizzaria estilo Nova Iorque com fatias generosas e ambiente descontraído. Prato típico: Pepperoni Pizza Slice.",
   latitude: 28.4265,
   longitude: -81.4600,
+  instagram: "https://www.instagram.com/nypdpizzaorlando/",
 },
 {
-  nome: "Sunset Brunch House",
+  nome: "Menchie’s Frozen Yogurt Vista Cay",
   regiao: "Vista Cay",
   tipo: "Conforto",
-  acesso: "9951 Universal Blvd, Orlando, FL 32819",
-  precoMedio: 19,
-  destaque: "Waffles, omeletes e bolinhos caseiros. Prato típico: Waffle com frutas tropicais.",
-  latitude: 28.4262,
-  longitude: -81.4603,
+  acesso: "9920 Universal Blvd, Orlando, FL 32819",
+  precoMedio: 10,
+  destaque: "Frozen yogurt self-service com diversas coberturas. Prato típico: Frozen Yogurt com frutas frescas.",
+  latitude: 28.4263,
+  longitude: -81.4599,
+  instagram: "https://www.instagram.com/menchiesfroyo/",
 },
 {
   nome: "Dunkin’ Vista Cay",
@@ -560,19 +710,21 @@ export const cafesProximos = [
   tipo: "Economico",
   acesso: "9922 Universal Blvd, Orlando, FL 32819",
   precoMedio: 8,
-  destaque: "Café rápido com donuts variados. Prato típico: Egg & Cheese Sandwich.",
+  destaque: "Cafés, donuts e sanduíches rápidos em rede popular. Prato típico: Egg & Cheese Sandwich.",
   latitude: 28.4261,
   longitude: -81.4600,
+  instagram: "https://www.instagram.com/dunkin/",
 },
 {
-  nome: "Healthy Morning Café",
+  nome: "Subway Vista Cay",
   regiao: "Vista Cay",
   tipo: "Saudavel",
-  acesso: "9920 Universal Blvd, Orlando, FL 32819",
-  precoMedio: 12,
-  destaque: "Wraps saudáveis e frutas frescas. Prato típico: Smoothie de manga com gengibre.",
-  latitude: 28.4264,
-  longitude: -81.4595,
+  acesso: "9926 Universal Blvd, Orlando, FL 32819",
+  precoMedio: 11,
+  destaque: "Sanduíches frescos montados na hora com opções de wraps e bowls. Prato típico: Sub de Frango Teriyaki.",
+  latitude: 28.4266,
+  longitude: -81.4598,
+  instagram: "https://www.instagram.com/subway/",
 },
 
 // 14 - Dr. Phillips
@@ -632,15 +784,17 @@ export const cafesProximos = [
 },
 // 16 - Orlando Airport Area
 {
-  nome: "Hemisphere Restaurant (Hyatt Regency Airport)",
+  nome: "Chili’s Grill & Bar – Orlando Airport",
   regiao: "Orlando Airport Area",
   tipo: "Americano",
-  acesso: "Hyatt Regency Orlando Airport, 9300 Jeff Fuqua Blvd, Orlando, FL 32827",
-  precoMedio: 15,
-  destaque: "Ambiente sofisticado com pratos clássicos americanos.",
-  latitude: 28.4325,
-  longitude: -81.3081,
+  acesso: "6815 S Semoran Blvd, Orlando, FL 32822",
+  precoMedio: 22,
+  destaque: "Rede americana com hambúrgueres, fajitas e ribs famosas. Prato típico: Baby Back Ribs.",
+  latitude: 28.4596,
+  longitude: -81.3085,
+  instagram: "https://www.instagram.com/chilis/",
 },
+
 {
   nome: "Another Broken Egg Cafe",
   regiao: "Orlando Airport Area",
@@ -681,6 +835,7 @@ export const cafesProximos = [
   latitude: 28.4328,
   longitude: -81.3080,
 },
+
 // 17 - Downtown Orlando
 {
   nome: "Cindy’s Cuban Café",
@@ -713,14 +868,14 @@ export const cafesProximos = [
   longitude: -81.3716,
 },
 {
-  nome: "The Sanctum Café",
+  nome: "Planted Kitchen",
   regiao: "Downtown Orlando",
   tipo: "Saudavel",
-  acesso: "715 N Fern Creek Ave, Orlando, FL 32803",
-  precoMedio: 15,
-  destaque: "Opções veganas e naturais com pratos criativos e nutritivos. Prato típico: Vegan Burrito Bowl.",
-  latitude: 28.5520,
-  longitude: -81.3651,
+  acesso: "1035 N Orange Ave, Orlando, FL 32801",
+  precoMedio: 16,
+  destaque: "Culinária vegana criativa e nutritiva, com bowls, wraps e smoothies. Prato típico: Buddha Bowl.",
+  latitude: 28.5550,
+  longitude: -81.3790,
 },
 {
   nome: "Dunkin’ Downtown Orlando",
@@ -732,6 +887,7 @@ export const cafesProximos = [
   latitude: 28.5412,
   longitude: -81.3785,
 },
+
 
 // 18 - Hunter's Creek
 {
@@ -842,62 +998,12 @@ export const cafesProximos = [
   nome: "Winter Garden Café",
   regiao: "Winter Garden",
   tipo: "Americano",
-  acesso: "18 N Boyd St, Winter Garden, FL 34787",
-  precoMedio: 17,
-  destaque: "Café local com pratos americanos clássicos e ambiente acolhedor. Prato típico: Country Breakfast.",
-  latitude: 28.5652,
-  longitude: -81.5864,
-},
-{
-  nome: "Crooked Can Brewing Company",
-  regiao: "Winter Garden",
-  tipo: "Tematico",
-  acesso: "426 W Plant St, Winter Garden, FL 34787",
-  precoMedio: 42,
-  destaque: "Cervejaria artesanal dentro do Plant Street Market. Prato típico: Bavarian Pretzel com mostarda.",
-  latitude: 28.5649,
-  longitude: -81.5863,
-},
-{
-  nome: "MoonCricket Grille",
-  regiao: "Winter Garden",
-  tipo: "Conforto",
-  acesso: "14 W Plant St, Winter Garden, FL 34787",
-  precoMedio: 23,
-  destaque: "Restaurante descontraído com pratos clássicos americanos. Prato típico: Fish & Chips.",
-  latitude: 28.5657,
-  longitude: -81.5871,
-},
-{
-  nome: "Plant Street Market – Press’d",
-  regiao: "Winter Garden",
-  tipo: "Saudavel",
-  acesso: "426 W Plant St, Winter Garden, FL 34787",
-  precoMedio: 14,
-  destaque: "Mercado local com bowls e sucos naturais. Prato típico: Açaí Energy Bowl.",
-  latitude: 28.5648,
-  longitude: -81.5862,
-},
-{
-  nome: "Dunkin’ Winter Garden",
-  regiao: "Winter Garden",
-  tipo: "Economico",
-  acesso: "13750 W Colonial Dr, Winter Garden, FL 34787",
-  precoMedio: 6,
-  destaque: "Café econômico com donuts e combos rápidos. Prato típico: Glazed Donut + café médio.",
-  latitude: 28.5642,
-  longitude: -81.5850,
-},
-// 20 - Winter Garden
-{
-  nome: "Winter Garden Café",
-  regiao: "Winter Garden",
-  tipo: "Americano",
   acesso: "42 W Plant St, Winter Garden, FL 34787",
   precoMedio: 17,
   destaque: "Café tradicional e aconchegante com pratos clássicos. Prato típico: Country Breakfast com ovos, bacon e panquecas.",
   latitude: 28.5652,
   longitude: -81.5864,
+  instagram: "https://www.instagram.com/wintergardencafe/",
 },
 {
   nome: "Crooked Can Brewing Company",
@@ -908,6 +1014,7 @@ export const cafesProximos = [
   destaque: "Cervejaria artesanal no Plant Street Market com ambiente animado. Prato típico: Bavarian Pretzel com mostarda.",
   latitude: 28.5649,
   longitude: -81.5863,
+  instagram: "https://www.instagram.com/crookedcan/",
 },
 {
   nome: "MoonCricket Grille",
@@ -918,6 +1025,7 @@ export const cafesProximos = [
   destaque: "Restaurante descontraído com comfort food americana. Prato típico: Fish & Chips.",
   latitude: 28.5657,
   longitude: -81.5871,
+  instagram: "https://www.instagram.com/mooncricketgrille/",
 },
 {
   nome: "Plant Street Market – Press’d",
@@ -928,6 +1036,7 @@ export const cafesProximos = [
   destaque: "Bowls, sucos e opções naturais em mercado local. Prato típico: Açaí Bowl com granola e frutas.",
   latitude: 28.5648,
   longitude: -81.5862,
+  instagram: "https://www.instagram.com/plantstreetmarket/",
 },
 {
   nome: "Dunkin’ Winter Garden",
@@ -938,7 +1047,9 @@ export const cafesProximos = [
   destaque: "Donuts, café e lanches rápidos para viagem. Prato típico: Glazed Donut com café preto.",
   latitude: 28.5642,
   longitude: -81.5850,
+  instagram: "https://www.instagram.com/dunkin/",
 },
+
 
 // 21 - Altamonte Springs
 {
@@ -1044,6 +1155,64 @@ export const cafesProximos = [
   latitude: 28.5450,
   longitude: -81.7229,
 },
+
+// 30 - Winter Park (cafés com Instagram)
+{
+  nome: "The Glass Knife",
+  regiao: "Winter Park",
+  tipo: "Tematico",
+  acesso: "276 S Orlando Ave, Winter Park, FL 32789",
+  precoMedio: 43,
+  destaque: "Confeitaria moderna com brunch criativo (donuts, toasts, omeletes). Prato típico: Red Velvet Cake Donut.",
+  latitude: 28.5964,
+  longitude: -81.3535,
+  instagram: "https://www.instagram.com/theglassknife/",
+},
+{
+  nome: "Barnie’s Coffee & Tea Co. – Park Ave",
+  regiao: "Winter Park",
+  tipo: "Saudavel",
+  acesso: "118 S Park Ave, Winter Park, FL 32789",
+  precoMedio: 12,
+  destaque: "Cafés especiais, toasts e bowls leves. Prato típico: Avocado Toast + café Santa’s White Christmas® (sazonal).",
+  latitude: 28.5969,
+  longitude: -81.3520,
+  instagram: "https://www.instagram.com/barniescoffee/",
+},
+{
+  nome: "Foxtail Coffee Co. – Winter Park",
+  regiao: "Winter Park",
+  tipo: "Economico",
+  acesso: "1282 N Orange Ave, Winter Park, FL 32789",
+  precoMedio: 8,
+  destaque: "Tostadora local com cafés de especialidade e pastries. Prato típico: Cold Brew + croissant.",
+  latitude: 28.5961,
+  longitude: -81.3532,
+  instagram: "https://www.instagram.com/foxtailcoffee/",
+},
+{
+  nome: "First Watch – Winter Park",
+  regiao: "Winter Park",
+  tipo: "Americano",
+  acesso: "140 N Orlando Ave, Ste 100, Winter Park, FL 32789",
+  precoMedio: 16,
+  destaque: "Pratos leves e nutritivos de brunch. Prato típico: A.M. Superfood Bowl.",
+  latitude: 28.5965,
+  longitude: -81.3536,
+  instagram: "https://www.instagram.com/firstwatch/",
+},
+{
+  nome: "Keke’s Breakfast Café – Winter Park",
+  regiao: "Winter Park",
+  tipo: "Conforto",
+  acesso: "1955 Aloma Ave, Winter Park, FL 32792",
+  precoMedio: 20,
+  destaque: "Panquecas, waffles e clássicos americanos fartos. Prato típico: Banana Nut Pancakes.",
+  latitude: 28.5998,
+  longitude: -81.3279,
+  instagram: "https://www.instagram.com/kekesbreakfastcafe/",
+},
+
 
 // 23 - Oak Ridge
 {
@@ -1253,57 +1422,7 @@ export const cafesProximos = [
   longitude: -81.5215,
 },
 
-// 27 - Bay Lake
-{
-  nome: "Contempo Café",
-  regiao: "Bay Lake",
-  tipo: "Americano",
-  acesso: "Disney’s Contemporary Resort, 4600 N World Dr, Bay Lake, FL 32830",
-  precoMedio: 18,
-  destaque: "Café casual da Disney com pratos variados. Prato típico: Mickey Waffles.",
-  latitude: 28.4187,
-  longitude: -81.5745,
-},
-{
-  nome: "Chef Mickey’s",
-  regiao: "Bay Lake",
-  tipo: "Tematico",
-  acesso: "Disney’s Contemporary Resort, 4600 N World Dr, Bay Lake, FL 32830",
-  precoMedio: 47,
-  destaque: "Buffet com personagens da Disney para toda a família. Prato típico: Mickey-Shaped Pancakes.",
-  latitude: 28.4192,
-  longitude: -81.5747,
-},
-{
-  nome: "The Wave… of American Flavors (Steakhouse 71)",
-  regiao: "Bay Lake",
-  tipo: "Conforto",
-  acesso: "Disney’s Contemporary Resort, 4600 N World Dr, Bay Lake, FL 32830",
-  precoMedio: 23,
-  destaque: "Buffet e pratos americanos em ambiente aconchegante. Prato típico: Avocado Toast com ovos poché.",
-  latitude: 28.4190,
-  longitude: -81.5743,
-},
-{
-  nome: "Bay Lake Fresh Greens",
-  regiao: "Bay Lake",
-  tipo: "Saudavel",
-  acesso: "Disney’s Contemporary Resort, 4600 N World Dr, Bay Lake, FL 32830",
-  precoMedio: 15,
-  destaque: "Opções leves com saladas e bowls nutritivos. Prato típico: Quinoa & Veggie Bowl.",
-  latitude: 28.4185,
-  longitude: -81.5746,
-},
-{
-  nome: "Gas Station Deli (Bay Lake)",
-  regiao: "Bay Lake",
-  tipo: "Economico",
-  acesso: "4570 N World Dr, Bay Lake, FL 32830",
-  precoMedio: 7,
-  destaque: "Sanduíches rápidos e acessíveis perto dos parques. Prato típico: Turkey & Cheese Sub.",
-  latitude: 28.4171,
-  longitude: -81.5721,
-},
+
 
 // 28 - Flamingo Crossings
 {
@@ -1356,6 +1475,61 @@ export const cafesProximos = [
   latitude: 28.3774,
   longitude: -81.6107,
 },
+
+// 27 - ChampionsGate
+{
+  nome: "First Watch – ChampionsGate",
+  regiao: "ChampionsGate",
+  tipo: "Americano",
+  acesso: "8303 Champions Gate Blvd, Davenport, FL 33896",
+  precoMedio: 19,
+  destaque: "Café da manhã clássico americano com pratos frescos e saudáveis. Prato típico: Avocado Toast com ovos mexidos.",
+  latitude: 28.2632,
+  longitude: -81.6419,
+},
+{
+  nome: "Dulcetto Café & Gelato",
+  regiao: "ChampionsGate",
+  tipo: "Tematico",
+  acesso: "8293 Champions Gate Blvd, Davenport, FL 33896",
+  precoMedio: 28,
+  destaque: "Café europeu com temática italiana e gelatos artesanais. Prato típico: Cappuccino com Tiramisu.",
+  latitude: 28.2630,
+  longitude: -81.6422,
+},
+{
+  nome: "Panera Bread – ChampionsGate",
+  regiao: "ChampionsGate",
+  tipo: "Conforto",
+  acesso: "8174 Champions Gate Blvd, Davenport, FL 33896",
+  precoMedio: 22,
+  destaque: "Rede aconchegante com sopas, sanduíches e saladas. Prato típico: Broccoli Cheddar Soup in Bread Bowl.",
+  latitude: 28.2628,
+  longitude: -81.6417,
+},
+{
+  nome: "Clean Juice – ChampionsGate",
+  regiao: "ChampionsGate",
+  tipo: "Saudavel",
+  acesso: "8289 Champions Gate Blvd, Davenport, FL 33896",
+  precoMedio: 14,
+  destaque: "Smoothies orgânicos, bowls e wraps naturais. Prato típico: The Immunity One (suco de laranja, cenoura e gengibre).",
+  latitude: 28.2631,
+  longitude: -81.6420,
+},
+{
+  nome: "Dunkin’ – ChampionsGate",
+  regiao: "ChampionsGate",
+  tipo: "Economico",
+  acesso: "8220 Champions Gate Blvd, Davenport, FL 33896",
+  precoMedio: 6,
+  destaque: "Rede rápida com cafés, donuts e sanduíches acessíveis. Prato típico: Café americano + Glazed Donut.",
+  latitude: 28.2629,
+  longitude: -81.6418,
+},
+
+
+
 // 29 - MetroWest
 {
   nome: "Metro Diner",
@@ -1408,57 +1582,7 @@ export const cafesProximos = [
   longitude: -81.4639,
 },
 
-// 30 - Winter Park
-{
-  nome: "The Briarpatch Restaurant",
-  regiao: "Winter Park",
-  tipo: "Americano",
-  acesso: "252 N Park Ave, Winter Park, FL 32789",
-  precoMedio: 21,
-  destaque: "Café icônico em Park Ave, conhecido por seus brunchs fartíssimos. Prato típico: Raspberry Pancakes.",
-  latitude: 28.5962,
-  longitude: -81.3533,
-},
-{
-  nome: "The Glass Knife",
-  regiao: "Winter Park",
-  tipo: "Tematico",
-  acesso: "276 S Orlando Ave, Winter Park, FL 32789",
-  precoMedio: 43,
-  destaque: "Confeitaria temática e moderna com pratos de brunch criativos. Prato típico: Red Velvet Cake Donut.",
-  latitude: 28.5964,
-  longitude: -81.3535,
-},
-{
-  nome: "Buttermilk Bakery",
-  regiao: "Winter Park",
-  tipo: "Conforto",
-  acesso: "1198 Orange Ave, Winter Park, FL 32789",
-  precoMedio: 24,
-  destaque: "Padaria artesanal com ambiente acolhedor. Prato típico: Croissant de Amêndoas.",
-  latitude: 28.5963,
-  longitude: -81.3534,
-},
-{
-  nome: "First Watch Winter Park",
-  regiao: "Winter Park",
-  tipo: "Saudavel",
-  acesso: "140 N Orlando Ave, Ste 100, Winter Park, FL 32789",
-  precoMedio: 16,
-  destaque: "Rede especializada em pratos leves e nutritivos. Prato típico: A.M. Superfood Bowl.",
-  latitude: 28.5965,
-  longitude: -81.3536,
-},
-{
-  nome: "Foxtail Coffee Winter Park",
-  regiao: "Winter Park",
-  tipo: "Economico",
-  acesso: "1282 N Orange Ave, Winter Park, FL 32789",
-  precoMedio: 5,
-  destaque: "Cafeteria local para cafés rápidos e snacks. Prato típico: Cold Brew com croissant.",
-  latitude: 28.5961,
-  longitude: -81.3532,
-},
+
 
 // 31 - Osceola Parkway
 {
@@ -1771,6 +1895,65 @@ export const cafesProximos = [
   latitude: 28.3062,
   longitude: -81.4697,
 },
+
+// 38 - Reunion
+{
+  nome: "Traditions at Reunion Resort",
+  regiao: "Reunion",
+  tipo: "Americano",
+  acesso: "7593 Gathering Dr, Kissimmee, FL 34747",
+  precoMedio: 28,
+  destaque: "Café da manhã completo com pratos americanos clássicos em ambiente elegante. Prato típico: Avocado Toast com ovos.",
+  latitude: 28.2648,
+  longitude: -81.5882,
+  instagram: "https://www.instagram.com/reunionresort/",
+},
+{
+  nome: "Eleven at Reunion Resort",
+  regiao: "Reunion",
+  tipo: "Tematico",
+  acesso: "7593 Gathering Dr, Kissimmee, FL 34747",
+  precoMedio: 35,
+  destaque: "Restaurante no rooftop com temática moderna e brunch sofisticado. Prato típico: Smoked Salmon Benedict.",
+  latitude: 28.2650,
+  longitude: -81.5878,
+  instagram: "https://www.instagram.com/reunionresort/",
+},
+{
+  nome: "Clubhouse Grille",
+  regiao: "Reunion",
+  tipo: "Conforto",
+  acesso: "7593 Gathering Dr, Kissimmee, FL 34747",
+  precoMedio: 22,
+  destaque: "Brunch casual com omeletes, panquecas e comfort food americana. Prato típico: Buttermilk Pancakes.",
+  latitude: 28.2652,
+  longitude: -81.5885,
+  instagram: "https://www.instagram.com/reunionresort/",
+},
+{
+  nome: "Dunkin’ – Reunion",
+  regiao: "Reunion",
+  tipo: "Economico",
+  acesso: "7810 Lake Wilson Rd, Davenport, FL 33896",
+  precoMedio: 7,
+  destaque: "Donuts, cafés e sanduíches rápidos em rede popular. Prato típico: Café médio + Glazed Donut.",
+  latitude: 28.2625,
+  longitude: -81.5930,
+  instagram: "https://www.instagram.com/dunkin/",
+},
+{
+  nome: "Starbucks – Reunion",
+  regiao: "Reunion",
+  tipo: "Saudavel",
+  acesso: "7970 Lake Wilson Rd, Davenport, FL 33896",
+  precoMedio: 9,
+  destaque: "Cafeteria moderna com cafés especiais, bowls e wraps leves. Prato típico: Spinach, Feta & Egg White Wrap.",
+  latitude: 28.2632,
+  longitude: -81.5940,
+  instagram: "https://www.instagram.com/starbucks/",
+},
+
+
 
 
 ];

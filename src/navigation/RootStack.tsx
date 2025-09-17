@@ -15,18 +15,10 @@ import MenuWebScreen from '@/logic/menu/MenuWebScreen';
 // 🍽️ Tela de refeições
 import TelaRefeicoes from '@/logic/menu/TelaRefeicoes';
 
-// 🎢 Tela de atrações (usada no MenuPrincipal)
-import TelaAtracoes from '@/logic/media/TelaAtracoes';
-
-// 🛍️ Clube de Vantagens / Promoções (nova rota)
-import PromocoesScreen from '@/IA/PromocoesScreen';
-
 /** Tipagem das rotas internas do App (stack logado) */
 export type RootStackParamList = {
   MenuPrincipal: undefined;
   TelaRefeicoes: undefined;
-  TelaAtracoes: undefined;
-  Promocoes: undefined;
   YouTubePlayer: { title?: string; idOrUrl: string };
   MenuWeb: { url: string; title?: string };
 };
@@ -49,9 +41,6 @@ export default function RootStack() {
     >
       <Stack.Screen name="MenuPrincipal" component={MenuPrincipal} />
       <Stack.Screen name="TelaRefeicoes" component={TelaRefeicoes} />
-      <Stack.Screen name="TelaAtracoes" component={TelaAtracoes} />
-      <Stack.Screen name="Promocoes" component={PromocoesScreen} />
-
       <Stack.Screen name="YouTubePlayer" component={YouTubePlayerScreen} />
       <Stack.Screen name="MenuWeb" component={MenuWebScreen} />
     </Stack.Navigator>

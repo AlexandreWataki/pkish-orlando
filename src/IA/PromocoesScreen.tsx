@@ -66,11 +66,10 @@ export default function PromocoesScreen() {
           temperatura={clima?.temp ? `${clima.temp}°C` : undefined}
           iconeClima={clima?.icone}
         />
+
         <View style={styles.titleRow}>
           <Text style={styles.headerTitle}>Clube de Vantagens Orlando</Text>
-          <View style={styles.detailChip}>
-            <Text style={styles.detailChipTxt}>Promoções e Descontos Exclusivos</Text>
-          </View>
+          {/* chip removido conforme pedido */}
         </View>
       </View>
 
@@ -128,15 +127,6 @@ const styles = StyleSheet.create({
   headerWrap: { paddingTop: Platform.OS === 'android' ? 40 : 20, paddingHorizontal: 16, paddingBottom: 8 },
   titleRow: { marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   headerTitle: { fontSize: 18, fontWeight: '800', color: '#E6F7FF' },
-  detailChip: {
-    borderWidth: 1.5,
-    borderColor: AZUL_NEON,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 999,
-    backgroundColor: '#000',
-  },
-  detailChipTxt: { color: AZUL_NEON, fontWeight: '800', fontSize: 11 },
 
   filtrosRow: {
     flexDirection: 'row',

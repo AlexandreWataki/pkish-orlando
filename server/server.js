@@ -1,12 +1,10 @@
-// server/server.js
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const express = require('express');
 const mysql = require('mysql2');
-const bcrypt = require('bcryptjs'); // ok manter bcryptjs
+const bcrypt = require('bcryptjs');
 const cors = require('cors');
-
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
@@ -30,16 +28,16 @@ const db = mysql
 /* --------------- Middlewares -------------- */
 app.use(
   cors({
-    origin: '*', // ajuste para a(s) origem(ns) do seu app se quiser
+    origin: '*', // em dev deixa liberado; em prod defina domínio(s)
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200,
   })
 );
-app.use(express.json({ limit: '100kb' })); // evita payloads gigantes
-app.use(helmet()); // headers de segurança
+app.use(express.json({ limit: '100kb' }));
+app.use(helmet());
 
-// morgan opcional (não quebra em prod caso não esteja instalado)
+// morgan opcional
 try {
   const morgan = require('morgan');
   app.use(morgan('dev'));
@@ -47,8 +45,8 @@ try {
 
 /* ---------- Rate limit p/ auth ----------- */
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 100, // máx 100 req/ janela por IP
+  windowMs: 15 * 60 * 1000,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -81,7 +79,7 @@ app.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'Senha deve ter ao menos 6 caracteres.' });
     }
 
-    // Checagem de duplicidade ANTES do hash (economiza CPU)
+    // Checagem de duplicidade
     const [rows] = await db.query('SELECT id FROM users WHERE username = ? LIMIT 1', [username]);
     if (Array.isArray(rows) && rows.length > 0) {
       return res.status(409).json({ message: 'Nome de usuário já existe.' });
@@ -89,7 +87,6 @@ app.post('/register', async (req, res) => {
 
     const hashed = await bcrypt.hash(password, 10);
 
-    // IMPORTANTE: usar password_hash (alinha com o schema recomendado)
     const [result] = await db.query(
       'INSERT INTO users (username, password_hash) VALUES (?, ?)',
       [username, hashed]
@@ -101,7 +98,6 @@ app.post('/register', async (req, res) => {
     });
   } catch (error) {
     console.error('❌ /register:', error);
-    // Se por corrida estourar UNIQUE, retorna 409
     if (error && error.code === 'ER_DUP_ENTRY') {
       return res.status(409).json({ message: 'Nome de usuário já existe.' });
     }
@@ -117,7 +113,6 @@ app.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Preencha usuário e senha.' });
     }
 
-    // Seleciona password_hash
     const [rows] = await db.query(
       'SELECT id, username, password_hash FROM users WHERE username = ? LIMIT 1',
       [username]
@@ -128,7 +123,6 @@ app.post('/login', async (req, res) => {
     const ok = await bcrypt.compare(password, user.password_hash);
     if (!ok) return res.status(401).json({ message: 'Usuário ou senha incorretos.' });
 
-    // Se quiser JWT futuramente, gere aqui e retorne { token, user }
     return res.status(200).json({
       message: 'Login bem-sucedido!',
       user: { id: user.id, username: user.username },
@@ -144,9 +138,9 @@ app.use((req, res) =>
   res.status(404).json({ message: `Rota não encontrada: ${req.method} ${req.originalUrl}` })
 );
 
-/* --------- Graceful shutdown/pool --------- */
+/* --------- Start / Shutdown --------------- */
 const server = app.listen(PORT, '0.0.0.0', () =>
-  console.log(`🚀 API em http://localhost:${PORT}`)
+  console.log(`🚀 API em http://0.0.0.0:${PORT} (acesse via IP da sua máquina)`),
 );
 
 function shutdown(signal) {

@@ -334,19 +334,7 @@ export const regioesHospedagem = [
   almocosProximos: almocosProximos.filter((r: any) => r.regiao === "Bonnet Creek"),
   jantaresProximos: jantaresProximos.filter((r: any) => r.regiao === "Bonnet Creek")
 },
-{
-  nome: "Bay Lake",
-  latitude: 28.4086,
-  longitude: -81.5768,
-  descricao: "Dentro da propriedade Disney, com hotéis premium e experiências exclusivas.",
-  tempoAteDisney: 0,
-  tempoAteUniversal: 25,
-  tempoAteAeroportoMCO: 28,
-  tempoAteAeroportoMiami: 235,
-  cafesProximos: cafesProximos.filter((r: any) => r.regiao === "Bay Lake"),
-  almocosProximos: almocosProximos.filter((r: any) => r.regiao === "Bay Lake"),
-  jantaresProximos: jantaresProximos.filter((r: any) => r.regiao === "Bay Lake")
-},
+
 {
   nome: "Flamingo Crossings",
   latitude: 28.3911,

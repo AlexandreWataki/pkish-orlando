@@ -17,7 +17,6 @@ import logo from '@/assets/imagens/logo4.png';
 import { useParkisheiro } from '@/contexts/ParkisheiroContext';
 import { CabecalhoDia } from '@/components/card/CabecalhoDia';
 import { buscarClima } from '@/logic/clima/buscarclima';
-import { getApiKey } from '@/logic/keys/openaiKey';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -97,7 +96,7 @@ export default function MenuPrincipal() {
 
     Alert.alert(
       'Apagar último roteiro?',
-      'Dê um OK para seu último roteiro ser apagado.',
+      'Ao confirmar, seu último roteiro será apagado.',
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -106,7 +105,7 @@ export default function MenuPrincipal() {
             await limparRoteiroFinal();
             Alert.alert(
               'Último roteiro apagado',
-              'Seu último roteiro foi apagado.',
+              'Seu último roteiro foi removido.',
               [
                 {
                   text: 'OK',
@@ -127,26 +126,27 @@ export default function MenuPrincipal() {
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
 
+  // Textos revisados e sem “Off-line”
   const botoesMenu = [
     {
-      titulo: 'Roteiro Orlando Off-line',
+      titulo: 'Criar Roteiro Orlando',
       emoji: '📖',
       corFundo: '#0B3D91',
       corBorda: '#00FFFF',
       corTexto: '#FFFFFF',
       destino: 'Calendario',
       ativo: true,
-      subtitulo: 'Escolha os dias e personalize sua aventura',
+      subtitulo: 'Escolha as datas e monte seu roteiro',
     },
     {
-      titulo: 'Último Roteiro Orlando Off-line',
+      titulo: 'Último Roteiro Salvo',
       emoji: '📂',
       corFundo: '#4B0082',
       corBorda: '#FF00FF',
       corTexto: '#FFF0FF',
       destino: 'UltimaBusca',
       ativo: true,
-      subtitulo: 'Veja o roteiro mais recente salvo no app',
+      subtitulo: 'Abra o roteiro mais recente deste aparelho',
     },
     {
       titulo: 'Atrações dos Parques',
@@ -156,17 +156,17 @@ export default function MenuPrincipal() {
       corTexto: '#FFFFFF',
       destino: 'TelaAtracoes',
       ativo: true,
-      subtitulo: 'Shows, rides e pontos famosos',
+      subtitulo: 'Brinquedos, shows e experiências',
     },
     {
-      titulo: 'Restaurantes & Refeições',
+      titulo: 'Restaurantes e Refeições',
       emoji: '🍽️',
       corFundo: '#0077CC',
       corBorda: '#00BFFF',
       corTexto: '#FFFFFF',
       destino: 'TelaRefeicoes',
       ativo: true,
-      subtitulo: 'Opções gastronômicas e culinárias variadas',
+      subtitulo: 'Opções gastronômicas por parque e área',
     },
   ] as const;
 
@@ -198,6 +198,10 @@ export default function MenuPrincipal() {
                     Alert.alert('Em breve', `${btn.titulo} estará disponível em uma próxima atualização.`);
                     return;
                   }
+                  if (!rotasImplementadas.has(btn.destino)) {
+                    Alert.alert('Indisponível', `A rota "${btn.destino}" ainda não está disponível.`);
+                    return;
+                  }
                   if (btn.destino === 'Calendario') {
                     await irParaCalendarioComConfirmacao();
                     return;
@@ -222,7 +226,7 @@ export default function MenuPrincipal() {
           <BotaoMenuNeon
             titulo="Clube de Vantagens Orlando"
             emoji="🎟️"
-            subtitulo="Promoções e Descontos Exclusivos"
+            subtitulo="Promoções e descontos exclusivos"
             onPress={() => navigation.navigate('Promocoes')}
           />
         </View>
@@ -232,9 +236,9 @@ export default function MenuPrincipal() {
           <BotaoMenuCard
             titulo="Voltar ao Cadastro / Login"
             emoji="👤"
-            corFundo="#87CEFA"   // azul clarinho (LightSkyBlue)
-            corBorda="#FFFFFF"   // borda branca
-            corTexto="#FFFFFF"   // texto branco
+            corFundo="#87CEFA"
+            corBorda="#FFFFFF"
+            corTexto="#FFFFFF"
             subtitulo="Acesse ou crie sua conta"
             onPress={() => navigation.navigate('Inicio')}
             noShadow

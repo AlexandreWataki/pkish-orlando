@@ -14,7 +14,7 @@
     "clean": "rimraf node_modules package-lock.json yarn.lock .expo && npm i"
   },
   "dependencies": {
-    "expo": "~54.0.0",
+    "expo": "54.0.8",
     "react": "18.2.0",
     "react-native": "0.69.5",
     "@expo/vector-icons": "^14.1.0",

@@ -21,23 +21,24 @@ export default {
 
     assetBundlePatterns: ['**/*'],
 
-    // Ícones e splash (troque pelos seus arquivos)
+    // Ícones e splash
     icon: './assets/icon.png',
     splash: {
       image: './assets/splash.png',
       resizeMode: 'contain',
       backgroundColor: '#001F3F'
     },
+
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.seuorg.roteirovisivelapp', // troque pelo seu reverso de domínio
+      bundleIdentifier: 'com.seuorg.roteirovisivelapp',
       infoPlist: {
-        // Só adicione chaves de privacidade se realmente usar os recursos:
+        // Exemplo de chave opcional de privacidade:
         // NSMicrophoneUsageDescription: 'Usamos o microfone para gravar notas de voz no app.',
       }
     },
+
     android: {
-      // TROQUE PELO SEU ID FINAL ANTES DE PUBLICAR NO GOOGLE PLAY
       package: 'com.seuorg.roteirovisivelapp',
       versionCode: 1,
 
@@ -46,46 +47,35 @@ export default {
         backgroundColor: '#001F3F'
       },
 
-      // Permissões mínimas (evite as que a Play reprova como SYSTEM_ALERT_WINDOW)
       permissions: [
         'INTERNET',
         'VIBRATE'
-        // Adicione apenas se realmente gravar áudio:
-        // 'RECORD_AUDIO'
+        // 'RECORD_AUDIO' se realmente usar
       ],
 
-      // O targetSdkVersion é gerenciado pelo Expo (não fixe manualmente)
       blockedPermissions: [
-        // Garante que nada legado vaze pro Manifest:
         'android.permission.WRITE_EXTERNAL_STORAGE',
         'android.permission.READ_EXTERNAL_STORAGE',
         'android.permission.SYSTEM_ALERT_WINDOW'
       ],
-
-      // Se usar deep links, você pode definir intentFilters aqui depois.
-      // intentFilters: [...]
     },
 
-    // Web (opcional)
     web: {
       bundler: 'metro',
       favicon: './assets/favicon.png'
     },
 
-    // Plugins que você realmente usa (evite plugin sobrando)
     plugins: [
       'expo-file-system',
       'expo-audio',
       'expo-video'
-      // Adicione aqui outros plugins que você efetivamente usa:
-      // 'expo-secure-store',
-      // 'expo-splash-screen',
-      // 'expo-linking',
+      // outros plugins usados de fato
     ],
 
     extra: {
-      // Use EAS Secrets para valores sensíveis. Aqui, só chaves públicas.
-      EXPO_PUBLIC_WEATHER_API_KEY: process.env.EXPO_PUBLIC_WEATHER_API_KEY
+      EXPO_PUBLIC_WEATHER_API_KEY: process.env.EXPO_PUBLIC_WEATHER_API_KEY,
+      EXPO_PUBLIC_API_HOST: process.env.EXPO_PUBLIC_API_HOST,
+      EXPO_PUBLIC_API_PORT: process.env.EXPO_PUBLIC_API_PORT,
     }
   }
 };
