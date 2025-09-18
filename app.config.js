@@ -48,21 +48,21 @@ export default {
         : undefined,
     },
 
-    plugins: [
-      [
-        "expo-build-properties",
-        {
-          android: {
-            // ✅ corrigido: força versão de Kotlin suportada
-            kotlinVersion: "2.0.21",
-            usesCleartextTraffic: true,
-            minSdkVersion: 24,
-            targetSdkVersion: 35,
-            compileSdkVersion: 35,
-          },
-        },
-      ],
-    ],
+plugins: [
+  [
+    "expo-build-properties",
+    {
+      android: {
+        kotlinVersion: "2.1.21", // tente esta; se falhar, tente "2.2.20"
+        usesCleartextTraffic: true,
+        minSdkVersion: 24,
+        targetSdkVersion: 35,
+        compileSdkVersion: 35,
+      },
+    },
+  ],
+],
+
 
     extra: {
       EXPO_PUBLIC_WEATHER_API_KEY:
