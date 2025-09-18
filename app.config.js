@@ -53,6 +53,8 @@ export default {
         "expo-build-properties",
         {
           android: {
+            // ✅ corrigido: força versão de Kotlin suportada
+            kotlinVersion: "2.0.21",
             usesCleartextTraffic: true,
             minSdkVersion: 24,
             targetSdkVersion: 35,
