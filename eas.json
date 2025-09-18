@@ -1,0 +1,43 @@
+{
+  "cli": {
+    "version": ">= 3.18.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "preview-apk": {
+      "android": {
+        "buildType": "apk"
+      },
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
+        "EXPO_PUBLIC_API_URL": "http://192.168.0.23:3000"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
+        "EXPO_PUBLIC_API_URL": "https://api.seudominio.com"
+      }
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "autoIncrement": false,
+      "env": {
+        "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
+        "EXPO_PUBLIC_API_URL": "http://10.0.2.2:3000"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
