@@ -1,5 +1,12 @@
-import "dotenv/config";
 import fs from "fs";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+try {
+  // Carrega .env localmente, se o pacote existir.
+  require("dotenv").config();
+} catch {
+  // No EAS as variáveis vêm do painel/perfil; sem dotenv tudo bem.
+}
 
 const has = (p) => fs.existsSync(p);
 
