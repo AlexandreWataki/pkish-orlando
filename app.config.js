@@ -12,7 +12,7 @@ export default {
     orientation: "portrait",
     userInterfaceStyle: "automatic",
 
-    // ícones e splash (use ./assets na RAIZ do projeto)
+    // ícones e splash (usar ./assets na RAIZ)
     icon: has("./assets/icon.png") ? "./assets/icon.png" : undefined,
     splash: {
       image: has("./assets/splash.png") ? "./assets/splash.png" : undefined,
@@ -34,7 +34,7 @@ export default {
     android: {
       package: "com.seuorg.roteirovisivelapp",
       adaptiveIcon: {
-        // foreground transparente é recomendado
+        // foreground transparente recomendado
         foregroundImage: has("./assets/adaptive-icon.png")
           ? "./assets/adaptive-icon.png"
           : has("./assets/icon.png")
@@ -55,11 +55,10 @@ export default {
         "expo-build-properties",
         {
           android: {
-            // ✅ compatível com a exigência do KSP no build do EAS
+            // compatível com KSP no ambiente do EAS
             kotlinVersion: "2.2.20",
             androidGradlePluginVersion: "8.6.1",
 
-            // seu setup
             usesCleartextTraffic: true,
             minSdkVersion: 24,
             targetSdkVersion: 35,
@@ -75,7 +74,7 @@ export default {
       EXPO_PUBLIC_API_HOST: process.env.EXPO_PUBLIC_API_HOST ?? "",
       EXPO_PUBLIC_API_PORT: process.env.EXPO_PUBLIC_API_PORT ?? "",
       EXPO_PUBLIC_API_URL: process.env.EXPO_PUBLIC_API_URL ?? "",
-      eas: { projectId: "30a8d6a9-aabf-45e9-bf3b-2045ec596ecd" }, // novo ID
+      eas: { projectId: "30a8d6a9-aabf-45e9-bf3b-2045ec596ecd" },
     },
   },
 };
