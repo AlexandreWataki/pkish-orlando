@@ -12,7 +12,7 @@ module.exports = {
     // (mantidos)
     slug: "Pkish Orlando",
     owner: "matheuswataki",
-    scheme: "roteirovisivelapp",
+    scheme: "Pkish Orlando",
     version: "1.0.0",
     orientation: "portrait",
     userInterfaceStyle: "automatic",
