@@ -11,10 +11,18 @@ module.exports = function (api) {
           alias: {
             '@': './src',
           },
-          extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.ts', '.tsx', '.json'],
+          extensions: [
+            '.ios.js',
+            '.android.js',
+            '.js',
+            '.jsx',
+            '.ts',
+            '.tsx',
+            '.json',
+          ],
         },
       ],
-      // 👇 TEM que ser o ÚLTIMO, obrigatório para Reanimated funcionar no build
+      // 👇 O plugin do Reanimated PRECISA ser o último da lista!
       'react-native-reanimated/plugin',
     ],
   };

@@ -69,7 +69,6 @@ export default function PromocoesScreen() {
 
         <View style={styles.titleRow}>
           <Text style={styles.headerTitle}>Clube de Vantagens Orlando</Text>
-          {/* chip removido conforme pedido */}
         </View>
       </View>
 
@@ -103,12 +102,13 @@ export default function PromocoesScreen() {
         />
       </ScrollView>
 
-      {/* ===== Rodapé com logo ===== */}
+      {/* ===== Rodapé (faixa preta até o fundo) ===== */}
       <View style={styles.footerBlack} pointerEvents="none">
+        {/* Logo sobe 50px dentro da faixa */}
         <Image source={LOGO} style={styles.footerLogo} resizeMode="contain" />
       </View>
 
-      {/* ===== Seta flutuante para voltar ===== */}
+      {/* ===== Seta flutuante para voltar (também 50px acima) ===== */}
       <TouchableOpacity
         style={styles.bottomBackLeft}
         onPress={() => navigation.navigate('MenuPrincipal')}
@@ -150,21 +150,24 @@ const styles = StyleSheet.create({
   filtroTxt: { color: '#cfefff', fontWeight: '600', fontSize: 12 },
   filtroTxtAtivo: { color: '#00FFFF' },
 
+  // ⬇️ Faixa preta vai até a borda inferior (altura aumentada)
   footerBlack: {
     position: 'absolute',
     left: 0, right: 0, bottom: 0,
-    height: 70,
+    height: 120,               // ← aumentado (era 70)
     backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'flex-end',
     paddingRight: 16,
   },
-  footerLogo: { width: 120, height: 36, opacity: 0.95 },
+  // Logo elevado 50px dentro da faixa (mantido)
+  footerLogo: { width: 120, height: 36, opacity: 0.95, marginBottom: 50 },
 
+  // Seta elevada 50px acima da borda (mantida)
   bottomBackLeft: {
     position: 'absolute',
     left: 10,
-    bottom: 10,
+    bottom: 50,
     zIndex: 999,
   },
   glowCircle: {

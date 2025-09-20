@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "73d31851-0ae9-4a0d-abd5-b211c767cdb5"
+      }
+    },
+    "android": {
+      "package": "com.matheuswataki.roteirovisivelapp"
+    }
+  }
+}

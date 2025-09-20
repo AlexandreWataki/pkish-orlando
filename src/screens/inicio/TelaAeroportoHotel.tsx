@@ -302,12 +302,12 @@ const styles = StyleSheet.create({
   conteudoAbaixo: { marginTop: 2 },
   floatingButton: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     right: 20,
   },
   floatingBackButton: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     left: 20,
   },
 });

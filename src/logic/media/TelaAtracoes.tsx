@@ -21,7 +21,6 @@ import { CardSecao } from '@/components/card/CardSecao';
 
 import { getVideoUrlFromMap } from '@/logic/media/YoutubeUtils';
 import { searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
-// ❌ REMOVIDO: YouTubeInlinePlayer (não usamos mais overlay)
 
 // Dados
 import * as disneyData from '@/logic/geradores/todasAtracoesDisney';
@@ -160,8 +159,42 @@ export default function TelaAtracoes() {
     ).start();
   }, [avisoBlink]);
 
-  useEffect(() => { buscarClima('Orlando').then(setClima).catch(() => setClima(null)); }, []);
-  useEffect(() => { markVisited?.('TelaAtracoes'); }, []);
+  // --- CIDADE POR PARQUE -> usado para buscar clima coerente com a localização
+  const cidadePorParque = (p?: string) => {
+    if (!p) return 'Orlando';
+    switch ((p || '').trim()) {
+      // Disney (Bay Lake / Lake Buena Vista)
+      case 'Magic Kingdom':
+      case 'EPCOT':
+      case "Disney's Hollywood Studios":
+      case "Disney's Animal Kingdom":
+        return 'Bay Lake';
+      // Universal (Orlando)
+      case 'Universal Studios Florida':
+      case "Universal's Islands of Adventure":
+      case "Universal's Volcano Bay":
+        return 'Orlando';
+      default:
+        return 'Orlando';
+    }
+  };
+
+  // 🔄 Busca clima baseado no parque selecionado (ao iniciar e quando mudar)
+  useEffect(() => {
+    let ativo = true;
+    (async () => {
+      try {
+        const cidade = cidadePorParque(parque);
+        const dados = await buscarClima(cidade);
+        if (ativo) setClima(dados);
+      } catch {
+        if (ativo) setClima(null);
+      }
+    })();
+    return () => { ativo = false; };
+  }, [parque]);
+
+  useEffect(() => { markVisited?.('TelaAtracoes'); }, [markVisited]);
 
   const hoje = new Date();
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
@@ -436,7 +469,7 @@ export default function TelaAtracoes() {
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo="" data={dataFormatada} diaSemana={diaSemana}
-          clima={clima?.condicao || 'Parcialmente nublado'} temperatura={clima ? `${clima.temp}°C` : '—°C'}
+          clima={clima?.condicao || 'Parcialmente nublado'} temperatura={clima?.temp != null ? `${clima.temp}°C` : '—°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -492,7 +525,8 @@ export default function TelaAtracoes() {
         {/* Card piscando, sem o texto "Aviso Legal" */}
         <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
           <Text style={styles.avisoLegalTexto}>
-Guia independente e não oficial, sem vínculo com Disney ou Universal. Vídeos incorporados do YouTube, exibidos apenas para visualização.          </Text>
+            Guia independente e não oficial, sem vínculo com Disney ou Universal. Vídeos incorporados do YouTube, exibidos apenas para visualização.
+          </Text>
         </Animated.View>
       </View>
 

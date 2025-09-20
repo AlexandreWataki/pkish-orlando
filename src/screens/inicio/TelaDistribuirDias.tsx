@@ -441,7 +441,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10, borderBottomRightRadius: 10
   },
   rodapeConteudo: {
-    position: 'absolute', bottom: 50, left: 0, right: 0,
+    position: 'absolute', bottom: 60, left: 0, right: 0,
     flexDirection: 'row', justifyContent: 'space-between',
     alignItems: 'center', paddingHorizontal: 20
   },

@@ -1,10 +1,10 @@
 {
   "cli": {
-    "version": ">= 11.8.0",
+    "version": ">= 13.0.0",
     "appVersionSource": "remote"
   },
   "build": {
-    "preview-apk": {
+    "apk": {
       "android": {
         "buildType": "apk"
       },

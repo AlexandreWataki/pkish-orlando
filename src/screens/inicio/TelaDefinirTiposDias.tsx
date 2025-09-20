@@ -329,14 +329,14 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     right: 20,
     zIndex: 100,
     elevation: 0,
   },
   floatingBackButton: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     left: 20,
     zIndex: 100,
     elevation: 10,
