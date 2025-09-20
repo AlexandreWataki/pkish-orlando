@@ -1,56 +1,19 @@
-# ── SO / IDE ──────────────────────────────────────────────
-.DS_Store
-Thumbs.db
-desktop.ini
-.idea/
-.vscode/
-*.orig.*
-
-# ── Node / Monorepo ───────────────────────────────────────
+# Node / Expo
 node_modules/
+.expo/
+.expo-shared/
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-*.tsbuildinfo
+expo-error.log*
 
-# ── Expo / React Native (Web e App) ───────────────────────
-.expo/
-.expo-shared/
-dist/
-web-build/
-build/
-.metro-health-check*
+# Sistema
+.DS_Store
+desktop.ini
+Thumbs.db
 
-# Se um dia ejetar:
-android/
-ios/
-*.keystore
-*.jks
-*.p8
-*.p12
-*.mobileprovision
-
-# ── Backend (server/) ─────────────────────────────────────
-server/node_modules/
-server/dist/
-server/logs/
-
-# ── Segredos / Certificados ───────────────────────────────
+# Configs locais
 .env
-.env.*              # cobre .env.local, etc
-server/.env
-server/.env.*
-*.key
-*.pem
-
-# ── Testes / Cobertura (se usar) ─────────────────────────
-coverage/
-.nyc_output/
-
-# ── Dumps / arquivos grandes ocasionais (opcional) ───────
-*.sql
-*.sql.gz
-
-# ── Outros que você citou ─────────────────────────────────
-app-example
+*.zip
