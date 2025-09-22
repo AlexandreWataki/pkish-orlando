@@ -1,10 +1,10 @@
-﻿export const Tomorrowland = {
+﻿ï»¿export const Tomorrowland = {
   parque: "Magic Kingdom",
   regiao: "Tomorrowland",
   latitude: 28.4196,
   longitude: -81.5773,
   descricao:
-    "Ãrea futurista repleta de atraÃ§Ãµes espaciais e tecnolÃ³gicas. Uma viagem ao futuro com simuladores, aventuras interativas e montanhas-russas no escuro.",
+    "ÃƒÂrea futurista repleta de atraÃƒÂ§ÃƒÂµes espaciais e tecnolÃƒÂ³gicas. Uma viagem ao futuro com simuladores, aventuras interativas e montanhas-russas no escuro.",
   imagem: "tomorrowland.png",
   atracoes: [
     {
@@ -21,8 +21,8 @@
       turnoRecomendado: "manha",
       atracaoSemFila: false,
       descricao:
-        "Montanha-russa no escuro com tema espacial, curvas fechadas e sensaÃ§Ã£o de velocidade. Uma das mais clÃ¡ssicas da Disney.",
-      icone: "ðŸš€",
+        "Montanha-russa no escuro com tema espacial, curvas fechadas e sensaÃƒÂ§ÃƒÂ£o de velocidade. Uma das mais clÃƒÂ¡ssicas da Disney.",
+      icone: "Ã°Å¸Å¡â‚¬",
       imagem: "space-mountain.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",
@@ -31,7 +31,7 @@
     },
     {
       id: "buzz-lightyear",
-      titulo: "Buzz Lightyearâ€™s Space Ranger Spin",
+      titulo: "Buzz LightyearÃ¢â‚¬â„¢s Space Ranger Spin",
       subtitulo: "Tomorrowland",
       tipo: "Interativa",
       tipoPerfil: ["interativas", "familiares"],
@@ -43,8 +43,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: false,
       descricao:
-        "AtraÃ§Ã£o interativa com canhÃµes laser para derrotar o imperador Zurg e acumular pontos. DiversÃ£o para todas as idades.",
-      icone: "ðŸ”«",
+        "AtraÃƒÂ§ÃƒÂ£o interativa com canhÃƒÂµes laser para derrotar o imperador Zurg e acumular pontos. DiversÃƒÂ£o para todas as idades.",
+      icone: "Ã°Å¸â€Â«",
       imagem: "buzz-lightyear.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",
@@ -55,7 +55,7 @@
       id: "astro-orbiter",
       titulo: "Astro Orbiter",
       subtitulo: "Tomorrowland",
-      tipo: "Brinquedo giratÃ³rio aÃ©reo",
+      tipo: "Brinquedo giratÃƒÂ³rio aÃƒÂ©reo",
       tipoPerfil: ["familiares", "tematicas"],
       alturaMinima: 83,
       filaExpress: false,
@@ -65,8 +65,8 @@
       turnoRecomendado: "manha",
       atracaoSemFila: false,
       descricao:
-        "Gire alto pelos cÃ©us de Tomorrowland com vista panorÃ¢mica do parque. Indicado para quem curte brinquedos clÃ¡ssicos com emoÃ§Ã£o leve.",
-      icone: "ðŸª",
+        "Gire alto pelos cÃƒÂ©us de Tomorrowland com vista panorÃƒÂ¢mica do parque. Indicado para quem curte brinquedos clÃƒÂ¡ssicos com emoÃƒÂ§ÃƒÂ£o leve.",
+      icone: "Ã°Å¸ÂªÂ",
       imagem: "astro-orbiter.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",
@@ -87,8 +87,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: false,
       descricao:
-        "Dirija um carrinho em uma pista estilizada do futuro. As crianÃ§as adoram a sensaÃ§Ã£o de pilotar sozinhas, acompanhadas por um adulto.",
-      icone: "ðŸ",
+        "Dirija um carrinho em uma pista estilizada do futuro. As crianÃƒÂ§as adoram a sensaÃƒÂ§ÃƒÂ£o de pilotar sozinhas, acompanhadas por um adulto.",
+      icone: "Ã°Å¸ÂÂ",
       imagem: "tomorrowland-speedway.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",
@@ -99,7 +99,7 @@
       id: "peoplemover",
       titulo: "Tomorrowland Transit Authority PeopleMover",
       subtitulo: "Tomorrowland",
-      tipo: "Passeio panorÃ¢mico elevado",
+      tipo: "Passeio panorÃƒÂ¢mico elevado",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -109,8 +109,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: false,
       descricao:
-        "Passeio relaxante por Tomorrowland com vista das atraÃ§Ãµes, incluindo trechos dentro da Space Mountain. Sem fila na maioria das vezes.",
-      icone: "ðŸš",
+        "Passeio relaxante por Tomorrowland com vista das atraÃƒÂ§ÃƒÂµes, incluindo trechos dentro da Space Mountain. Sem fila na maioria das vezes.",
+      icone: "Ã°Å¸Å¡Â",
       imagem: "peoplemover.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",
@@ -119,9 +119,9 @@
     },
     {
       id: "carousel-of-progress",
-      titulo: "Walt Disneyâ€™s Carousel of Progress",
+      titulo: "Walt DisneyÃ¢â‚¬â„¢s Carousel of Progress",
       subtitulo: "Tomorrowland",
-      tipo: "Show com animatrÃ´nicos",
+      tipo: "Show com animatrÃƒÂ´nicos",
       tipoPerfil: ["tematicas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -131,8 +131,8 @@
       turnoRecomendado: "noite",
       atracaoSemFila: true,
       descricao:
-        "EspetÃ¡culo clÃ¡ssico com animatrÃ´nicos que contam a evoluÃ§Ã£o da tecnologia ao longo do sÃ©culo. Homenagem nostÃ¡lgica Ã  visÃ£o de futuro da Disney.",
-      icone: "ðŸŽ¡",
+        "EspetÃƒÂ¡culo clÃƒÂ¡ssico com animatrÃƒÂ´nicos que contam a evoluÃƒÂ§ÃƒÂ£o da tecnologia ao longo do sÃƒÂ©culo. Homenagem nostÃƒÂ¡lgica ÃƒÂ  visÃƒÂ£o de futuro da Disney.",
+      icone: "Ã°Å¸Å½Â¡",
       imagem: "carousel-progress.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",
@@ -143,7 +143,7 @@
       id: "monsters-inc-laugh-floor",
       titulo: "Monsters, Inc. Laugh Floor",
       subtitulo: "Tomorrowland",
-      tipo: "Show interativo de comÃ©dia",
+      tipo: "Show interativo de comÃƒÂ©dia",
       tipoPerfil: ["interativas", "familiares"],
       alturaMinima: 0,
       filaExpress: true,
@@ -153,8 +153,8 @@
       turnoRecomendado: "noite",
       atracaoSemFila: false,
       descricao:
-        "Show de stand-up com os monstros de Monstros S.A., com piadas e interaÃ§Ã£o ao vivo com a plateia. DiversÃ£o para rir com a famÃ­lia.",
-      icone: "ðŸ˜‚",
+        "Show de stand-up com os monstros de Monstros S.A., com piadas e interaÃƒÂ§ÃƒÂ£o ao vivo com a plateia. DiversÃƒÂ£o para rir com a famÃƒÂ­lia.",
+      icone: "Ã°Å¸Ëœâ€š",
       imagem: "laugh-floor.jpg",
       regiao: "Tomorrowland",
       parque: "Magic Kingdom",

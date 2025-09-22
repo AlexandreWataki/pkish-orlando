@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+﻿ï»¿import React, { useEffect, useMemo, useState } from 'react';
 import { View, StyleSheet, Linking, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -40,7 +40,7 @@ export default function YouTubeViewCore({
 
   const videoId = useMemo(() => extractId(idOrUrl), [idOrUrl]);
 
-  // iOS sÃ³ autoâ€‘toca com mute=1; Android pode com mute=0
+  // iOS sÃƒÂ³ autoÃ¢â‚¬â€˜toca com mute=1; Android pode com mute=0
   const mute = autoplay && Platform.OS === 'ios' ? 1 : 0;
 
   const baseParams = useMemo(
@@ -94,7 +94,7 @@ export default function YouTubeViewCore({
         const report = () => {
           try {
             var t = document.title || '';
-            if (/indispon[iÃ­]vel|unavailable|youtube/i.test(t)) {
+            if (/indispon[iÃƒÂ­]vel|unavailable|youtube/i.test(t)) {
               window.ReactNativeWebView.postMessage(JSON.stringify({ err: 'unavailable', title: t }));
             }
           } catch(e){}

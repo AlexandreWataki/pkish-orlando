@@ -1,4 +1,4 @@
-﻿// src/screens/inicio/MenuPrincipal.tsx
+﻿ï»¿// src/screens/inicio/MenuPrincipal.tsx
 import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
@@ -64,7 +64,7 @@ export default function MenuPrincipal() {
   const irParaUltimaBusca = () => {
     const rf = parkisheiroAtual?.roteiroFinal;
     if (!rf || (Array.isArray(rf) && rf.length === 0)) {
-      Alert.alert('Roteiro não encontrado', 'Monte um roteiro primeiro para acessar a última busca.');
+      Alert.alert('Roteiro nÃ£o encontrado', 'Monte um roteiro primeiro para acessar a Ãºltima busca.');
       return;
     }
 
@@ -74,7 +74,7 @@ export default function MenuPrincipal() {
     } else if (typeof rf === 'object') {
       const dias = Object.values(rf) as any[];
       if (!dias.length) {
-        Alert.alert('Roteiro não encontrado', 'Monte um roteiro primeiro para acessar a última busca.');
+        Alert.alert('Roteiro nÃ£o encontrado', 'Monte um roteiro primeiro para acessar a Ãºltima busca.');
         return;
       }
       dias.sort((a: any, b: any) => {
@@ -86,7 +86,7 @@ export default function MenuPrincipal() {
     }
 
     if (!ultimoDia?.id) {
-      Alert.alert('Erro', 'Dia do roteiro inválido.');
+      Alert.alert('Erro', 'Dia do roteiro invÃ¡lido.');
       return;
     }
 
@@ -106,8 +106,8 @@ export default function MenuPrincipal() {
     }
 
     Alert.alert(
-      'Apagar último roteiro?',
-      'Ao confirmar, seu último roteiro será apagado.',
+      'Apagar Ãºltimo roteiro?',
+      'Ao confirmar, seu Ãºltimo roteiro serÃ¡ apagado.',
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -115,8 +115,8 @@ export default function MenuPrincipal() {
           onPress: async () => {
             await limparRoteiroFinal();
             Alert.alert(
-              'Último roteiro apagado',
-              'Seu último roteiro foi removido.',
+              'Ãšltimo roteiro apagado',
+              'Seu Ãºltimo roteiro foi removido.',
               [
                 {
                   text: 'OK',
@@ -137,7 +137,7 @@ export default function MenuPrincipal() {
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
 
-  // Itens do menu (agora usando ícones do Ionicons)
+  // Itens do menu (agora usando Ã­cones do Ionicons)
   const botoesMenu: Rota[] = [
     {
       titulo: 'Criar Roteiro Orlando',
@@ -150,7 +150,7 @@ export default function MenuPrincipal() {
       subtitulo: 'Escolha as datas e monte seu roteiro',
     },
     {
-      titulo: 'Último Roteiro Salvo',
+      titulo: 'Ãšltimo Roteiro Salvo',
       icon: 'save-outline',
       corFundo: '#4B0082',
       corBorda: '#FF00FF',
@@ -160,24 +160,24 @@ export default function MenuPrincipal() {
       subtitulo: 'Abra o roteiro mais recente deste aparelho',
     },
     {
-      titulo: 'Atrações dos Parques',
+      titulo: 'AtraÃ§Ãµes dos Parques',
       icon: 'star-outline',
       corFundo: '#FF8C00',
       corBorda: '#FFD700',
       corTexto: '#FFFFFF',
       destino: 'TelaAtracoes',
       ativo: true,
-      subtitulo: 'Brinquedos, shows e experiências',
+      subtitulo: 'Brinquedos, shows e experiÃªncias',
     },
     {
-      titulo: 'Restaurantes e Refeições',
+      titulo: 'Restaurantes e RefeiÃ§Ãµes',
       icon: 'restaurant-outline',
       corFundo: '#0077CC',
       corBorda: '#00BFFF',
       corTexto: '#FFFFFF',
       destino: 'TelaRefeicoes',
       ativo: true,
-      subtitulo: 'Opções gastronômicas por parque e área',
+      subtitulo: 'OpÃ§Ãµes gastronÃ´micas por parque e Ã¡rea',
     },
   ];
 
@@ -206,11 +206,11 @@ export default function MenuPrincipal() {
                 navigatingRef.current = true;
                 try {
                   if (!btn.ativo) {
-                    Alert.alert('Em breve', `${btn.titulo} estará disponível em uma próxima atualização.`);
+                    Alert.alert('Em breve', `${btn.titulo} estarÃ¡ disponÃ­vel em uma prÃ³xima atualizaÃ§Ã£o.`);
                     return;
                   }
                   if (!rotasImplementadas.has(btn.destino)) {
-                    Alert.alert('Indisponível', `A rota "${btn.destino}" ainda não está disponível.`);
+                    Alert.alert('IndisponÃ­vel', `A rota "${btn.destino}" ainda nÃ£o estÃ¡ disponÃ­vel.`);
                     return;
                   }
                   if (btn.destino === 'Calendario') {
@@ -237,12 +237,12 @@ export default function MenuPrincipal() {
           <BotaoMenuNeon
             icon="pricetags-outline"
             titulo="Clube de Vantagens Orlando"
-            subtitulo="Promoções e descontos exclusivos"
+            subtitulo="PromoÃ§Ãµes e descontos exclusivos"
             onPress={() => navigation.navigate('Promocoes')}
           />
         </View>
 
-        {/* Último: Voltar ao Cadastro / Login */}
+        {/* Ãšltimo: Voltar ao Cadastro / Login */}
         <View style={styles.cardWrapper}>
           <BotaoMenuCard
             icon="log-in-outline"

@@ -1,4 +1,4 @@
-﻿// src/screens/login/LoginScreen.tsx
+﻿ï»¿// src/screens/login/LoginScreen.tsx
 import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity,
@@ -42,7 +42,7 @@ export default function LoginScreen() {
     const senhaOk = senha.trim();
 
     if (!userOk || !senhaOk) {
-      Alert.alert('Erro', 'Preencha usuário/e-mail e senha.');
+      Alert.alert('Erro', 'Preencha usuÃ¡rio/e-mail e senha.');
       return;
     }
 
@@ -53,11 +53,11 @@ export default function LoginScreen() {
     } catch (e: any) {
       const msg = String(e?.message || '');
       if (msg.includes('401') || /incorret/i.test(msg)) {
-        Alert.alert('Credenciais inválidas', 'Usuário ou senha incorretos.');
+        Alert.alert('Credenciais invÃ¡lidas', 'UsuÃ¡rio ou senha incorretos.');
       } else if (/network|fetch|timeout/i.test(msg)) {
-        Alert.alert('Falha de rede', 'Não foi possível conectar ao servidor.');
+        Alert.alert('Falha de rede', 'NÃ£o foi possÃ­vel conectar ao servidor.');
       } else {
-        Alert.alert('Erro', msg || 'Não foi possível entrar. Tente novamente.');
+        Alert.alert('Erro', msg || 'NÃ£o foi possÃ­vel entrar. Tente novamente.');
       }
     } finally {
       setLoading(false);
@@ -83,7 +83,7 @@ export default function LoginScreen() {
       <View style={styles.formWrapper}>
         <TextInput
           style={styles.input}
-          placeholder="Usuário ou e-mail"
+          placeholder="UsuÃ¡rio ou e-mail"
           value={usernameOrEmail}
           onChangeText={setUsernameOrEmail}
           placeholderTextColor="#555"
@@ -132,14 +132,14 @@ export default function LoginScreen() {
           activeOpacity={0.9}
           disabled={loading}
         >
-          <Text style={styles.buttonText}>Voltar ao Início</Text>
+          <Text style={styles.buttonText}>Voltar ao InÃ­cio</Text>
           <Ionicons name="arrow-back-outline" size={20} color="#fff" style={{ marginLeft: 8 }} />
         </TouchableOpacity>
       </View>
 
       <Image source={frase} style={styles.frase} resizeMode="contain" />
 
-      {/* Logo clicável para ir direto ao MenuPrincipal */}
+      {/* Logo clicÃ¡vel para ir direto ao MenuPrincipal */}
       <View style={styles.bottomContainer}>
         <TouchableOpacity
           onPress={navegarHome}

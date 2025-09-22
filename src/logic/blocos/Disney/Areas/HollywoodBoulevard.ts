@@ -1,15 +1,15 @@
-﻿export const HollywoodBoulevard = {
+﻿ï»¿export const HollywoodBoulevard = {
   parque: "Hollywood Studios",
   regiao: "Hollywood Boulevard",
   latitude: 28.3575,
   longitude: -81.5586,
   descricao:
-    "A avenida principal de entrada do parque, com teatros em estilo clÃ¡ssico de Hollywood, lojas temÃ¡ticas e acesso Ã s principais Ã¡reas do parque.",
+    "A avenida principal de entrada do parque, com teatros em estilo clÃƒÂ¡ssico de Hollywood, lojas temÃƒÂ¡ticas e acesso ÃƒÂ s principais ÃƒÂ¡reas do parque.",
   imagem: "hollywoodboulevard.png",
   atracoes: [
     {
       id: "runaway-railway",
-      titulo: "Mickey & Minnieâ€™s Runaway Railway",
+      titulo: "Mickey & MinnieÃ¢â‚¬â„¢s Runaway Railway",
       subtitulo: "Hollywood Boulevard",
       tipo: "Dark ride imersiva",
       tipoPerfil: ["imersivas", "familiares"],
@@ -21,8 +21,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "manha",
       descricao:
-        "Passeio inovador com projeÃ§Ãµes em 2.5D e trilha sonora animada. VocÃª entra em um desenho animado com Mickey e Minnie sem necessidade de Ã³culos.",
-      icone: "ðŸŽ¥",
+        "Passeio inovador com projeÃƒÂ§ÃƒÂµes em 2.5D e trilha sonora animada. VocÃƒÂª entra em um desenho animado com Mickey e Minnie sem necessidade de ÃƒÂ³culos.",
+      icone: "Ã°Å¸Å½Â¥",
       imagem: "runaway-railway.jpg",
       regiao: "Hollywood Boulevard",
       parque: "Hollywood Studios"
@@ -31,7 +31,7 @@
       id: "red-car-trolley",
       titulo: "Red Car Trolley",
       subtitulo: "Hollywood Boulevard",
-      tipo: "Passeio de bonde temÃ¡tico",
+      tipo: "Passeio de bonde temÃƒÂ¡tico",
       tipoPerfil: ["familiares", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -41,8 +41,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Passeio tranquilo de bonde elÃ©trico estilo anos 30, ambientando o visitante na era dourada de Hollywood. Sem necessidade de fila.",
-      icone: "ðŸš‹",
+        "Passeio tranquilo de bonde elÃƒÂ©trico estilo anos 30, ambientando o visitante na era dourada de Hollywood. Sem necessidade de fila.",
+      icone: "Ã°Å¸Å¡â€¹",
       imagem: "red-car-trolley.jpg",
       regiao: "Hollywood Boulevard",
       parque: "Hollywood Studios"
@@ -51,7 +51,7 @@
       id: "hollywood-character-spot",
       titulo: "Encontro com Personagens da Disney",
       subtitulo: "Hollywood Boulevard",
-      tipo: "Ponto de foto e interaÃ§Ã£o",
+      tipo: "Ponto de foto e interaÃƒÂ§ÃƒÂ£o",
       tipoPerfil: ["familiares", "interativas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -61,8 +61,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Ãrea para tirar fotos com personagens clÃ¡ssicos da Disney em figurinos de Hollywood, como Mickey, Minnie e Pateta. Sem fila, com horÃ¡rios programados.",
-      icone: "ðŸ“¸",
+        "ÃƒÂrea para tirar fotos com personagens clÃƒÂ¡ssicos da Disney em figurinos de Hollywood, como Mickey, Minnie e Pateta. Sem fila, com horÃƒÂ¡rios programados.",
+      icone: "Ã°Å¸â€œÂ¸",
       imagem: "hollywood-character-spot.jpg",
       regiao: "Hollywood Boulevard",
       parque: "Hollywood Studios"
@@ -71,7 +71,7 @@
       id: "disney-studio-store",
       titulo: "Disney Studio Store",
       subtitulo: "Hollywood Boulevard",
-      tipo: "Loja temÃ¡tica",
+      tipo: "Loja temÃƒÂ¡tica",
       tipoPerfil: ["tematicas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -81,8 +81,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Loja principal da entrada com itens de filmes, pelÃºcias, roupas e souvenirs exclusivos. Ideal para compras antes ou depois das atraÃ§Ãµes.",
-      icone: "ðŸ›ï¸",
+        "Loja principal da entrada com itens de filmes, pelÃƒÂºcias, roupas e souvenirs exclusivos. Ideal para compras antes ou depois das atraÃƒÂ§ÃƒÂµes.",
+      icone: "Ã°Å¸â€ºÂÃ¯Â¸Â",
       imagem: "studio-store.jpg",
       regiao: "Hollywood Boulevard",
       parque: "Hollywood Studios"
@@ -91,7 +91,7 @@
       id: "crossroads-of-the-world",
       titulo: "Crossroads of the World",
       subtitulo: "Hollywood Boulevard",
-      tipo: "Ponto icÃ´nico e loja",
+      tipo: "Ponto icÃƒÂ´nico e loja",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -101,8 +101,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Localizado logo na entrada, este ponto icÃ´nico com a bola do Mickey marca o comeÃ§o da aventura e possui quiosques com acessÃ³rios e bebidas.",
-      icone: "ðŸŽˆ",
+        "Localizado logo na entrada, este ponto icÃƒÂ´nico com a bola do Mickey marca o comeÃƒÂ§o da aventura e possui quiosques com acessÃƒÂ³rios e bebidas.",
+      icone: "Ã°Å¸Å½Ë†",
       imagem: "crossroads.jpg",
       regiao: "Hollywood Boulevard",
       parque: "Hollywood Studios"

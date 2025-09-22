@@ -1,17 +1,17 @@
-﻿export const MainStreet = {
+﻿ï»¿export const MainStreet = {
   parque: "Magic Kingdom",
   regiao: "Main Street, U.S.A.",
   latitude: 28.4187,
   longitude: -81.5818,
   descricao:
-    "A entrada principal do parque, inspirada em uma cidade americana do inÃ­cio do sÃ©culo 20. Com vista para o Castelo da Cinderela, abriga lojas, restaurantes e paradas mÃ¡gicas ao longo do dia.",
+    "A entrada principal do parque, inspirada em uma cidade americana do inÃƒÂ­cio do sÃƒÂ©culo 20. Com vista para o Castelo da Cinderela, abriga lojas, restaurantes e paradas mÃƒÂ¡gicas ao longo do dia.",
   imagem: "mainstreetusa.png",
   atracoes: [
     {
       id: "main-street-parade",
       titulo: "Festival of Fantasy Parade",
       subtitulo: "Main Street, U.S.A.",
-      tipo: "Desfile temÃ¡tico",
+      tipo: "Desfile temÃƒÂ¡tico",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -21,17 +21,17 @@
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Desfile mÃ¡gico com carros alegÃ³ricos e personagens da Disney. Ocorre em horÃ¡rios fixos e pode ser assistido da calÃ§ada, sem necessidade de fila.",
-      icone: "ðŸŽ‰",
+        "Desfile mÃƒÂ¡gico com carros alegÃƒÂ³ricos e personagens da Disney. Ocorre em horÃƒÂ¡rios fixos e pode ser assistido da calÃƒÂ§ada, sem necessidade de fila.",
+      icone: "Ã°Å¸Å½â€°",
       imagem: "festival-of-fantasy.jpg",
       regiao: "Main Street, U.S.A.",
       parque: "Magic Kingdom"
     },
     {
       id: "walt-disney-world-railroad",
-      titulo: "Walt Disney World Railroad â€“ Main Street Station",
+      titulo: "Walt Disney World Railroad Ã¢â‚¬â€œ Main Street Station",
       subtitulo: "Main Street, U.S.A.",
-      tipo: "Passeio de trem nostÃ¡lgico",
+      tipo: "Passeio de trem nostÃƒÂ¡lgico",
       tipoPerfil: ["familiares", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -42,7 +42,7 @@
       turnoRecomendado: "manha",
       descricao:
         "Embarque em um trem a vapor para um passeio ao redor do parque, com paradas em Frontierland e Fantasyland. Leve e relaxante.",
-      icone: "ðŸš‚",
+      icone: "Ã°Å¸Å¡â€š",
       imagem: "main-street-train.jpg",
       regiao: "Main Street, U.S.A.",
       parque: "Magic Kingdom"
@@ -51,7 +51,7 @@
       id: "dapper-dans",
       titulo: "Dapper Dans",
       subtitulo: "Main Street, U.S.A.",
-      tipo: "Show musical de calÃ§ada",
+      tipo: "Show musical de calÃƒÂ§ada",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -61,8 +61,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Quarteto vocal vestido Ã  moda antiga que canta ao vivo na Main Street com canÃ§Ãµes clÃ¡ssicas da Disney e harmonias divertidas.",
-      icone: "ðŸŽ©",
+        "Quarteto vocal vestido ÃƒÂ  moda antiga que canta ao vivo na Main Street com canÃƒÂ§ÃƒÂµes clÃƒÂ¡ssicas da Disney e harmonias divertidas.",
+      icone: "Ã°Å¸Å½Â©",
       imagem: "dapper-dans.jpg",
       regiao: "Main Street, U.S.A.",
       parque: "Magic Kingdom"
@@ -81,8 +81,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "manha",
       descricao:
-        "Tire fotos e receba autÃ³grafos do Mickey em trajes clÃ¡ssicos dentro do teatro da Town Square. Encontro mÃ¡gico para todas as idades.",
-      icone: "ðŸŽ­",
+        "Tire fotos e receba autÃƒÂ³grafos do Mickey em trajes clÃƒÂ¡ssicos dentro do teatro da Town Square. Encontro mÃƒÂ¡gico para todas as idades.",
+      icone: "Ã°Å¸Å½Â­",
       imagem: "mickey-town-square.jpg",
       regiao: "Main Street, U.S.A.",
       parque: "Magic Kingdom"
@@ -101,8 +101,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Show de boas-vindas que acontece em frente ao Castelo da Cinderela, logo na abertura do parque. Traz personagens e mÃºsica para comeÃ§ar o dia com magia.",
-      icone: "âœ¨",
+        "Show de boas-vindas que acontece em frente ao Castelo da Cinderela, logo na abertura do parque. Traz personagens e mÃƒÂºsica para comeÃƒÂ§ar o dia com magia.",
+      icone: "Ã¢Å“Â¨",
       imagem: "let-the-magic-begin.jpg",
       regiao: "Main Street, U.S.A.",
       parque: "Magic Kingdom"

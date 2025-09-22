@@ -1,4 +1,4 @@
-﻿import { AtividadeDia } from '@/logic/types/atividade';
+﻿ï»¿import { AtividadeDia } from '@/logic/types/atividade';
 import { gerarAtracoesDisneyPorPerfilAgrupadas } from './gerarAtracoesUniversalPorPerfilFluxo';
 
 // Importa seus blocos especiais para fogos por parque
@@ -7,12 +7,12 @@ import { fogosEPCOT } from './Areas/FogosEPCOT';
 import { fogosHollywoodStudios } from './Areas/FogosHollywoodStudios';
 import { experienciaPandoraNoite } from './Areas/FogosPandoraNoite';
 
-// Mapeia as Ã¡reas que representam o local dos fogos em cada parque
+// Mapeia as ÃƒÂ¡reas que representam o local dos fogos em cada parque
 const areasComFogosPorParque: Record<string, string[]> = {
   'Magic Kingdom': ['Main Street, U.S.A.'],
   'EPCOT': ['World Showcase'],
   'Hollywood Studios': ['Hollywood Boulevard'],
-  'Animal Kingdom': ['Pandora â€“ The World of Avatar'], // Pode usar bloco especial de Pandora
+  'Animal Kingdom': ['Pandora Ã¢â‚¬â€œ The World of Avatar'], // Pode usar bloco especial de Pandora
 };
 
 export function gerarAtracoesNoiteComFogos(

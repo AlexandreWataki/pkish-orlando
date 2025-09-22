@@ -1,4 +1,4 @@
-﻿// src/logic/media/youtubeUtils.ts
+﻿ï»¿// src/logic/media/youtubeUtils.ts
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as EntriesModule from './entries/indexEntries';
 
@@ -10,7 +10,7 @@ const CACHE_PREFIX = '@yt:atr:';
 const CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 dias
 
 /* ============================================================
-   NormalizaÃ§Ã£o e ID/URL Helpers
+   NormalizaÃƒÂ§ÃƒÂ£o e ID/URL Helpers
    ============================================================ */
 export function normalize(s?: string | null): string {
   if (!s) return '';
@@ -131,7 +131,7 @@ async function fetchWithTimeout(url: string, ms = 8000): Promise<Response> {
   }
 }
 
-/** Busca vÃ­deo do YouTube via API oficial (embed url preferencial) */
+/** Busca vÃƒÂ­deo do YouTube via API oficial (embed url preferencial) */
 export async function searchYouTubeForAttraction(
   a: AttrLike,
   apiKey: string

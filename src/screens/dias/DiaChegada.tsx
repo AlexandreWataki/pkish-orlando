@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useRef } from 'react';
+﻿ï»¿import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { Dia } from '@/logic/types/dia';
 import { AtividadeDia } from '@/logic/types/atividade';
@@ -78,7 +78,7 @@ export const DiaChegada = ({ diaBruto }: Props) => {
         ? atividades
         : atividades.filter(
             (a) =>
-              !(a.tipo === 'transporte' && a.titulo?.toLowerCase().includes('retorno Ã  regiÃ£o'))
+              !(a.tipo === 'transporte' && a.titulo?.toLowerCase().includes('retorno ÃƒÂ  regiÃƒÂ£o'))
           );
 
 return filtradas.map((atividade, idx) => {
@@ -101,7 +101,7 @@ return filtradas.map((atividade, idx) => {
           ]}
           key={idx}
         >
-          <View style={styles.transporteHeader}><Text style={styles.transporteIcon}>ðŸš—</Text>
+          <View style={styles.transporteHeader}><Text style={styles.transporteIcon}>Ã°Å¸Å¡â€”</Text>
             <Text style={styles.transporteTitulo}>{atividade.titulo}</Text>
           </View>
           {atividade.local && (
@@ -115,7 +115,7 @@ return filtradas.map((atividade, idx) => {
               </View>
             ))
           ) : (
-            <Text style={styles.texto}>Nenhuma opÃ§Ã£o de transporte disponÃ­vel.</Text>
+            <Text style={styles.texto}>Nenhuma opÃƒÂ§ÃƒÂ£o de transporte disponÃƒÂ­vel.</Text>
           )}
         </Animated.View>
       );
@@ -154,14 +154,14 @@ return filtradas.map((atividade, idx) => {
 
 
 
-// -------- REFEIÃ‡ÃƒO: 1Âª linha "PreÃ§o MÃ©dio: $ 12 - Economico"; sem rÃ³tulos nos textos
+// -------- REFEIÃƒâ€¡ÃƒÆ’O: 1Ã‚Âª linha "PreÃƒÂ§o MÃƒÂ©dio: $ 12 - Economico"; sem rÃƒÂ³tulos nos textos
 if (atividade.tipo === 'refeicao') {
   let sufixo = '';
-  if (periodo === 'manha') sufixo = 'CafÃ© da ManhÃ£';
-  else if (periodo === 'tarde') sufixo = 'AlmoÃ§o';
+  if (periodo === 'manha') sufixo = 'CafÃƒÂ© da ManhÃƒÂ£';
+  else if (periodo === 'tarde') sufixo = 'AlmoÃƒÂ§o';
   else if (periodo === 'noite') sufixo = 'Jantar';
 
-  const tituloBase = (atividade.titulo || '').split(' â€“ ')[0].trim();
+  const tituloBase = (atividade.titulo || '').split(' Ã¢â‚¬â€œ ')[0].trim();
 
   // Tipo/perfil (evita mostrar "refeicao")
   const brutoTipo =
@@ -179,7 +179,7 @@ if (atividade.tipo === 'refeicao') {
       ? String(brutoTipo).trim()
       : undefined;
 
-  // PreÃ§o -> normaliza "$12" para "$ 12"
+  // PreÃƒÂ§o -> normaliza "$12" para "$ 12"
   const precoBruto =
     (atividade as any).precoMedio ??
     (atividade as any).preco ??
@@ -195,13 +195,13 @@ if (atividade.tipo === 'refeicao') {
     }
   }
 
-  // 1Âª linha: "PreÃ§o MÃ©dio: $ 12 - Economico"
+  // 1Ã‚Âª linha: "PreÃƒÂ§o MÃƒÂ©dio: $ 12 - Economico"
   let linhaMeta = '';
-  if (precoSomente && tipo) linhaMeta = `PreÃ§o MÃ©dio: ${precoSomente} - ${tipo}`;
-  else if (precoSomente) linhaMeta = `PreÃ§o MÃ©dio: ${precoSomente}`;
+  if (precoSomente && tipo) linhaMeta = `PreÃƒÂ§o MÃƒÂ©dio: ${precoSomente} - ${tipo}`;
+  else if (precoSomente) linhaMeta = `PreÃƒÂ§o MÃƒÂ©dio: ${precoSomente}`;
   else if (tipo) linhaMeta = tipo;
 
-  // Limpa rÃ³tulos e remove qualquer "PreÃ§o mÃ©dio: ..." do destaque
+  // Limpa rÃƒÂ³tulos e remove qualquer "PreÃƒÂ§o mÃƒÂ©dio: ..." do destaque
   const semRotulo = (txt?: string) =>
     (txt ?? '')
       .replace(/^ *Acesso *: */i, '')
@@ -209,7 +209,7 @@ if (atividade.tipo === 'refeicao') {
       .trim();
 
   const removerPrecoDentro = (txt: string) =>
-    txt.replace(/(?:^|\s)pre(Ã§|c)o\s*m[eÃ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
+    txt.replace(/(?:^|\s)pre(ÃƒÂ§|c)o\s*m[eÃƒÂ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
 
   const acesso = semRotulo(
     (atividade as any).acesso ?? (atividade as any).ondeFica ?? atividade.local
@@ -223,18 +223,18 @@ if (atividade.tipo === 'refeicao') {
 
   const destaque = removerPrecoDentro(semRotulo(destaqueRaw));
 
-  // DescriÃ§Ã£o = linha meta (se houver) + quebra de linha + destaque limpo
+  // DescriÃƒÂ§ÃƒÂ£o = linha meta (se houver) + quebra de linha + destaque limpo
   const descricaoComMeta =
     (linhaMeta ? `${linhaMeta}${destaque ? '\n' : ''}` : '') + (destaque || '');
 
   return (
     <View style={styles.cardWrapper} key={`refeicao-${idx}`}>
       <CardRefeicao
-        titulo={sufixo ? `${tituloBase} â€“ ${sufixo}` : tituloBase}
+        titulo={sufixo ? `${tituloBase} Ã¢â‚¬â€œ ${sufixo}` : tituloBase}
         tipoRefeicao={sufixo}
         regiao={undefined}                 // evitamos depender de "regiao"
-        descricao={descricaoComMeta}       // 1Âª linha: meta | 2Âª: destaque
-        local={acesso || ''}               // sÃ³ o descritivo (ex.: "Dentro do Disney Springs")
+        descricao={descricaoComMeta}       // 1Ã‚Âª linha: meta | 2Ã‚Âª: destaque
+        local={acesso || ''}               // sÃƒÂ³ o descritivo (ex.: "Dentro do Disney Springs")
       />
     </View>
   );

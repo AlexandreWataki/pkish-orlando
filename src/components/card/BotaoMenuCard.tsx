@@ -1,13 +1,13 @@
-﻿// src/components/BotaoMenuCard.tsx
+﻿ï»¿// src/components/BotaoMenuCard.tsx
 import React from 'react';
 import { TouchableOpacity, Text, View, StyleSheet, Platform, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 type Props = {
   titulo: string;
-  /** Se quiser usar um ícone: passe o nome do Ionicons (ex.: "map-outline") */
+  /** Se quiser usar um Ã­cone: passe o nome do Ionicons (ex.: "map-outline") */
   icon?: React.ComponentProps<typeof Ionicons>['name'];
-  /** Fallback opcional caso não use ícone */
+  /** Fallback opcional caso nÃ£o use Ã­cone */
   emoji?: string;
   subtitulo?: string;
   corFundo?: string;
@@ -19,7 +19,7 @@ type Props = {
 const BotaoMenuCard = ({
   titulo,
   icon,
-  emoji = '✨', // <-- UTF-8 correto (antes estava mojibake: "âœ¨")
+  emoji = 'âœ¨', // <-- UTF-8 correto (antes estava mojibake: "Ã¢Å“Â¨")
   subtitulo,
   corFundo = 'rgba(0, 119, 200, 0.9)',
   corBorda = '#FFD700',
@@ -39,7 +39,7 @@ const BotaoMenuCard = ({
         numberOfLines={2}
         adjustsFontSizeToFit
       >
-        {/* Ícone tem prioridade; se não vier, usa emoji */}
+        {/* Ãcone tem prioridade; se nÃ£o vier, usa emoji */}
         {icon ? <Ionicons name={icon} size={20} color={corTexto} /> : emoji}{' '}
         {titulo}
       </Text>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     flexShrink: 1,
-    // dica: não force fontFamily aqui — isso evita quebrar emoji/ícones
+    // dica: nÃ£o force fontFamily aqui â€” isso evita quebrar emoji/Ã­cones
     includeFontPadding: false,
   },
   subtitulo: {

@@ -1,4 +1,4 @@
-﻿import React, { useState, useCallback } from 'react';
+﻿ï»¿import React, { useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ import { buscarClima } from '@/logic/clima/buscarclima';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-// âœ… Importa o AvisoLegal atualizado (variante "card")
+// Ã¢Å“â€¦ Importa o AvisoLegal atualizado (variante "card")
 import AvisoLegal from '@/components/card/AvisoLegal';
 
 export type OpcaoParque = { id: string; label: string };
@@ -57,7 +57,7 @@ export default function TelaDefinirTiposDias() {
       markVisited('TelaDefinirTiposDias');
 
       if (!parkisheiroAtual || (parkisheiroAtual.totalDias ?? 0) <= 0) {
-        Alert.alert('Erro', 'Total de dias nÃ£o definido. Volte Ã  tela anterior.');
+        Alert.alert('Erro', 'Total de dias nÃƒÂ£o definido. Volte ÃƒÂ  tela anterior.');
         navigation.goBack();
       }
 
@@ -90,8 +90,8 @@ export default function TelaDefinirTiposDias() {
   const handleAvancar = () => {
     if (!podeAvancar) {
       Alert.alert(
-        'Erro de DistribuiÃ§Ã£o',
-        restante > 0 ? `Faltam ${restante} dia(s) para completar.` : `VocÃª excedeu em ${-restante} dia(s).`
+        'Erro de DistribuiÃƒÂ§ÃƒÂ£o',
+        restante > 0 ? `Faltam ${restante} dia(s) para completar.` : `VocÃƒÂª excedeu em ${-restante} dia(s).`
       );
       return;
     }
@@ -170,7 +170,7 @@ export default function TelaDefinirTiposDias() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}Â°C` : '28Â°C'}
+          temperatura={clima ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -197,10 +197,10 @@ export default function TelaDefinirTiposDias() {
             <CardTipo label="Dias de Parques Universal" value={universal} setValue={setUniversal} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Guia independente para visitar os parques Universal." />
             <CardTipo label="Dias de Compras" value={compras} setValue={setCompras} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para shoppings e outlets." />
             <CardTipo label="Dias de Descanso" value={descanso} setValue={setDescanso} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para relaxar ou passeios leves." />
-            <CardTipo label="Dias de SaÃ­da" value={saida} setValue={setSaida} min={0} max={1} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia de voo de retorno." />
+            <CardTipo label="Dias de SaÃƒÂ­da" value={saida} setValue={setSaida} min={0} max={1} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia de voo de retorno." />
 
-            {/* âš ï¸ Aviso Legal AGORA logo abaixo do "Dias de SaÃ­da",
-                mesmo tamanho/raio dos cards graÃ§as a variant="card" */}
+            {/* Ã¢Å¡Â Ã¯Â¸Â Aviso Legal AGORA logo abaixo do "Dias de SaÃƒÂ­da",
+                mesmo tamanho/raio dos cards graÃƒÂ§as a variant="card" */}
             <AvisoLegal
               theme="blue"
               fixoNoRodape={false}

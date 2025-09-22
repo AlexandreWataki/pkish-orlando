@@ -1,10 +1,10 @@
-﻿export const WorldCelebration = {
+﻿ï»¿export const WorldCelebration = {
   parque: "Epcot",
   regiao: "World Celebration",
   latitude: 28.3745,
   longitude: -81.5494,
   descricao:
-    "Ãrea central do Epcot que celebra a criatividade, a conexÃ£o entre pessoas e ideias. Aqui estÃ£o espaÃ§os tranquilos, atraÃ§Ãµes inspiradoras, homenagens a Walt Disney e experiÃªncias interativas.",
+    "ÃƒÂrea central do Epcot que celebra a criatividade, a conexÃƒÂ£o entre pessoas e ideias. Aqui estÃƒÂ£o espaÃƒÂ§os tranquilos, atraÃƒÂ§ÃƒÂµes inspiradoras, homenagens a Walt Disney e experiÃƒÂªncias interativas.",
   imagem: "worldcelebration.png",
   atracoes: [
     {
@@ -21,8 +21,8 @@
       turnoRecomendado: "manha",
       atracaoSemFila: false,
       descricao:
-        "Viagem no tempo dentro da icÃ´nica esfera do Epcot, mostrando a evoluÃ§Ã£o da comunicaÃ§Ã£o humana com narraÃ§Ã£o envolvente e cenÃ¡rios imersivos.",
-      icone: "ðŸŒ",
+        "Viagem no tempo dentro da icÃƒÂ´nica esfera do Epcot, mostrando a evoluÃƒÂ§ÃƒÂ£o da comunicaÃƒÂ§ÃƒÂ£o humana com narraÃƒÂ§ÃƒÂ£o envolvente e cenÃƒÂ¡rios imersivos.",
+      icone: "Ã°Å¸Å’Â",
       imagem: "spaceship-earth.jpg",
       regiao: "World Celebration",
       parque: "Epcot",
@@ -33,7 +33,7 @@
       id: "dreamers-point",
       titulo: "Dreamers Point",
       subtitulo: "World Celebration",
-      tipo: "EspaÃ§o temÃ¡tico e homenagem",
+      tipo: "EspaÃƒÂ§o temÃƒÂ¡tico e homenagem",
       tipoPerfil: ["tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -43,8 +43,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: true,
       descricao:
-        "Escultura e Ã¡rea contemplativa em homenagem a Walt Disney, cercada por jardins e vista privilegiada da Spaceship Earth. Sem fila, ideal para uma pausa.",
-      icone: "ðŸª‘",
+        "Escultura e ÃƒÂ¡rea contemplativa em homenagem a Walt Disney, cercada por jardins e vista privilegiada da Spaceship Earth. Sem fila, ideal para uma pausa.",
+      icone: "Ã°Å¸Âªâ€˜",
       imagem: "dreamers-point.jpg",
       regiao: "World Celebration",
       parque: "Epcot",
@@ -55,7 +55,7 @@
       id: "communicore-plaza",
       titulo: "CommuniCore Plaza",
       subtitulo: "World Celebration",
-      tipo: "Ãrea para eventos e shows ao vivo",
+      tipo: "ÃƒÂrea para eventos e shows ao vivo",
       tipoPerfil: ["familiares", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -65,8 +65,8 @@
       turnoRecomendado: "noite",
       atracaoSemFila: true,
       descricao:
-        "PraÃ§a interativa e palco para eventos ao ar livre e shows sazonais, com espaÃ§os abertos e Ã¡reas de descanso. Sem filas, com horÃ¡rios programados.",
-      icone: "ðŸŽ¤",
+        "PraÃƒÂ§a interativa e palco para eventos ao ar livre e shows sazonais, com espaÃƒÂ§os abertos e ÃƒÂ¡reas de descanso. Sem filas, com horÃƒÂ¡rios programados.",
+      icone: "Ã°Å¸Å½Â¤",
       imagem: "communicore-plaza.jpg",
       regiao: "World Celebration",
       parque: "Epcot",
@@ -77,7 +77,7 @@
       id: "journey-of-water",
       titulo: "Journey of Water, Inspired by Moana",
       subtitulo: "World Celebration",
-      tipo: "Trilha interativa com Ã¡gua",
+      tipo: "Trilha interativa com ÃƒÂ¡gua",
       tipoPerfil: ["familiares", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -88,8 +88,8 @@
       atracaoSemFila: false,
       personagemPrincipal: "Moana",
       descricao:
-        "Caminho interativo inspirado em Moana, com fontes, efeitos sensoriais e atividades com Ã¡gua para todas as idades. Uma experiÃªncia educativa e divertida.",
-      icone: "ðŸ’§",
+        "Caminho interativo inspirado em Moana, com fontes, efeitos sensoriais e atividades com ÃƒÂ¡gua para todas as idades. Uma experiÃƒÂªncia educativa e divertida.",
+      icone: "Ã°Å¸â€™Â§",
       imagem: "journey-of-water.jpg",
       regiao: "World Celebration",
       parque: "Epcot",
@@ -98,9 +98,9 @@
     },
     {
       id: "walt-disney-dreamers-statue",
-      titulo: "EstÃ¡tua Walt the Dreamer",
+      titulo: "EstÃƒÂ¡tua Walt the Dreamer",
       subtitulo: "World Celebration",
-      tipo: "Ponto de foto e contemplaÃ§Ã£o",
+      tipo: "Ponto de foto e contemplaÃƒÂ§ÃƒÂ£o",
       tipoPerfil: ["tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -110,8 +110,8 @@
       turnoRecomendado: "manha",
       atracaoSemFila: true,
       descricao:
-        "Escultura de Walt Disney sentado, localizada no Dreamers Point. Local ideal para fotos e reflexÃ£o. Acesso livre, sem fila.",
-      icone: "ðŸ“¸",
+        "Escultura de Walt Disney sentado, localizada no Dreamers Point. Local ideal para fotos e reflexÃƒÂ£o. Acesso livre, sem fila.",
+      icone: "Ã°Å¸â€œÂ¸",
       imagem: "walt-dreamer.jpg",
       regiao: "World Celebration",
       parque: "Epcot",

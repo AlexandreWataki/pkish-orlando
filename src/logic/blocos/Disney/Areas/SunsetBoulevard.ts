@@ -1,17 +1,17 @@
-﻿export const SunsetBoulevard = {
+﻿ï»¿export const SunsetBoulevard = {
   parque: "Hollywood Studios",
   regiao: "Sunset Boulevard",
   latitude: 28.3554,
   longitude: -81.5618,
   descricao:
-    "Avenida com visual de cinema clÃ¡ssico que leva a atraÃ§Ãµes cheias de adrenalina, como a icÃ´nica Tower of Terror, shows musicais e encontros com personagens.",
+    "Avenida com visual de cinema clÃƒÂ¡ssico que leva a atraÃƒÂ§ÃƒÂµes cheias de adrenalina, como a icÃƒÂ´nica Tower of Terror, shows musicais e encontros com personagens.",
   imagem: "sunsetboulevard.png",
   atracoes: [
     {
       id: "tower-of-terror",
       titulo: "The Twilight Zone Tower of Terror",
       subtitulo: "Sunset Boulevard",
-      tipo: "Queda livre temÃ¡tica",
+      tipo: "Queda livre temÃƒÂ¡tica",
       tipoPerfil: ["radicais", "tematicas"],
       alturaMinima: 102,
       filaExpress: true,
@@ -21,8 +21,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao:
-        "Entre em um hotel mal-assombrado e despenca em elevadores desgovernados. CombinaÃ§Ã£o perfeita de susto e diversÃ£o.",
-      icone: "ðŸ¨",
+        "Entre em um hotel mal-assombrado e despenca em elevadores desgovernados. CombinaÃƒÂ§ÃƒÂ£o perfeita de susto e diversÃƒÂ£o.",
+      icone: "Ã°Å¸ÂÂ¨",
       imagem: "tower-of-terror.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",
@@ -31,7 +31,7 @@
     },
     {
       id: "rockn-roller-coaster",
-      titulo: "Rock â€˜nâ€™ Roller Coaster Starring Aerosmith",
+      titulo: "Rock Ã¢â‚¬ËœnÃ¢â‚¬â„¢ Roller Coaster Starring Aerosmith",
       subtitulo: "Sunset Boulevard",
       tipo: "Montanha-russa no escuro",
       tipoPerfil: ["radicais", "imersivas"],
@@ -43,8 +43,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao:
-        "Montanha-russa de alta velocidade com lanÃ§amentos rÃ¡pidos e looping ao som de Aerosmith. Uma das mais intensas da Disney.",
-      icone: "ðŸŽ¸",
+        "Montanha-russa de alta velocidade com lanÃƒÂ§amentos rÃƒÂ¡pidos e looping ao som de Aerosmith. Uma das mais intensas da Disney.",
+      icone: "Ã°Å¸Å½Â¸",
       imagem: "rockn-roller.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",
@@ -53,7 +53,7 @@
     },
     {
       id: "beauty-and-the-beast",
-      titulo: "Beauty and the Beast â€“ Live on Stage",
+      titulo: "Beauty and the Beast Ã¢â‚¬â€œ Live on Stage",
       subtitulo: "Sunset Boulevard",
       tipo: "Show musical ao vivo",
       tipoPerfil: ["tematicas", "familiares"],
@@ -65,8 +65,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "ApresentaÃ§Ã£o musical ao vivo com figurinos belÃ­ssimos e performances emocionantes. Ocorre em horÃ¡rios especÃ­ficos.",
-      icone: "ðŸŒ¹",
+        "ApresentaÃƒÂ§ÃƒÂ£o musical ao vivo com figurinos belÃƒÂ­ssimos e performances emocionantes. Ocorre em horÃƒÂ¡rios especÃƒÂ­ficos.",
+      icone: "Ã°Å¸Å’Â¹",
       imagem: "beauty-and-the-beast.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",
@@ -87,8 +87,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Encontro com a princesa Bela vestida com seu traje clÃ¡ssico dourado. Localizado nas proximidades do teatro da Bela e a Fera.",
-      icone: "ðŸ‘¸",
+        "Encontro com a princesa Bela vestida com seu traje clÃƒÂ¡ssico dourado. Localizado nas proximidades do teatro da Bela e a Fera.",
+      icone: "Ã°Å¸â€˜Â¸",
       imagem: "encontro-bela.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",
@@ -109,8 +109,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "noite",
       descricao:
-        "Tire fotos com o Mickey vestido como feiticeiro do Fantasia, com seu chapÃ©u azul estrelado. Encontro mÃ¡gico e memorÃ¡vel.",
-      icone: "ðŸ§™â€â™‚ï¸",
+        "Tire fotos com o Mickey vestido como feiticeiro do Fantasia, com seu chapÃƒÂ©u azul estrelado. Encontro mÃƒÂ¡gico e memorÃƒÂ¡vel.",
+      icone: "Ã°Å¸Â§â„¢Ã¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â",
       imagem: "mickey-feiticeiro.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",

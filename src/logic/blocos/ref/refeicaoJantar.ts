@@ -1,4 +1,4 @@
-﻿import { jantaresProximos } from './jantaresProximos';
+﻿ï»¿import { jantaresProximos } from './jantaresProximos';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 
@@ -13,15 +13,15 @@ export const gerarRefeicaoJantar = (
 
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: "ðŸ Jantar",
-      descricao: "Nenhum perfil de refeiÃ§Ã£o selecionado.",
+      titulo: "Ã°Å¸ÂÂ Jantar",
+      descricao: "Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.",
       horarioSugerido: '19:00',
       tipo: 'refeicao',
     });
     return atividades;
   }
 
-  // ðŸŸ¡ PRIORIDADE 1: buscar por coordenadas
+  // Ã°Å¸Å¸Â¡ PRIORIDADE 1: buscar por coordenadas
   if (latitude != null && longitude != null) {
     const jantarMaisProximo = jantaresProximos
       .filter((r) => r.tipo === perfilSelecionado)
@@ -37,7 +37,7 @@ export const gerarRefeicaoJantar = (
     }
   }
 
-  // ðŸŸ¡ PRIORIDADE 2: buscar por nome de regiÃ£o (normalizado)
+  // Ã°Å¸Å¸Â¡ PRIORIDADE 2: buscar por nome de regiÃƒÂ£o (normalizado)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -52,17 +52,17 @@ export const gerarRefeicaoJantar = (
     }
   }
 
-  // ðŸŸ¡ PRIORIDADE 3: qualquer jantar com o perfil
+  // Ã°Å¸Å¸Â¡ PRIORIDADE 3: qualquer jantar com o perfil
   const jantarQualquer = jantaresProximos.find(r => r.tipo === perfilSelecionado);
   if (jantarQualquer) {
     atividades.push(formatarJantar(jantarQualquer));
     return atividades;
   }
 
-  // ðŸŸ¥ NENHUM encontrado
+  // Ã°Å¸Å¸Â¥ NENHUM encontrado
   atividades.push({
-    titulo: "ðŸ Jantar",
-    descricao: "Nenhum local de jantar encontrado para o perfil selecionado nesta regiÃ£o.",
+    titulo: "Ã°Å¸ÂÂ Jantar",
+    descricao: "Nenhum local de jantar encontrado para o perfil selecionado nesta regiÃƒÂ£o.",
     horarioSugerido: '19:00',
     tipo: 'refeicao',
   });
@@ -70,14 +70,14 @@ export const gerarRefeicaoJantar = (
   return atividades;
 };
 
-// ðŸ”§ funÃ§Ã£o auxiliar para formatar o card
+// Ã°Å¸â€Â§ funÃƒÂ§ÃƒÂ£o auxiliar para formatar o card
 function formatarJantar(jantar: any): AtividadeDia {
   return {
-    titulo: `ðŸ ${jantar.nome}`,
+    titulo: `Ã°Å¸ÂÂ ${jantar.nome}`,
     descricao:
       `Tipo: ${jantar.tipo}\n` +
-      `PreÃ§o mÃ©dio: $${jantar.precoMedio}` +
-      (jantar.acesso ? `\nAcesso: ${jantar.acesso} (da regiÃ£o ${jantar.regiao})` : '') +
+      `PreÃƒÂ§o mÃƒÂ©dio: $${jantar.precoMedio}` +
+      (jantar.acesso ? `\nAcesso: ${jantar.acesso} (da regiÃƒÂ£o ${jantar.regiao})` : '') +
       (jantar.destaque ? `\nDestaque: ${jantar.destaque}` : ''),
     horarioSugerido: '19:00',
     tipo: 'refeicao',

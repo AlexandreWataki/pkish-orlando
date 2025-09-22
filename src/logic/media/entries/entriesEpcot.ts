@@ -1,7 +1,7 @@
-﻿import type { Entry } from './types';
+﻿ï»¿import type { Entry } from './types';
 
 export const ENTRIES_EPCOT: Entry[] = [
-  // ðŸŽ¡ EPCOT â€” World Celebration
+  // Ã°Å¸Å½Â¡ EPCOT Ã¢â‚¬â€ World Celebration
   { attrKey: 'spaceship-earth', titleKey: 'spaceshipearth', yt: '7QePyvFKCP4' },
   { attrKey: 'dreamers-point', titleKey: 'dreamerspoint', yt: 'hPNYdFTw31E' },
   { attrKey: 'communicore-plaza', titleKey: 'communicoreplaza', yt: 'hPNYdFTw31E' },

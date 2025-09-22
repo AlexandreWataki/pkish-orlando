@@ -1,4 +1,4 @@
-﻿// src/logic/menu/openMenu.ts
+﻿ï»¿// src/logic/menu/openMenu.ts
 import { Alert } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import type { NavigationProp } from '@react-navigation/native';
@@ -18,7 +18,7 @@ function getHost(u: string) {
 
 function mustOpenExternally(url: string) {
   const host = getHost(url);
-  // Inclui Instagram e domÃ­nios Meta que podem ser usados no login
+  // Inclui Instagram e domÃƒÂ­nios Meta que podem ser usados no login
   const blockedHosts = [
     'instagram.com',
     'm.instagram.com',
@@ -39,12 +39,12 @@ export async function openMenu(
   try {
     const finalUrl = ensureHttps(item.menuUrl || '');
     if (!finalUrl) {
-      Alert.alert('CardÃ¡pio indisponÃ­vel', 'Nenhum link foi informado.');
+      Alert.alert('CardÃƒÂ¡pio indisponÃƒÂ­vel', 'Nenhum link foi informado.');
       return;
     }
 
     if (mustOpenExternally(finalUrl)) {
-      // Abre em Custom Tabs / SFSafariViewController (mais compatÃ­vel com login)
+      // Abre em Custom Tabs / SFSafariViewController (mais compatÃƒÂ­vel com login)
       await WebBrowser.openBrowserAsync(finalUrl, {
         showTitle: true,
         toolbarColor: '#000000',

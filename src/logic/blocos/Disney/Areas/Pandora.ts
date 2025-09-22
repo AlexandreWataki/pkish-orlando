@@ -1,16 +1,16 @@
-﻿export const Pandora = {
+﻿ï»¿export const Pandora = {
   parque: "Animal Kingdom",
-  regiao: "Pandora â€“ The World of Avatar",
+  regiao: "Pandora Ã¢â‚¬â€œ The World of Avatar",
   latitude: 28.3564,
   longitude: -81.5916,
   descricao:
-    "Ãrea altamente imersiva inspirada no mundo de Avatar. Aqui vocÃª encontra florestas bioluminescentes, cachoeiras flutuantes e experiÃªncias sensoriais Ãºnicas, dia e noite.",
+    "ÃƒÂrea altamente imersiva inspirada no mundo de Avatar. Aqui vocÃƒÂª encontra florestas bioluminescentes, cachoeiras flutuantes e experiÃƒÂªncias sensoriais ÃƒÂºnicas, dia e noite.",
   imagem: "pandora.png",
   atracoes: [
     {
       id: "avatar-flight-of-passage",
       titulo: "Avatar Flight of Passage",
-      subtitulo: "Pandora â€“ The World of Avatar",
+      subtitulo: "Pandora Ã¢â‚¬â€œ The World of Avatar",
       tipo: "Simulador 3D",
       tipoPerfil: ["imersivas", "radicais"],
       alturaMinima: 112,
@@ -20,10 +20,10 @@
       idadeRecomendada: "7+",
       turnoRecomendado: "tarde",
       descricao:
-        "Voe nas costas de um Banshee em um simulador 3D espetacular com sensaÃ§Ã£o de liberdade e imersÃ£o total no universo de Pandora.",
-      icone: "ðŸ¦‹",
+        "Voe nas costas de um Banshee em um simulador 3D espetacular com sensaÃƒÂ§ÃƒÂ£o de liberdade e imersÃƒÂ£o total no universo de Pandora.",
+      icone: "Ã°Å¸Â¦â€¹",
       imagem: "flight-of-passage.jpg",
-      regiao: "Pandora â€“ The World of Avatar",
+      regiao: "Pandora Ã¢â‚¬â€œ The World of Avatar",
       parque: "Animal Kingdom",
       latitude: 28.3568,
       longitude: -81.5917
@@ -31,7 +31,7 @@
     {
       id: "navi-river-journey",
       titulo: "Na'vi River Journey",
-      subtitulo: "Pandora â€“ The World of Avatar",
+      subtitulo: "Pandora Ã¢â‚¬â€œ The World of Avatar",
       tipo: "Passeio de barco",
       tipoPerfil: ["familiares", "imersivas"],
       alturaMinima: 0,
@@ -41,10 +41,10 @@
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "manha",
       descricao:
-        "Um passeio relaxante por um rio em meio Ã  floresta bioluminescente com criaturas mÃ¡gicas e mÃºsicas tribais dos Naâ€™vi.",
-      icone: "ðŸŒŒ",
+        "Um passeio relaxante por um rio em meio ÃƒÂ  floresta bioluminescente com criaturas mÃƒÂ¡gicas e mÃƒÂºsicas tribais dos NaÃ¢â‚¬â„¢vi.",
+      icone: "Ã°Å¸Å’Å’",
       imagem: "navi-river.jpg",
-      regiao: "Pandora â€“ The World of Avatar",
+      regiao: "Pandora Ã¢â‚¬â€œ The World of Avatar",
       parque: "Animal Kingdom",
       latitude: 28.3562,
       longitude: -81.5911
@@ -52,8 +52,8 @@
     {
       id: "pandora-ambiente-imersivo",
       titulo: "Ambiente Imersivo de Pandora",
-      subtitulo: "Pandora â€“ The World of Avatar",
-      tipo: "ExperiÃªncia interativa ao ar livre",
+      subtitulo: "Pandora Ã¢â‚¬â€œ The World of Avatar",
+      tipo: "ExperiÃƒÂªncia interativa ao ar livre",
       tipoPerfil: ["tematicas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -63,10 +63,10 @@
       atracaoSemFila: true,
       turnoRecomendado: "noite",
       descricao:
-        "Explore trilhas com vegetaÃ§Ã£o bioluminescente, sons tribais e efeitos visuais Ãºnicos. Ideal Ã  noite, sem fila, com interaÃ§Ãµes sensoriais pelo caminho.",
-      icone: "ðŸŒ ",
+        "Explore trilhas com vegetaÃƒÂ§ÃƒÂ£o bioluminescente, sons tribais e efeitos visuais ÃƒÂºnicos. Ideal ÃƒÂ  noite, sem fila, com interaÃƒÂ§ÃƒÂµes sensoriais pelo caminho.",
+      icone: "Ã°Å¸Å’Â ",
       imagem: "pandora-imersiva.jpg",
-      regiao: "Pandora â€“ The World of Avatar",
+      regiao: "Pandora Ã¢â‚¬â€œ The World of Avatar",
       parque: "Animal Kingdom",
       latitude: 28.3560,
       longitude: -81.5919

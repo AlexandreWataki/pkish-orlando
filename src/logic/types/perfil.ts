@@ -1,11 +1,11 @@
-﻿export type Perfil = {
+﻿ï»¿export type Perfil = {
   id: string;
   nome: string;
   descricao: string;
-  filtrosPrioritarios: string[]; // Ex: ['radical', 'infantil', 'rÃ¡pido']
+  filtrosPrioritarios: string[]; // Ex: ['radical', 'infantil', 'rÃƒÂ¡pido']
   restricoes?: {
-    alturaMaxima?: number; // Em centÃ­metros
-    alturaMinima?: number; // Em centÃ­metros
+    alturaMaxima?: number; // Em centÃƒÂ­metros
+    alturaMinima?: number; // Em centÃƒÂ­metros
     evitarTipos?: string[]; // Ex: ['radical', 'molhada']
   };
 };

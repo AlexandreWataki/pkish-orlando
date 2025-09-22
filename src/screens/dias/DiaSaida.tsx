@@ -1,4 +1,4 @@
-﻿// src/screens/dias/DiaSaida.tsx
+﻿ï»¿// src/screens/dias/DiaSaida.tsx
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Dia } from '@/logic/types/dia';
@@ -51,7 +51,7 @@ function renderAtividadesComTransporteERefeicao(
       .trim();
 
   const removerPrecoDentro = (txt: string) =>
-    txt.replace(/(?:^|\s)pre(Ã§|c)o\s*m[eÃ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
+    txt.replace(/(?:^|\s)pre(ÃƒÂ§|c)o\s*m[eÃƒÂ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
 
   atividades.forEach((atividade, index) => {
     // ---------------------- TRANSPORTE
@@ -59,7 +59,7 @@ function renderAtividadesComTransporteERefeicao(
       const isPrimeiroTransporte =
         index === 0 &&
         turnoPeriodo === 'manha' &&
-        atividade.titulo?.toLowerCase().includes('cafÃ©');
+        atividade.titulo?.toLowerCase().includes('cafÃƒÂ©');
 
       componentes.push(
         <View
@@ -95,16 +95,16 @@ function renderAtividadesComTransporteERefeicao(
       return;
     }
 
-    // ---------------------- REFEIÃ‡ÃƒO (padrÃ£o: "PreÃ§o MÃ©dio: $ 12 - EconÃ´mico")
+    // ---------------------- REFEIÃƒâ€¡ÃƒÆ’O (padrÃƒÂ£o: "PreÃƒÂ§o MÃƒÂ©dio: $ 12 - EconÃƒÂ´mico")
     if (atividade.tipo === 'refeicao') {
-      // sufixo por perÃ­odo
+      // sufixo por perÃƒÂ­odo
       let sufixo = '';
-      if (turnoPeriodo === 'manha') sufixo = 'CafÃ© da ManhÃ£';
-      else if (turnoPeriodo === 'tarde') sufixo = 'AlmoÃ§o';
+      if (turnoPeriodo === 'manha') sufixo = 'CafÃƒÂ© da ManhÃƒÂ£';
+      else if (turnoPeriodo === 'tarde') sufixo = 'AlmoÃƒÂ§o';
       else if (turnoPeriodo === 'noite') sufixo = 'Jantar';
 
-      // tÃ­tulo
-      const tituloBase = (atividade.titulo || '').split(' â€“ ')[0].trim();
+      // tÃƒÂ­tulo
+      const tituloBase = (atividade.titulo || '').split(' Ã¢â‚¬â€œ ')[0].trim();
 
       // tipo/perfil (evita "refeicao")
       const brutoTipo =
@@ -122,7 +122,7 @@ function renderAtividadesComTransporteERefeicao(
           ? String(brutoTipo).trim()
           : undefined;
 
-      // preÃ§o -> normaliza "$12" para "$ 12"
+      // preÃƒÂ§o -> normaliza "$12" para "$ 12"
       const precoBruto =
         (atividade as any).precoMedio ??
         (atividade as any).preco ??
@@ -138,13 +138,13 @@ function renderAtividadesComTransporteERefeicao(
         }
       }
 
-      // 1Âª linha: "PreÃ§o MÃ©dio: $ 12 - Economico"
+      // 1Ã‚Âª linha: "PreÃƒÂ§o MÃƒÂ©dio: $ 12 - Economico"
       let linhaMeta = '';
-      if (precoSomente && tipo) linhaMeta = `PreÃ§o MÃ©dio: ${precoSomente} - ${tipo}`;
-      else if (precoSomente) linhaMeta = `PreÃ§o MÃ©dio: ${precoSomente}`;
+      if (precoSomente && tipo) linhaMeta = `PreÃƒÂ§o MÃƒÂ©dio: ${precoSomente} - ${tipo}`;
+      else if (precoSomente) linhaMeta = `PreÃƒÂ§o MÃƒÂ©dio: ${precoSomente}`;
       else if (tipo) linhaMeta = tipo;
 
-      // limpa e monta descriÃ§Ãµes
+      // limpa e monta descriÃƒÂ§ÃƒÂµes
       const acesso = semRotulo(
         (atividade as any).acesso ?? (atividade as any).ondeFica ?? atividade.local
       );
@@ -157,18 +157,18 @@ function renderAtividadesComTransporteERefeicao(
 
       const destaque = removerPrecoDentro(semRotulo(destaqueRaw));
 
-      // DescriÃ§Ã£o final: linha meta (se houver) + quebra + destaque
+      // DescriÃƒÂ§ÃƒÂ£o final: linha meta (se houver) + quebra + destaque
       const descricaoComMeta =
         (linhaMeta ? `${linhaMeta}${destaque ? '\n' : ''}` : '') + (destaque || '');
 
       componentes.push(
         <CardRefeicao
           key={`refeicao-${turnoIndex}-${index}`}
-          titulo={sufixo ? `${tituloBase} â€“ ${sufixo}` : tituloBase}
+          titulo={sufixo ? `${tituloBase} Ã¢â‚¬â€œ ${sufixo}` : tituloBase}
           tipoRefeicao={sufixo}
-          regiao={undefined}                 // nÃ£o usamos "regiao" para evitar conflitos
-          descricao={descricaoComMeta}       // 1Âª linha: meta | 2Âª: destaque
-          local={acesso || ''}               // sÃ³ o descritivo (ex.: "Dentro do Disney Springs")
+          regiao={undefined}                 // nÃƒÂ£o usamos "regiao" para evitar conflitos
+          descricao={descricaoComMeta}       // 1Ã‚Âª linha: meta | 2Ã‚Âª: destaque
+          local={acesso || ''}               // sÃƒÂ³ o descritivo (ex.: "Dentro do Disney Springs")
         />
       );
       return;
@@ -258,7 +258,7 @@ export const DiaSaida = ({ diaBruto }: Props) => {
 
   const turnoVoo = (parkisheiroAtual?.vooSaida?.horario || '')
     .toLowerCase()
-    .replace('manha', 'ManhÃ£')
+    .replace('manha', 'ManhÃƒÂ£')
     .replace('tarde', 'Tarde')
     .replace('noite', 'Noite')
     .replace('madrugada', 'Madrugada')
@@ -268,9 +268,9 @@ export const DiaSaida = ({ diaBruto }: Props) => {
     return (
       <View style={[styles.transporteContainer, { marginBottom: 10 }]} key={key}>
         <View style={styles.transporteHeader}>
-          <Text style={styles.transporteIcon}>ðŸš—</Text>
+          <Text style={styles.transporteIcon}>Ã°Å¸Å¡â€”</Text>
           <Text style={styles.transporteTitulo}>
-            {bloco.titulo || 'Transporte atÃ© o aeroporto'}
+            {bloco.titulo || 'Transporte atÃƒÂ© o aeroporto'}
           </Text>
         </View>
         {bloco.local && (
@@ -314,7 +314,7 @@ export const DiaSaida = ({ diaBruto }: Props) => {
         bloco.componente || bloco.opcoes
       ) && (
         <CardSecao
-          titulo={turnoVoo || "FinalizaÃ§Ã£o"}
+          titulo={turnoVoo || "FinalizaÃƒÂ§ÃƒÂ£o"}
           tipo="descanso"
         >
           {blocoFinal.atividades.map((bloco: any, idx: number) => {

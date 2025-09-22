@@ -1,9 +1,9 @@
-﻿export const FutureWorld = {
+﻿ï»¿export const FutureWorld = {
   parque: "Epcot",
   regiao: "Future World",
   latitude: 28.3747,
   longitude: -81.5494,
-  descricao: "Antiga Ã¡rea principal do Epcot dedicada Ã  ciÃªncia, tecnologia e inovaÃ§Ã£o. Algumas atraÃ§Ãµes ainda mantÃªm esse espÃ­rito futurista em experiÃªncias educativas e imersivas.",
+  descricao: "Antiga ÃƒÂ¡rea principal do Epcot dedicada ÃƒÂ  ciÃƒÂªncia, tecnologia e inovaÃƒÂ§ÃƒÂ£o. Algumas atraÃƒÂ§ÃƒÂµes ainda mantÃƒÂªm esse espÃƒÂ­rito futurista em experiÃƒÂªncias educativas e imersivas.",
   imagem: "futureworld.png",
   atracoes: [
     {
@@ -19,10 +19,10 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: `Viagem educativa pelo tempo, contando a histÃ³ria da comunicaÃ§Ã£o dentro do famoso globo do Epcot. Passeio calmo, cheio de detalhes interessantes.
-SensaÃ§Ã£o: NÃ£o balanÃ§a, escuro e climatizado. Ã“timo para descansar, sem sustos nem barulho alto. Ideal para todas as idades.
-Dica: Observe as cenas da evoluÃ§Ã£o tecnolÃ³gica e aproveite para personalizar o final do passeio no painel interativo.`,
-      icone: "ðŸŒ",
+      descricao: `Viagem educativa pelo tempo, contando a histÃƒÂ³ria da comunicaÃƒÂ§ÃƒÂ£o dentro do famoso globo do Epcot. Passeio calmo, cheio de detalhes interessantes.
+SensaÃƒÂ§ÃƒÂ£o: NÃƒÂ£o balanÃƒÂ§a, escuro e climatizado. Ãƒâ€œtimo para descansar, sem sustos nem barulho alto. Ideal para todas as idades.
+Dica: Observe as cenas da evoluÃƒÂ§ÃƒÂ£o tecnolÃƒÂ³gica e aproveite para personalizar o final do passeio no painel interativo.`,
+      icone: "Ã°Å¸Å’Â",
       imagem: "spaceship-earth.jpg",
       regiao: "Future World",
       parque: "Epcot",
@@ -42,10 +42,10 @@ Dica: Observe as cenas da evoluÃ§Ã£o tecnolÃ³gica e aproveite para persona
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: `Passeio criativo com Figment, explorando os sentidos de forma divertida e colorida. Surpresas visuais, mÃºsicas marcantes e clima de imaginaÃ§Ã£o Disney.
-SensaÃ§Ã£o: NÃ£o assusta, alguns cheiros e sons inusitados podem surpreender. Ã“timo para crianÃ§as e fÃ£s de experiÃªncias interativas.
-Dica: No final, aproveite a Ã¡rea de experimentos para brincar com luzes, sons e tirar fotos engraÃ§adas com as projeÃ§Ãµes.`,
-      icone: "ðŸŽ¨",
+      descricao: `Passeio criativo com Figment, explorando os sentidos de forma divertida e colorida. Surpresas visuais, mÃƒÂºsicas marcantes e clima de imaginaÃƒÂ§ÃƒÂ£o Disney.
+SensaÃƒÂ§ÃƒÂ£o: NÃƒÂ£o assusta, alguns cheiros e sons inusitados podem surpreender. Ãƒâ€œtimo para crianÃƒÂ§as e fÃƒÂ£s de experiÃƒÂªncias interativas.
+Dica: No final, aproveite a ÃƒÂ¡rea de experimentos para brincar com luzes, sons e tirar fotos engraÃƒÂ§adas com as projeÃƒÂ§ÃƒÂµes.`,
+      icone: "Ã°Å¸Å½Â¨",
       imagem: "journey-into-imagination.jpg",
       regiao: "Future World",
       parque: "Epcot",
@@ -56,7 +56,7 @@ Dica: No final, aproveite a Ã¡rea de experimentos para brincar com luzes, sons
       id: "project-tomorrow",
       titulo: "Project Tomorrow",
       subtitulo: "Future World",
-      tipo: "EspaÃ§o interativo",
+      tipo: "EspaÃƒÂ§o interativo",
       tipoPerfil: ["interativas", "imersivas", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -65,10 +65,10 @@ Dica: No final, aproveite a Ã¡rea de experimentos para brincar com luzes, sons
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: `Ãrea interativa com jogos e experiÃªncias tecnolÃ³gicas. Teste reflexos, raciocÃ­nio e divirta-se com atividades para toda a famÃ­lia, sem filas.
-SensaÃ§Ã£o: Ambiente animado, pode ser barulhento, mas nÃ£o cansa nem assusta. Perfeito para gastar energia e brincar junto.
-Dica: Aproveite os jogos digitais sem pressa e tire fotos nos painÃ©is futuristas antes de sair para o parque.`,
-      icone: "ðŸ•¹ï¸",
+      descricao: `ÃƒÂrea interativa com jogos e experiÃƒÂªncias tecnolÃƒÂ³gicas. Teste reflexos, raciocÃƒÂ­nio e divirta-se com atividades para toda a famÃƒÂ­lia, sem filas.
+SensaÃƒÂ§ÃƒÂ£o: Ambiente animado, pode ser barulhento, mas nÃƒÂ£o cansa nem assusta. Perfeito para gastar energia e brincar junto.
+Dica: Aproveite os jogos digitais sem pressa e tire fotos nos painÃƒÂ©is futuristas antes de sair para o parque.`,
+      icone: "Ã°Å¸â€¢Â¹Ã¯Â¸Â",
       imagem: "project-tomorrow.jpg",
       regiao: "Future World",
       parque: "Epcot",
@@ -77,9 +77,9 @@ Dica: Aproveite os jogos digitais sem pressa e tire fotos nos painÃ©is futuris
     },
     {
       id: "imageworks",
-      titulo: "ImageWorks â€“ The What-If Labs",
+      titulo: "ImageWorks Ã¢â‚¬â€œ The What-If Labs",
       subtitulo: "Future World",
-      tipo: "LaboratÃ³rio de experiÃªncias criativas",
+      tipo: "LaboratÃƒÂ³rio de experiÃƒÂªncias criativas",
       tipoPerfil: ["interativas", "tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -88,10 +88,10 @@ Dica: Aproveite os jogos digitais sem pressa e tire fotos nos painÃ©is futuris
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: `Ãrea criativa com experimentos de luz, som e movimento ao final da atraÃ§Ã£o de Figment. DiversÃ£o para crianÃ§as e adultos, com estaÃ§Ãµes tecnolÃ³gicas.
-SensaÃ§Ã£o: Ambiente colorido, sem filas, estimula criatividade e curiosidade. NÃ£o assusta, ideal para brincar e aprender ao mesmo tempo.
-Dica: Teste todos os experimentos e registre suas criaÃ§Ãµes com fotos. Alguns jogos produzem efeitos personalizados nas telas.`,
-      icone: "ðŸ§ ",
+      descricao: `ÃƒÂrea criativa com experimentos de luz, som e movimento ao final da atraÃƒÂ§ÃƒÂ£o de Figment. DiversÃƒÂ£o para crianÃƒÂ§as e adultos, com estaÃƒÂ§ÃƒÂµes tecnolÃƒÂ³gicas.
+SensaÃƒÂ§ÃƒÂ£o: Ambiente colorido, sem filas, estimula criatividade e curiosidade. NÃƒÂ£o assusta, ideal para brincar e aprender ao mesmo tempo.
+Dica: Teste todos os experimentos e registre suas criaÃƒÂ§ÃƒÂµes com fotos. Alguns jogos produzem efeitos personalizados nas telas.`,
+      icone: "Ã°Å¸Â§Â ",
       imagem: "imageworks.jpg",
       regiao: "Future World",
       parque: "Epcot",
@@ -102,7 +102,7 @@ Dica: Teste todos os experimentos e registre suas criaÃ§Ãµes com fotos. Algu
       id: "discovery-spot",
       titulo: "Discovery Spot",
       subtitulo: "Future World",
-      tipo: "Ponto temÃ¡tico de descanso e exploraÃ§Ãµes livres",
+      tipo: "Ponto temÃƒÂ¡tico de descanso e exploraÃƒÂ§ÃƒÂµes livres",
       tipoPerfil: ["tematicas", "familiares", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -111,10 +111,10 @@ Dica: Teste todos os experimentos e registre suas criaÃ§Ãµes com fotos. Algu
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "noite",
-      descricao: `EspaÃ§o ao ar livre com jardins tecnolÃ³gicos, fontes, bancos e Ã¡reas sombreadas. Bom para pausar, relaxar e deixar as crianÃ§as explorarem seguras.
-SensaÃ§Ã£o: Tranquilo, fresco e silencioso Ã  noite. NÃ£o assusta, perfeito para descansar e recarregar as energias antes do prÃ³ximo passeio.
+      descricao: `EspaÃƒÂ§o ao ar livre com jardins tecnolÃƒÂ³gicos, fontes, bancos e ÃƒÂ¡reas sombreadas. Bom para pausar, relaxar e deixar as crianÃƒÂ§as explorarem seguras.
+SensaÃƒÂ§ÃƒÂ£o: Tranquilo, fresco e silencioso ÃƒÂ  noite. NÃƒÂ£o assusta, perfeito para descansar e recarregar as energias antes do prÃƒÂ³ximo passeio.
 Dica: Procure as fontes interativas e os jardins iluminados ao anoitecer para tirar fotos diferentes e curtir um momento de paz.`,
-      icone: "ðŸ§¬",
+      icone: "Ã°Å¸Â§Â¬",
       imagem: "discovery-spot.jpg",
       regiao: "Future World",
       parque: "Epcot",

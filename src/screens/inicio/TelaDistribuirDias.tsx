@@ -1,4 +1,4 @@
-// src/screens/inicio/TelaDistribuirDias.tsx
+﻿// src/screens/inicio/TelaDistribuirDias.tsx
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   View,
@@ -19,7 +19,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import AvisoLegal from '@/components/card/AvisoLegal';
 
-// 🔒 Listas SEM "(guia)"
+// ðŸ”’ Listas SEM "(guia)"
 const parquesDisney = [
   'Magic Kingdom',
   'Epcot',
@@ -36,7 +36,7 @@ const parquesUniversal = [
 const comprasOpcoes = ['Dia de Compras'];
 const descansoOpcoes = ['Dia de Descanso'];
 
-// 👇 Rótulos humanos para selects
+// ðŸ‘‡ RÃ³tulos humanos para selects
 const LABELS_TIPO: Record<string, string> = {
   disney: 'Parques Disney',
   universal: 'Parques Universal',
@@ -44,10 +44,10 @@ const LABELS_TIPO: Record<string, string> = {
   descanso: 'Dia de Descanso',
 };
 
-// 👇 Rótulos painel lateral
+// ðŸ‘‡ RÃ³tulos painel lateral
 const LABELS_TIPO_PAINEL: Record<string, [string, string?]> = {
   chegada:  ['chegada'],
-  saida:    ['saída'],
+  saida:    ['saÃ­da'],
   descanso: ['Dia de', 'Descanso'],
   compras:  ['Dia de', 'Compras'],
   disney:   ['Parques Disney'],
@@ -56,8 +56,8 @@ const LABELS_TIPO_PAINEL: Record<string, [string, string?]> = {
 
 function formatarData(data: Date) {
   const diasSemana = [
-    'Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira',
-    'Quinta-Feira', 'Sexta-Feira', 'Sábado'
+    'Domingo', 'Segunda-Feira', 'TerÃ§a-Feira', 'Quarta-Feira',
+    'Quinta-Feira', 'Sexta-Feira', 'SÃ¡bado'
   ];
   const dia = data.getDate().toString().padStart(2, '0');
   const mes = (data.getMonth() + 1).toString().padStart(2, '0');
@@ -99,7 +99,7 @@ export default function TelaDistribuirDias() {
 
     if (distribuicao.chegada) {
       for (let i = 0; i < distribuicao.chegada; i++) {
-        estrutura.push({ tipo: 'Chegada de Avião', completo: true });
+        estrutura.push({ tipo: 'Chegada de AviÃ£o', completo: true });
       }
     }
     ['disney', 'universal', 'compras', 'descanso'].forEach(tipo => {
@@ -115,7 +115,7 @@ export default function TelaDistribuirDias() {
     });
     if (distribuicao.saida) {
       for (let i = 0; i < distribuicao.saida; i++) {
-        estrutura.push({ tipo: 'Saída de Avião', completo: true });
+        estrutura.push({ tipo: 'SaÃ­da de AviÃ£o', completo: true });
       }
     }
     return estrutura;
@@ -133,7 +133,7 @@ export default function TelaDistribuirDias() {
 
   const reabrirEdicao = (index: number) => {
     const atual = { ...dias[index] };
-    if (atual.tipo === 'chegada' || atual.tipo === 'saida' || atual.tipo === 'Chegada de Avião' || atual.tipo === 'Saída de Avião') return;
+    if (atual.tipo === 'chegada' || atual.tipo === 'saida' || atual.tipo === 'Chegada de AviÃ£o' || atual.tipo === 'SaÃ­da de AviÃ£o') return;
     const novo = { ...atual, completo: false };
     if (atual.tipo === 'disney' || atual.tipo === 'universal') novo.nomeParque = '';
     setDia(index, novo);
@@ -155,11 +155,11 @@ export default function TelaDistribuirDias() {
   }, [dias]);
 
   const completosChegada = useMemo(
-    () => dias.filter(d => d.tipo === 'Chegada de Avião').length,
+    () => dias.filter(d => d.tipo === 'Chegada de AviÃ£o').length,
     [dias]
   );
   const completosSaida = useMemo(
-    () => dias.filter(d => d.tipo === 'Saída de Avião').length,
+    () => dias.filter(d => d.tipo === 'SaÃ­da de AviÃ£o').length,
     [dias]
   );
 
@@ -187,7 +187,7 @@ export default function TelaDistribuirDias() {
       .filter(tipo => getCompletos(tipo) < (esperado[tipo] || 0));
   }, [esperado, contagemUsados, completosChegada, completosSaida]);
 
-  // 🔹 ordem fixa do painel + filtragem dos que realmente aparecem
+  // ðŸ”¹ ordem fixa do painel + filtragem dos que realmente aparecem
   const ordemPainel = ['chegada', 'descanso', 'disney', 'universal', 'compras', 'saida'] as const;
   const tiposExibidosPainel = useMemo(
     () => ordemPainel.filter(t => (esperado[t] || 0) > 0),
@@ -209,7 +209,7 @@ export default function TelaDistribuirDias() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}°C` : '28°C'}
+          temperatura={clima ? `${clima.temp}Â°C` : '28Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -244,7 +244,7 @@ export default function TelaDistribuirDias() {
               {dia.completo ? (
                 <TouchableOpacity
                   onPress={() => reabrirEdicao(index)}
-                  disabled={dia.tipo === 'chegada' || dia.tipo === 'saida' || dia.tipo === 'Chegada de Avião' || dia.tipo === 'Saída de Avião'}
+                  disabled={dia.tipo === 'chegada' || dia.tipo === 'saida' || dia.tipo === 'Chegada de AviÃ£o' || dia.tipo === 'SaÃ­da de AviÃ£o'}
                   style={[styles.botaoSelecionado, { backgroundColor: '#004b87' }]}
                 >
                   <Text style={styles.textoSelecionado}>
@@ -290,7 +290,7 @@ export default function TelaDistribuirDias() {
               {(isDisney || isUniversal) && (
                 <View style={[styles.fab, { marginTop: 8 }]}>
                   <Ionicons name="information-circle" size={16} color="#fff" />
-                  <Text style={styles.fabText}>(guia não oficial)</Text>
+                  <Text style={styles.fabText}>(guia nÃ£o oficial)</Text>
                 </View>
               )}
             </View>
@@ -300,13 +300,13 @@ export default function TelaDistribuirDias() {
         {podeAvancar && (
           <View style={[styles.card, styles.cardAviso]}>
             <AvisoLegal theme="blue" compact incluirGuiaNaoOficial={false}>
-              App independente sem vínculo Disney/Universal.
+              App independente sem vÃ­nculo Disney/Universal.
             </AvisoLegal>
           </View>
         )}
       </ScrollView>
 
-      {/* Painel lateral com TICK no último item exibido quando tudo completo */}
+      {/* Painel lateral com TICK no Ãºltimo item exibido quando tudo completo */}
       <View style={styles.painelLateral}>
         {tiposExibidosPainel.map((tipo) => {
           const total = esperado[tipo] || 0;
@@ -320,11 +320,11 @@ export default function TelaDistribuirDias() {
           const isLong = tipo === 'disney' || tipo === 'universal';
 
           const isUltimo = tipo === ultimoTipoDoPainel;
-          const mostrarTick = podeAvancar && isUltimo; // ✅ tick apenas no último e só quando tudo concluído
+          const mostrarTick = podeAvancar && isUltimo; // âœ… tick apenas no Ãºltimo e sÃ³ quando tudo concluÃ­do
 
           return (
             <View key={tipo} style={[styles.itemPainel, { backgroundColor: cor }]}>
-              {/* ✅ TICK igual ao do roteiro lá em cima */}
+              {/* âœ… TICK igual ao do roteiro lÃ¡ em cima */}
               {mostrarTick && (
                 <Ionicons name="checkmark" size={18} color="#fff" style={styles.itemTick} />
               )}
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
   },
-  // ✅ checkmark posicionado no canto superior direito do bloco
+  // âœ… checkmark posicionado no canto superior direito do bloco
   itemTick: {
     position: 'absolute',
     top: 6,

@@ -1,8 +1,8 @@
-﻿import { Parkisheiro } from '@/logic/types/parkisheiro';
+﻿ï»¿import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 import { almocosUniversal } from './AlmocoUniversal';
 
-// FunÃ§Ã£o de comparaÃ§Ã£o que aceita tipo string, array ou string separada por vÃ­rgula (case insensitive)
+// FunÃƒÂ§ÃƒÂ£o de comparaÃƒÂ§ÃƒÂ£o que aceita tipo string, array ou string separada por vÃƒÂ­rgula (case insensitive)
 function tipoInclui(tipo: string | string[], perfil: string) {
   if (!tipo) return false;
   if (Array.isArray(tipo)) {
@@ -26,15 +26,15 @@ export const gerarUniversalAlmoco = (
   const perfilSelecionado = parkisheiro.perfis?.refeicoes?.perfil;
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: 'ðŸ½ï¸ AlmoÃ§o',
-      descricao: 'Nenhum perfil de refeiÃ§Ã£o selecionado.',
+      titulo: 'Ã°Å¸ÂÂ½Ã¯Â¸Â AlmoÃƒÂ§o',
+      descricao: 'Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.',
       horarioSugerido: '12:00',
       tipo: 'almoco',
     });
     return atividades;
   }
 
-  // 1ï¸âƒ£ Busca por coordenadas
+  // 1Ã¯Â¸ÂÃ¢Æ’Â£ Busca por coordenadas
   if (latitude != null && longitude != null) {
     const almocoMaisProximo = almocosUniversal
       .filter(a => tipoInclui(a.tipo, perfilSelecionado))
@@ -50,7 +50,7 @@ export const gerarUniversalAlmoco = (
     }
   }
 
-  // 2ï¸âƒ£ Busca por nome da regiÃ£o
+  // 2Ã¯Â¸ÂÃ¢Æ’Â£ Busca por nome da regiÃƒÂ£o
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -63,17 +63,17 @@ export const gerarUniversalAlmoco = (
     }
   }
 
-  // 3ï¸âƒ£ Busca por qualquer almoÃ§o com o tipo
+  // 3Ã¯Â¸ÂÃ¢Æ’Â£ Busca por qualquer almoÃƒÂ§o com o tipo
   const almocoQualquer = almocosUniversal.find(a => tipoInclui(a.tipo, perfilSelecionado));
   if (almocoQualquer) {
     atividades.push(formatarAlmocoUniversal(almocoQualquer));
     return atividades;
   }
 
-  // 4ï¸âƒ£ Nada encontrado
+  // 4Ã¯Â¸ÂÃ¢Æ’Â£ Nada encontrado
   atividades.push({
-    titulo: 'ðŸ½ï¸ AlmoÃ§o',
-    descricao: 'Nenhuma sugestÃ£o encontrada com seu perfil nesta regiÃ£o.',
+    titulo: 'Ã°Å¸ÂÂ½Ã¯Â¸Â AlmoÃƒÂ§o',
+    descricao: 'Nenhuma sugestÃƒÂ£o encontrada com seu perfil nesta regiÃƒÂ£o.',
     horarioSugerido: '12:00',
     tipo: 'almoco',
   });
@@ -81,13 +81,13 @@ export const gerarUniversalAlmoco = (
   return atividades;
 };
 
-// ðŸ”§ FunÃ§Ã£o auxiliar
+// Ã°Å¸â€Â§ FunÃƒÂ§ÃƒÂ£o auxiliar
 function formatarAlmocoUniversal(almoco: any): AtividadeDia {
   return {
-    titulo: `ðŸ½ï¸ ${almoco.nome} â€“ AlmoÃ§o`,
+    titulo: `Ã°Å¸ÂÂ½Ã¯Â¸Â ${almoco.nome} Ã¢â‚¬â€œ AlmoÃƒÂ§o`,
     descricao:
       `Tipo: ${Array.isArray(almoco.tipo) ? almoco.tipo.join(', ') : almoco.tipo}\n` +
-      `PreÃ§o mÃ©dio: $${almoco.precoMedio}` +
+      `PreÃƒÂ§o mÃƒÂ©dio: $${almoco.precoMedio}` +
       (almoco.acesso ? `\nAcesso: ${almoco.acesso}` : '') +
       (almoco.destaque ? `\nDestaque: ${almoco.destaque}` : ''),
     horarioSugerido: '12:00',

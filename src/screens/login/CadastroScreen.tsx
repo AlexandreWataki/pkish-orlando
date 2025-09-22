@@ -1,4 +1,4 @@
-﻿// src/screens/login/CadastroScreen.tsx
+﻿ï»¿// src/screens/login/CadastroScreen.tsx
 import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
@@ -65,7 +65,7 @@ export default function CadastroScreen() {
       return;
     }
     if (!isEmail(emailOk)) {
-      Alert.alert('Erro', 'Informe um email vÃ¡lido.');
+      Alert.alert('Erro', 'Informe um email vÃƒÂ¡lido.');
       return;
     }
     if (senhaOk.length < 6) {
@@ -75,7 +75,7 @@ export default function CadastroScreen() {
 
     try {
       setLoading(true);
-      // signUp jÃ¡ registra e faz login; depois persiste no contexto
+      // signUp jÃƒÂ¡ registra e faz login; depois persiste no contexto
       await signUp(emailOk, senhaOk);
       Alert.alert('Sucesso', 'Cadastro realizado!');
       navegarHome();
@@ -83,12 +83,12 @@ export default function CadastroScreen() {
       const raw = String(e?.message || '');
       const msg = raw.toLowerCase();
 
-      if (raw.includes('jÃ¡ existe') || raw.includes('409') || /duplic/i.test(msg)) {
-        Alert.alert('UsuÃ¡rio jÃ¡ existe', 'Este email jÃ¡ estÃ¡ cadastrado.');
+      if (raw.includes('jÃƒÂ¡ existe') || raw.includes('409') || /duplic/i.test(msg)) {
+        Alert.alert('UsuÃƒÂ¡rio jÃƒÂ¡ existe', 'Este email jÃƒÂ¡ estÃƒÂ¡ cadastrado.');
       } else if (/timeout|tempo esgotado/i.test(msg)) {
-        Alert.alert('Tempo esgotado', 'NÃ£o consegui falar com o servidor. Confira sua rede e tente novamente.');
+        Alert.alert('Tempo esgotado', 'NÃƒÂ£o consegui falar com o servidor. Confira sua rede e tente novamente.');
       } else if (/network|fetch|failed to/i.test(msg)) {
-        Alert.alert('Falha de rede', 'NÃ£o foi possÃ­vel alcanÃ§ar o servidor.');
+        Alert.alert('Falha de rede', 'NÃƒÂ£o foi possÃƒÂ­vel alcanÃƒÂ§ar o servidor.');
       } else {
         Alert.alert('Erro no cadastro', raw || 'Tente novamente.');
       }
@@ -144,7 +144,7 @@ export default function CadastroScreen() {
           <View style={styles.inputRow}>
             <TextInput
               style={[styles.input, { flex: 1, marginVertical: 0 }]}
-              placeholder="Senha (mÃ­n. 6)"
+              placeholder="Senha (mÃƒÂ­n. 6)"
               value={senha}
               onChangeText={setSenha}
               placeholderTextColor="#555"
@@ -178,7 +178,7 @@ export default function CadastroScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.buttonTertiary} onPress={voltarInicio} activeOpacity={0.9} disabled={loading}>
-            <Text style={styles.buttonText}>Voltar ao InÃ­cio</Text>
+            <Text style={styles.buttonText}>Voltar ao InÃƒÂ­cio</Text>
             <Ionicons name="arrow-back" size={20} color="#fff" style={{ marginLeft: 8 }} />
           </TouchableOpacity>
         </View>

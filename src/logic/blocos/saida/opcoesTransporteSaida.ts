@@ -1,4 +1,4 @@
-﻿import { Regiao } from '@/logic/types/regioesHospedagem';
+﻿ï»¿import { Regiao } from '@/logic/types/regioesHospedagem';
 
 function calcularDistanciaKm(
   lat1: number,
@@ -23,7 +23,7 @@ export function opcoesTransporteSaida(
   destino: string,
   regiao?: Regiao
 ) {
-  const nomeOrigem = regiao?.nome || 'Hospedagem nÃ£o definida';
+  const nomeOrigem = regiao?.nome || 'Hospedagem nÃƒÂ£o definida';
   const tempoAteMCO =regiao?.tempoAteAeroportoMCO ?? 30;
 
   const latOrigem =regiao?.latitude ?? null;
@@ -41,28 +41,28 @@ export function opcoesTransporteSaida(
   const precoUberMax = precoUberMin + 10;
 
   const descricaoUber = [
-    `ðŸ•’ Tempo estimado: ${tempoAteMCO} min`,
-    `ðŸ’° Valor estimado: US$ ${precoUberMin} a US$ ${precoUberMax}`,
-    `ðŸ“± ServiÃ§o: Uber ou Lyft`,
+    `Ã°Å¸â€¢â€™ Tempo estimado: ${tempoAteMCO} min`,
+    `Ã°Å¸â€™Â° Valor estimado: US$ ${precoUberMin} a US$ ${precoUberMax}`,
+    `Ã°Å¸â€œÂ± ServiÃƒÂ§o: Uber ou Lyft`,
   ].join('\n');
 
   const descricaoCarro = [
-    `ðŸš— Se vocÃª alugou um carro no aeroporto (MCO), verifique se precisa devolver com tanque cheio.`,
-    `â›½ Localize o posto de combustÃ­vel mais prÃ³ximo antes de sair do hotel.`,
-    `ðŸ•‘ Reserve tempo extra para devoluÃ§Ã£o e deslocamento atÃ© o terminal.`,
+    `Ã°Å¸Å¡â€” Se vocÃƒÂª alugou um carro no aeroporto (MCO), verifique se precisa devolver com tanque cheio.`,
+    `Ã¢â€ºÂ½ Localize o posto de combustÃƒÂ­vel mais prÃƒÂ³ximo antes de sair do hotel.`,
+    `Ã°Å¸â€¢â€˜ Reserve tempo extra para devoluÃƒÂ§ÃƒÂ£o e deslocamento atÃƒÂ© o terminal.`,
   ].join('\n');
 
   return {
-    titulo: 'ðŸ›« Transporte atÃ© o Aeroporto',
+    titulo: 'Ã°Å¸â€ºÂ« Transporte atÃƒÂ© o Aeroporto',
     tipo: 'transporte',
-    local: `${nomeOrigem} â†’ ${destino}`,
+    local: `${nomeOrigem} Ã¢â€ â€™ ${destino}`,
     opcoes: [
       {
-        subtitulo: 'ðŸš— Uber / Lyft',
+        subtitulo: 'Ã°Å¸Å¡â€” Uber / Lyft',
         descricao: descricaoUber,
       },
       {
-        subtitulo: 'ðŸš˜ Carro alugado',
+        subtitulo: 'Ã°Å¸Å¡Ëœ Carro alugado',
         descricao: descricaoCarro,
       },
     ],

@@ -1,4 +1,4 @@
-﻿// babel.config.js
+﻿ï»¿// babel.config.js
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -9,7 +9,7 @@ module.exports = function (api) {
         alias: { '@': './src' },
         extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.ts', '.tsx', '.json'],
       }],
-      'react-native-worklets/plugin', // ÚNICO plugin de worklets, e sempre o último
+      'react-native-worklets/plugin', // ÃšNICO plugin de worklets, e sempre o Ãºltimo
     ],
   };
 };

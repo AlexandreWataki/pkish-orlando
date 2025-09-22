@@ -1,4 +1,4 @@
-﻿// src/logic/blocos/parques/Perfis/blocosDisneyInterativas.ts
+﻿ï»¿// src/logic/blocos/parques/Perfis/blocosDisneyInterativas.ts
 
 import { BlocoPerfilParque } from '@/logic/types/turno';
 
@@ -10,7 +10,7 @@ export const blocosDisneyInterativas: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Adventureland', 'Fantasyland', 'Frontierland'], // 3 Ã¡reas manhÃ£
+        areas: ['Adventureland', 'Fantasyland', 'Frontierland'], // 3 ÃƒÂ¡reas manhÃƒÂ£
       },
       {
         periodo: 'tarde',
@@ -22,7 +22,7 @@ export const blocosDisneyInterativas: BlocoPerfilParque[] = [
         periodo: 'noite',
         horarioInicio: '20:00',
         horarioFim: '23:59',
-        areas: [], // Noite sÃ³ fogos, bloco separado
+        areas: [], // Noite sÃƒÂ³ fogos, bloco separado
       },
     ],
   },
@@ -33,19 +33,19 @@ export const blocosDisneyInterativas: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['World Celebration', 'World Discovery', 'World Nature'], // 3 Ã¡reas manhÃ£
+        areas: ['World Celebration', 'World Discovery', 'World Nature'], // 3 ÃƒÂ¡reas manhÃƒÂ£
       },
       {
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        areas: ['World Showcase'], // Ãšltima Ã¡rea tarde perto dos fogos
+        areas: ['World Showcase'], // ÃƒÅ¡ltima ÃƒÂ¡rea tarde perto dos fogos
       },
       {
         periodo: 'noite',
         horarioInicio: '20:00',
         horarioFim: '23:59',
-        areas: [], // Noite sÃ³ fogos
+        areas: [], // Noite sÃƒÂ³ fogos
       },
     ],
   },
@@ -56,19 +56,19 @@ export const blocosDisneyInterativas: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Animation Courtyard', 'Echo Lake', 'Grand Avenue'], // 3 Ã¡reas manhÃ£
+        areas: ['Animation Courtyard', 'Echo Lake', 'Grand Avenue'], // 3 ÃƒÂ¡reas manhÃƒÂ£
       },
       {
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        areas: ['Sunset Boulevard', 'Toy Story Land', 'Star Wars: Galaxyâ€™s Edge', 'Hollywood Boulevard'], // Hollywood Blvd. perto dos fogos
+        areas: ['Sunset Boulevard', 'Toy Story Land', 'Star Wars: GalaxyÃ¢â‚¬â„¢s Edge', 'Hollywood Boulevard'], // Hollywood Blvd. perto dos fogos
       },
       {
         periodo: 'noite',
         horarioInicio: '20:00',
         horarioFim: '23:59',
-        areas: [], // Noite sÃ³ fogos
+        areas: [], // Noite sÃƒÂ³ fogos
       },
     ],
   },
@@ -79,19 +79,19 @@ export const blocosDisneyInterativas: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Oasis', 'Discovery Island', 'Asia'], // 3 Ã¡reas manhÃ£
+        areas: ['Oasis', 'Discovery Island', 'Asia'], // 3 ÃƒÂ¡reas manhÃƒÂ£
       },
       {
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        areas: ['DinoLand U.S.A.', 'Africa', 'Pandora â€“ The World of Avatar'], // Pandora no fim da tarde para noite
+        areas: ['DinoLand U.S.A.', 'Africa', 'Pandora Ã¢â‚¬â€œ The World of Avatar'], // Pandora no fim da tarde para noite
       },
       {
         periodo: 'noite',
         horarioInicio: '20:00',
         horarioFim: '23:59',
-        areas: [], // Noite sÃ³ fogos / experiÃªncia noturna
+        areas: [], // Noite sÃƒÂ³ fogos / experiÃƒÂªncia noturna
       },
     ],
   },

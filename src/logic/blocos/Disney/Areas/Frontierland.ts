@@ -1,9 +1,9 @@
-﻿export const Frontierland = {
+﻿ï»¿export const Frontierland = {
   parque: "Magic Kingdom",
   regiao: "Frontierland",
   latitude: 28.4188,
   longitude: -81.5851,
-  descricao: "Ãrea com tema do Velho Oeste americano, cheia de trilhos de mina, quedas dâ€™Ã¡gua e aventuras selvagens. Ideal para quem busca adrenalina em um cenÃ¡rio rÃºstico e divertido.",
+  descricao: "ÃƒÂrea com tema do Velho Oeste americano, cheia de trilhos de mina, quedas dÃ¢â‚¬â„¢ÃƒÂ¡gua e aventuras selvagens. Ideal para quem busca adrenalina em um cenÃƒÂ¡rio rÃƒÂºstico e divertido.",
   imagem: "frontierland.png",
   atracoes: [
     {
@@ -19,7 +19,7 @@
       idadeRecomendada: "5+",
       turnoRecomendado: "tarde",
       descricao: "Montanha-russa no estilo mina de ouro com trilhos ao ar livre e curvas em alta velocidade entre rochas e dinamites.",
-      icone: "ðŸ”ï¸",
+      icone: "Ã°Å¸Ââ€Ã¯Â¸Â",
       imagem: "big-thunder.jpg",
       regiao: "Frontierland",
       parque: "Magic Kingdom"
@@ -28,7 +28,7 @@
       id: "splash-mountain",
       titulo: "Splash Mountain",
       subtitulo: "Frontierland",
-      tipo: "Aventura aquÃ¡tica",
+      tipo: "Aventura aquÃƒÂ¡tica",
       tipoPerfil: ["familiares", "radicais"],
       alturaMinima: 102,
       filaExpress: true,
@@ -36,17 +36,17 @@
       filaAceitavel: 45,
       idadeRecomendada: "5+",
       turnoRecomendado: "tarde",
-      descricao: "Passeio em barco com trilha sonora animada, cenas de personagens e uma grande queda dâ€™Ã¡gua no final. Prepare-se para se molhar!",
-      icone: "ðŸ’¦",
+      descricao: "Passeio em barco com trilha sonora animada, cenas de personagens e uma grande queda dÃ¢â‚¬â„¢ÃƒÂ¡gua no final. Prepare-se para se molhar!",
+      icone: "Ã°Å¸â€™Â¦",
       imagem: "splash-mountain.jpg",
       regiao: "Frontierland",
       parque: "Magic Kingdom"
     },
     {
       id: "frontierland-shooting-gallery",
-      titulo: "Frontierland Shootinâ€™ Arcade",
+      titulo: "Frontierland ShootinÃ¢â‚¬â„¢ Arcade",
       subtitulo: "Frontierland",
-      tipo: "Jogo de tiro temÃ¡tico",
+      tipo: "Jogo de tiro temÃƒÂ¡tico",
       tipoPerfil: ["interativas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -55,8 +55,8 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "manha",
-      descricao: "Desafie seus reflexos em um campo de tiro do velho oeste com alvos animados. NÃ£o precisa de fila, Ã© sÃ³ chegar e brincar.",
-      icone: "ðŸŽ¯",
+      descricao: "Desafie seus reflexos em um campo de tiro do velho oeste com alvos animados. NÃƒÂ£o precisa de fila, ÃƒÂ© sÃƒÂ³ chegar e brincar.",
+      icone: "Ã°Å¸Å½Â¯",
       imagem: "shooting-gallery.jpg",
       regiao: "Frontierland",
       parque: "Magic Kingdom"
@@ -74,8 +74,8 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: "EspetÃ¡culo musical com ursos animatrÃ´nicos cantando canÃ§Ãµes country em um teatro rÃºstico. Divertido, leve e sem fila.",
-      icone: "ðŸ»",
+      descricao: "EspetÃƒÂ¡culo musical com ursos animatrÃƒÂ´nicos cantando canÃƒÂ§ÃƒÂµes country em um teatro rÃƒÂºstico. Divertido, leve e sem fila.",
+      icone: "Ã°Å¸ÂÂ»",
       imagem: "country-bear.jpg",
       regiao: "Frontierland",
       parque: "Magic Kingdom"

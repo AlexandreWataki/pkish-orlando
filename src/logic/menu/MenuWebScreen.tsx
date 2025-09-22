@@ -1,4 +1,4 @@
-﻿// src/logic/menu/MenuWebScreen.tsx
+﻿ï»¿// src/logic/menu/MenuWebScreen.tsx
 import React, { useCallback, useMemo, useState, useEffect, useRef } from 'react';
 import {
   Platform,
@@ -48,7 +48,7 @@ export default function MenuWebScreen() {
 
   useEffect(() => {
     if (!rawUrl) {
-      Alert.alert('Link invÃ¡lido', 'Nenhum URL recebido para exibir.');
+      Alert.alert('Link invÃƒÂ¡lido', 'Nenhum URL recebido para exibir.');
       navigation.goBack();
     }
   }, [rawUrl, navigation]);
@@ -87,11 +87,11 @@ export default function MenuWebScreen() {
   }, []);
 
   const handleError = useCallback(() => {
-    Alert.alert('Falha ao carregar', 'NÃ£o foi possÃ­vel abrir o conteÃºdo.');
+    Alert.alert('Falha ao carregar', 'NÃƒÂ£o foi possÃƒÂ­vel abrir o conteÃƒÂºdo.');
     navigation.goBack();
   }, [navigation]);
 
-  // animaÃ§Ã£o do botÃ£o
+  // animaÃƒÂ§ÃƒÂ£o do botÃƒÂ£o
   const blink = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     Animated.loop(
@@ -116,7 +116,7 @@ export default function MenuWebScreen() {
           // Abre target="_blank" no mesmo WebView
           const targetUrl = event.nativeEvent.targetUrl;
           if (targetUrl) {
-            // Navega para o link no prÃ³prio WebView
+            // Navega para o link no prÃƒÂ³prio WebView
             (event as any).preventDefault?.();
           }
         }}
@@ -124,7 +124,7 @@ export default function MenuWebScreen() {
         domStorageEnabled
         // Cookies compartilhados ajudam em alguns sites (iOS)
         sharedCookiesEnabled
-        // Cookies de 3Âª parte (Android)
+        // Cookies de 3Ã‚Âª parte (Android)
         thirdPartyCookiesEnabled
         userAgent={UA_MOBILE}
         mixedContentMode="always"
@@ -132,9 +132,9 @@ export default function MenuWebScreen() {
         onError={handleError}
         onHttpError={handleError as any}
         onLoadEnd={() => setLoading(false)}
-        // Evita zoom involuntÃ¡rio em pÃ¡ginas mobile
+        // Evita zoom involuntÃƒÂ¡rio em pÃƒÂ¡ginas mobile
         scalesPageToFit={false}
-        // Desativa cache agressivo em pÃ¡ginas de login
+        // Desativa cache agressivo em pÃƒÂ¡ginas de login
         cacheEnabled={false}
       />
 

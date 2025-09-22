@@ -1,4 +1,4 @@
-﻿import { cafesProximos } from './cafesProximos';
+﻿ï»¿import { cafesProximos } from './cafesProximos';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 
@@ -14,15 +14,15 @@ export const gerarRefeicaoCafe = (
 
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: "â˜• CafÃ© da manhÃ£",
-      descricao: "Nenhum perfil de refeiÃ§Ã£o selecionado.",
+      titulo: "Ã¢Ëœâ€¢ CafÃƒÂ© da manhÃƒÂ£",
+      descricao: "Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.",
       horarioSugerido: '07:00',
       tipo: 'refeicao',
     });
     return atividades;
   }
 
-  // ðŸŸ¡ PRIORIDADE 1: buscar por coordenadas
+  // Ã°Å¸Å¸Â¡ PRIORIDADE 1: buscar por coordenadas
   if (latitude != null && longitude != null) {
     const cafeMaisProximo = cafesProximos
       .filter((c) => c.tipo === perfilSelecionado)
@@ -38,7 +38,7 @@ export const gerarRefeicaoCafe = (
     }
   }
 
-  // ðŸŸ¡ PRIORIDADE 2: buscar por nome de regiÃ£o (normalizado)
+  // Ã°Å¸Å¸Â¡ PRIORIDADE 2: buscar por nome de regiÃƒÂ£o (normalizado)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -52,17 +52,17 @@ export const gerarRefeicaoCafe = (
     }
   }
 
-  // ðŸŸ¡ PRIORIDADE 3: pegar qualquer cafÃ© com o perfil
+  // Ã°Å¸Å¸Â¡ PRIORIDADE 3: pegar qualquer cafÃƒÂ© com o perfil
   const cafeQualquer = cafesProximos.find((r) => r.tipo === perfilSelecionado);
   if (cafeQualquer) {
     atividades.push(formatarCafe(cafeQualquer));
     return atividades;
   }
 
-  // ðŸŸ¥ NENHUM encontrado
+  // Ã°Å¸Å¸Â¥ NENHUM encontrado
   atividades.push({
-    titulo: "â˜• CafÃ© da manhÃ£",
-    descricao: "Nenhuma sugestÃ£o de cafÃ© da manhÃ£ encontrada para seu perfil nesta regiÃ£o.",
+    titulo: "Ã¢Ëœâ€¢ CafÃƒÂ© da manhÃƒÂ£",
+    descricao: "Nenhuma sugestÃƒÂ£o de cafÃƒÂ© da manhÃƒÂ£ encontrada para seu perfil nesta regiÃƒÂ£o.",
     horarioSugerido: '07:00',
     tipo: 'refeicao',
   });
@@ -70,14 +70,14 @@ export const gerarRefeicaoCafe = (
   return atividades;
 };
 
-// ðŸ”§ funÃ§Ã£o auxiliar para formatar um card
+// Ã°Å¸â€Â§ funÃƒÂ§ÃƒÂ£o auxiliar para formatar um card
 function formatarCafe(cafe: any): AtividadeDia {
   return {
-    titulo: `â˜• ${cafe.nome}`,
+    titulo: `Ã¢Ëœâ€¢ ${cafe.nome}`,
     descricao:
       `Tipo: ${cafe.tipo}\n` +
-      `PreÃ§o mÃ©dio: $${cafe.precoMedio}` +
-      (cafe.acesso ? `\nAcesso: ${cafe.acesso} (da regiÃ£o ${cafe.regiao})` : '') +
+      `PreÃƒÂ§o mÃƒÂ©dio: $${cafe.precoMedio}` +
+      (cafe.acesso ? `\nAcesso: ${cafe.acesso} (da regiÃƒÂ£o ${cafe.regiao})` : '') +
       (cafe.destaque ? `\nDestaque: ${cafe.destaque}` : ''),
     horarioSugerido: '07:00',
     tipo: 'refeicao',

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿ï»¿import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 119, 200, 0.9)', // branco translÃºcido
+    backgroundColor: 'rgba(0, 119, 200, 0.9)', // branco translÃƒÂºcido
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     padding: 6,

@@ -1,4 +1,4 @@
-﻿// src/logic/geradores/gerarDiaDetalhado.ts
+﻿ï»¿// src/logic/geradores/gerarDiaDetalhado.ts
 
 import { Dia } from '@/logic/types/dia';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
@@ -56,7 +56,7 @@ export async function gerarDiaDetalhado(
         data: dataFormatada,
         tipo,
         cabecalho: {
-          titulo: 'â“ Dia indefinido',
+          titulo: 'Ã¢Ââ€œ Dia indefinido',
           imagem: 'fundoCardGrande.jpg',
           clima: {
             temperatura: 30,
@@ -64,7 +64,7 @@ export async function gerarDiaDetalhado(
             icone: '',
           },
         },
-        objetivo: 'NÃ£o foi possÃ­vel gerar este dia automaticamente.',
+        objetivo: 'NÃƒÂ£o foi possÃƒÂ­vel gerar este dia automaticamente.',
         turnos: [],
         nomeParque: '',
       };

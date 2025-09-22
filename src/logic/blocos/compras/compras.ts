@@ -1,7 +1,7 @@
-﻿export type ItemChecklist = {
-  id: string; // Identificador Ãºnico do item
+﻿ï»¿export type ItemChecklist = {
+  id: string; // Identificador ÃƒÂºnico do item
   nome: string; // Nome do item, ex: "Passaporte", "Carregador"
-  categoria: 'documento' | 'vestuÃ¡rio' | 'eletrÃ´nico' | 'saÃºde' | 'outro';
-  obrigatorio: boolean; // Se Ã© essencial levar
+  categoria: 'documento' | 'vestuÃƒÂ¡rio' | 'eletrÃƒÂ´nico' | 'saÃƒÂºde' | 'outro';
+  obrigatorio: boolean; // Se ÃƒÂ© essencial levar
   observacoes?: string; // Notas adicionais, ex: "ver validade", "usar na volta"
 };

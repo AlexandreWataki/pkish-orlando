@@ -1,15 +1,15 @@
-﻿import type { Entry } from './types';
+﻿ï»¿import type { Entry } from './types';
 
 export const ENTRIES_ANIMAL: Entry[] = [
-  // ðŸŒ Animal Kingdom
-  // --- Ãfrica ---
+  // Ã°Å¸Å’Â Animal Kingdom
+  // --- ÃƒÂfrica ---
   { attrKey: 'kilimanjaro-safaris', titleKey: 'kilimanjarosafaris', yt: 'XqeTTM1biFc' },
   { attrKey: 'gorilla-falls-exploration-trail', titleKey: 'gorillafallsexplorationtrail', yt: 'PJY5p27amGw' },
   { attrKey: 'festival-of-the-lion-king', titleKey: 'festivalofthelionking', yt: 'aQ2LVwPddFA' },
   { attrKey: 'harambe-market', titleKey: 'harambemarket', yt: 'dUKChayGF1o' },
   { attrKey: 'tam-tam-drummers', titleKey: 'tamtamdrummers', yt: '2bMQ0VD46GM' },
 
-  // --- Ãsia ---
+  // --- ÃƒÂsia ---
   { attrKey: 'kali-river-rapids', titleKey: 'kaliriverrapids', yt: 'anqOz3CLKY4' },
   { attrKey: 'maharajah-jungle-trek', titleKey: 'maharajahjungletrek', yt: 'dMKc8KX7eQY' },
   { attrKey: 'serpent-shrine', titleKey: 'serpentshrine', yt: 'PKJzO3naj3E' },
@@ -36,7 +36,7 @@ export const ENTRIES_ANIMAL: Entry[] = [
   { attrKey: 'welcome-waterfall', titleKey: 'cachoeiradeboasvindas', yt: 'vUbYlGeNIhA' },
   { attrKey: 'oasis-trails', titleKey: 'exploracaodastrilhastropicais', yt: 'RCYqd-VL590' },
 
-  // --- Pandora â€“ The World of Avatar ---
+  // --- Pandora Ã¢â‚¬â€œ The World of Avatar ---
   { attrKey: 'pandora-immersive', titleKey: 'pandoraimmersive', yt: 'y1DzGhu03Rg' },
   { attrKey: 'pandora-ambiente-imersivo', titleKey: 'ambienteimersivodepandora', yt: 'y1DzGhu03Rg' },
   { attrKey: 'avatar-flight-of-passage', titleKey: 'avatarflightofpassage', yt: '5XbCJBhxHio' },

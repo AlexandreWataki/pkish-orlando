@@ -1,4 +1,4 @@
-﻿import React, { memo, useRef, useEffect } from 'react';
+﻿ï»¿import React, { memo, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type { Promocao } from './promocao';
@@ -23,13 +23,13 @@ const PromoCard = ({ item, onPress }: Props) => {
     ).start();
   }, [blink]);
 
-  // monta o texto Ãºnico
+  // monta o texto ÃƒÂºnico
   const texto = [
     item.sobre || item.descricao,
     item.oQueTem ? item.oQueTem.join(', ') : null,
   ]
     .filter(Boolean)
-    .join(' â€” ');
+    .join(' Ã¢â‚¬â€ ');
 
   return (
     <TouchableOpacity
@@ -41,7 +41,7 @@ const PromoCard = ({ item, onPress }: Props) => {
         <Text numberOfLines={2} style={styles.title}>{item.titulo}</Text>
         {item.parceiro ? <Text style={styles.parceiro}>{item.parceiro}</Text> : null}
 
-        {/* Descritivo Ãºnico justificado */}
+        {/* Descritivo ÃƒÂºnico justificado */}
         <Text style={styles.textJust}>{texto}</Text>
       </View>
 

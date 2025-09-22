@@ -1,8 +1,8 @@
-﻿/**
+﻿ï»¿/**
  * calculaTransporteEstimado.ts
  *
- * Calcula tempo em minutos e preÃ§o mÃ©dio do UberX para a distÃ¢ncia informada.
- * Valores mÃ©dios de Orlando em 2025.
+ * Calcula tempo em minutos e preÃƒÂ§o mÃƒÂ©dio do UberX para a distÃƒÂ¢ncia informada.
+ * Valores mÃƒÂ©dios de Orlando em 2025.
  */
 
 export function calcularTransporteEstimado(distanciaKm: number | null | undefined) {
@@ -10,7 +10,7 @@ export function calcularTransporteEstimado(distanciaKm: number | null | undefine
     return { tempoMin: 0, precoUber: 0 };
   }
 
-  // ParÃ¢metros mÃ©dios de Orlando
+  // ParÃƒÂ¢metros mÃƒÂ©dios de Orlando
   const tempoMin = Math.round(distanciaKm * 2.2); // arredonda para inteiro
 
   // UberX valores aproximados para 2025

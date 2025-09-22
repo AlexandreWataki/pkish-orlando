@@ -1,4 +1,4 @@
-﻿// src/logic/blocos/compras/blocosFloridaMall.ts
+﻿ï»¿// src/logic/blocos/compras/blocosFloridaMall.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosFloridaMall: TurnoDescansoRegiao[] = [
@@ -8,16 +8,16 @@ export const blocosFloridaMall: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Entrada principal do Florida Mall',
     descricaoRegiao:
-      'Durante a manhÃ£: Mall mais calmo e fresco, ideal para explorar com tranquilidade.\n' +
-      'Lojas: Apple, Zara, H&M, Macyâ€™s, Best Buy Mobile e loja da M&Mâ€™s logo na entrada.\n' +
-      'AlimentaÃ§Ã£o e descanso: Cafeterias e Ã¡reas internas com sofÃ¡s e Wi-Fi.\n' +
-      'Dica: Visite a M&Mâ€™s no inÃ­cio para fotos e lembranÃ§as coloridas.',
+      'Durante a manhÃƒÂ£: Mall mais calmo e fresco, ideal para explorar com tranquilidade.\n' +
+      'Lojas: Apple, Zara, H&M, MacyÃ¢â‚¬â„¢s, Best Buy Mobile e loja da M&MÃ¢â‚¬â„¢s logo na entrada.\n' +
+      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Cafeterias e ÃƒÂ¡reas internas com sofÃƒÂ¡s e Wi-Fi.\n' +
+      'Dica: Visite a M&MÃ¢â‚¬â„¢s no inÃƒÂ­cio para fotos e lembranÃƒÂ§as coloridas.',
     atividades: [
       {
         tipo: 'compras',
-        titulo: 'EletrÃ´nicos e moda',
+        titulo: 'EletrÃƒÂ´nicos e moda',
         descricao:
-          'Apple, Best Buy Mobile, Zara, H&M e Macyâ€™s logo cedo. Passe na M&Mâ€™s para fotos e souvenirs.',
+          'Apple, Best Buy Mobile, Zara, H&M e MacyÃ¢â‚¬â„¢s logo cedo. Passe na M&MÃ¢â‚¬â„¢s para fotos e souvenirs.',
         local: '8001 S Orange Blossom Trail, Orlando, FL',
         regiao: 'Florida Mall',
         area: 'Florida Mall',
@@ -26,9 +26,9 @@ export const blocosFloridaMall: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'Ãrea de descanso interna',
+        titulo: 'ÃƒÂrea de descanso interna',
         descricao:
-          'SofÃ¡s e Wi-Fi gratuito para relaxar e reorganizar compras. EstaÃ§Ãµes de recarga prÃ³ximas Ã  Macyâ€™s.',
+          'SofÃƒÂ¡s e Wi-Fi gratuito para relaxar e reorganizar compras. EstaÃƒÂ§ÃƒÂµes de recarga prÃƒÂ³ximas ÃƒÂ  MacyÃ¢â‚¬â„¢s.',
         local: '8001 S Orange Blossom Trail, Orlando, FL',
         regiao: 'Florida Mall',
         area: 'Florida Mall',
@@ -41,18 +41,18 @@ export const blocosFloridaMall: TurnoDescansoRegiao[] = [
     periodo: 'tarde',
     horarioInicio: '13:00',
     horarioFim: '19:00',
-    referencia: 'Entrada sul â€“ The Dining Pavilion',
+    referencia: 'Entrada sul Ã¢â‚¬â€œ The Dining Pavilion',
     descricaoRegiao:
-      'Durante a tarde: Mais movimento, mas espaÃ§o amplo mantÃ©m conforto.\n' +
-      'Lojas: American Girl, Crayola Experience, The Childrenâ€™s Place.\n' +
-      'AlimentaÃ§Ã£o e descanso: PraÃ§a de alimentaÃ§Ã£o prÃ³xima Ã  fonte central.\n' +
-      'Dica: VÃ¡ Ã  Crayola apÃ³s o almoÃ§o para evitar filas e aproveitar as oficinas.',
+      'Durante a tarde: Mais movimento, mas espaÃƒÂ§o amplo mantÃƒÂ©m conforto.\n' +
+      'Lojas: American Girl, Crayola Experience, The ChildrenÃ¢â‚¬â„¢s Place.\n' +
+      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: PraÃƒÂ§a de alimentaÃƒÂ§ÃƒÂ£o prÃƒÂ³xima ÃƒÂ  fonte central.\n' +
+      'Dica: VÃƒÂ¡ ÃƒÂ  Crayola apÃƒÂ³s o almoÃƒÂ§o para evitar filas e aproveitar as oficinas.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Lado infantil e criativo',
         descricao:
-          'American Girl, Crayola Store e The Childrenâ€™s Place. Fonte central iluminada e souvenirs criativos.',
+          'American Girl, Crayola Store e The ChildrenÃ¢â‚¬â„¢s Place. Fonte central iluminada e souvenirs criativos.',
         local: '8001 S Orange Blossom Trail, Orlando, FL',
         regiao: 'Florida Mall',
         area: 'Florida Mall',
@@ -61,9 +61,9 @@ export const blocosFloridaMall: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'PraÃ§a de alimentaÃ§Ã£o',
+        titulo: 'PraÃƒÂ§a de alimentaÃƒÂ§ÃƒÂ£o',
         descricao:
-          'Mesas tranquilas com vista para a fonte. OpÃ§Ãµes leves e sucos frescos no Natureâ€™s Table.',
+          'Mesas tranquilas com vista para a fonte. OpÃƒÂ§ÃƒÂµes leves e sucos frescos no NatureÃ¢â‚¬â„¢s Table.',
         local: 'Florida Mall Dining Pavilion',
         regiao: 'Florida Mall',
         area: 'Florida Mall',
@@ -76,18 +76,18 @@ export const blocosFloridaMall: TurnoDescansoRegiao[] = [
     periodo: 'noite',
     horarioInicio: '20:00',
     horarioFim: '23:59',
-    referencia: 'RegiÃ£o do The Florida Hotel',
+    referencia: 'RegiÃƒÂ£o do The Florida Hotel',
     descricaoRegiao:
       'Durante a noite: Movimento reduzido e clima calmo.\n' +
-      'Lojas: Algumas externas abertas atÃ© tarde, como Ross.\n' +
-      'AlimentaÃ§Ã£o e descanso: Lobby do hotel climatizado e confortÃ¡vel.\n' +
+      'Lojas: Algumas externas abertas atÃƒÂ© tarde, como Ross.\n' +
+      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Lobby do hotel climatizado e confortÃƒÂ¡vel.\n' +
       'Dica: Termine o dia no bar do hotel revisando as compras.',
     atividades: [
       {
         tipo: 'descanso',
         titulo: 'Lobby do The Florida Hotel',
         descricao:
-          'Poltronas confortÃ¡veis, ar-condicionado e bar interno para relaxar.',
+          'Poltronas confortÃƒÂ¡veis, ar-condicionado e bar interno para relaxar.',
         local: '1500 Sand Lake Rd, Orlando, FL',
         regiao: 'Florida Mall',
         area: 'Florida Mall',
@@ -98,8 +98,8 @@ export const blocosFloridaMall: TurnoDescansoRegiao[] = [
         tipo: 'compras',
         titulo: 'Compras noturnas no entorno',
         descricao:
-          'Passeio leve pelas vitrines externas. Garimpe descontos na Ross atÃ© mais tarde.',
-        local: 'Florida Mall â€“ Entrada lateral sul',
+          'Passeio leve pelas vitrines externas. Garimpe descontos na Ross atÃƒÂ© mais tarde.',
+        local: 'Florida Mall Ã¢â‚¬â€œ Entrada lateral sul',
         regiao: 'Florida Mall',
         area: 'Florida Mall',
         latitude: 28.4476,

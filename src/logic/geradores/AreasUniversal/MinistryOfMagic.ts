@@ -1,8 +1,8 @@
-﻿// src/logic/geradores/AreasUniversal/MinistryOfMagic.ts
+﻿ï»¿// src/logic/geradores/AreasUniversal/MinistryOfMagic.ts
 export const MinistryOfMagic = {
   parque: "Universal's Epic Universe",
   regiao: "Ministry of Magic",
-  descricao: "Ãrea do Wizarding World inspirada no MinistÃ©rio da Magia britÃ¢nico, com uma grande atraÃ§Ã£o imersiva e um show ao vivo.",
+  descricao: "ÃƒÂrea do Wizarding World inspirada no MinistÃƒÂ©rio da Magia britÃƒÂ¢nico, com uma grande atraÃƒÂ§ÃƒÂ£o imersiva e um show ao vivo.",
   imagem: "ministry-of-magic.png",
   latitude: 28.4730,
   longitude: -81.4695,
@@ -20,8 +20,8 @@ export const MinistryOfMagic = {
       idadeRecomendada: "A partir de 8 anos",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Aventura intensa pelos corredores do MinistÃ©rio da Magia, com feitiÃ§os, criaturas e efeitos especiais. As fileiras centrais oferecem melhor visÃ£o geral das cenas.",
-      icone: "ðŸª„",
+      descricao: "Aventura intensa pelos corredores do MinistÃƒÂ©rio da Magia, com feitiÃƒÂ§os, criaturas e efeitos especiais. As fileiras centrais oferecem melhor visÃƒÂ£o geral das cenas.",
+      icone: "Ã°Å¸Âªâ€ž",
       imagem: "battle-at-the-ministry.jpg",
       regiao: "Ministry of Magic",
       parque: "Universal's Epic Universe",
@@ -41,8 +41,8 @@ export const MinistryOfMagic = {
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "noite",
-      descricao: "EspetÃ¡culo mÃ¡gico com performances e efeitos especiais que expandem o mundo bruxo. Chegue um pouco antes para pegar assentos mais prÃ³ximos do palco.",
-      icone: "âœ¨",
+      descricao: "EspetÃƒÂ¡culo mÃƒÂ¡gico com performances e efeitos especiais que expandem o mundo bruxo. Chegue um pouco antes para pegar assentos mais prÃƒÂ³ximos do palco.",
+      icone: "Ã¢Å“Â¨",
       imagem: "le-cirque-arcanus.jpg",
       regiao: "Ministry of Magic",
       parque: "Universal's Epic Universe",

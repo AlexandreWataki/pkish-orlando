@@ -1,4 +1,4 @@
-﻿import { Dia } from '@/logic/types/dia';
+﻿ï»¿import { Dia } from '@/logic/types/dia';
 import { TurnoDia } from '@/logic/types/turno';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { aeroportoInfo } from '@/logic/blocos/aeroporto/aeroporto';
@@ -18,7 +18,7 @@ import { calcDistanciaKm } from '@/logic/types/calcDistanciaKm';
 import { calcularTransporteEstimado } from '@/logic/types/calcResumoTransporte';
 import { Regiao } from '@/logic/types/regioesHospedagem';
 
-// FunÃ§Ã£o para remover todos os emojis de um texto
+// FunÃƒÂ§ÃƒÂ£o para remover todos os emojis de um texto
 function removerEmojis(texto: string) {
   if (!texto) return '';
   return texto
@@ -30,17 +30,17 @@ function removerEmojis(texto: string) {
     .trim();
 }
 
-// ---------- HELPERS para padronizar REF EIÃ‡ÃƒO ----------
+// ---------- HELPERS para padronizar REF EIÃƒâ€¡ÃƒÆ’O ----------
 const limparRotulo = (txt?: string) =>
   (txt ?? '')
     .replace(/^ *Acesso *: */i, '')
     .replace(/^ *Destaque *: */i, '')
     .trim();
 
-// Remove "PreÃ§o mÃ©dio: $12" que porventura venha dentro do destaque/descriÃ§Ã£o
+// Remove "PreÃƒÂ§o mÃƒÂ©dio: $12" que porventura venha dentro do destaque/descriÃƒÂ§ÃƒÂ£o
 const removerPrecoDentro = (txt: string) =>
   txt.replace(
-    /(?:^|\s)pre(Ã§|c)o\s*m[eÃ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi,
+    /(?:^|\s)pre(ÃƒÂ§|c)o\s*m[eÃƒÂ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi,
     ''
   ).trim();
 
@@ -70,17 +70,17 @@ function extrairPrecoFormatado(r: any): string | undefined {
 }
 
 function montarLinhaMeta(preco?: string, tipo?: string): string {
-  if (preco && tipo) return `PreÃ§o MÃ©dio: ${preco} - ${tipo}`;
-  if (preco) return `PreÃ§o MÃ©dio: ${preco}`;
+  if (preco && tipo) return `PreÃƒÂ§o MÃƒÂ©dio: ${preco} - ${tipo}`;
+  if (preco) return `PreÃƒÂ§o MÃƒÂ©dio: ${preco}`;
   return tipo ?? '';
 }
 
 /**
- * Padroniza um objeto de refeiÃ§Ã£o para exibir:
- *  - 1Âª linha: "PreÃ§o MÃ©dio: $ 12 - EconÃ´mico"
+ * Padroniza um objeto de refeiÃƒÂ§ÃƒÂ£o para exibir:
+ *  - 1Ã‚Âª linha: "PreÃƒÂ§o MÃƒÂ©dio: $ 12 - EconÃƒÂ´mico"
  *  - local: apenas descritivo de acesso
- *  - descricao: 1Âª linha (meta) + quebra + destaque limpo (sem rÃ³tulos)
- *  - mantÃ©m demais campos do objeto original
+ *  - descricao: 1Ã‚Âª linha (meta) + quebra + destaque limpo (sem rÃƒÂ³tulos)
+ *  - mantÃƒÂ©m demais campos do objeto original
  */
 function prepararRefeicao(r: any): any {
   const tipo = extrairTipoPerfil(r);
@@ -97,7 +97,7 @@ function prepararRefeicao(r: any): any {
   return {
     ...r,
     tipo: 'refeicao',
-    // Passamos a meta tambÃ©m no 'regiao' (se algum lugar usa como subtÃ­tulo)
+    // Passamos a meta tambÃƒÂ©m no 'regiao' (se algum lugar usa como subtÃƒÂ­tulo)
     regiao: linhaMeta || undefined,
     local: acesso || '',
     descricao: descricaoComMeta,
@@ -105,12 +105,12 @@ function prepararRefeicao(r: any): any {
   };
 }
 
-// --- LÃ³gica direta do card azul de transporte saÃ­da ---
+// --- LÃƒÂ³gica direta do card azul de transporte saÃƒÂ­da ---
 function opcoesTransporteSaida(
   destinoNome: string,
   regiao?: Regiao
 ) {
-  const nomeOrigem = regiao?.nome || 'Hospedagem nÃ£o definida';
+  const nomeOrigem = regiao?.nome || 'Hospedagem nÃƒÂ£o definida';
   const tempoDestino =
     regiao?.tempoAteAeroportoMCO ?? 30;
 
@@ -131,22 +131,22 @@ function opcoesTransporteSaida(
   const descricaoUber = [
     `Tempo estimado: ${tempoDestino} min`,
     `Valor estimado: US$ ${precoUberMin} a US$ ${precoUberMax}`,
-    `ServiÃ§o: Uber ou Lyft`,
+    `ServiÃƒÂ§o: Uber ou Lyft`,
   ].join('\n');
 
   const descricaoCarro = [
-    `DistÃ¢ncia: ${distanciaKm.toFixed(1)} km`,
-    `DiÃ¡rias mÃ©dias por categoria:`,
-    ` EconÃ´mico / Compacto: US$ 40 a US$ 60`,
-    ` SUV / IntermediÃ¡rio: US$ 60 a US$ 90`,
+    `DistÃƒÂ¢ncia: ${distanciaKm.toFixed(1)} km`,
+    `DiÃƒÂ¡rias mÃƒÂ©dias por categoria:`,
+    ` EconÃƒÂ´mico / Compacto: US$ 40 a US$ 60`,
+    ` SUV / IntermediÃƒÂ¡rio: US$ 60 a US$ 90`,
     ` Van / 7 lugares: US$ 80 a US$ 120`,
     ` Luxo / Premium: US$ 100 a US$ 200`,
   ].join('\n');
 
   return {
-    titulo: 'Transporte atÃ© o aeroporto',
+    titulo: 'Transporte atÃƒÂ© o aeroporto',
     tipo: 'transporte',
-    local: `${removerEmojis(nomeOrigem)} â†’ ${removerEmojis(destinoNome)}`,
+    local: `${removerEmojis(nomeOrigem)} Ã¢â€ â€™ ${removerEmojis(destinoNome)}`,
     opcoes: [
       {
         subtitulo: 'Uber / Lyft',
@@ -193,7 +193,7 @@ export async function gerarDiaSaida(
       };
 
   const cabecalho = {
-    titulo: 'Ãšltimo Dia â€“ Retorno ao Brasil',
+    titulo: 'ÃƒÅ¡ltimo Dia Ã¢â‚¬â€œ Retorno ao Brasil',
     imagem: 'ingresso.jpg',
     clima,
   };
@@ -209,10 +209,10 @@ export async function gerarDiaSaida(
   const dica = dicasTurnoSaida[turnoChave];
   const blocoDicas = {
     tipo: 'informativa',
-    titulo: dica?.titulo || 'Dicas de SaÃ­da',
+    titulo: dica?.titulo || 'Dicas de SaÃƒÂ­da',
     descricao:
       dica?.descricao ||
-      'Organize sua saÃ­da com antecedÃªncia e atenÃ§Ã£o aos horÃ¡rios.',
+      'Organize sua saÃƒÂ­da com antecedÃƒÂªncia e atenÃƒÂ§ÃƒÂ£o aos horÃƒÂ¡rios.',
     justificado: true,
   };
 
@@ -239,7 +239,7 @@ export async function gerarDiaSaida(
 
   let turnos: TurnoDia[] = [];
 
-  // TURNO MANHÃƒ (se tarde OU noite)
+  // TURNO MANHÃƒÆ’ (se tarde OU noite)
   if (turnoChave === 'tarde' || turnoChave === 'noite') {
     const blocoBase =
       turnoChave === 'tarde'
@@ -263,13 +263,13 @@ export async function gerarDiaSaida(
           tipo: 'descanso',
           titulo: 'Preparativos & Despedida',
           descricao:
-            'No Ãºltimo dia, organize sua bagagem, verifique documentos e reserve tempo para o check-out. Em seguida, curta uma manhÃ£ tranquila em Celebration, caminhando pelas ruas arborizadas, tirando fotos de despedida e tomando um cafÃ© leve em uma padaria local. NÃ£o deixe de visitar a loja de doces Kilwins para levar um chocolate como lembranÃ§a!',
+            'No ÃƒÂºltimo dia, organize sua bagagem, verifique documentos e reserve tempo para o check-out. Em seguida, curta uma manhÃƒÂ£ tranquila em Celebration, caminhando pelas ruas arborizadas, tirando fotos de despedida e tomando um cafÃƒÂ© leve em uma padaria local. NÃƒÂ£o deixe de visitar a loja de doces Kilwins para levar um chocolate como lembranÃƒÂ§a!',
           justificado: true,
         };
 
         let atividadesTurno: any[] = [atividadePreparativos];
 
-        // 1. Transporte da regiÃ£o atÃ© o cafÃ© da manhÃ£
+        // 1. Transporte da regiÃƒÂ£o atÃƒÂ© o cafÃƒÂ© da manhÃƒÂ£
         if (
           regiao?.latitude != null &&
           regiao?.longitude != null &&
@@ -285,7 +285,7 @@ export async function gerarDiaSaida(
           const estimativa = calcularTransporteEstimado(distKm);
           atividadesTurno.push({
             tipo: 'transporte',
-            titulo: 'Transporte atÃ© o CafÃ© da ManhÃ£',
+            titulo: 'Transporte atÃƒÂ© o CafÃƒÂ© da ManhÃƒÂ£',
             meio:
               distKm <= 0.5
                 ? 'Caminhada'
@@ -300,10 +300,10 @@ export async function gerarDiaSaida(
           });
         }
 
-        // 2. CafÃ© da manhÃ£ (padronizado)
+        // 2. CafÃƒÂ© da manhÃƒÂ£ (padronizado)
         if (cafe) atividadesTurno.push(prepararRefeicao(cafe));
 
-        // 3. Transporte do cafÃ© atÃ© a primeira atividade
+        // 3. Transporte do cafÃƒÂ© atÃƒÂ© a primeira atividade
         if (
           cafe?.latitude != null &&
           cafe?.longitude != null &&
@@ -319,7 +319,7 @@ export async function gerarDiaSaida(
           const estimativa = calcularTransporteEstimado(distKm);
           atividadesTurno.push({
             tipo: 'transporte',
-            titulo: `Transporte atÃ© ${removerEmojis(primeiraAtiv.titulo)}`,
+            titulo: `Transporte atÃƒÂ© ${removerEmojis(primeiraAtiv.titulo)}`,
             meio:
               distKm <= 0.5
                 ? 'Caminhada'
@@ -357,7 +357,7 @@ export async function gerarDiaSaida(
             const estimativa = calcularTransporteEstimado(distKm);
             atividadesTurno.push({
               tipo: 'transporte',
-              titulo: `Transporte atÃ© ${removerEmojis(atual.titulo)}`,
+              titulo: `Transporte atÃƒÂ© ${removerEmojis(atual.titulo)}`,
               meio:
                 distKm <= 0.5
                   ? 'Caminhada'
@@ -375,12 +375,12 @@ export async function gerarDiaSaida(
           anterior = atual;
         }
 
-        // Transporte para o hotel/regiÃ£o apÃ³s Ãºltima atividade relevante da manhÃ£
+        // Transporte para o hotel/regiÃƒÂ£o apÃƒÂ³s ÃƒÂºltima atividade relevante da manhÃƒÂ£
         if (turnoChave === 'tarde' && blocoManha.atividades.length > 0) {
           const ultimaAtiv = [...blocoManha.atividades]
             .reverse()
             .find((a) =>
-              ['compras', 'descanso', 'refeicao', 'atividade', 'atraÃ§Ã£o'].includes(a.tipo)
+              ['compras', 'descanso', 'refeicao', 'atividade', 'atraÃƒÂ§ÃƒÂ£o'].includes(a.tipo)
             );
           if (
             ultimaAtiv?.latitude != null &&
@@ -397,7 +397,7 @@ export async function gerarDiaSaida(
             const estimativa = calcularTransporteEstimado(distKm);
             atividadesTurno.push({
               tipo: 'transporte',
-              titulo: `Transporte de volta ao hotel/regiÃ£o`,
+              titulo: `Transporte de volta ao hotel/regiÃƒÂ£o`,
               meio:
                 distKm <= 0.5
                   ? 'Caminhada'
@@ -407,14 +407,14 @@ export async function gerarDiaSaida(
               distancia: distKm,
               tempoMin: estimativa.tempoMin,
               precoUber: estimativa.precoUber,
-              destino: removerEmojis(regiao.nome || 'Hotel/RegiÃ£o'),
+              destino: removerEmojis(regiao.nome || 'Hotel/RegiÃƒÂ£o'),
               justificado: true,
             });
           }
         }
 
         turnos.push({
-          titulo: 'ManhÃ£',
+          titulo: 'ManhÃƒÂ£',
           periodo: 'manha',
           atividades: atividadesTurno,
         });
@@ -439,7 +439,7 @@ export async function gerarDiaSaida(
         const almoco = almocoArr && almocoArr[0];
         let atividadesTarde: any[] = [];
 
-        // Transporte da Ãºltima atividade da manhÃ£ atÃ© o almoÃ§o
+        // Transporte da ÃƒÂºltima atividade da manhÃƒÂ£ atÃƒÂ© o almoÃƒÂ§o
         const manha = turnos.find((t) => t.periodo === 'manha');
         if (manha && manha.atividades.length > 0 && almoco && primeiraAtiv) {
           const ultimaAtivManha = manha.atividades
@@ -461,7 +461,7 @@ export async function gerarDiaSaida(
             const estimativa = calcularTransporteEstimado(distKm);
             atividadesTarde.push({
               tipo: 'transporte',
-              titulo: `Transporte atÃ© o AlmoÃ§o`,
+              titulo: `Transporte atÃƒÂ© o AlmoÃƒÂ§o`,
               meio:
                 distKm <= 0.5
                   ? 'Caminhada'
@@ -477,10 +477,10 @@ export async function gerarDiaSaida(
           }
         }
 
-        // AlmoÃ§o (padronizado)
+        // AlmoÃƒÂ§o (padronizado)
         if (almoco) atividadesTarde.push(prepararRefeicao(almoco));
 
-        // Transporte do almoÃ§o atÃ© a primeira atividade da tarde
+        // Transporte do almoÃƒÂ§o atÃƒÂ© a primeira atividade da tarde
         if (
           almoco?.latitude != null &&
           almoco?.longitude != null &&
@@ -496,7 +496,7 @@ export async function gerarDiaSaida(
           const estimativa = calcularTransporteEstimado(distKm);
           atividadesTarde.push({
             tipo: 'transporte',
-            titulo: `Transporte atÃ© ${removerEmojis(primeiraAtiv.titulo)}`,
+            titulo: `Transporte atÃƒÂ© ${removerEmojis(primeiraAtiv.titulo)}`,
             meio:
               distKm <= 0.5
                 ? 'Caminhada'
@@ -533,7 +533,7 @@ export async function gerarDiaSaida(
             const estimativa = calcularTransporteEstimado(distKm);
             atividadesTarde.push({
               tipo: 'transporte',
-              titulo: `Transporte atÃ© ${removerEmojis(atual.titulo)}`,
+              titulo: `Transporte atÃƒÂ© ${removerEmojis(atual.titulo)}`,
               meio:
                 distKm <= 0.5
                   ? 'Caminhada'
@@ -551,12 +551,12 @@ export async function gerarDiaSaida(
           anterior = atual;
         }
 
-        // Transporte para a regiÃ£o/hotel apÃ³s a Ãºltima atividade relevante da tarde
+        // Transporte para a regiÃƒÂ£o/hotel apÃƒÂ³s a ÃƒÂºltima atividade relevante da tarde
         if (turnoChave === 'noite' && blocoTarde.atividades.length > 0) {
           const ultimaAtiv = [...blocoTarde.atividades]
             .reverse()
             .find((a) =>
-              ['compras', 'descanso', 'refeicao', 'atividade', 'atraÃ§Ã£o'].includes(a.tipo)
+              ['compras', 'descanso', 'refeicao', 'atividade', 'atraÃƒÂ§ÃƒÂ£o'].includes(a.tipo)
             );
           if (
             ultimaAtiv?.latitude != null &&
@@ -573,7 +573,7 @@ export async function gerarDiaSaida(
             const estimativa = calcularTransporteEstimado(distKm);
             atividadesTarde.push({
               tipo: 'transporte',
-              titulo: `Transporte de volta Ã  regiÃ£o`,
+              titulo: `Transporte de volta ÃƒÂ  regiÃƒÂ£o`,
               meio:
                 distKm <= 0.5
                   ? 'Caminhada'
@@ -583,7 +583,7 @@ export async function gerarDiaSaida(
               distancia: distKm,
               tempoMin: estimativa.tempoMin,
               precoUber: estimativa.precoUber,
-              destino: removerEmojis(regiao.nome || 'RegiÃ£o'),
+              destino: removerEmojis(regiao.nome || 'RegiÃƒÂ£o'),
               justificado: true,
             });
           }
@@ -621,7 +621,7 @@ export async function gerarDiaSaida(
     cabecalho,
     objetivo:
       aeroportoInfo[turnoChave] ||
-      'Organize sua volta com calma, prepare documentos e logÃ­stica.',
+      'Organize sua volta com calma, prepare documentos e logÃƒÂ­stica.',
     turnos,
   };
 }

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+﻿ï»¿import React, { useEffect, useRef } from 'react';
 import {
   View,
   StyleSheet,
@@ -94,7 +94,7 @@ export const CardSecao = ({
               ]}
               numberOfLines={2}
             >
-              âœ¨ {tituloCompleto.toUpperCase()} âœ¨
+              Ã¢Å“Â¨ {tituloCompleto.toUpperCase()} Ã¢Å“Â¨
             </Animated.Text>
           </View>
           <View style={styles.content}>{children}</View>

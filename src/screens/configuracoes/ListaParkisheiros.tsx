@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿ï»¿import React from 'react';
 import { View, Text, StyleSheet, FlatList, ListRenderItem } from 'react-native';
 import { useParkisheiro } from '@/contexts/ParkisheiroContext';
 
@@ -24,7 +24,7 @@ type ParkisheiroItem = {
 };
 
 const parkisFixos: ParkisheiroItem[] = [
-  { id: '1', nome: 'JoÃ£o', tipo: 'fixo' as 'fixo' },
+  { id: '1', nome: 'JoÃƒÂ£o', tipo: 'fixo' as 'fixo' },
   { id: '2', nome: 'Maria', tipo: 'fixo' as 'fixo' },
   { id: '3', nome: 'Lucas', tipo: 'fixo' as 'fixo' },
 ];
@@ -48,29 +48,29 @@ export default function ListaParkisheiros() {
 
   const renderItem: ListRenderItem<ParkisheiroItem> = ({ item }) => (
     <View style={styles.card}>
-      <Text style={styles.nome}>ðŸ‘¤ {item.nome}</Text>
+      <Text style={styles.nome}>Ã°Å¸â€˜Â¤ {item.nome}</Text>
 
-      {item.email && <Text style={styles.info}>ðŸ“§ {item.email}</Text>}
-      {item.senha && <Text style={styles.info}>ðŸ” {item.senha}</Text>}
+      {item.email && <Text style={styles.info}>Ã°Å¸â€œÂ§ {item.email}</Text>}
+      {item.senha && <Text style={styles.info}>Ã°Å¸â€Â {item.senha}</Text>}
 
       {item.dataInicio && item.dataSaida && (
         <Text style={styles.info}>
-          ðŸ—“ {formatarData(item.dataInicio)} atÃ© {formatarData(item.dataSaida)} ({item.totalDias || 0} dias)
+          Ã°Å¸â€”â€œ {formatarData(item.dataInicio)} atÃƒÂ© {formatarData(item.dataSaida)} ({item.totalDias || 0} dias)
         </Text>
       )}
 
       {item.diasDistribuidos && (
         <>
           <Text style={styles.info}>
-            ðŸŽ¢ Disney: {item.diasDistribuidos.disney} | ðŸŽ¬ Universal: {item.diasDistribuidos.universal}
+            Ã°Å¸Å½Â¢ Disney: {item.diasDistribuidos.disney} | Ã°Å¸Å½Â¬ Universal: {item.diasDistribuidos.universal}
           </Text>
           <Text style={styles.info}>
-            ðŸ› Compras: {item.diasDistribuidos.compras} | ðŸ˜Œ Descanso: {item.diasDistribuidos.descanso}
+            Ã°Å¸â€ºÂ Compras: {item.diasDistribuidos.compras} | Ã°Å¸ËœÅ’ Descanso: {item.diasDistribuidos.descanso}
           </Text>
         </>
       )}
 
-      <Text style={styles.tipo}>{item.tipo === 'fixo' ? 'ðŸ”’ Fixo' : 'ðŸ†• DinÃ¢mico'}</Text>
+      <Text style={styles.tipo}>{item.tipo === 'fixo' ? 'Ã°Å¸â€â€™ Fixo' : 'Ã°Å¸â€ â€¢ DinÃƒÂ¢mico'}</Text>
     </View>
   );
 

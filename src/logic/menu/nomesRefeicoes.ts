@@ -1,12 +1,12 @@
-﻿import type { NomeMenu } from "./nomesRefeicoes.shared";
+﻿ï»¿import type { NomeMenu } from "./nomesRefeicoes.shared";
 import { normalizeNome } from "./nomesRefeicoes.shared";
 
-// Importa as listas (cada uma em seu arquivo prÃ³prio)
+// Importa as listas (cada uma em seu arquivo prÃƒÂ³prio)
 import { NOMES_REFEICOES_CAFE } from "./nomesRefeicoesCafe";
 import { NOMES_REFEICOES_ALMOCO } from "./nomesRefeicoesAlmoco";
 import { NOMES_REFEICOES_JANTAR } from "./nomesRefeicoesJantar";
 
-// Junta todas em uma Ãºnica lista
+// Junta todas em uma ÃƒÂºnica lista
 export const NOMES_REFEICOES: NomeMenu[] = [
   ...NOMES_REFEICOES_CAFE,
   ...NOMES_REFEICOES_ALMOCO,

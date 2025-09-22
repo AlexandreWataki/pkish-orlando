@@ -1,17 +1,17 @@
-﻿export const WorldDiscovery = {
+﻿ï»¿export const WorldDiscovery = {
   parque: "Epcot",
   regiao: "World Discovery",
   latitude: 28.3742,
   longitude: -81.5472,
   descricao:
-    "Ãrea dedicada Ã  ciÃªncia, espaÃ§o e inovaÃ§Ã£o. Aqui estÃ£o algumas das atraÃ§Ãµes mais radicais e tecnolÃ³gicas do parque, com experiÃªncias futuristas e interativas.",
+    "ÃƒÂrea dedicada ÃƒÂ  ciÃƒÂªncia, espaÃƒÂ§o e inovaÃƒÂ§ÃƒÂ£o. Aqui estÃƒÂ£o algumas das atraÃƒÂ§ÃƒÂµes mais radicais e tecnolÃƒÂ³gicas do parque, com experiÃƒÂªncias futuristas e interativas.",
   imagem: "worlddiscovery.png",
   atracoes: [
     {
       id: "guardians-of-the-galaxy-cosmic-rewind",
       titulo: "Guardians of the Galaxy: Cosmic Rewind",
       subtitulo: "World Discovery",
-      tipo: "Montanha-russa indoor com rotaÃ§Ã£o",
+      tipo: "Montanha-russa indoor com rotaÃƒÂ§ÃƒÂ£o",
       tipoPerfil: ["radicais"],
       alturaMinima: 107,
       filaExpress: false,
@@ -22,8 +22,8 @@
       personagemPrincipal: "Senhor das Estrelas, Gamora, Rocket, Groot, Drax",
       atracaoSemFila: false,
       descricao:
-        "Montanha-russa com rotaÃ§Ã£o de carrinho e trilha sonora dos GuardiÃµes da GalÃ¡xia. Moderna, divertida e uma das mais emocionantes da Disney.",
-      icone: "ðŸŒŒ",
+        "Montanha-russa com rotaÃƒÂ§ÃƒÂ£o de carrinho e trilha sonora dos GuardiÃƒÂµes da GalÃƒÂ¡xia. Moderna, divertida e uma das mais emocionantes da Disney.",
+      icone: "Ã°Å¸Å’Å’",
       imagem: "cosmic-rewind.jpg",
       regiao: "World Discovery",
       parque: "Epcot",
@@ -44,8 +44,8 @@
       turnoRecomendado: "manha",
       atracaoSemFila: false,
       descricao:
-        "Crie seu prÃ³prio carro e teste aceleraÃ§Ã£o, curvas e resistÃªncia em um circuito real com velocidade mÃ¡xima no final.",
-      icone: "ðŸŽï¸",
+        "Crie seu prÃƒÂ³prio carro e teste aceleraÃƒÂ§ÃƒÂ£o, curvas e resistÃƒÂªncia em um circuito real com velocidade mÃƒÂ¡xima no final.",
+      icone: "Ã°Å¸ÂÅ½Ã¯Â¸Â",
       imagem: "test-track.jpg",
       regiao: "World Discovery",
       parque: "Epcot",
@@ -56,7 +56,7 @@
       id: "mission-space",
       titulo: "Mission: SPACE",
       subtitulo: "World Discovery",
-      tipo: "Simulador espacial com forÃ§a G",
+      tipo: "Simulador espacial com forÃƒÂ§a G",
       tipoPerfil: ["imersivas"],
       alturaMinima: 102,
       filaExpress: true,
@@ -66,8 +66,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: false,
       descricao:
-        "SimulaÃ§Ã£o de lanÃ§amento e pouso no espaÃ§o com dois nÃ­veis de intensidade: Verde (leve) e Laranja (intenso, com forÃ§a G).",
-      icone: "ðŸš€",
+        "SimulaÃƒÂ§ÃƒÂ£o de lanÃƒÂ§amento e pouso no espaÃƒÂ§o com dois nÃƒÂ­veis de intensidade: Verde (leve) e Laranja (intenso, com forÃƒÂ§a G).",
+      icone: "Ã°Å¸Å¡â‚¬",
       imagem: "mission-space.jpg",
       regiao: "World Discovery",
       parque: "Epcot",
@@ -78,7 +78,7 @@
       id: "advanced-training-lab",
       titulo: "Advanced Training Lab",
       subtitulo: "World Discovery",
-      tipo: "EspaÃ§o interativo pÃ³s-ride",
+      tipo: "EspaÃƒÂ§o interativo pÃƒÂ³s-ride",
       tipoPerfil: ["interativas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -88,8 +88,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: true,
       descricao:
-        "EspaÃ§o com jogos e simuladores interativos voltado ao tema espacial, localizado na saÃ­da do Mission: SPACE. Acesso livre, sem fila.",
-      icone: "ðŸ§ª",
+        "EspaÃƒÂ§o com jogos e simuladores interativos voltado ao tema espacial, localizado na saÃƒÂ­da do Mission: SPACE. Acesso livre, sem fila.",
+      icone: "Ã°Å¸Â§Âª",
       imagem: "advanced-training-lab.jpg",
       regiao: "World Discovery",
       parque: "Epcot",

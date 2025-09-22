@@ -1,4 +1,4 @@
-﻿// src/logic/geradores/gerarDiaDescanso.ts
+﻿ï»¿// src/logic/geradores/gerarDiaDescanso.ts
 import { Dia } from '@/logic/types/dia';
 import { TurnoDia, TurnoDescansoRegiao } from '@/logic/types/turno';
 import { AtividadeDia } from '../types/atividade';
@@ -27,11 +27,11 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
     const perfilTexto = diaCorrespondente?.perfilDescanso ?? 'comprasLevesDescanso';
 
     const perfisDescanso = {
-      comprasLevesDescanso: { nome: 'Compras leves + Descanso', icone: 'ðŸ›ï¸' },
-      naturezaParquesAbertos: { nome: 'Natureza & Parques abertos', icone: 'ðŸŒ³' },
-      passeiosUrbanos: { nome: 'Passeios urbanos tranquilos', icone: 'ðŸ™ï¸' },
-      conhecendoEUA: { nome: 'Conhecendo os EUA', icone: 'ðŸ¦…' },
-      saboresDoMundo: { nome: 'Sabores do Mundo', icone: 'ðŸ½ï¸' },
+      comprasLevesDescanso: { nome: 'Compras leves + Descanso', icone: 'Ã°Å¸â€ºÂÃ¯Â¸Â' },
+      naturezaParquesAbertos: { nome: 'Natureza & Parques abertos', icone: 'Ã°Å¸Å’Â³' },
+      passeiosUrbanos: { nome: 'Passeios urbanos tranquilos', icone: 'Ã°Å¸Ââ„¢Ã¯Â¸Â' },
+      conhecendoEUA: { nome: 'Conhecendo os EUA', icone: 'Ã°Å¸Â¦â€¦' },
+      saboresDoMundo: { nome: 'Sabores do Mundo', icone: 'Ã°Å¸ÂÂ½Ã¯Â¸Â' },
     } as const;
 
     let blocos: TurnoDescansoRegiao[];
@@ -66,7 +66,7 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
       if (!bloco) return [];
       return bloco.atividades.map((a): AtividadeDia => ({
         ...a,
-        subtitulo: bloco.referencia ? `â€“ ${bloco.referencia}` : '',
+        subtitulo: bloco.referencia ? `Ã¢â‚¬â€œ ${bloco.referencia}` : '',
       }));
     }
 
@@ -99,20 +99,20 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
     const refTarde = almoco[0];
     const refNoite = jantar[0];
 
-    // evita repetiÃ§Ã£o de .find(...)
+    // evita repetiÃƒÂ§ÃƒÂ£o de .find(...)
     const blocoManha = blocos.find(b => b.periodo === 'manha');
     const blocoTarde = blocos.find(b => b.periodo === 'tarde');
     const blocoNoite = blocos.find(b => b.periodo === 'noite');
 
     const turnos: TurnoDia[] = [
       {
-        titulo: 'ManhÃ£',
+        titulo: 'ManhÃƒÂ£',
         periodo: 'manha',
         atividades: [
           ...cafe,
           {
             tipo: 'area',
-            titulo: blocoManha?.atividades[0]?.regiao || 'Ãrea',
+            titulo: blocoManha?.atividades[0]?.regiao || 'ÃƒÂrea',
             descricao: blocoManha?.descricaoRegiao ?? '',
             latitude: refManha?.latitude,
             longitude: refManha?.longitude,
@@ -128,7 +128,7 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
           ...almoco,
           {
             tipo: 'area',
-            titulo: blocoTarde?.atividades[0]?.regiao || 'Ãrea',
+            titulo: blocoTarde?.atividades[0]?.regiao || 'ÃƒÂrea',
             descricao: blocoTarde?.descricaoRegiao ?? '',
             latitude: refTarde?.latitude,
             longitude: refTarde?.longitude,
@@ -144,7 +144,7 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
           ...jantar,
           {
             tipo: 'area',
-            titulo: blocoNoite?.atividades[0]?.regiao || 'Ãrea',
+            titulo: blocoNoite?.atividades[0]?.regiao || 'ÃƒÂrea',
             descricao: blocoNoite?.descricaoRegiao ?? '',
             latitude: refNoite?.latitude,
             longitude: refNoite?.longitude,
@@ -169,14 +169,14 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
         baseLat == null ||
         baseLon == null
       ) {
-        return resumo || 'RegiÃ£o definida no inÃ­cio da viagem';
+        return resumo || 'RegiÃƒÂ£o definida no inÃƒÂ­cio da viagem';
       }
 
       const distanciaKm = calcDistanciaKm(baseLat, baseLon, regiaoLat, regiaoLon);
       const { tempoMin: tempoUber, precoUber } = calcularTransporteEstimado(distanciaKm);
       const tempoPe = Math.round((distanciaKm / 5) * 60);
 
-      return `${resumo}, ${distanciaKm.toFixed(2)} km, ${tempoPe} min a pÃ©, ${tempoUber} min de Uber, $${precoUber.toFixed(2)}`;
+      return `${resumo}, ${distanciaKm.toFixed(2)} km, ${tempoPe} min a pÃƒÂ©, ${tempoUber} min de Uber, $${precoUber.toFixed(2)}`;
     }
 
     const regiao = parkisheiro.regiaoHospedagem;
@@ -184,8 +184,8 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
     const baseLon = regiao?.longitude ?? null;
 
     const descricaoRegiaoDetalhada = montarDescricaoRegiao(
-      regiao?.nome || 'RegiÃ£o escolhida',
-      regiao?.descricao || 'RegiÃ£o definida no inÃ­cio da viagem',
+      regiao?.nome || 'RegiÃƒÂ£o escolhida',
+      regiao?.descricao || 'RegiÃƒÂ£o definida no inÃƒÂ­cio da viagem',
       regiao?.latitude ?? null,
       regiao?.longitude ?? null,
       baseLat,
@@ -235,7 +235,7 @@ export async function gerarDiaDescanso(numero: number, parkisheiro: Parkisheiro)
           icone: 'error',
         },
       },
-      objetivo: 'NÃ£o foi possÃ­vel gerar o conteÃºdo deste dia.',
+      objetivo: 'NÃƒÂ£o foi possÃƒÂ­vel gerar o conteÃƒÂºdo deste dia.',
       turnos: [],
       dicas: [],
       regiao: {

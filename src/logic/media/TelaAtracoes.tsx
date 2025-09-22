@@ -1,4 +1,4 @@
-﻿// src/screens/inicio/TelaAtracoes.tsx
+﻿ï»¿// src/screens/inicio/TelaAtracoes.tsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, LayoutAnimation, Animated, Alert,
@@ -26,7 +26,7 @@ import { searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
 import * as disneyData from '@/logic/geradores/todasAtracoesDisney';
 import * as universalData from '@/logic/geradores/todasAtracoesUniversal';
 
-// NavegaÃ§Ã£o tipada
+// NavegaÃƒÂ§ÃƒÂ£o tipada
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/RootStack';
 
@@ -49,7 +49,7 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
     return directArrays.map((a: AnyObj) => ({
       id: a.id ?? `${a.titulo ?? 'atracao'}-${Math.random().toString(36).slice(2, 7)}`,
       tipo: 'atracao',
-      titulo: a.titulo ?? 'Sem tÃ­tulo',
+      titulo: a.titulo ?? 'Sem tÃƒÂ­tulo',
       descricao: a.descricao ?? '',
       subtitulo: a.subtitulo ?? a.area ?? a.regiao ?? '',
       regiao: a.regiao ?? a.area ?? a.land ?? a.setor ?? '',
@@ -75,7 +75,7 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
         out.push({
           id: a.id ?? `${a.titulo ?? 'atracao'}-${Math.random().toString(36).slice(2, 7)}`,
           tipo: 'atracao',
-          titulo: a.titulo ?? 'Sem tÃ­tulo',
+          titulo: a.titulo ?? 'Sem tÃƒÂ­tulo',
           descricao: a.descricao ?? '',
           subtitulo: a.subtitulo ?? areaName,
           regiao: a.regiao ?? areaName,
@@ -98,7 +98,7 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
 
 const AREA_TODAS = '__TODAS__';
 
-// TÃ­tulo animado da Ã¡rea
+// TÃƒÂ­tulo animado da ÃƒÂ¡rea
 const AreaTitle: React.FC<{ text: string }> = ({ text }) => {
   const anim = useRef(new Animated.Value(1)).current;
   useEffect(() => {
@@ -109,10 +109,10 @@ const AreaTitle: React.FC<{ text: string }> = ({ text }) => {
       ])
     ).start();
   }, [anim]);
-  return <Animated.Text style={[styles.areaTitle, { opacity: anim }]} numberOfLines={2}>âœ¨ {text.toUpperCase()} âœ¨</Animated.Text>;
+  return <Animated.Text style={[styles.areaTitle, { opacity: anim }]} numberOfLines={2}>Ã¢Å“Â¨ {text.toUpperCase()} Ã¢Å“Â¨</Animated.Text>;
 };
 
-// Ãcone piscando (YouTube)
+// ÃƒÂcone piscando (YouTube)
 const BlinkingIcon: React.FC<{ name: any; size?: number; style?: any }> = ({ name, size = 30, style }) => {
   const opacity = useRef(new Animated.Value(1)).current;
   useEffect(() => {
@@ -137,7 +137,7 @@ export default function TelaAtracoes() {
   const route = useRoute<any>();
   const { markVisited } = useParkisheiro?.() || {};
 
-  // â›… estado do clima
+  // Ã¢â€ºâ€¦ estado do clima
   const [clima, setClima] = useState<any>(null);
 
   const [avisoAceito, setAvisoAceito] = useState(false);
@@ -150,7 +150,7 @@ export default function TelaAtracoes() {
   const [videoById, setVideoById] = useState<Record<string, string>>({});
   const YT_API_KEY = (Constants?.expoConfig?.extra as any)?.YT_API_KEY || '';
 
-  // ðŸ”” animaÃ§Ã£o do aviso
+  // Ã°Å¸â€â€ animaÃƒÂ§ÃƒÂ£o do aviso
   const avisoBlink = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     Animated.loop(
@@ -179,7 +179,7 @@ export default function TelaAtracoes() {
     }
   };
 
-  // ðŸ”„ Busca clima baseado no parque selecionado
+  // Ã°Å¸â€â€ž Busca clima baseado no parque selecionado
   useEffect(() => {
     let ativo = true;
     (async () => {
@@ -222,7 +222,7 @@ export default function TelaAtracoes() {
 
     const parqueInicial: string = (route.params?.parqueInicial as string) || parquesBase[0] || '';
     const areaInicialParam = route.params?.areaInicial as string | undefined;
-    const areaInicial = areaInicialParam === 'Todas as Ã¡reas' || !areaInicialParam ? AREA_TODAS : areaInicialParam;
+    const areaInicial = areaInicialParam === 'Todas as ÃƒÂ¡reas' || !areaInicialParam ? AREA_TODAS : areaInicialParam;
 
     if (!parqueInicial) {
       setAvisoAceito(true);
@@ -257,7 +257,7 @@ export default function TelaAtracoes() {
       }
     }
     const arr = Array.from(set).sort((a, b) => a.localeCompare(b));
-    return ['Todas as Ã¡reas', ...arr];
+    return ['Todas as ÃƒÂ¡reas', ...arr];
   }, [listaRede, parque]);
 
   const handleSelectRede = (p: 'disney' | 'universal') => {
@@ -298,8 +298,8 @@ export default function TelaAtracoes() {
     return [{ area, atracoes }];
   }, [listaRede, parque, area]);
 
-  const tituloCard = parque ? parque : 'AtraÃ§Ãµes';
-  const subtituloCard = area ? (area === AREA_TODAS ? 'â€” Todas as Ã¡reas' : `â€” ${area}`) : '';
+  const tituloCard = parque ? parque : 'AtraÃƒÂ§ÃƒÂµes';
+  const subtituloCard = area ? (area === AREA_TODAS ? 'Ã¢â‚¬â€ Todas as ÃƒÂ¡reas' : `Ã¢â‚¬â€ ${area}`) : '';
   const tipoCard: 'disney' | 'universal' | 'area' = rede === 'disney' ? 'disney' : rede === 'universal' ? 'universal' : 'area';
 
   const extractYouTubeId = (input?: string | null): string | null => {
@@ -331,7 +331,7 @@ export default function TelaAtracoes() {
     }
 
     if (!watch) {
-      Alert.alert('VÃ­deo indisponÃ­vel', 'Ainda nÃ£o temos um vÃ­deo para esta atraÃ§Ã£o.');
+      Alert.alert('VÃƒÂ­deo indisponÃƒÂ­vel', 'Ainda nÃƒÂ£o temos um vÃƒÂ­deo para esta atraÃƒÂ§ÃƒÂ£o.');
       return;
     }
 
@@ -351,7 +351,7 @@ export default function TelaAtracoes() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="information-circle-outline" size={18} color="#004b87" />
               <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-                Guia nÃ£o oficial â€” toque para continuar
+                Guia nÃƒÂ£o oficial Ã¢â‚¬â€ toque para continuar
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color="#004b87" />
@@ -359,12 +359,12 @@ export default function TelaAtracoes() {
 
           <View style={[styles.avisoBox, { marginTop: 6 }]}>
             <Text style={styles.avisoTitulo}>
-              Este app Ã© um <Text style={{ fontWeight: '900' }}>guia nÃ£o oficial</Text>.
+              Este app ÃƒÂ© um <Text style={{ fontWeight: '900' }}>guia nÃƒÂ£o oficial</Text>.
             </Text>
             <Text style={styles.avisoTexto}>
-              Marcas e nomes podem pertencer Ã  Disney Enterprises, Inc., Universal City Studios LLC e demais detentores.
+              Marcas e nomes podem pertencer ÃƒÂ  Disney Enterprises, Inc., Universal City Studios LLC e demais detentores.
             </Text>
-            <Text style={styles.avisoTexto}>Consulte canais oficiais para horÃ¡rios, filas e polÃ­ticas.</Text>
+            <Text style={styles.avisoTexto}>Consulte canais oficiais para horÃƒÂ¡rios, filas e polÃƒÂ­ticas.</Text>
           </View>
         </View>
       );
@@ -400,7 +400,7 @@ export default function TelaAtracoes() {
             onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('rede'); }}
           >
             <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-              Selecione o Parque â€” {rede === 'disney' ? 'Complexo Disney' : 'Complexo Universal'}
+              Selecione o Parque Ã¢â‚¬â€ {rede === 'disney' ? 'Complexo Disney' : 'Complexo Universal'}
             </Text>
             <Ionicons name="chevron-up" size={18} color="#004b87" />
           </TouchableOpacity>
@@ -425,7 +425,7 @@ export default function TelaAtracoes() {
             onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('parque'); }}
           >
             <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-              Selecione a Ãrea â€” {parque}
+              Selecione a ÃƒÂrea Ã¢â‚¬â€ {parque}
             </Text>
             <Ionicons name="chevron-up" size={18} color="#004b87" />
           </TouchableOpacity>
@@ -433,7 +433,7 @@ export default function TelaAtracoes() {
           <View style={styles.listaContainer}>
             {areasDisponiveis.map((a) => (
               <TouchableOpacity key={a} activeOpacity={0.9} style={styles.linhaItem}
-                onPress={() => handleSelectArea(a === 'Todas as Ã¡reas' ? AREA_TODAS : a)}>
+                onPress={() => handleSelectArea(a === 'Todas as ÃƒÂ¡reas' ? AREA_TODAS : a)}>
                 <Text style={styles.textoItem}>{a}</Text>
               </TouchableOpacity>
             ))}
@@ -450,7 +450,7 @@ export default function TelaAtracoes() {
           onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('area'); }}
         >
           <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-            {area === AREA_TODAS ? 'Todas as Ã¡reas' : `${area} (Ãrea)`} â€” {parque}
+            {area === AREA_TODAS ? 'Todas as ÃƒÂ¡reas' : `${area} (ÃƒÂrea)`} Ã¢â‚¬â€ {parque}
           </Text>
           <Ionicons name="chevron-up" size={18} color="#004b87" />
         </TouchableOpacity>
@@ -462,14 +462,14 @@ export default function TelaAtracoes() {
     <LinearGradient colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
       locations={[0, 0.6, 0.9, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={{ flex: 1 }}>
 
-      {/* CabeÃ§alho com clima â€” MESMA LÃ“GICA do PromocoesScreen */}
+      {/* CabeÃƒÂ§alho com clima Ã¢â‚¬â€ MESMA LÃƒâ€œGICA do PromocoesScreen */}
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || clima?.clima || 'Parcialmente nublado'}
-          temperatura={Number.isFinite(clima?.temp) ? `${Math.round(clima.temp)}Â°C` : undefined}
+          temperatura={Number.isFinite(clima?.temp) ? `${Math.round(clima.temp)}Ã‚Â°C` : undefined}
           iconeClima={clima?.icone}
         />
       </View>
@@ -511,7 +511,7 @@ export default function TelaAtracoes() {
         <View style={{ height: 120 }} />
       </ScrollView>
 
-      {/* RodapÃ© */}
+      {/* RodapÃƒÂ© */}
       <View style={styles.rodapeFundo} />
       <View style={styles.rodapeConteudo}>
         <TouchableOpacity
@@ -524,7 +524,7 @@ export default function TelaAtracoes() {
 
         <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
           <Text style={styles.avisoLegalTexto}>
-            Guia independente e nÃ£o oficial, sem vÃ­nculo com Disney ou Universal. VÃ­deos incorporados do YouTube, exibidos apenas para visualizaÃ§Ã£o.
+            Guia independente e nÃƒÂ£o oficial, sem vÃƒÂ­nculo com Disney ou Universal. VÃƒÂ­deos incorporados do YouTube, exibidos apenas para visualizaÃƒÂ§ÃƒÂ£o.
           </Text>
         </Animated.View>
       </View>

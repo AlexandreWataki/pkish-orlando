@@ -1,9 +1,9 @@
-﻿export const EchoLake = {
+﻿ï»¿export const EchoLake = {
   regiao: "Echo Lake",
   parque: "Hollywood Studios",
   latitude: 28.3574,
   longitude: -81.5606,
-  descricao: "Ãrea com temÃ¡tica de cinema clÃ¡ssico, shows ao vivo e atraÃ§Ãµes baseadas em grandes franquias como Indiana Jones e Star Wars.",
+  descricao: "ÃƒÂrea com temÃƒÂ¡tica de cinema clÃƒÂ¡ssico, shows ao vivo e atraÃƒÂ§ÃƒÂµes baseadas em grandes franquias como Indiana Jones e Star Wars.",
   imagem: "echolake.png",
   atracoes: [
     {
@@ -19,15 +19,15 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: "Show ao vivo com dublÃªs recriando cenas famosas dos filmes de Indiana Jones. Apresentado em horÃ¡rios fixos durante o dia.",
-      icone: "ðŸŽ¬",
+      descricao: "Show ao vivo com dublÃƒÂªs recriando cenas famosas dos filmes de Indiana Jones. Apresentado em horÃƒÂ¡rios fixos durante o dia.",
+      icone: "Ã°Å¸Å½Â¬",
       imagem: "indiana-jones.jpg",
       regiao: "Echo Lake",
       parque: "Hollywood Studios"
     },
     {
       id: "star-tours",
-      titulo: "Star Tours â€“ The Adventures Continue",
+      titulo: "Star Tours Ã¢â‚¬â€œ The Adventures Continue",
       subtitulo: "Echo Lake",
       tipo: "Simulador 3D",
       tipoPerfil: ["imersivas", "radicais"],
@@ -37,8 +37,8 @@
       filaAceitavel: 30,
       idadeRecomendada: "7+",
       turnoRecomendado: "manha",
-      descricao: "Simulador 3D com movimentos intensos por vÃ¡rios planetas do universo Star Wars, com cenas aleatÃ³rias em cada passeio.",
-      icone: "ðŸš€",
+      descricao: "Simulador 3D com movimentos intensos por vÃƒÂ¡rios planetas do universo Star Wars, com cenas aleatÃƒÂ³rias em cada passeio.",
+      icone: "Ã°Å¸Å¡â‚¬",
       imagem: "star-tours.jpg",
       regiao: "Echo Lake",
       parque: "Hollywood Studios"
@@ -55,8 +55,8 @@
       filaAceitavel: 15,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Encontro com o Olaf, de Frozen, em um espaÃ§o com cenÃ¡rio nevado. Perfeito para crianÃ§as e fotos divertidas.",
-      icone: "â˜ƒï¸",
+      descricao: "Encontro com o Olaf, de Frozen, em um espaÃƒÂ§o com cenÃƒÂ¡rio nevado. Perfeito para crianÃƒÂ§as e fotos divertidas.",
+      icone: "Ã¢ËœÆ’Ã¯Â¸Â",
       imagem: "meet-olaf.jpg",
       regiao: "Echo Lake",
       parque: "Hollywood Studios"
@@ -74,17 +74,17 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "noite",
-      descricao: "Show musical divertido com personagens de Frozen, letras na tela e efeitos especiais. Ã“timo para descansar e cantar junto.",
-      icone: "ðŸŽ¤",
+      descricao: "Show musical divertido com personagens de Frozen, letras na tela e efeitos especiais. Ãƒâ€œtimo para descansar e cantar junto.",
+      icone: "Ã°Å¸Å½Â¤",
       imagem: "frozen-sing-along.jpg",
       regiao: "Echo Lake",
       parque: "Hollywood Studios"
     },
     {
       id: "dockside-diner",
-      titulo: "Dockside Diner (Ãrea TemÃ¡tica)",
+      titulo: "Dockside Diner (ÃƒÂrea TemÃƒÂ¡tica)",
       subtitulo: "Echo Lake",
-      tipo: "Ãrea de alimentaÃ§Ã£o e relaxamento",
+      tipo: "ÃƒÂrea de alimentaÃƒÂ§ÃƒÂ£o e relaxamento",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -93,8 +93,8 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: "Barco cenogrÃ¡fico com lanches rÃ¡pidos e mesas ao ar livre. Ideal para uma pausa entre as atraÃ§Ãµes e observar o Echo Lake.",
-      icone: "ðŸ”",
+      descricao: "Barco cenogrÃƒÂ¡fico com lanches rÃƒÂ¡pidos e mesas ao ar livre. Ideal para uma pausa entre as atraÃƒÂ§ÃƒÂµes e observar o Echo Lake.",
+      icone: "Ã°Å¸Ââ€",
       imagem: "dockside-diner.jpg",
       regiao: "Echo Lake",
       parque: "Hollywood Studios"

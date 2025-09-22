@@ -1,4 +1,4 @@
-﻿// src/logic/blocos/parques/Perfis/blocosDisneyFamiliares.ts
+﻿ï»¿// src/logic/blocos/parques/Perfis/blocosDisneyFamiliares.ts
 
 import { BlocoPerfilParque } from '@/logic/types/turno';
 
@@ -91,7 +91,7 @@ export const blocosDisneyFamiliares: BlocoPerfilParque[] = [
         periodo: 'noite',
         horarioInicio: '20:00',
         horarioFim: '23:59',
-        areas: ['Pandora â€“ The World of Avatar'],
+        areas: ['Pandora Ã¢â‚¬â€œ The World of Avatar'],
       },
     ],
   },

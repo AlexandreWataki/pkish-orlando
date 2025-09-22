@@ -1,4 +1,4 @@
-﻿export interface AtividadeDia {
+﻿ï»¿export interface AtividadeDia {
   id?: string;
   titulo: string;
   subtitulo?: string;
@@ -17,7 +17,7 @@
     | 'atividade' 
     | 'regiao' 
     | 'area'
-    | 'transporte'; // âœ… ADICIONADO AQUI
+    | 'transporte'; // Ã¢Å“â€¦ ADICIONADO AQUI
 
   local?: string;
   selecionavel?: boolean;
@@ -26,7 +26,7 @@
   horarioSugerido?: string;
   preco?: string;
   regiao?: string;
-  area?: string; // âœ… Adicionado aqui
+  area?: string; // Ã¢Å“â€¦ Adicionado aqui
   perfil?: string;
   imagem?: string;
   latitude?: number;
@@ -38,7 +38,7 @@
   destaque?: string;
   precoMedio?: number;
 
-  // Atributos especÃ­ficos para atraÃ§Ãµes
+  // Atributos especÃƒÂ­ficos para atraÃƒÂ§ÃƒÂµes
   alturaMinima?: number;
   tempoMedioFila?: number;
   filaAceitavel?: number;
@@ -51,7 +51,7 @@
     filaAceitavel?: string;
   };
 
-  // âœ… Novos campos para transporte
+  // Ã¢Å“â€¦ Novos campos para transporte
   origem?: string;
   destino?: string;
   icone?: string;

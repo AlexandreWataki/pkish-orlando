@@ -1,7 +1,7 @@
-﻿// src/data/videosYoutube.ts
-// ðŸ”§ Helpers para normalizar e mapear vÃ­deos por atraÃ§Ã£o/parque
+﻿ï»¿// src/data/videosYoutube.ts
+// Ã°Å¸â€Â§ Helpers para normalizar e mapear vÃƒÂ­deos por atraÃƒÂ§ÃƒÂ£o/parque
 
-// Normaliza pra "slug": minÃºsculo, sem acentos, sÃ³ letras/nÃºmeros com hifens
+// Normaliza pra "slug": minÃƒÂºsculo, sem acentos, sÃƒÂ³ letras/nÃƒÂºmeros com hifens
 export function normaliza(s: string) {
   return String(s || '')
     .toLowerCase()
@@ -13,7 +13,7 @@ export function normaliza(s: string) {
 
 type VideoRef = string | { id?: string; url?: string };
 
-// â–¶ï¸ Preencha aqui os vÃ­deos! Use o NOME DO PARQUE e o TÃTULO da atraÃ§Ã£o.
+// Ã¢â€“Â¶Ã¯Â¸Â Preencha aqui os vÃƒÂ­deos! Use o NOME DO PARQUE e o TÃƒÂTULO da atraÃƒÂ§ÃƒÂ£o.
 // Aceita ID de 11 chars ("dQw4w9WgXcQ") OU URL completa (watch, youtu.be, embed, shorts).
 export const videosPorParque: Record<string, Record<string, VideoRef>> = {
   // Disney
@@ -47,8 +47,8 @@ export const videosPorParque: Record<string, Record<string, VideoRef>> = {
   },
 };
 
-// Tenta achar vÃ­deo pelo tÃ­tulo dentro de um parque especÃ­fico.
-// Se nÃ£o achar no parque, procura em todos (pra reduzir colisÃ£o, prefira preencher por parque).
+// Tenta achar vÃƒÂ­deo pelo tÃƒÂ­tulo dentro de um parque especÃƒÂ­fico.
+// Se nÃƒÂ£o achar no parque, procura em todos (pra reduzir colisÃƒÂ£o, prefira preencher por parque).
 export function obterVideoPorTitulo(parque?: string, titulo?: string): string | null {
   if (!titulo) return null;
   const tKey = normaliza(titulo);
@@ -60,7 +60,7 @@ export function obterVideoPorTitulo(parque?: string, titulo?: string): string | 
       return typeof v === 'string' ? v : v.url || v.id || null;
     }
   }
-  // busca ampla (Ãºltimo recurso)
+  // busca ampla (ÃƒÂºltimo recurso)
   for (const parkMap of Object.values(videosPorParque)) {
     const v = parkMap[tKey];
     if (v) return typeof v === 'string' ? v : v.url || v.id || null;
@@ -68,7 +68,7 @@ export function obterVideoPorTitulo(parque?: string, titulo?: string): string | 
   return null;
 }
 
-// Fallback completo: usa campos diretos (videoUrl/youtube/etc); se nÃ£o tiver, usa o mapa
+// Fallback completo: usa campos diretos (videoUrl/youtube/etc); se nÃƒÂ£o tiver, usa o mapa
 export function obterVideoDaAtracao(atracao: any): string | null {
   const direto =
     atracao?.videoUrl ||
@@ -78,7 +78,7 @@ export function obterVideoDaAtracao(atracao: any): string | null {
     atracao?.urlVideo;
   if (typeof direto === 'string' && direto.length > 6) return direto;
 
-  // Alguns datasets tÃªm "parque" no objeto da atraÃ§Ã£o; se nÃ£o tiver, pode vir no pai.
+  // Alguns datasets tÃƒÂªm "parque" no objeto da atraÃƒÂ§ÃƒÂ£o; se nÃƒÂ£o tiver, pode vir no pai.
   const parque = atracao?.parque || atracao?.nomeParque || atracao?.park || '';
   return obterVideoPorTitulo(parque, atracao?.titulo);
 }

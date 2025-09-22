@@ -1,12 +1,12 @@
-﻿import { Parkisheiro } from './parkisheiro';
+﻿ï»¿import { Parkisheiro } from './parkisheiro';
 
 /**
  * Retorna o valor do perfil salvo para uma categoria (ex: 'refeicoes', 'descanso', etc),
- * com base no objeto parkisheiro passado como parÃ¢metro.
+ * com base no objeto parkisheiro passado como parÃƒÂ¢metro.
  * - Se for um objeto com chave 'perfil' ou 'local', retorna esse valor.
  * - Se for uma lista, retorna o primeiro item.
  * - Se for string, retorna diretamente.
- * - Se nÃ£o houver perfil salvo, retorna string '0' (perfil padrÃ£o).
+ * - Se nÃƒÂ£o houver perfil salvo, retorna string '0' (perfil padrÃƒÂ£o).
  */
 export function pegarPerfil(categoria: string, parkisheiro: Parkisheiro): string {
   const raw = parkisheiro?.perfis?.[categoria];

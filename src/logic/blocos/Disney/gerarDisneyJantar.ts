@@ -1,8 +1,8 @@
-﻿import { Parkisheiro } from '@/logic/types/parkisheiro';
+﻿ï»¿import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 import { jantaresDisney } from './JantarDisney';
 
-// FunÃ§Ã£o de comparaÃ§Ã£o que aceita tipo string, array ou string separada por vÃ­rgula (case insensitive)
+// FunÃƒÂ§ÃƒÂ£o de comparaÃƒÂ§ÃƒÂ£o que aceita tipo string, array ou string separada por vÃƒÂ­rgula (case insensitive)
 function tipoInclui(tipo: string | string[], perfil: string) {
   if (!tipo) return false;
   if (Array.isArray(tipo)) {
@@ -22,15 +22,15 @@ export const gerarDisneyJantar = (
   const perfilSelecionado = parkisheiro.perfis?.refeicoes?.perfil;
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: 'ðŸ½ï¸ Jantar',
-      descricao: 'Nenhum perfil de refeiÃ§Ã£o selecionado.',
+      titulo: 'Ã°Å¸ÂÂ½Ã¯Â¸Â Jantar',
+      descricao: 'Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.',
       horarioSugerido: '19:00',
       tipo: 'jantar',
     });
     return atividades;
   }
 
-  // 1ï¸âƒ£ Busca por coordenadas
+  // 1Ã¯Â¸ÂÃ¢Æ’Â£ Busca por coordenadas
   if (latitude != null && longitude != null) {
     const jantarMaisProximo = jantaresDisney
       .filter(j => tipoInclui(j.tipo, perfilSelecionado))
@@ -46,7 +46,7 @@ export const gerarDisneyJantar = (
     }
   }
 
-  // 2ï¸âƒ£ Busca por nome da regiÃ£o
+  // 2Ã¯Â¸ÂÃ¢Æ’Â£ Busca por nome da regiÃƒÂ£o
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -59,17 +59,17 @@ export const gerarDisneyJantar = (
     }
   }
 
-  // 3ï¸âƒ£ Busca por qualquer jantar com o tipo
+  // 3Ã¯Â¸ÂÃ¢Æ’Â£ Busca por qualquer jantar com o tipo
   const jantarQualquer = jantaresDisney.find(j => tipoInclui(j.tipo, perfilSelecionado));
   if (jantarQualquer) {
     atividades.push(formatarJantarDisney(jantarQualquer));
     return atividades;
   }
 
-  // 4ï¸âƒ£ Nada encontrado
+  // 4Ã¯Â¸ÂÃ¢Æ’Â£ Nada encontrado
   atividades.push({
-    titulo: 'ðŸ½ï¸ Jantar',
-    descricao: 'Nenhuma sugestÃ£o encontrada com seu perfil nesta regiÃ£o.',
+    titulo: 'Ã°Å¸ÂÂ½Ã¯Â¸Â Jantar',
+    descricao: 'Nenhuma sugestÃƒÂ£o encontrada com seu perfil nesta regiÃƒÂ£o.',
     horarioSugerido: '19:00',
     tipo: 'jantar',
   });
@@ -77,13 +77,13 @@ export const gerarDisneyJantar = (
   return atividades;
 };
 
-// ðŸ”§ FunÃ§Ã£o auxiliar
+// Ã°Å¸â€Â§ FunÃƒÂ§ÃƒÂ£o auxiliar
 function formatarJantarDisney(jantar: any): AtividadeDia {
   return {
-    titulo: `ðŸ½ï¸ ${jantar.nome} â€“ Jantar`,
+    titulo: `Ã°Å¸ÂÂ½Ã¯Â¸Â ${jantar.nome} Ã¢â‚¬â€œ Jantar`,
     descricao:
       `Tipo: ${Array.isArray(jantar.tipo) ? jantar.tipo.join(', ') : jantar.tipo}\n` +
-      `PreÃ§o mÃ©dio: $${jantar.precoMedio}` +
+      `PreÃƒÂ§o mÃƒÂ©dio: $${jantar.precoMedio}` +
       (jantar.acesso ? `\nAcesso: ${jantar.acesso}` : '') +
       (jantar.destaque ? `\nDestaque: ${jantar.destaque}` : ''),
     horarioSugerido: '19:00',

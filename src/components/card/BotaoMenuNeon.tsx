@@ -1,4 +1,4 @@
-﻿// src/components/card/BotaoMenuNeon.tsx
+﻿ï»¿// src/components/card/BotaoMenuNeon.tsx
 import React, { useEffect, useRef } from 'react';
 import {
   StyleSheet,
@@ -16,9 +16,9 @@ const AZUL_ESCURO = '#001F3F';
 type Props = {
   titulo: string;
   subtitulo: string;
-  /** Nome do ícone do Ionicons (ex.: "map-outline"). Se não passar, usa emoji. */
+  /** Nome do Ã­cone do Ionicons (ex.: "map-outline"). Se nÃ£o passar, usa emoji. */
   icon?: React.ComponentProps<typeof Ionicons>['name'];
-  /** Fallback caso não use ícone */
+  /** Fallback caso nÃ£o use Ã­cone */
   emoji?: string;
   onPress: () => void;
 };
@@ -27,14 +27,14 @@ export default function BotaoMenuNeon({
   titulo,
   subtitulo,
   icon,
-  emoji = '✨',
+  emoji = 'âœ¨',
   onPress,
 }: Props) {
   const borderAnim = useRef(new Animated.Value(0)).current;
   const brilhoAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    // Animação da borda piscante
+    // AnimaÃ§Ã£o da borda piscante
     Animated.loop(
       Animated.timing(borderAnim, {
         toValue: 1,
@@ -43,7 +43,7 @@ export default function BotaoMenuNeon({
       })
     ).start();
 
-    // Animação de brilho (opacidade)
+    // AnimaÃ§Ã£o de brilho (opacidade)
     Animated.loop(
       Animated.sequence([
         Animated.timing(brilhoAnim, { toValue: 0.4, duration: 1000, useNativeDriver: true }),

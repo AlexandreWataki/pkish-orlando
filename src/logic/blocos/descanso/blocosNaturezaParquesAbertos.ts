@@ -1,4 +1,4 @@
-﻿// src/logic/blocos/descanso/blocosNaturezaParquesAbertos.ts
+﻿ï»¿// src/logic/blocos/descanso/blocosNaturezaParquesAbertos.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
@@ -8,10 +8,10 @@ export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Altamonte Springs',
     descricaoRegiao:
-      'Durante a manhÃ£: Clima fresco no Cranes Roost Park, com lago, jardins bem cuidados e ambiente sereno.\n' +
-      'AtraÃ§Ãµes: Trilha pavimentada ao redor do lago, decks de madeira e Ã¡reas para observar garÃ§as.\n' +
-      'Descanso e alimentaÃ§Ã£o: CafÃ©s tranquilos no Uptown Altamonte com mesinhas externas Ã  beira do lago.\n' +
-      'Dica: Caminhe atÃ© o anfiteatro para ter uma vista panorÃ¢mica do lago e das aves locais.',
+      'Durante a manhÃƒÂ£: Clima fresco no Cranes Roost Park, com lago, jardins bem cuidados e ambiente sereno.\n' +
+      'AtraÃƒÂ§ÃƒÂµes: Trilha pavimentada ao redor do lago, decks de madeira e ÃƒÂ¡reas para observar garÃƒÂ§as.\n' +
+      'Descanso e alimentaÃƒÂ§ÃƒÂ£o: CafÃƒÂ©s tranquilos no Uptown Altamonte com mesinhas externas ÃƒÂ  beira do lago.\n' +
+      'Dica: Caminhe atÃƒÂ© o anfiteatro para ter uma vista panorÃƒÂ¢mica do lago e das aves locais.',
     atividades: [
       {
         tipo: 'descanso',
@@ -22,18 +22,18 @@ export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
         longitude: -81.3792,
         local: '274 Cranes Roost Blvd, Altamonte Springs, FL',
         descricao:
-          'Caminhada leve por trilha pavimentada com Ã¡rvores altas, decks e vista para o lago.',
+          'Caminhada leve por trilha pavimentada com ÃƒÂ¡rvores altas, decks e vista para o lago.',
       },
       {
         tipo: 'descanso',
-        titulo: 'CafÃ© no Uptown Altamonte',
+        titulo: 'CafÃƒÂ© no Uptown Altamonte',
         regiao: 'Altamonte Springs',
         area: 'Altamonte Springs',
         latitude: 28.6651,
         longitude: -81.3775,
         local: 'Uptown Altamonte, Altamonte Springs, FL',
         descricao:
-          'CafÃ©s tranquilos com vista para o lago, perfeitos para comeÃ§ar o dia relaxando.',
+          'CafÃƒÂ©s tranquilos com vista para o lago, perfeitos para comeÃƒÂ§ar o dia relaxando.',
       },
     ],
   },
@@ -44,9 +44,9 @@ export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
     referencia: 'Winter Park',
     descricaoRegiao:
       'Durante a tarde: Ruas arborizadas, lagos e parques com clima ameno.\n' +
-      'AtraÃ§Ãµes: Lake Virginia e Central Park com Ã¡reas gramadas, passarelas e sombra natural.\n' +
-      'Descanso e alimentaÃ§Ã£o: CafÃ©s e bancos prÃ³ximos Ã  Park Avenue.\n' +
-      'Dica: Caminhe pela trilha lateral atrÃ¡s das lojinhas e sente-se perto da Ã¡gua.',
+      'AtraÃƒÂ§ÃƒÂµes: Lake Virginia e Central Park com ÃƒÂ¡reas gramadas, passarelas e sombra natural.\n' +
+      'Descanso e alimentaÃƒÂ§ÃƒÂ£o: CafÃƒÂ©s e bancos prÃƒÂ³ximos ÃƒÂ  Park Avenue.\n' +
+      'Dica: Caminhe pela trilha lateral atrÃƒÂ¡s das lojinhas e sente-se perto da ÃƒÂ¡gua.',
     atividades: [
       {
         tipo: 'descanso',
@@ -57,11 +57,11 @@ export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
         longitude: -81.3484,
         local: 'Rollins College area, Winter Park, FL',
         descricao:
-          'Ãreas gramadas e passarelas com vista para casas histÃ³ricas e presenÃ§a de patos.',
+          'ÃƒÂreas gramadas e passarelas com vista para casas histÃƒÂ³ricas e presenÃƒÂ§a de patos.',
       },
       {
         tipo: 'descanso',
-        titulo: 'Central Park no centro histÃ³rico',
+        titulo: 'Central Park no centro histÃƒÂ³rico',
         regiao: 'Winter Park',
         area: 'Winter Park',
         latitude: 28.5954,
@@ -79,9 +79,9 @@ export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
     referencia: 'Celebration',
     descricaoRegiao:
       'Durante a noite: Ruas iluminadas e clima acolhedor.\n' +
-      'AtraÃ§Ãµes: CalÃ§adÃ£o ao redor do lago e Ã¡rea central com lojinhas.\n' +
-      'Descanso e alimentaÃ§Ã£o: Sorveterias e cafÃ©s com mesinhas externas.\n' +
-      'Dica: Sente-se na Front Street e aprecie o reflexo das luzes na Ã¡gua.',
+      'AtraÃƒÂ§ÃƒÂµes: CalÃƒÂ§adÃƒÂ£o ao redor do lago e ÃƒÂ¡rea central com lojinhas.\n' +
+      'Descanso e alimentaÃƒÂ§ÃƒÂ£o: Sorveterias e cafÃƒÂ©s com mesinhas externas.\n' +
+      'Dica: Sente-se na Front Street e aprecie o reflexo das luzes na ÃƒÂ¡gua.',
     atividades: [
       {
         tipo: 'descanso',
@@ -92,18 +92,18 @@ export const blocosNaturezaParquesAbertos: TurnoDescansoRegiao[] = [
         longitude: -81.5392,
         local: '631 Sycamore St, Celebration, FL',
         descricao:
-          'CalÃ§adÃ£o iluminado com bancos voltados para a Ã¡gua e clima tranquilo.',
+          'CalÃƒÂ§adÃƒÂ£o iluminado com bancos voltados para a ÃƒÂ¡gua e clima tranquilo.',
       },
       {
         tipo: 'descanso',
-        titulo: 'Centrinho e sorveteria Ã  noite',
+        titulo: 'Centrinho e sorveteria ÃƒÂ  noite',
         regiao: 'Celebration',
         area: 'Celebration',
         latitude: 28.3183,
         longitude: -81.5436,
         local: 'Front St, Celebration, FL',
         descricao:
-          'Mesas externas e lojinhas iluminadas, Ã³timo para encerrar o dia.',
+          'Mesas externas e lojinhas iluminadas, ÃƒÂ³timo para encerrar o dia.',
       },
     ],
   },

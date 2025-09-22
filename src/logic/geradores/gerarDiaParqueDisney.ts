@@ -1,4 +1,4 @@
-﻿// src/logic/geradores/gerarDiaParqueDisney.ts
+﻿ï»¿// src/logic/geradores/gerarDiaParqueDisney.ts
 
 import { Dia } from '@/logic/types/dia';
 import { TurnoDia } from '@/logic/types/turno';
@@ -17,7 +17,7 @@ import { gerarAtracoesNoiteComFogos } from './gerarAtracoesNoiteComFogos';
 
 import { dicasParquesDisney } from '../blocos/Disney/dicasParquesDisney';
 
-// Importando Ã¡reas da Disney
+// Importando ÃƒÂ¡reas da Disney
 import { Adventureland } from './Areas/Adventureland';
 import { Fantasyland } from './Areas/Fantasyland';
 import { LibertySquare } from './Areas/LibertySquare';
@@ -42,7 +42,7 @@ import { WorldShowcase } from './Areas/WorldShowcase';
 import { AnimationCourtyard } from './Areas/AnimationCourtyard';
 import { SunsetBoulevard } from './Areas/SunsetBoulevard';
 
-// Mapa de Ã¡reas Disney
+// Mapa de ÃƒÂ¡reas Disney
 const mapaAreasDisney: Record<string, any> = {
   Adventureland,
   Fantasyland,
@@ -69,11 +69,11 @@ const mapaAreasDisney: Record<string, any> = {
   SunsetBoulevard,
 };
 
-// Mapa de nomes alternativos para Ã¡reas
+// Mapa de nomes alternativos para ÃƒÂ¡reas
 const mapaAreasDisneyNomes: Record<string, string> = {
    'main street': 'MainStreet',
   'main street usa': 'MainStreet',
-  'main street u.s.a.': 'MainStreet',  // <--- JÃ¡ existe, mas podemos reforÃ§ar
+  'main street u.s.a.': 'MainStreet',  // <--- JÃƒÂ¡ existe, mas podemos reforÃƒÂ§ar
   'main street, u.s.a.': 'MainStreet', // <--- ADICIONAR ESTA LINHA
  'adventureland': 'Adventureland',
   'fantasyland': 'Fantasyland',
@@ -100,7 +100,7 @@ const mapaAreasDisneyNomes: Record<string, string> = {
   'sunset boulevard': 'SunsetBoulevard',
 };
 
-// FunÃ§Ã£o para normalizar Ã¡reas
+// FunÃƒÂ§ÃƒÂ£o para normalizar ÃƒÂ¡reas
 function normalizarArea(nome: string): string {
   return mapaAreasDisneyNomes[nome.toLowerCase().trim()] ?? nome;
 }
@@ -131,7 +131,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     const dia = parkisheiro.roteiroFinal?.find(d => d.id === `dia${numero}`);
     const perfilAtracao = dia?.perfilAtracoes?.valor;
     if (!perfilAtracao) {
-      throw new Error("VocÃª precisa escolher um perfil de atraÃ§Ãµes!");
+      throw new Error("VocÃƒÂª precisa escolher um perfil de atraÃƒÂ§ÃƒÂµes!");
     }
 
     const nomeOriginal = dia?.nomeParque ?? 'Magic Kingdom';
@@ -146,7 +146,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
       'magik kingdom': 'Magic Kingdom',
       'mk park': 'Magic Kingdom',
       'magick': 'Magic Kingdom',
-      'mÃ¡gic kingdom': 'Magic Kingdom',
+      'mÃƒÂ¡gic kingdom': 'Magic Kingdom',
       // EPCOT
       'epcot': 'EPCOT',
       'epcot center': 'EPCOT',
@@ -156,7 +156,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
       'epcot park center': 'EPCOT',
       'epcot center park': 'EPCOT',
       'epcotc': 'EPCOT',
-      'Ã©pcot': 'EPCOT',
+      'ÃƒÂ©pcot': 'EPCOT',
       // HOLLYWOOD STUDIOS
       'hollywood studios': 'Hollywood Studios',
       'hollywood studio': 'Hollywood Studios',
@@ -195,7 +195,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     const transporteIda: any[] = [];
     const transporteVolta: any[] = [];
 
-    // ATRAÃ‡Ã•ES
+    // ATRAÃƒâ€¡Ãƒâ€¢ES
     const atracoesManhaPorArea = gerarAtracoesDisneyPorPerfilFluxo('manha', parque, perfilAtracao);
     const atracoesTardePorArea = gerarAtracoesDisneyPorPerfilFluxo('tarde', parque, perfilAtracao);
 
@@ -250,14 +250,14 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     data.setDate(data.getDate() + numero - 1);
     const dataIso = format(data, 'yyyy-MM-dd');
 
-    // Montar Ã¡reas e atraÃ§Ãµes
+    // Montar ÃƒÂ¡reas e atraÃƒÂ§ÃƒÂµes
     const montarAtividadesPorTurno = (atracoesPorArea: { area: string; atracoes: any[] }[]) =>
       atracoesPorArea.flatMap(({ area, atracoes }) => {
         const areaNormalizada = normalizarArea(area);
         const areaModule = mapaAreasDisney[areaNormalizada];
-        const descricaoArea = areaModule?.descricao ?? `Bem-vindo Ã  Ã¡rea ${area}`;
+        const descricaoArea = areaModule?.descricao ?? `Bem-vindo ÃƒÂ  ÃƒÂ¡rea ${area}`;
         return [
-          { titulo: `Ãrea: ${area}`, descricao: descricaoArea, tipo: 'informativa' },
+          { titulo: `ÃƒÂrea: ${area}`, descricao: descricaoArea, tipo: 'informativa' },
           ...atracoes,
         ];
       });
@@ -265,9 +265,9 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     const blocoDicas = dicasParquesDisney[parque] || dicasParquesDisney["Magic Kingdom"];
 
     const turnos: TurnoDia[] = [
-      { titulo: 'Transporte atÃ© o Parque', atividades: transporteIda },
+      { titulo: 'Transporte atÃƒÂ© o Parque', atividades: transporteIda },
       {
-        titulo: 'ManhÃ£',
+        titulo: 'ManhÃƒÂ£',
         atividades: [
           {
             titulo: 'Dicas do dia',
@@ -275,17 +275,17 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
             descricao:
               (blocoDicas.resumo ? `${blocoDicas.resumo}\n` : '') +
               (blocoDicas.chegada ? `${blocoDicas.chegada}\n` : '') +
-              `EstratÃ©gia: ${blocoDicas.estrategia}\n` +
-              `ManhÃ£: ${blocoDicas.manha}\n` +
+              `EstratÃƒÂ©gia: ${blocoDicas.estrategia}\n` +
+              `ManhÃƒÂ£: ${blocoDicas.manha}\n` +
               `Genie+: ${blocoDicas.genie}\n` +
-              `RefeiÃ§Ã£o: ${blocoDicas.refeicao}\n` +
+              `RefeiÃƒÂ§ÃƒÂ£o: ${blocoDicas.refeicao}\n` +
               `Tarde: ${blocoDicas.tarde}\n` +
               `Fogos: ${blocoDicas.fogos}\n` +
               `Perfil: ${blocoDicas.perfil}\n` +
               `App: ${blocoDicas.app}\n` +
               `Eventos: ${blocoDicas.eventos}\n` +
               `Local: ${blocoDicas.local}\n` +
-              `RecomendaÃ§Ã£o: ${blocoDicas.recomendacao}\n` +
+              `RecomendaÃƒÂ§ÃƒÂ£o: ${blocoDicas.recomendacao}\n` +
               `Dica: ${blocoDicas.dica}`,
             tipo: 'informativa',
           },
@@ -301,7 +301,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
         ],
       },
       { titulo: 'Noite', atividades: [...jantar, ...atracoesNoite] },
-      { titulo: `Volta para a RegiÃ£o â€“ ${regiaoHospedagem?.nome ?? 'Hospedagem'}`, atividades: transporteVolta },
+      { titulo: `Volta para a RegiÃƒÂ£o Ã¢â‚¬â€œ ${regiaoHospedagem?.nome ?? 'Hospedagem'}`, atividades: transporteVolta },
     ];
 
     return {
@@ -310,18 +310,18 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
       numero,
       data: dataIso,
       cabecalho: {
-        titulo: 'Dia de Parque â€“ Disney',
+        titulo: 'Dia de Parque Ã¢â‚¬â€œ Disney',
         imagem: 'disney.jpg',
         clima: { temperatura: 29, condicao: 'Ensolarado', icone: 'sunny' },
       },
-      objetivo: 'Aproveite um dia completo em um parque da Disney com atraÃ§Ãµes personalizadas para seu perfil.',
+      objetivo: 'Aproveite um dia completo em um parque da Disney com atraÃƒÂ§ÃƒÂµes personalizadas para seu perfil.',
       turnos,
       dicas: [],
       regiao: {
         nome: parque,
         descricao: `${parque}, ${baseLat && baseLon ? `${calcDistanciaKm(baseLat, baseLon, latitudeParque, longitudeParque).toFixed(2)} km` : ''}`,
       },
-      perfilAtracoes: { valor: perfilAtracao, nome: 'Perfil de atraÃ§Ãµes personalizado', icone: 'ðŸŽ¢' },
+      perfilAtracoes: { valor: perfilAtracao, nome: 'Perfil de atraÃƒÂ§ÃƒÂµes personalizado', icone: 'Ã°Å¸Å½Â¢' },
       localizacaoFogos: primeiraAtracaoNoite || null,
     };
   } catch (erro) {
@@ -336,7 +336,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
         imagem: 'disney.jpg',
         clima: { temperatura: 0, condicao: 'Indefinido', icone: 'error' },
       },
-      objetivo: 'NÃ£o foi possÃ­vel gerar o conteÃºdo deste dia.',
+      objetivo: 'NÃƒÂ£o foi possÃƒÂ­vel gerar o conteÃƒÂºdo deste dia.',
       turnos: [],
       dicas: [],
       regiao: { nome: 'Desconhecido', descricao: 'Desconhecido' },

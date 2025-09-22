@@ -1,18 +1,18 @@
-﻿export interface EstiloRefeicao {
+﻿ï»¿export interface EstiloRefeicao {
   perfil: string; // identificador
-  descricao: string; // explicaÃ§Ã£o usada nos cards
-  preco: '$' | '$$' | '$$$'; // nÃ­vel de gasto
+  descricao: string; // explicaÃƒÂ§ÃƒÂ£o usada nos cards
+  preco: '$' | '$$' | '$$$'; // nÃƒÂ­vel de gasto
 }
 
 export const perfisRefeicao: EstiloRefeicao[] = [
   {
     perfil: 'Economico',
-    descricao: 'OpÃ§Ãµes acessÃ­veis com bom custo-benefÃ­cio',
+    descricao: 'OpÃƒÂ§ÃƒÂµes acessÃƒÂ­veis com bom custo-benefÃƒÂ­cio',
     preco: '$',
   },
   {
     perfil: 'Tematico',
-    descricao: 'ExperiÃªncia imersiva com ambientaÃ§Ã£o temÃ¡tica',
+    descricao: 'ExperiÃƒÂªncia imersiva com ambientaÃƒÂ§ÃƒÂ£o temÃƒÂ¡tica',
     preco: '$$$',
   },
   {
@@ -22,12 +22,12 @@ export const perfisRefeicao: EstiloRefeicao[] = [
   },
   {
     perfil: 'Saudavel',
-    descricao: 'AlimentaÃ§Ã£o leve e equilibrada',
+    descricao: 'AlimentaÃƒÂ§ÃƒÂ£o leve e equilibrada',
     preco: '$$',
   },
   {
     perfil: 'ClassicoAmericano',
-    descricao: 'HambÃºrgueres, fritas, refrigerante e similares',
+    descricao: 'HambÃƒÂºrgueres, fritas, refrigerante e similares',
     preco: '$',
   },
 ];

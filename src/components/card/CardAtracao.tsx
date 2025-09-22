@@ -1,9 +1,9 @@
-﻿// src/components/card/CardAtracao.tsx
+﻿ï»¿// src/components/card/CardAtracao.tsx
 import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AtividadeDia } from '@/logic/types/atividade';
-import YoutubeInline from '@/logic/media/AtracaoVideo'; // âœ… caminho correto
+import YoutubeInline from '@/logic/media/AtracaoVideo'; // Ã¢Å“â€¦ caminho correto
 
 type Props = { atracao: AtividadeDia };
 
@@ -19,7 +19,7 @@ export const CardAtracao = ({ atracao }: Props) => {
     idadeRecomendada,
   } = atracao as any;
 
-  // tenta achar um campo de vÃ­deo
+  // tenta achar um campo de vÃƒÂ­deo
   const videoUrl: string =
     (atracao as any).videoUrl ||
     (atracao as any).youtube ||
@@ -42,8 +42,8 @@ export const CardAtracao = ({ atracao }: Props) => {
         : null;
     idadeTexto =
       matchNum && matchNum[0]
-        ? `ðŸ‘¶ Recomendado: a partir de ${matchNum[0]} anos`
-        : `ðŸ‘¶ Recomendado: ${idadeRecomendada}`;
+        ? `Ã°Å¸â€˜Â¶ Recomendado: a partir de ${matchNum[0]} anos`
+        : `Ã°Å¸â€˜Â¶ Recomendado: ${idadeRecomendada}`;
   }
 
   const pulse = useRef(new Animated.Value(1)).current;
@@ -92,7 +92,7 @@ export const CardAtracao = ({ atracao }: Props) => {
 
       <View style={styles.header}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-          {titulo ?? 'Sem tÃ­tulo'}
+          {titulo ?? 'Sem tÃƒÂ­tulo'}
         </Text>
 
         <View style={styles.actions}>
@@ -102,7 +102,7 @@ export const CardAtracao = ({ atracao }: Props) => {
               numberOfLines={1}
               adjustsFontSizeToFit
             >
-              âœ¨ AtraÃ§Ã£o ImperdÃ­vel âœ¨
+              Ã¢Å“Â¨ AtraÃƒÂ§ÃƒÂ£o ImperdÃƒÂ­vel Ã¢Å“Â¨
             </Animated.Text>
           )}
 
@@ -113,7 +113,7 @@ export const CardAtracao = ({ atracao }: Props) => {
               activeOpacity={0.8}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               accessibilityRole="button"
-              accessibilityLabel={showVideo ? 'Fechar vÃ­deo' : 'Abrir vÃ­deo'}
+              accessibilityLabel={showVideo ? 'Fechar vÃƒÂ­deo' : 'Abrir vÃƒÂ­deo'}
             >
               <Ionicons
                 name={showVideo ? 'close-circle' : 'logo-youtube'}
@@ -125,7 +125,7 @@ export const CardAtracao = ({ atracao }: Props) => {
         </View>
       </View>
 
-      {/* vÃ­deo opcional (abre/fecha no Ã­cone) */}
+      {/* vÃƒÂ­deo opcional (abre/fecha no ÃƒÂ­cone) */}
       {hasVideo && showVideo && (
         <View style={styles.videoWrap}>
           <YoutubeInline videoUrl={videoUrl} widthPct={0.92} />
@@ -136,17 +136,17 @@ export const CardAtracao = ({ atracao }: Props) => {
         {descricao ? <Text style={styles.texto}>{descricao}</Text> : null}
 
         {typeof alturaMinima === 'number' && alturaMinima > 0 && (
-          <Text style={styles.info}>ðŸ“ Altura mÃ­nima: {alturaMinima} cm</Text>
+          <Text style={styles.info}>Ã°Å¸â€œÂ Altura mÃƒÂ­nima: {alturaMinima} cm</Text>
         )}
 
         {(typeof tempoMedioFila === 'number' && tempoMedioFila > 0) ||
         (typeof filaAceitavel === 'number' && filaAceitavel > 0) ? (
           <View style={styles.filaLinha}>
             {typeof tempoMedioFila === 'number' && tempoMedioFila > 0 && (
-              <Text style={styles.info}>â³ Fila mÃ©dia: {tempoMedioFila} min</Text>
+              <Text style={styles.info}>Ã¢ÂÂ³ Fila mÃƒÂ©dia: {tempoMedioFila} min</Text>
             )}
             {typeof filaAceitavel === 'number' && filaAceitavel > 0 && (
-              <Text style={styles.info}>âœ… AceitÃ¡vel: {filaAceitavel} min</Text>
+              <Text style={styles.info}>Ã¢Å“â€¦ AceitÃƒÂ¡vel: {filaAceitavel} min</Text>
             )}
           </View>
         ) : null}

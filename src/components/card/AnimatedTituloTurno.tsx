@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+﻿ï»¿import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 
 type Props = { titulo: string };
@@ -17,7 +17,7 @@ const AnimatedTituloTurno = ({ titulo }: Props) => {
 
   return (
     <Animated.Text style={[styles.titulo, { opacity: brilho }]}>
-      âœ¨ {titulo.toUpperCase()} âœ¨
+      Ã¢Å“Â¨ {titulo.toUpperCase()} Ã¢Å“Â¨
     </Animated.Text>
   );
 };

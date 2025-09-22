@@ -1,4 +1,4 @@
-﻿// src/screens/inicio/InicioScreen.tsx
+﻿ï»¿// src/screens/inicio/InicioScreen.tsx
 import React from 'react';
 import {
   View,
@@ -16,9 +16,9 @@ import { Ionicons } from '@expo/vector-icons';
 import logoImg from '../../assets/imagens/logo4.png';
 import fraseImg from '../../assets/imagens/frase.png';
 
-// Padrões fixos (pedidos)
+// PadrÃµes fixos (pedidos)
 const PADRAO_LARGURA_BOTAO = 240;   // tamanho da "caixa azul"
-const PADRAO_PADDING_VERTICAL = 12; // altura do botão
+const PADRAO_PADDING_VERTICAL = 12; // altura do botÃ£o
 const PADRAO_FONT_SIZE = 14;        // tamanho do texto
 
 export default function InicioScreen() {
@@ -36,13 +36,13 @@ export default function InicioScreen() {
     >
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
-      {/* Topo: Logo (não clicável) + Frase */}
+      {/* Topo: Logo (nÃ£o clicÃ¡vel) + Frase */}
       <View style={styles.topArea}>
         <Image source={logoImg} style={styles.logo} resizeMode="contain" />
         <Image source={fraseImg} style={styles.frase} resizeMode="contain" />
       </View>
 
-      {/* Botões (posicionados mais embaixo) */}
+      {/* BotÃµes (posicionados mais embaixo) */}
       <View style={styles.botoesContainer}>
         <TouchableOpacity
           style={styles.botao}
@@ -64,12 +64,12 @@ export default function InicioScreen() {
           onPress={() => navigation.navigate('Login')}
           activeOpacity={0.9}
           accessibilityRole="button"
-          accessibilityLabel="Já sou Parkisheiro"
+          accessibilityLabel="JÃ¡ sou Parkisheiro"
         >
           <View style={styles.linhaBotao}>
             <Ionicons name="log-in-outline" size={18} color="#fff" style={styles.icone} />
             <Text style={styles.botaoTexto} allowFontScaling={false}>
-              Já sou Parkisheiro!
+              JÃ¡ sou Parkisheiro!
             </Text>
           </View>
         </TouchableOpacity>
@@ -103,12 +103,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  /* Botões posicionados para baixo */
+  /* BotÃµes posicionados para baixo */
   botoesContainer: {
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: 110, // desce os botões agora que o selo saiu
+    bottom: 110, // desce os botÃµes agora que o selo saiu
     alignItems: 'center',
     gap: 10,
   },

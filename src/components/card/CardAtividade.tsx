@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿ï»¿import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Atividade {
@@ -33,7 +33,7 @@ const CardAtividade: React.FC<Props> = ({ atividade, onEscolher }) => {
         <Text style={styles.descricao}>{atividade.descricao}</Text>
       )}
       {atividade.local && (
-        <Text style={styles.local}>ðŸ“ {atividade.local}</Text>
+        <Text style={styles.local}>Ã°Å¸â€œÂ {atividade.local}</Text>
       )}
       {atividade.tipo && (
         <Text style={styles.tipo}>Tipo: {atividade.tipo}</Text>

@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+﻿ï»¿import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -6,7 +6,7 @@ export default function SplashScreen({ navigation }: any) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.replace('Inicio');
-    }, 1200); // â±ï¸ 1.2 segundos
+    }, 1200); // Ã¢ÂÂ±Ã¯Â¸Â 1.2 segundos
     return () => clearTimeout(timeout);
   }, []);
 
@@ -24,11 +24,11 @@ export default function SplashScreen({ navigation }: any) {
           style={styles.logo}
           resizeMode="contain"
         />
-        {/* ðŸ”„ Spinner reduzido para 2/3 */}
+        {/* Ã°Å¸â€â€ž Spinner reduzido para 2/3 */}
         <ActivityIndicator
           size="large"
           color="#fff"
-          style={[styles.loading, { transform: [{ scale: 2 }] }]} // 3 â†’ 2
+          style={[styles.loading, { transform: [{ scale: 2 }] }]} // 3 Ã¢â€ â€™ 2
         />
       </View>
     </LinearGradient>

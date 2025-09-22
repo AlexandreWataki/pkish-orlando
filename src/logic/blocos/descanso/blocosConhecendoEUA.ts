@@ -1,4 +1,4 @@
-﻿// src/logic/blocos/descanso/blocosConhecendoEUA.ts
+﻿ï»¿// src/logic/blocos/descanso/blocosConhecendoEUA.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
@@ -8,9 +8,9 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Celebration',
     descricaoRegiao:
-      'Durante a manhÃ£: Comunidade charmosa inspirada em cidades americanas do inÃ­cio do sÃ©culo XX.\n' +
-      'Lojas: General Store com produtos vintage e lembranÃ§as tÃ­picas.\n' +
-      'AlimentaÃ§Ã£o e descanso: PraÃ§a central e bancos Ã  beira do lago para cafÃ© e fotos.\n' +
+      'Durante a manhÃƒÂ£: Comunidade charmosa inspirada em cidades americanas do inÃƒÂ­cio do sÃƒÂ©culo XX.\n' +
+      'Lojas: General Store com produtos vintage e lembranÃƒÂ§as tÃƒÂ­picas.\n' +
+      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: PraÃƒÂ§a central e bancos ÃƒÂ  beira do lago para cafÃƒÂ© e fotos.\n' +
       'Dica: Caminhe pela trilha do lago e termine na General Store para provar as balas artesanais.',
     atividades: [
       {
@@ -33,7 +33,7 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
         longitude: -81.5447,
         local: 'Market St, Celebration, FL',
         descricao:
-          'Doces clÃ¡ssicos, lembranÃ§as e artigos nostÃ¡lgicos com temÃ¡tica americana.',
+          'Doces clÃƒÂ¡ssicos, lembranÃƒÂ§as e artigos nostÃƒÂ¡lgicos com temÃƒÂ¡tica americana.',
       },
     ],
   },
@@ -43,9 +43,9 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
     horarioFim: '19:00',
     referencia: 'International Drive',
     descricaoRegiao:
-      'Durante a tarde: Clima vibrante e moderno no coraÃ§Ã£o turÃ­stico de Orlando.\n' +
-      'Lojas: Inclui a retrÃ´ â€œ5 & Dime Americanaâ€ com doces e souvenires vintage.\n' +
-      'AlimentaÃ§Ã£o e descanso: Bancos e cafÃ©s no ICON Park para pausas confortÃ¡veis.\n' +
+      'Durante a tarde: Clima vibrante e moderno no coraÃƒÂ§ÃƒÂ£o turÃƒÂ­stico de Orlando.\n' +
+      'Lojas: Inclui a retrÃƒÂ´ Ã¢â‚¬Å“5 & Dime AmericanaÃ¢â‚¬Â com doces e souvenires vintage.\n' +
+      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos e cafÃƒÂ©s no ICON Park para pausas confortÃƒÂ¡veis.\n' +
       'Dica: Foto com a bandeira americana na entrada do ICON Park.',
     atividades: [
       {
@@ -57,18 +57,18 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
         longitude: -81.4692,
         local: 'ICON Park, International Dr, Orlando, FL',
         descricao:
-          'Ãrea com roda-gigante â€œThe Wheelâ€, lojas e ambiente descontraÃ­do.',
+          'ÃƒÂrea com roda-gigante Ã¢â‚¬Å“The WheelÃ¢â‚¬Â, lojas e ambiente descontraÃƒÂ­do.',
       },
       {
         tipo: 'compras',
-        titulo: 'Loja retrÃ´ â€œ5 & Dime Americanaâ€',
+        titulo: 'Loja retrÃƒÂ´ Ã¢â‚¬Å“5 & Dime AmericanaÃ¢â‚¬Â',
         regiao: 'International Drive',
         area: 'International Drive',
         latitude: 28.4378,
         longitude: -81.4693,
         local: 'ICON Park, International Dr, Orlando, FL',
         descricao:
-          'Doces antigos, brinquedos clÃ¡ssicos e souvenires patriÃ³ticos.',
+          'Doces antigos, brinquedos clÃƒÂ¡ssicos e souvenires patriÃƒÂ³ticos.',
       },
     ],
   },
@@ -78,14 +78,14 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
     horarioFim: '23:59',
     referencia: 'Downtown Orlando',
     descricaoRegiao:
-      'Durante a noite: Mistura de histÃ³ria e urbanidade com iluminaÃ§Ã£o especial.\n' +
-      'Lojas: â€œU.S. Flags & Emblemsâ€ com bandeiras e lembranÃ§as nacionais.\n' +
-      'AlimentaÃ§Ã£o e descanso: Lake Eola Park com trilhas iluminadas e vista do skyline.\n' +
+      'Durante a noite: Mistura de histÃƒÂ³ria e urbanidade com iluminaÃƒÂ§ÃƒÂ£o especial.\n' +
+      'Lojas: Ã¢â‚¬Å“U.S. Flags & EmblemsÃ¢â‚¬Â com bandeiras e lembranÃƒÂ§as nacionais.\n' +
+      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Lake Eola Park com trilhas iluminadas e vista do skyline.\n' +
       'Dica: Foto no anfiteatro com o reflexo das luzes da cidade.',
     atividades: [
       {
         tipo: 'descanso',
-        titulo: 'Lake Eola Park Ã  noite',
+        titulo: 'Lake Eola Park ÃƒÂ  noite',
         regiao: 'Downtown Orlando',
         area: 'Downtown Orlando',
         latitude: 28.5449,
@@ -96,7 +96,7 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'compras',
-        titulo: 'Loja patriÃ³tica â€œU.S. Flags & Emblemsâ€',
+        titulo: 'Loja patriÃƒÂ³tica Ã¢â‚¬Å“U.S. Flags & EmblemsÃ¢â‚¬Â',
         regiao: 'Downtown Orlando',
         area: 'Downtown Orlando',
         latitude: 28.5555,
@@ -110,8 +110,8 @@ export const blocosConhecendoEUA: TurnoDescansoRegiao[] = [
 ];
 
 export const perfilConhecendoEUA = {
-  icone: 'ðŸª–',
+  icone: 'Ã°Å¸Âªâ€“',
   nome: 'Conhecendo os EUA',
   descricao:
-    'Locais histÃ³ricos, memoriais e bairros tÃ­picos que representam a identidade dos Estados Unidos.',
+    'Locais histÃƒÂ³ricos, memoriais e bairros tÃƒÂ­picos que representam a identidade dos Estados Unidos.',
 };

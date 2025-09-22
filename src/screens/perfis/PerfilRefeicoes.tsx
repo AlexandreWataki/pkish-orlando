@@ -1,4 +1,4 @@
-﻿// src/screens/perfis/PerfilRefeicoesScreen.tsx
+﻿ï»¿// src/screens/perfis/PerfilRefeicoesScreen.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -15,62 +15,62 @@ type Opcao = { nome: string; valor: string; descricao: JSX.Element };
 
 const opcoes: Opcao[] = [
   {
-    nome: 'ðŸ’° EconÃ´mico â€“ RÃ¡pido e barato',
+    nome: 'Ã°Å¸â€™Â° EconÃƒÂ´mico Ã¢â‚¬â€œ RÃƒÂ¡pido e barato',
     valor: 'Economico',
     descricao: (
       <Text>
-        Para quem quer economizar e ganhar tempo, sem abrir mÃ£o de comer bem. Experimente o clÃ¡ssico{' '}
-        <Text style={{ fontWeight: 'bold' }}>Five Guys</Text> (hambÃºrguer artesanal suculento), o prÃ¡tico{' '}
-        <Text style={{ fontWeight: 'bold' }}>Panda Express</Text> (asiÃ¡tico rÃ¡pido e saboroso) ou o conveniente{' '}
-        <Text style={{ fontWeight: 'bold' }}>Walmart Deli</Text> (refeiÃ§Ãµes prontas e econÃ´micas).
+        Para quem quer economizar e ganhar tempo, sem abrir mÃƒÂ£o de comer bem. Experimente o clÃƒÂ¡ssico{' '}
+        <Text style={{ fontWeight: 'bold' }}>Five Guys</Text> (hambÃƒÂºrguer artesanal suculento), o prÃƒÂ¡tico{' '}
+        <Text style={{ fontWeight: 'bold' }}>Panda Express</Text> (asiÃƒÂ¡tico rÃƒÂ¡pido e saboroso) ou o conveniente{' '}
+        <Text style={{ fontWeight: 'bold' }}>Walmart Deli</Text> (refeiÃƒÂ§ÃƒÂµes prontas e econÃƒÂ´micas).
       </Text>
     ),
   },
   {
-    nome: 'ðŸŽ  TemÃ¡tico â€“ ExperiÃªncia imersiva',
+    nome: 'Ã°Å¸Å½Â  TemÃƒÂ¡tico Ã¢â‚¬â€œ ExperiÃƒÂªncia imersiva',
     valor: 'Tematico',
     descricao: (
       <Text>
-        Perfeito para quem busca comer em ambientes cenogrÃ¡ficos e divertidos. Visite o prÃ©-histÃ³rico{' '}
-        <Text style={{ fontWeight: 'bold' }}>T-Rex CafÃ©</Text> (dinossauros e efeitos especiais), o retrÃ´{' '}
-        <Text style={{ fontWeight: 'bold' }}>Sci-Fi Dine-In</Text> (cinema drive-in dos anos 50) ou o mÃ¡gico{' '}
+        Perfeito para quem busca comer em ambientes cenogrÃƒÂ¡ficos e divertidos. Visite o prÃƒÂ©-histÃƒÂ³rico{' '}
+        <Text style={{ fontWeight: 'bold' }}>T-Rex CafÃƒÂ©</Text> (dinossauros e efeitos especiais), o retrÃƒÂ´{' '}
+        <Text style={{ fontWeight: 'bold' }}>Sci-Fi Dine-In</Text> (cinema drive-in dos anos 50) ou o mÃƒÂ¡gico{' '}
         <Text style={{ fontWeight: 'bold' }}>Be Our Guest</Text> (castelo da Bela e a Fera).
       </Text>
     ),
   },
   {
-    nome: 'ðŸª‘ Conforto â€“ Ambiente calmo',
+    nome: 'Ã°Å¸Âªâ€˜ Conforto Ã¢â‚¬â€œ Ambiente calmo',
     valor: 'Conforto',
     descricao: (
       <Text>
-        Ideal para uma pausa relaxante com pratos bem servidos. ConheÃ§a o acolhedor{' '}
-        <Text style={{ fontWeight: 'bold' }}>Olive Garden</Text> (massas e pÃ£es Ã  vontade), o moderno{' '}
-        <Text style={{ fontWeight: 'bold' }}>First Watch</Text> (brunch leve e saudÃ¡vel) ou o famoso{' '}
-        <Text style={{ fontWeight: 'bold' }}>The Cheesecake Factory</Text> (menu variado e sobremesas incrÃ­veis).
+        Ideal para uma pausa relaxante com pratos bem servidos. ConheÃƒÂ§a o acolhedor{' '}
+        <Text style={{ fontWeight: 'bold' }}>Olive Garden</Text> (massas e pÃƒÂ£es ÃƒÂ  vontade), o moderno{' '}
+        <Text style={{ fontWeight: 'bold' }}>First Watch</Text> (brunch leve e saudÃƒÂ¡vel) ou o famoso{' '}
+        <Text style={{ fontWeight: 'bold' }}>The Cheesecake Factory</Text> (menu variado e sobremesas incrÃƒÂ­veis).
       </Text>
     ),
   },
   {
-    nome: 'ðŸŒ± SaudÃ¡vel â€“ Leve e equilibrado',
+    nome: 'Ã°Å¸Å’Â± SaudÃƒÂ¡vel Ã¢â‚¬â€œ Leve e equilibrado',
     valor: 'Saudavel',
     descricao: (
       <Text>
-        Para manter a alimentaÃ§Ã£o leve e saborosa durante o passeio. Visite o buffet fresco do{' '}
-        <Text style={{ fontWeight: 'bold' }}>Sweet Tomatoes</Text> (saladas e sopas Ã  vontade), o completo{' '}
-        <Text style={{ fontWeight: 'bold' }}>Whole Foods Market</Text> (orgÃ¢nicos e comidas prontas) ou o acolhedor{' '}
+        Para manter a alimentaÃƒÂ§ÃƒÂ£o leve e saborosa durante o passeio. Visite o buffet fresco do{' '}
+        <Text style={{ fontWeight: 'bold' }}>Sweet Tomatoes</Text> (saladas e sopas ÃƒÂ  vontade), o completo{' '}
+        <Text style={{ fontWeight: 'bold' }}>Whole Foods Market</Text> (orgÃƒÂ¢nicos e comidas prontas) ou o acolhedor{' '}
         <Text style={{ fontWeight: 'bold' }}>Freshii</Text> (bowls e wraps naturais).
       </Text>
     ),
   },
   {
-    nome: 'ðŸ” ClÃ¡ssico â€“ HambÃºrguer e fritas',
+    nome: 'Ã°Å¸Ââ€ ClÃƒÂ¡ssico Ã¢â‚¬â€œ HambÃƒÂºrguer e fritas',
     valor: 'Americano',
     descricao: (
       <Text>
         Para sentir o verdadeiro sabor dos EUA em cada mordida. Prove o famoso{' '}
-        <Text style={{ fontWeight: 'bold' }}>Shake Shack</Text> (hambÃºrguer com batata crinkle), o vintage{' '}
+        <Text style={{ fontWeight: 'bold' }}>Shake Shack</Text> (hambÃƒÂºrguer com batata crinkle), o vintage{' '}
         <Text style={{ fontWeight: 'bold' }}>Johnny Rockets</Text> (lanchonete estilo anos 50) ou o popular{' '}
-        <Text style={{ fontWeight: 'bold' }}>Wendyâ€™s</Text> (clÃ¡ssico fast-food americano).
+        <Text style={{ fontWeight: 'bold' }}>WendyÃ¢â‚¬â„¢s</Text> (clÃƒÂ¡ssico fast-food americano).
       </Text>
     ),
   },
@@ -89,7 +89,7 @@ export default function PerfilRefeicoesScreen() {
     // usar coordenadas de Orlando para evitar erro de geocoding
     buscarClima('28.5383,-81.3792').then(setClima);
 
-    // reidrata opÃ§Ã£o salva (se houver)
+    // reidrata opÃƒÂ§ÃƒÂ£o salva (se houver)
     const salvo = parkisheiroAtual?.perfis?.refeicoes?.perfil;
     if (salvo && typeof salvo === 'string') {
       const idx = opcoes.findIndex(o => o.valor === salvo);
@@ -104,7 +104,7 @@ export default function PerfilRefeicoesScreen() {
     salvarPerfil('refeicoes', { perfil: valor });
   }, [selecionado, salvarPerfil]);
 
-  // salva ao sair da tela tambÃ©m
+  // salva ao sair da tela tambÃƒÂ©m
   useFocusEffect(
     useCallback(() => {
       return () => {
@@ -118,7 +118,7 @@ export default function PerfilRefeicoesScreen() {
   const handleAvancar = async () => {
     if (selecionado === null) return;
 
-    // garante persistÃªncia antes de navegar
+    // garante persistÃƒÂªncia antes de navegar
     const valor = opcoes[selecionado].valor;
     await salvarPerfil('refeicoes', { perfil: valor });
 
@@ -151,14 +151,14 @@ export default function PerfilRefeicoesScreen() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}Â°C` : '28Â°C'}
+          temperatura={clima?.temp ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.cardPergunta}>
-          <Text style={styles.pergunta}>ðŸ½ï¸ Qual seu estilo de refeiÃ§Ã£o?</Text>
+          <Text style={styles.pergunta}>Ã°Å¸ÂÂ½Ã¯Â¸Â Qual seu estilo de refeiÃƒÂ§ÃƒÂ£o?</Text>
         </View>
 
         {opcoes.map((opcao, index) => (

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿ï»¿import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   icone?: string;
 };
 
-export default function BotaoMenu({ texto, onPress, icone = 'âž¡ï¸' }: Props) {
+export default function BotaoMenu({ texto, onPress, icone = 'Ã¢Å¾Â¡Ã¯Â¸Â' }: Props) {
   return (
     <TouchableOpacity style={styles.botao} onPress={onPress}>
       <Text style={styles.texto}>{icone} {texto}</Text>

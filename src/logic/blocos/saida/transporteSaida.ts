@@ -1,27 +1,27 @@
-﻿// src/logic/blocos/saida/transporteSaida.ts
+﻿ï»¿// src/logic/blocos/saida/transporteSaida.ts
 
 const transporteSaida = {
-  titulo: 'âœˆï¸ Transporte e Procedimentos para o Aeroporto',
+  titulo: 'Ã¢Å“Ë†Ã¯Â¸Â Transporte e Procedimentos para o Aeroporto',
   tipo: 'informativa',
   itens: [],
   descricao: [
     'Antes de sair do hotel:',
-    'Confirme horÃ¡rio e terminal do voo',
-    'Tenha passaporte, passagem e comprovantes Ã  mÃ£o',
+    'Confirme horÃƒÂ¡rio e terminal do voo',
+    'Tenha passaporte, passagem e comprovantes ÃƒÂ  mÃƒÂ£o',
     'Checklist final da bagagem',
     'Se usar Uber ou Lyft:',
-    'Solicite com antecedÃªncia e acompanhe o tempo',
+    'Solicite com antecedÃƒÂªncia e acompanhe o tempo',
     'Esteja pronto na entrada do hotel',
     'Confirme nome e placa do motorista',
     'Se usar carro alugado:',
-    'Chegue com 3h de antecedÃªncia',
-    'Localize a devoluÃ§Ã£o da locadora',
+    'Chegue com 3h de antecedÃƒÂªncia',
+    'Localize a devoluÃƒÂ§ÃƒÂ£o da locadora',
     'Guarde comprovante e foto do carro',
     'No aeroporto:',
-    'VÃ¡ ao guichÃª para despacho de bagagem (se necessÃ¡rio)',
-    'Siga para seguranÃ§a (TSA) e portÃ£o de embarque',
+    'VÃƒÂ¡ ao guichÃƒÂª para despacho de bagagem (se necessÃƒÂ¡rio)',
+    'Siga para seguranÃƒÂ§a (TSA) e portÃƒÂ£o de embarque',
     'Dica final:',
-    'Use roupas confortÃ¡veis',
+    'Use roupas confortÃƒÂ¡veis',
     'Mantenha celular carregado e com internet',
   ].join('\n'),
 };

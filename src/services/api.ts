@@ -1,5 +1,5 @@
-﻿// src/services/api.ts
-// Base URL com prioridade para EXPO_PUBLIC_API_URL e autodetecÃ§Ã£o segura em dev.
+﻿ï»¿// src/services/api.ts
+// Base URL com prioridade para EXPO_PUBLIC_API_URL e autodetecÃƒÂ§ÃƒÂ£o segura em dev.
 import { Platform, NativeModules } from "react-native";
 import Constants from "expo-constants";
 
@@ -25,7 +25,7 @@ function getExtra(): ExtraType {
 
 const EXTRA = getExtra();
 
-// 1) ProduÃ§Ã£o (ou forÃ§ado): usa sempre a URL pÃºblica se existir
+// 1) ProduÃƒÂ§ÃƒÂ£o (ou forÃƒÂ§ado): usa sempre a URL pÃƒÂºblica se existir
 const PUBLIC_API_URL: string | undefined = EXTRA.EXPO_PUBLIC_API_URL;
 
 // 2) Dev opcional: host/porta via extra
@@ -78,7 +78,7 @@ function webSameOriginHost(): string | null {
 
 // ========= Montagem de candidatos =========
 function buildCandidates(): string[] {
-  // Se URL pÃºblica existir, usa sÃ³ ela (ideal para APK/produÃ§Ã£o).
+  // Se URL pÃƒÂºblica existir, usa sÃƒÂ³ ela (ideal para APK/produÃƒÂ§ÃƒÂ£o).
   if (PUBLIC_API_URL?.startsWith("http")) {
     return [PUBLIC_API_URL.replace(/\/+$/, "")];
   }
@@ -95,13 +95,13 @@ function buildCandidates(): string[] {
     list.push(`${scheme}://${host}:${p}`);
   };
 
-  // ForÃ§ar via extra (Ãºtil em dev)
+  // ForÃƒÂ§ar via extra (ÃƒÂºtil em dev)
   if (DEV_HOST) {
     add(DEV_HOST, Number(DEV_PORT), "http");
     add(DEV_HOST, Number(DEV_PORT), "https"); // caso tenha cert local
   }
 
-  // Web (mesmo host da pÃ¡gina)
+  // Web (mesmo host da pÃƒÂ¡gina)
   add(webSameOriginHost());
 
   // Expo/Metro (device real/LAN)
@@ -148,7 +148,7 @@ async function resolveBaseURLOnce(): Promise<string> {
 
   const candidates = buildCandidates();
 
-  // 1Âª rodada: testa /health
+  // 1Ã‚Âª rodada: testa /health
   for (const base of candidates) {
     try {
       const r = await fetchWithTimeout(
@@ -162,20 +162,20 @@ async function resolveBaseURLOnce(): Promise<string> {
         return RESOLVED_BASE;
       }
     } catch {
-      // ignora e tenta o prÃ³ximo
+      // ignora e tenta o prÃƒÂ³ximo
     }
   }
 
-  // 2Âª rodada: assume o primeiro candidato (para APIs sem /health)
+  // 2Ã‚Âª rodada: assume o primeiro candidato (para APIs sem /health)
   RESOLVED_BASE = (candidates[0] ?? "").replace(/\/+$/, "");
   if (!RESOLVED_BASE) {
-    throw new Error("NÃ£o foi possÃ­vel determinar a baseURL da API.");
+    throw new Error("NÃƒÂ£o foi possÃƒÂ­vel determinar a baseURL da API.");
   }
   if (__DEV__) console.log("[api] base resolvida por fallback:", RESOLVED_BASE);
   return RESOLVED_BASE;
 }
 
-// ========= Request genÃ©rico =========
+// ========= Request genÃƒÂ©rico =========
 async function request<T = any>(path: string, init?: RequestInit): Promise<T> {
   const base = await resolveBaseURLOnce();
   const url = `${base}${path.startsWith("/") ? path : `/${path}`}`;
@@ -209,10 +209,10 @@ async function request<T = any>(path: string, init?: RequestInit): Promise<T> {
   return data as T;
 }
 
-// ========= API pÃºblica =========
+// ========= API pÃƒÂºblica =========
 export const api = {
   getBaseURL: () => RESOLVED_BASE,
-  // Permite forÃ§ar a base em runtime (debug)
+  // Permite forÃƒÂ§ar a base em runtime (debug)
   __setBaseURL: (url: string) => {
     RESOLVED_BASE = url?.replace(/\/+$/, "") || null;
   },

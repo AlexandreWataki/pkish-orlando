@@ -1,19 +1,19 @@
-﻿// src/logic/types/turno.ts
+﻿ï»¿// src/logic/types/turno.ts
 import { AtividadeDia } from './atividade';
 
 /**
- * Turno padrÃ£o de um dia, usado no objeto final do Roteiro.
- * Ex.: manhÃ£, tarde, noite (com lista de atividades).
+ * Turno padrÃƒÂ£o de um dia, usado no objeto final do Roteiro.
+ * Ex.: manhÃƒÂ£, tarde, noite (com lista de atividades).
  */
 export interface TurnoDia {
-  titulo: string; // Nome exibido (ex.: "ManhÃ£", "Tarde", "Noite")
+  titulo: string; // Nome exibido (ex.: "ManhÃƒÂ£", "Tarde", "Noite")
   periodo: 'manha' | 'tarde' | 'noite' | 'madrugada' | string;
   atividades: AtividadeDia[];
 }
 
 /**
- * Turno com horÃ¡rios fixos (estrutura mais detalhada).
- * Ex.: usado para divisÃ£o de tempo precisa.
+ * Turno com horÃƒÂ¡rios fixos (estrutura mais detalhada).
+ * Ex.: usado para divisÃƒÂ£o de tempo precisa.
  */
 export interface TurnoComHorario {
   titulo: string;
@@ -23,7 +23,7 @@ export interface TurnoComHorario {
 }
 
 /**
- * Turno para dia de descanso (sem referÃªncia geogrÃ¡fica).
+ * Turno para dia de descanso (sem referÃƒÂªncia geogrÃƒÂ¡fica).
  */
 export interface TurnoDescanso {
   periodo: 'madrugada' | 'manha' | 'tarde' | 'noite';
@@ -33,7 +33,7 @@ export interface TurnoDescanso {
 }
 
 /**
- * Atividade de descanso com referÃªncia de regiÃ£o/localizaÃ§Ã£o.
+ * Atividade de descanso com referÃƒÂªncia de regiÃƒÂ£o/localizaÃƒÂ§ÃƒÂ£o.
  */
 export interface AtividadeDescansoRegiao extends AtividadeDia {
   descricao: string;
@@ -45,7 +45,7 @@ export interface AtividadeDescansoRegiao extends AtividadeDia {
 }
 
 /**
- * Turno de descanso com metadados de regiÃ£o.
+ * Turno de descanso com metadados de regiÃƒÂ£o.
  */
 export interface TurnoDescansoRegiao {
   periodo: 'madrugada' | 'manha' | 'tarde' | 'noite';
@@ -57,7 +57,7 @@ export interface TurnoDescansoRegiao {
 }
 
 /**
- * Atividade de compras com regiÃ£o/localizaÃ§Ã£o.
+ * Atividade de compras com regiÃƒÂ£o/localizaÃƒÂ§ÃƒÂ£o.
  */
 export interface AtividadeComprasRegiao extends AtividadeDia {
   descricao: string;
@@ -67,7 +67,7 @@ export interface AtividadeComprasRegiao extends AtividadeDia {
 }
 
 /**
- * Turno de compras com referÃªncia de Ã¡rea/regiÃ£o.
+ * Turno de compras com referÃƒÂªncia de ÃƒÂ¡rea/regiÃƒÂ£o.
  */
 export interface TurnoComprasRegiao {
   periodo: 'manha' | 'tarde' | 'noite';
@@ -77,7 +77,7 @@ export interface TurnoComprasRegiao {
 }
 
 /**
- * Turno de parque com foco em Ã¡reas especÃ­ficas (divisÃ£o por zonas).
+ * Turno de parque com foco em ÃƒÂ¡reas especÃƒÂ­ficas (divisÃƒÂ£o por zonas).
  */
 export interface TurnoParquePorArea {
   periodo: 'manha' | 'tarde' | 'noite';
@@ -88,7 +88,7 @@ export interface TurnoParquePorArea {
 
 /**
  * Bloco principal de um perfil de parque,
- * com turnos divididos por Ã¡reas.
+ * com turnos divididos por ÃƒÂ¡reas.
  */
 export interface BlocoPerfilParque {
   parque: 'Magic Kingdom' | 'EPCOT' | 'Hollywood Studios' | 'Animal Kingdom';

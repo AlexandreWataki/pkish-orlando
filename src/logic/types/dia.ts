@@ -1,14 +1,14 @@
-﻿import { TurnoDia } from './turno';
+﻿ï»¿import { TurnoDia } from './turno';
 
 export interface Dia {
-  id: string; // <- Identificador Ãºnico para cada dia
+  id: string; // <- Identificador ÃƒÂºnico para cada dia
   numero: number;
   data?: string;
   tipo: string;
 
   cabecalho: {
     titulo: string;
-    subtitulo?: string; // <--- Adicionado subtÃ­tulo opcional
+    subtitulo?: string; // <--- Adicionado subtÃƒÂ­tulo opcional
     imagem: string;
     clima: {
       temperatura: number;
@@ -20,8 +20,8 @@ export interface Dia {
   objetivo: string;
 
   /**
-   * Turnos do dia com tÃ­tulo e atividades.
-   * Se precisar usar horÃ¡rio (como nos geradores com TurnoComHorario),
+   * Turnos do dia com tÃƒÂ­tulo e atividades.
+   * Se precisar usar horÃƒÂ¡rio (como nos geradores com TurnoComHorario),
    * converta antes de retornar: { titulo, atividades } apenas.
    */
   turnos: TurnoDia[];

@@ -1,17 +1,17 @@
-﻿export const Oasis = {
+﻿ï»¿export const Oasis = {
   parque: "Animal Kingdom",
   regiao: "Oasis",
   latitude: 28.3548,
   longitude: -81.5901,
   descricao:
-    "A entrada do parque, cercada por vegetaÃ§Ã£o exuberante, onde trilhas tranquilas levam os visitantes por habitats de animais exÃ³ticos. Um espaÃ§o de boas-vindas imersivo e relaxante.",
+    "A entrada do parque, cercada por vegetaÃƒÂ§ÃƒÂ£o exuberante, onde trilhas tranquilas levam os visitantes por habitats de animais exÃƒÂ³ticos. Um espaÃƒÂ§o de boas-vindas imersivo e relaxante.",
   imagem: "oasis.png",
   atracoes: [
     {
       id: "oasis-exhibits",
       titulo: "Oasis Animal Exhibits",
       subtitulo: "Oasis",
-      tipo: "Trilhas e observaÃ§Ã£o de animais",
+      tipo: "Trilhas e observaÃƒÂ§ÃƒÂ£o de animais",
       tipoPerfil: ["familiares", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -21,8 +21,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Trilhas sombreadas com pontes e cÃ³rregos onde vocÃª pode observar animais como antas, porcos-do-mato e aves tropicais. Sem fila e no seu ritmo.",
-      icone: "ðŸ¦¥",
+        "Trilhas sombreadas com pontes e cÃƒÂ³rregos onde vocÃƒÂª pode observar animais como antas, porcos-do-mato e aves tropicais. Sem fila e no seu ritmo.",
+      icone: "Ã°Å¸Â¦Â¥",
       imagem: "oasis-exhibits.jpg",
       regiao: "Oasis",
       parque: "Animal Kingdom",
@@ -43,8 +43,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Pequena queda d'Ã¡gua cercada por vegetaÃ§Ã£o, ideal para fotos e contemplaÃ§Ã£o. Um ponto calmo logo na entrada, perfeito para comeÃ§ar o dia com tranquilidade.",
-      icone: "ðŸ’§",
+        "Pequena queda d'ÃƒÂ¡gua cercada por vegetaÃƒÂ§ÃƒÂ£o, ideal para fotos e contemplaÃƒÂ§ÃƒÂ£o. Um ponto calmo logo na entrada, perfeito para comeÃƒÂ§ar o dia com tranquilidade.",
+      icone: "Ã°Å¸â€™Â§",
       imagem: "oasis-waterfall.jpg",
       regiao: "Oasis",
       parque: "Animal Kingdom",
@@ -53,9 +53,9 @@
     },
     {
       id: "oasis-trails",
-      titulo: "ExploraÃ§Ã£o das Trilhas Tropicais",
+      titulo: "ExploraÃƒÂ§ÃƒÂ£o das Trilhas Tropicais",
       subtitulo: "Oasis",
-      tipo: "Trilha temÃ¡tica sensorial",
+      tipo: "Trilha temÃƒÂ¡tica sensorial",
       tipoPerfil: ["familiares", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -65,8 +65,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Caminhe por passarelas com vegetaÃ§Ã£o densa, sons da natureza e paisagens tropicais. Um convite Ã  imersÃ£o nos primeiros momentos do parque.",
-      icone: "ðŸŒ¿",
+        "Caminhe por passarelas com vegetaÃƒÂ§ÃƒÂ£o densa, sons da natureza e paisagens tropicais. Um convite ÃƒÂ  imersÃƒÂ£o nos primeiros momentos do parque.",
+      icone: "Ã°Å¸Å’Â¿",
       imagem: "oasis-trails.jpg",
       regiao: "Oasis",
       parque: "Animal Kingdom",
