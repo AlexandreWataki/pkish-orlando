@@ -1,3 +1,4 @@
+﻿// src/screens/inicio/InicioScreen.tsx
 import React from 'react';
 import {
   View,
@@ -10,11 +11,12 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 import logoImg from '../../assets/imagens/logo4.png';
 import fraseImg from '../../assets/imagens/frase.png';
 
-// 🔵 Padrões fixos (pedidos)
+// Padrões fixos (pedidos)
 const PADRAO_LARGURA_BOTAO = 240;   // tamanho da "caixa azul"
 const PADRAO_PADDING_VERTICAL = 12; // altura do botão
 const PADRAO_FONT_SIZE = 14;        // tamanho do texto
@@ -46,20 +48,30 @@ export default function InicioScreen() {
           style={styles.botao}
           onPress={() => navigation.navigate('Cadastro')}
           activeOpacity={0.9}
+          accessibilityRole="button"
+          accessibilityLabel="Quero ser Parkisheiro"
         >
-          <Text style={styles.botaoTexto} allowFontScaling={false}>
-            🎡 Quero ser Parkisheiro!
-          </Text>
+          <View style={styles.linhaBotao}>
+            <Ionicons name="person-add-outline" size={18} color="#fff" style={styles.icone} />
+            <Text style={styles.botaoTexto} allowFontScaling={false}>
+              Quero ser Parkisheiro!
+            </Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.botao}
           onPress={() => navigation.navigate('Login')}
           activeOpacity={0.9}
+          accessibilityRole="button"
+          accessibilityLabel="Já sou Parkisheiro"
         >
-          <Text style={styles.botaoTexto} allowFontScaling={false}>
-            🏰 Já sou Parkisheiro!
-          </Text>
+          <View style={styles.linhaBotao}>
+            <Ionicons name="log-in-outline" size={18} color="#fff" style={styles.icone} />
+            <Text style={styles.botaoTexto} allowFontScaling={false}>
+              Já sou Parkisheiro!
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -107,10 +119,19 @@ const styles = StyleSheet.create({
     width: PADRAO_LARGURA_BOTAO,
     alignItems: 'center',
   },
+  linhaBotao: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  icone: {
+    marginRight: 6,
+  },
   botaoTexto: {
     color: '#fff',
     fontSize: PADRAO_FONT_SIZE,
     fontWeight: 'bold',
     textAlign: 'center',
+    includeFontPadding: false,
   },
 });

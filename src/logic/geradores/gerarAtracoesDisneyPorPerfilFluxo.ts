@@ -1,4 +1,4 @@
-import { AtividadeDia } from '@/logic/types/atividade';
+﻿import { AtividadeDia } from '@/logic/types/atividade';
 import { AtracaoParque } from '@/logic/types/atracao';
 import { atracoesDisney } from './todasAtracoesDisney';
 
@@ -27,18 +27,18 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
     },
     'Hollywood Studios': {
       manha: ['Animation Courtyard', 'Echo Lake', 'Grand Avenue'],
-      tarde: ['Sunset Boulevard', 'Toy Story Land', "Star Wars: Galaxy’s Edge", 'Hollywood Boulevard'],
+      tarde: ['Sunset Boulevard', 'Toy Story Land', "Star Wars: Galaxyâ€™s Edge", 'Hollywood Boulevard'],
       noite: [],
     },
     'Animal Kingdom': {
-      // Pandora agora está em manhã, tarde e noite
-      manha: ['Pandora – The World of Avatar', 'Oasis', 'Discovery Island', 'Asia'],
-      tarde: ['DinoLand U.S.A.', 'Africa', 'Pandora – The World of Avatar'],
-      noite: ['Pandora – The World of Avatar', 'Discovery Island'], // para Tree of Life + Pandora
+      // Pandora agora estÃ¡ em manhÃ£, tarde e noite
+      manha: ['Pandora â€“ The World of Avatar', 'Oasis', 'Discovery Island', 'Asia'],
+      tarde: ['DinoLand U.S.A.', 'Africa', 'Pandora â€“ The World of Avatar'],
+      noite: ['Pandora â€“ The World of Avatar', 'Discovery Island'], // para Tree of Life + Pandora
     },
   };
 
-  // Mapa para normalização dos perfis
+  // Mapa para normalizaÃ§Ã£o dos perfis
   const mapaPerfis: Record<string, string> = {
     'radical': 'radicais',
     'radicais': 'radicais',
@@ -56,8 +56,8 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
   const areasDoTurno = fluxoAreasPorParque[parque]?.[turno] ?? [];
   const [perfil1, perfil2] = perfis.map(p => mapaPerfis[p?.toLowerCase().trim()] ?? p?.toLowerCase().trim());
 
-  // 🔍 Filtro por parque, área válida e perfis do usuário
-  // 1º: atrações que têm os dois perfis
+  // ðŸ” Filtro por parque, Ã¡rea vÃ¡lida e perfis do usuÃ¡rio
+  // 1Âº: atraÃ§Ãµes que tÃªm os dois perfis
   const ambos = atracoesDisney.filter(atracao => {
     const regiaoValida = areasDoTurno.includes(atracao.regiao ?? '');
     const p = Array.isArray(atracao.tipoPerfil)
@@ -73,7 +73,7 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
     );
   });
 
-  // 2º: atrações só do perfil1 (mas não ambos)
+  // 2Âº: atraÃ§Ãµes sÃ³ do perfil1 (mas nÃ£o ambos)
   const soPerfil1 = atracoesDisney.filter(atracao => {
     const regiaoValida = areasDoTurno.includes(atracao.regiao ?? '');
     const p = Array.isArray(atracao.tipoPerfil)
@@ -89,7 +89,7 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
     );
   });
 
-  // 3º: atrações só do perfil2 (mas não ambos)
+  // 3Âº: atraÃ§Ãµes sÃ³ do perfil2 (mas nÃ£o ambos)
   const soPerfil2 = atracoesDisney.filter(atracao => {
     const regiaoValida = areasDoTurno.includes(atracao.regiao ?? '');
     const p = Array.isArray(atracao.tipoPerfil)
@@ -108,19 +108,19 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
   // Junta tudo mantendo prioridade (ambos, depois perfil1, depois perfil2)
   let atracoesFiltradas = [...ambos, ...soPerfil1, ...soPerfil2];
 
-  // 📦 Agrupa por área
+  // ðŸ“¦ Agrupa por Ã¡rea
   const agrupadasPorArea: Record<string, AtividadeDia[]> = {};
 
   atracoesFiltradas.forEach((atracao: Partial<AtracaoParque>) => {
-    const area = atracao.regiao ?? 'Sem Área';
+    const area = atracao.regiao ?? 'Sem Ãrea';
     if (!agrupadasPorArea[area]) agrupadasPorArea[area] = [];
 
     agrupadasPorArea[area].push({
       id: atracao.id ?? `${atracao.titulo ?? 'sem-titulo'}-${turno}`,
       tipo: 'atracao',
       titulo: atracao.icone
-        ? `${atracao.icone} ${atracao.titulo ?? 'Sem título'}`
-        : atracao.titulo ?? 'Sem título',
+        ? `${atracao.icone} ${atracao.titulo ?? 'Sem tÃ­tulo'}`
+        : atracao.titulo ?? 'Sem tÃ­tulo',
       descricao: atracao.descricao ?? '',
       subtitulo: atracao.subtitulo ?? atracao.area ?? atracao.regiao ?? '',
       regiao: atracao.regiao ?? '',
@@ -136,12 +136,12 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
     });
   });
 
-  // 💡 Adiciona o Kilimanjaro Safaris sempre como a primeira atração da manhã no Animal Kingdom
+  // ðŸ’¡ Adiciona o Kilimanjaro Safaris sempre como a primeira atraÃ§Ã£o da manhÃ£ no Animal Kingdom
   if (
     parque === 'Animal Kingdom' &&
     turno === 'manha'
   ) {
-    // Procura o safári nas atrações de manhã
+    // Procura o safÃ¡ri nas atraÃ§Ãµes de manhÃ£
     const safari = atracoesDisney.find(
       (a) =>
         a.parque === 'Animal Kingdom' &&
@@ -149,7 +149,7 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
     );
     if (safari) {
       const atividade: AtividadeDia = {
-        id: safari.id ?? `kilimanjaro-safaris-manhã`,
+        id: safari.id ?? `kilimanjaro-safaris-manhÃ£`,
         tipo: 'atracao',
         titulo: safari.icone
           ? `${safari.icone} ${safari.titulo ?? 'Kilimanjaro Safaris'}`
@@ -167,7 +167,7 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
           ? safari.tipoPerfil.join(', ')
           : safari.tipoPerfil ?? '',
       };
-      // Sempre adiciona como primeira atração da área "Africa" na manhã
+      // Sempre adiciona como primeira atraÃ§Ã£o da Ã¡rea "Africa" na manhÃ£
       agrupadasPorArea['Africa'] = agrupadasPorArea['Africa'] || [];
       // Evita duplicata
       const existe = agrupadasPorArea['Africa'].some((a) =>
@@ -177,13 +177,13 @@ export function gerarAtracoesDisneyPorPerfilFluxo(
         agrupadasPorArea['Africa'].unshift(atividade);
       }
     }
-    // Garante que a área "Africa" esteja entre as áreas do turno da manhã (para não sumir do retorno)
+    // Garante que a Ã¡rea "Africa" esteja entre as Ã¡reas do turno da manhÃ£ (para nÃ£o sumir do retorno)
     if (!areasDoTurno.includes('Africa')) {
       areasDoTurno.unshift('Africa');
     }
   }
 
-  // 🧩 Garante que todas as áreas previstas apareçam mesmo que estejam vazias
+  // ðŸ§© Garante que todas as Ã¡reas previstas apareÃ§am mesmo que estejam vazias
   return areasDoTurno.map((area) => ({
     area,
     atracoes: agrupadasPorArea[area] ?? [],

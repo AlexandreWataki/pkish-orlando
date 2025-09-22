@@ -1,4 +1,4 @@
-// src/components/card/BotaoMenuNeon.tsx
+﻿// src/components/card/BotaoMenuNeon.tsx
 import React, { useEffect, useRef } from 'react';
 import {
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const AZUL_NEON = '#00FFFF';
 const AZUL_BORDA = '#00BFFF';
@@ -15,11 +16,20 @@ const AZUL_ESCURO = '#001F3F';
 type Props = {
   titulo: string;
   subtitulo: string;
-  emoji: string;
+  /** Nome do ícone do Ionicons (ex.: "map-outline"). Se não passar, usa emoji. */
+  icon?: React.ComponentProps<typeof Ionicons>['name'];
+  /** Fallback caso não use ícone */
+  emoji?: string;
   onPress: () => void;
 };
 
-export default function BotaoMenuNeon({ titulo, subtitulo, emoji, onPress }: Props) {
+export default function BotaoMenuNeon({
+  titulo,
+  subtitulo,
+  icon,
+  emoji = '✨',
+  onPress,
+}: Props) {
   const borderAnim = useRef(new Animated.Value(0)).current;
   const brilhoAnim = useRef(new Animated.Value(1)).current;
 
@@ -33,19 +43,11 @@ export default function BotaoMenuNeon({ titulo, subtitulo, emoji, onPress }: Pro
       })
     ).start();
 
-    // Animação do brilho do texto
+    // Animação de brilho (opacidade)
     Animated.loop(
       Animated.sequence([
-        Animated.timing(brilhoAnim, {
-          toValue: 0.4,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(brilhoAnim, {
-          toValue: 1,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
+        Animated.timing(brilhoAnim, { toValue: 0.4, duration: 1000, useNativeDriver: true }),
+        Animated.timing(brilhoAnim, { toValue: 1, duration: 1000, useNativeDriver: true }),
       ])
     ).start();
   }, []);
@@ -56,20 +58,25 @@ export default function BotaoMenuNeon({ titulo, subtitulo, emoji, onPress }: Pro
   });
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          borderColor: animatedBorderColor,
-        },
-      ]}
-    >
-      <TouchableOpacity style={styles.botao} onPress={onPress}>
-        <View style={styles.linhaTitulo}>
-          <Animated.Text style={[styles.emoji, { opacity: brilhoAnim }]}>{emoji}</Animated.Text>
-          <Animated.Text style={[styles.titulo, { opacity: brilhoAnim }]}>{titulo}</Animated.Text>
-        </View>
-        <Animated.Text style={[styles.subtitulo, { opacity: brilhoAnim }]}>{subtitulo}</Animated.Text>
+    <Animated.View style={[styles.container, { borderColor: animatedBorderColor }]}>
+      <TouchableOpacity
+        style={styles.botao}
+        onPress={onPress}
+        accessibilityRole="button"
+        accessibilityLabel={titulo}
+      >
+        <Animated.View style={[styles.linhaTitulo, { opacity: brilhoAnim }]}>
+          {icon ? (
+            <Ionicons name={icon} size={18} color={AZUL_NEON} style={{ marginRight: 6 }} />
+          ) : (
+            <Text style={styles.emoji}>{emoji}</Text>
+          )}
+          <Text style={styles.titulo}>{titulo}</Text>
+        </Animated.View>
+
+        <Animated.Text style={[styles.subtitulo, { opacity: brilhoAnim }]}>
+          {subtitulo}
+        </Animated.Text>
       </TouchableOpacity>
     </Animated.View>
   );
@@ -97,7 +104,6 @@ const styles = StyleSheet.create({
   linhaTitulo: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
     justifyContent: 'center',
     marginBottom: 2,
   },
@@ -107,6 +113,7 @@ const styles = StyleSheet.create({
     textShadowColor: AZUL_BORDA,
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 6,
+    marginRight: 6,
   },
   titulo: {
     fontSize: 16,
@@ -115,6 +122,7 @@ const styles = StyleSheet.create({
     textShadowColor: AZUL_BORDA,
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 8,
+    includeFontPadding: false,
   },
   subtitulo: {
     fontSize: 9,
@@ -123,5 +131,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 6,
     marginTop: 2,
+    textAlign: 'center',
+    includeFontPadding: false,
   },
 });

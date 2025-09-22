@@ -1,29 +1,15 @@
-// babel.config.js
+﻿// babel.config.js
 module.exports = function (api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      [
-        'module-resolver',
-        {
-          root: ['./'],
-          alias: {
-            '@': './src',
-          },
-          extensions: [
-            '.ios.js',
-            '.android.js',
-            '.js',
-            '.jsx',
-            '.ts',
-            '.tsx',
-            '.json',
-          ],
-        },
-      ],
-      // 👇 O plugin do Reanimated PRECISA ser o último da lista!
-      'react-native-reanimated/plugin',
+      ['module-resolver', {
+        root: ['./'],
+        alias: { '@': './src' },
+        extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.ts', '.tsx', '.json'],
+      }],
+      'react-native-worklets/plugin', // ÚNICO plugin de worklets, e sempre o último
     ],
   };
 };

@@ -1,4 +1,4 @@
-// src/screens/inicio/TelaDefinirTiposDias.tsx
+﻿// src/screens/inicio/TelaDefinirTiposDias.tsx
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -45,7 +45,7 @@ export default function TelaDefinirTiposDias() {
   useEffect(() => {
     markVisited('TelaDefinirTiposDias');
     if (totalDias <= 0) {
-      Alert.alert('Erro', 'Total de dias não definido. Volte à tela anterior.');
+      Alert.alert('Erro', 'Total de dias nÃ£o definido. Volte Ã  tela anterior.');
       navigation.goBack();
     }
   }, []);
@@ -66,10 +66,10 @@ export default function TelaDefinirTiposDias() {
   const handleAvancar = () => {
     if (!podeAvancar) {
       Alert.alert(
-        'Erro de Distribuição',
+        'Erro de DistribuiÃ§Ã£o',
         restante > 0
           ? `Faltam ${restante} dia(s) para completar.`
-          : `Você excedeu em ${-restante} dia(s).`
+          : `VocÃª excedeu em ${-restante} dia(s).`
       );
       return;
     }
@@ -149,7 +149,7 @@ export default function TelaDefinirTiposDias() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}°C` : '28°C'}
+          temperatura={clima ? `${clima.temp}Â°C` : '28Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -170,7 +170,7 @@ export default function TelaDefinirTiposDias() {
             <CardTipo label="Dias de Universal" value={universal} setValue={setUniversal} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para parques da Universal." />
             <CardTipo label="Dias de Compras" value={compras} setValue={setCompras} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para shoppings e outlets." />
             <CardTipo label="Dias de Descanso" value={descanso} setValue={setDescanso} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para relaxar ou passeios leves." />
-            <CardTipo label="Dias de Saída" value={saida} setValue={setSaida} min={0} max={1} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia de voo de retorno." />
+            <CardTipo label="Dias de SaÃ­da" value={saida} setValue={setSaida} min={0} max={1} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia de voo de retorno." />
           </View>
         </ScrollView>
 

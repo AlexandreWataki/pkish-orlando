@@ -1,44 +1,44 @@
-// src/logic/blocos/saida/dicasTurnoSaida.ts
+﻿// src/logic/blocos/saida/dicasTurnoSaida.ts
 
 const dicasTurnoSaida: Record<string, { titulo: string; descricao: string }> = {
   madrugada: {
-    titulo: '🌙 Saída de Madrugada – Preparar e partir no escuro',
+    titulo: 'ðŸŒ™ SaÃ­da de Madrugada â€“ Preparar e partir no escuro',
     descricao: [
-      'Acorde com antecedência, especialmente se usar transporte agendado como Uber ou transfer.',
-      'Check-out com malas prontas, documentos em mãos e pagamento resolvido.',
-      'Confirme horário do transporte e atenção à segurança.',
-      'Se não tomar café no hotel, leve snacks e água.',
+      'Acorde com antecedÃªncia, especialmente se usar transporte agendado como Uber ou transfer.',
+      'Check-out com malas prontas, documentos em mÃ£os e pagamento resolvido.',
+      'Confirme horÃ¡rio do transporte e atenÃ§Ã£o Ã  seguranÃ§a.',
+      'Se nÃ£o tomar cafÃ© no hotel, leve snacks e Ã¡gua.',
       'Checklist digital: passagem, passaporte, visto, check-in feito, transporte confirmado.'
     ].join('\n'),
   },
   manha: {
-    titulo: '🌅 Saída pela Manhã – Últimos detalhes antes do embarque',
+    titulo: 'ðŸŒ… SaÃ­da pela ManhÃ£ â€“ Ãšltimos detalhes antes do embarque',
     descricao: [
-      'Aproveite o café da manhã do hotel se houver tempo, sem atrasos.',
-      'Check-out e conferência do quarto para não esquecer nada.',
-      'Confirme horário e terminal do voo e trajeto até o aeroporto.',
-      'Verifique status do voo e tenha documentos em mãos.',
-      'Mantenha celular carregado e carregador portátil acessível.'
+      'Aproveite o cafÃ© da manhÃ£ do hotel se houver tempo, sem atrasos.',
+      'Check-out e conferÃªncia do quarto para nÃ£o esquecer nada.',
+      'Confirme horÃ¡rio e terminal do voo e trajeto atÃ© o aeroporto.',
+      'Verifique status do voo e tenha documentos em mÃ£os.',
+      'Mantenha celular carregado e carregador portÃ¡til acessÃ­vel.'
     ].join('\n'),
   },
   tarde: {
-    titulo: '☀️ Saída à Tarde – Organização e tempo de sobra',
+    titulo: 'â˜€ï¸ SaÃ­da Ã  Tarde â€“ OrganizaÃ§Ã£o e tempo de sobra',
     descricao: [
-      'Deixe malas prontas pela manhã e, se possível, faça uma última volta rápida.',
+      'Deixe malas prontas pela manhÃ£ e, se possÃ­vel, faÃ§a uma Ãºltima volta rÃ¡pida.',
       'Se sair, mantenha roupa de viagem separada e volte cedo ao hotel.',
-      'Check-out no horário e transporte confirmado para o aeroporto.',
-      'Separe documentos: passaporte, check-in, comprovante de bagagem e alfândega (se necessário).',
-      'No aeroporto, relaxe, carregue eletrônicos e prepare-se para o voo.'
+      'Check-out no horÃ¡rio e transporte confirmado para o aeroporto.',
+      'Separe documentos: passaporte, check-in, comprovante de bagagem e alfÃ¢ndega (se necessÃ¡rio).',
+      'No aeroporto, relaxe, carregue eletrÃ´nicos e prepare-se para o voo.'
     ].join('\n'),
   },
   noite: {
-    titulo: '🌆 Saída à Noite – Encerrando com tranquilidade',
+    titulo: 'ðŸŒ† SaÃ­da Ã  Noite â€“ Encerrando com tranquilidade',
     descricao: [
       'Aproveite o dia com calma, mas malas devem estar prontas antes do check-out.',
-      'Revise documentos e transporte até o aeroporto.',
-      'Faça refeição leve e evite atrasos no trajeto.',
-      'Chegue ao aeroporto com 3 horas de antecedência.',
-      'Checklist: documentos, power bank, água e itens de conforto.'
+      'Revise documentos e transporte atÃ© o aeroporto.',
+      'FaÃ§a refeiÃ§Ã£o leve e evite atrasos no trajeto.',
+      'Chegue ao aeroporto com 3 horas de antecedÃªncia.',
+      'Checklist: documentos, power bank, Ã¡gua e itens de conforto.'
     ].join('\n'),
   },
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 type Props = {
@@ -13,7 +13,7 @@ export const CardBlocoChegada = ({ children }: Props) => (
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0,119,200,0.95)', // Azul escuro translúcido
+    backgroundColor: 'rgba(0,119,200,0.95)', // Azul escuro translÃºcido
     borderRadius: 20,
     padding: 16,
     marginBottom: 18,

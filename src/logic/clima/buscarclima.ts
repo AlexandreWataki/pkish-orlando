@@ -1,4 +1,4 @@
-// src/logic/clima/buscarclima.ts
+﻿// src/logic/clima/buscarclima.ts
 import axios from 'axios';
 import Constants from 'expo-constants';
 
@@ -47,7 +47,7 @@ export async function buscarClima(
 ): Promise<DadosClimaSimplificado | null> {
   const API_KEY = getApiKey();
   if (!API_KEY) {
-    console.warn('⚠️ WEATHER_API_KEY ausente. Defina EXPO_PUBLIC_WEATHER_API_KEY no .env');
+    console.warn('âš ï¸ WEATHER_API_KEY ausente. Defina EXPO_PUBLIC_WEATHER_API_KEY no .env');
     return null;
   }
 
@@ -61,7 +61,7 @@ export async function buscarClima(
     const { data } = await chamarWeatherApi(API_KEY, q);
 
     if (!data?.current || !data?.location) {
-      console.warn('⚠️ Dados incompletos da WeatherAPI', data);
+      console.warn('âš ï¸ Dados incompletos da WeatherAPI', data);
       return null;
     }
 
@@ -79,7 +79,7 @@ export async function buscarClima(
     const payload = error?.response?.data;
     const message = error?.message;
 
-    console.error(`🌩️ Erro ao buscar clima para ${base}:`, { status, payload, message });
+    console.error(`ðŸŒ©ï¸ Erro ao buscar clima para ${base}:`, { status, payload, message });
     return null;
   }
 }

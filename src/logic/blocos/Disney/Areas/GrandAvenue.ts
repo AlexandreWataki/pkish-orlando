@@ -1,10 +1,10 @@
-export const GrandAvenue = {
+﻿export const GrandAvenue = {
   parque: "Hollywood Studios",
   regiao: "Grand Avenue",
   latitude: 28.3551,
   longitude: -81.5615,
   descricao:
-    "Inspirada em Los Angeles, a Grand Avenue oferece uma atmosfera urbana com opções gastronômicas e atrações temáticas como Muppets e ambientes modernos.",
+    "Inspirada em Los Angeles, a Grand Avenue oferece uma atmosfera urbana com opÃ§Ãµes gastronÃ´micas e atraÃ§Ãµes temÃ¡ticas como Muppets e ambientes modernos.",
   imagem: "grandavenue.png",
   atracoes: [
     {
@@ -21,8 +21,8 @@ export const GrandAvenue = {
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao:
-        "Espetáculo divertido com os Muppets em 3D, efeitos especiais e piadas clássicas. Ideal para relaxar entre atrações mais intensas.",
-      icone: "🎭",
+        "EspetÃ¡culo divertido com os Muppets em 3D, efeitos especiais e piadas clÃ¡ssicas. Ideal para relaxar entre atraÃ§Ãµes mais intensas.",
+      icone: "ðŸŽ­",
       imagem: "muppet-vision.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -42,7 +42,7 @@ export const GrandAvenue = {
       turnoRecomendado: "noite",
       descricao:
         "Local moderno com cervejas artesanais e petiscos californianos. Excelente para adultos descansarem no fim do dia.",
-      icone: "🍺",
+      icone: "ðŸº",
       imagem: "baseline-taphouse.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -51,7 +51,7 @@ export const GrandAvenue = {
       id: "grand-street-photo",
       titulo: "Grand Street Photo Spot",
       subtitulo: "Grand Avenue",
-      tipo: "Ponto para fotos temáticas",
+      tipo: "Ponto para fotos temÃ¡ticas",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -61,8 +61,8 @@ export const GrandAvenue = {
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Cenário de rua urbana ideal para tirar fotos estilosas. Detalhes remetem à arquitetura de Los Angeles.",
-      icone: "📸",
+        "CenÃ¡rio de rua urbana ideal para tirar fotos estilosas. Detalhes remetem Ã  arquitetura de Los Angeles.",
+      icone: "ðŸ“¸",
       imagem: "grand-photo.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -71,7 +71,7 @@ export const GrandAvenue = {
       id: "grand-avenue-walk",
       titulo: "Passeio pela Grand Avenue",
       subtitulo: "Grand Avenue",
-      tipo: "Exploração urbana",
+      tipo: "ExploraÃ§Ã£o urbana",
       tipoPerfil: ["imersivas", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -81,8 +81,8 @@ export const GrandAvenue = {
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Caminhe por calçadas arborizadas com detalhes arquitetônicos da Califórnia. Uma pausa tranquila com clima de cidade grande.",
-      icone: "🚶‍♂️",
+        "Caminhe por calÃ§adas arborizadas com detalhes arquitetÃ´nicos da CalifÃ³rnia. Uma pausa tranquila com clima de cidade grande.",
+      icone: "ðŸš¶â€â™‚ï¸",
       imagem: "grand-walk.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -91,7 +91,7 @@ export const GrandAvenue = {
       id: "muppet-shop",
       titulo: "Stage 1 Company Store",
       subtitulo: "Grand Avenue",
-      tipo: "Loja temática dos Muppets",
+      tipo: "Loja temÃ¡tica dos Muppets",
       tipoPerfil: ["interativas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -101,8 +101,8 @@ export const GrandAvenue = {
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Loja colorida com produtos dos Muppets, itens colecionáveis e brinquedos exclusivos. Ideal após o show Muppet*Vision 3D.",
-      icone: "🛍️",
+        "Loja colorida com produtos dos Muppets, itens colecionÃ¡veis e brinquedos exclusivos. Ideal apÃ³s o show Muppet*Vision 3D.",
+      icone: "ðŸ›ï¸",
       imagem: "muppet-store.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"

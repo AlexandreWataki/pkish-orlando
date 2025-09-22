@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
 
 type Props = {
@@ -25,7 +25,7 @@ const CardDiaBotao = ({ texto, selecionado = false, onPress, style }: Props) => 
 
 const styles = StyleSheet.create({
   botao: {
-    backgroundColor: 'rgba(0, 51, 102, 0.5)', // azul escuro translúcido
+    backgroundColor: 'rgba(0, 51, 102, 0.5)', // azul escuro translÃºcido
     borderRadius: 16,
     paddingVertical: 8,
     paddingHorizontal: 14,

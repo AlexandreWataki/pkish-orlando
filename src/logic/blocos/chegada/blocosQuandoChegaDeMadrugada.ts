@@ -1,18 +1,18 @@
-import { TurnoDescansoRegiao } from '@/logic/types/turno';
+﻿import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosQuandoChegaDeMadrugada: TurnoDescansoRegiao[] = [
   {
     periodo: 'madrugada',
     horarioInicio: '00:00',
     horarioFim: '05:59',
-    referencia: 'Hotel – Descanso de Madrugada',
+    referencia: 'Hotel â€“ Descanso de Madrugada',
     atividades: [
       {
         tipo: 'descanso',
-        titulo: 'Descansar Após a Chegada',
+        titulo: 'Descansar ApÃ³s a Chegada',
         regiao: 'Hotel',
         local: 'Quarto do hotel',
-        descricao: 'Chegando de madrugada, vá direto descansar. Separe apenas o essencial como pijama, água e carregador e durma bem para aproveitar o dia seguinte.',
+        descricao: 'Chegando de madrugada, vÃ¡ direto descansar. Separe apenas o essencial como pijama, Ã¡gua e carregador e durma bem para aproveitar o dia seguinte.',
       },
     ],
   },
@@ -20,11 +20,11 @@ export const blocosQuandoChegaDeMadrugada: TurnoDescansoRegiao[] = [
     periodo: 'manha',
     horarioInicio: '08:00',
     horarioFim: '12:00',
-    referencia: 'Hotel – Descanso pela manhã',
+    referencia: 'Hotel â€“ Descanso pela manhÃ£',
     atividades: [
       {
         tipo: 'descanso',
-        titulo: 'Descansar Pela Manhã',
+        titulo: 'Descansar Pela ManhÃ£',
         regiao: 'Hotel',
         local: 'Quarto do hotel',
         descricao: 'Continue descansando para recuperar as energias e levante apenas quando se sentir disposto.',
@@ -35,7 +35,7 @@ export const blocosQuandoChegaDeMadrugada: TurnoDescansoRegiao[] = [
     periodo: 'tarde',
     horarioInicio: '13:00',
     horarioFim: '19:00',
-    referencia: 'Lake Buena Vista – Disney Springs + Walmart',
+    referencia: 'Lake Buena Vista â€“ Disney Springs + Walmart',
     atividades: [
       {
         tipo: 'compras',
@@ -48,12 +48,12 @@ export const blocosQuandoChegaDeMadrugada: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'compras',
-        titulo: 'Compras Essenciais – Walmart',
+        titulo: 'Compras Essenciais â€“ Walmart',
         regiao: 'Lake Buena Vista',
         latitude: 28.335539,
         longitude: -81.497001,
         local: '3250 Vineland Rd, Kissimmee, FL (Walmart Supercenter)',
-        descricao: 'Compre snacks, água, itens de higiene, café da manhã e aproveite para ver promoções e lembranças, incluindo souvenirs Disney.',
+        descricao: 'Compre snacks, Ã¡gua, itens de higiene, cafÃ© da manhÃ£ e aproveite para ver promoÃ§Ãµes e lembranÃ§as, incluindo souvenirs Disney.',
       },
     ],
   },
@@ -61,16 +61,16 @@ export const blocosQuandoChegaDeMadrugada: TurnoDescansoRegiao[] = [
     periodo: 'noite',
     horarioInicio: '20:00',
     horarioFim: '23:59',
-    referencia: 'International Drive North – Compras leves',
+    referencia: 'International Drive North â€“ Compras leves',
     atividades: [
       {
         tipo: 'compras',
-        titulo: 'Compras Leves – Artegon e Feirinhas',
+        titulo: 'Compras Leves â€“ Artegon e Feirinhas',
         regiao: 'International Drive North',
         latitude: 28.4745,
         longitude: -81.4513,
         local: '5250 International Dr, Orlando, FL',
-        descricao: 'Passeie por feirinhas e lojinhas com artesanato e lembranças, ideal para encerrar o dia de forma leve e tranquila.',
+        descricao: 'Passeie por feirinhas e lojinhas com artesanato e lembranÃ§as, ideal para encerrar o dia de forma leve e tranquila.',
       },
     ],
   },

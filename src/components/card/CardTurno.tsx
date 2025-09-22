@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import CardAtividade from './CardAtividade';
 
@@ -24,7 +24,7 @@ const CardTurno: React.FC<Props> = ({ titulo, referencia, atividades, onEscolher
       <Text style={styles.titulo}>{titulo.toUpperCase()}</Text>
 
       {referencia && (
-        <Text style={styles.referencia}>🧭 Local de referência: {referencia}</Text>
+        <Text style={styles.referencia}>ðŸ§­ Local de referÃªncia: {referencia}</Text>
       )}
 
       {atividades.length === 0 ? (

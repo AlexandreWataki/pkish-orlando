@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -16,7 +16,7 @@ export const CardTransporte = ({ meio, tempoEstimado, destino }: Props) => {
         <Text style={styles.titulo}>{meio}</Text>
       </View>
       <Text style={styles.descricao}>
-        Tempo estimado até {destino}: {tempoEstimado}
+        Tempo estimado atÃ© {destino}: {tempoEstimado}
       </Text>
     </View>
   );

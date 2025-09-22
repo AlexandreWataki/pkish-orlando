@@ -1,9 +1,9 @@
-export const EchoLake = {
+﻿export const EchoLake = {
   regiao: "Echo Lake",
   parque: "Hollywood Studios",
   latitude: 28.3574,
   longitude: -81.5606,
-  descricao: "Cinema clássico, shows ao vivo e atrações inspiradas em Indiana Jones, Star Wars e Frozen.",
+  descricao: "Cinema clÃ¡ssico, shows ao vivo e atraÃ§Ãµes inspiradas em Indiana Jones, Star Wars e Frozen.",
   imagem: "echolake.png",
   atracoes: [
     {
@@ -19,15 +19,15 @@ export const EchoLake = {
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: `Show com dublês, explosões e cenas clássicas de Indiana Jones. Sente-se no centro para melhor visão das acrobacias.`,
-      icone: "🎬",
+      descricao: `Show com dublÃªs, explosÃµes e cenas clÃ¡ssicas de Indiana Jones. Sente-se no centro para melhor visÃ£o das acrobacias.`,
+      icone: "ðŸŽ¬",
       imagem: "indiana-jones.jpg",
       latitude: 28.3575,
       longitude: -81.5607
     },
     {
       id: "star-tours",
-      titulo: "Star Tours – The Adventures Continue",
+      titulo: "Star Tours â€“ The Adventures Continue",
       subtitulo: "Echo Lake",
       tipo: "Simulador 3D",
       tipoPerfil: ["imersivas", "radicais", "tematicas"],
@@ -39,7 +39,7 @@ export const EchoLake = {
       atracaoSemFila: false,
       turnoRecomendado: "manha",
       descricao: `Simulador 3D com aventuras variadas no universo Star Wars. Sente-se no meio da cabine para menos impacto.`,
-      icone: "🚀",
+      icone: "ðŸš€",
       imagem: "star-tours.jpg",
       latitude: 28.3576,
       longitude: -81.5605
@@ -57,8 +57,8 @@ export const EchoLake = {
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: `Fotos e interação com Olaf em cenário nevado. Leve caderno para autógrafos e chegue cedo.`,
-      icone: "☃️",
+      descricao: `Fotos e interaÃ§Ã£o com Olaf em cenÃ¡rio nevado. Leve caderno para autÃ³grafos e chegue cedo.`,
+      icone: "â˜ƒï¸",
       imagem: "meet-olaf.jpg",
       latitude: 28.3573,
       longitude: -81.5608
@@ -76,8 +76,8 @@ export const EchoLake = {
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "noite",
-      descricao: `Show musical de Frozen com efeitos e neve artificial. Sente-se no meio para melhor visão.`,
-      icone: "🎤",
+      descricao: `Show musical de Frozen com efeitos e neve artificial. Sente-se no meio para melhor visÃ£o.`,
+      icone: "ðŸŽ¤",
       imagem: "frozen-sing-along.jpg",
       latitude: 28.3578,
       longitude: -81.5604
@@ -86,7 +86,7 @@ export const EchoLake = {
       id: "dockside-diner",
       titulo: "Dockside Diner",
       subtitulo: "Echo Lake",
-      tipo: "Área de alimentação e relaxamento",
+      tipo: "Ãrea de alimentaÃ§Ã£o e relaxamento",
       tipoPerfil: ["tematicas", "familiares", "interativas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -95,8 +95,8 @@ export const EchoLake = {
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: `Barco cenográfico com lanches e mesas ao ar livre. Sente à beira do lago para fotos incríveis.`,
-      icone: "🍔",
+      descricao: `Barco cenogrÃ¡fico com lanches e mesas ao ar livre. Sente Ã  beira do lago para fotos incrÃ­veis.`,
+      icone: "ðŸ”",
       imagem: "dockside-diner.jpg",
       latitude: 28.3577,
       longitude: -81.5606

@@ -1,4 +1,4 @@
-// src/types/navigation.ts
+﻿// src/types/navigation.ts
 import type { RouteProp } from '@react-navigation/native';
 import type {
   NativeStackNavigationProp,
@@ -8,11 +8,11 @@ import type { DiaGerado } from '@/IA/gerarComIA';
 
 /**
  * Lista de rotas da Stack
- * - Mantém rotas antigas e novas para compatibilidade.
- * - IAResultado aceita undefined OU params (array/string), como seu IAResultadoScreen já trata.
+ * - MantÃ©m rotas antigas e novas para compatibilidade.
+ * - IAResultado aceita undefined OU params (array/string), como seu IAResultadoScreen jÃ¡ trata.
  */
 export type RootStackParamList = {
-  /** Autenticação e início */
+  /** AutenticaÃ§Ã£o e inÃ­cio */
   Splash: undefined;
   Inicio: undefined;
   Login: undefined;
@@ -22,7 +22,7 @@ export type RootStackParamList = {
   MenuPrincipal: undefined;
   MonteSeuRoteiro: undefined; // opcional (alias)
 
-  /** Configuração da viagem (novas e antigas) */
+  /** ConfiguraÃ§Ã£o da viagem (novas e antigas) */
   ConfigViagem: undefined;            // novo
   Calendario: undefined;              // antigo: TelaDefinirQuantidadeDias
   DefinirTiposDias: undefined;        // novo
@@ -34,18 +34,18 @@ export type RootStackParamList = {
   /** Perfis (novos e antigos) */
   PerfilDescanso: undefined;                 // novo
   PerfilCompras: undefined;                  // novo
-  PerfilAtracoes: undefined;                 // já existia
-  PerfilRefeicoes: undefined;                // já existia
+  PerfilAtracoes: undefined;                 // jÃ¡ existia
+  PerfilRefeicoes: undefined;                // jÃ¡ existia
   PerfilDescansoPorDiaScreen: undefined;     // antigo
   PerfilComprasPorDiaScreen: undefined;      // antigo
 
   /** Detalhe do dia */
   DiaCompleto: { diaId?: string } | undefined;
 
-  /** IA — geração e visualização */
+  /** IA â€” geraÃ§Ã£o e visualizaÃ§Ã£o */
   IAventureSe: undefined;
 
-  // ✅ Tolerante: pode vir sem params (contexto) OU com params (array/string/alternativos)
+  // âœ… Tolerante: pode vir sem params (contexto) OU com params (array/string/alternativos)
   IAResultado:
     | undefined
     | { roteiroGerado?: DiaGerado[] | string; usarIAParaTurnos?: boolean }

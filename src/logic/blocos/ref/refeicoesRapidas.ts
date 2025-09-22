@@ -1,6 +1,6 @@
-export const refeicoesRapidas = [
+﻿export const refeicoesRapidas = [
   {
-    nome: "Lanche Rápido – Magic Kingdom",
+    nome: "Lanche RÃ¡pido â€“ Magic Kingdom",
     tipo: "Economico",
     regiao: "Magic Kingdom",
     latitude: 28.4194,
@@ -8,7 +8,7 @@ export const refeicoesRapidas = [
     precoMedio: 10
   },
   {
-    nome: "Snack Express – Epcot",
+    nome: "Snack Express â€“ Epcot",
     tipo: "Saudavel",
     regiao: "Epcot",
     latitude: 28.3747,
@@ -16,7 +16,7 @@ export const refeicoesRapidas = [
     precoMedio: 12
   },
   {
-    nome: "Burgers & Bites – Universal Studios",
+    nome: "Burgers & Bites â€“ Universal Studios",
     tipo: "ClassicoAmericano",
     regiao: "Universal Studios",
     latitude: 28.4758,
@@ -24,7 +24,7 @@ export const refeicoesRapidas = [
     precoMedio: 14
   },
   {
-    nome: "Wrap Stop – Animal Kingdom",
+    nome: "Wrap Stop â€“ Animal Kingdom",
     tipo: "Conforto",
     regiao: "Animal Kingdom",
     latitude: 28.3588,
@@ -32,7 +32,7 @@ export const refeicoesRapidas = [
     precoMedio: 11
   },
   {
-    nome: "Comida Temática Rápida – Hollywood Studios",
+    nome: "Comida TemÃ¡tica RÃ¡pida â€“ Hollywood Studios",
     tipo: "Tematico",
     regiao: "Hollywood Studios",
     latitude: 28.3575,

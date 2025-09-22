@@ -1,14 +1,14 @@
-import { Parkisheiro } from '@/logic/types/parkisheiro';
+﻿import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 import { cafesDisney } from './CafeDisney';
 
-// Função de comparação que aceita tipo string ou array (case insensitive)
+// FunÃ§Ã£o de comparaÃ§Ã£o que aceita tipo string ou array (case insensitive)
 function tipoInclui(tipo: string | string[], perfil: string) {
   if (!tipo) return false;
   if (Array.isArray(tipo)) {
     return tipo.map(t => t.toLowerCase().trim()).includes(perfil.toLowerCase().trim());
   }
-  // Se tipo veio como 'classico,americano', separa por vírgula também
+  // Se tipo veio como 'classico,americano', separa por vÃ­rgula tambÃ©m
   if (typeof tipo === 'string' && tipo.includes(',')) {
     return tipo.split(',').map(t => t.toLowerCase().trim()).includes(perfil.toLowerCase().trim());
   }
@@ -26,8 +26,8 @@ export const gerarDisneyCafe = (
   const perfilSelecionado = parkisheiro.perfis?.refeicoes?.perfil;
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: '☕ Café da Manhã',
-      descricao: 'Nenhum perfil de refeição selecionado.',
+      titulo: 'â˜• CafÃ© da ManhÃ£',
+      descricao: 'Nenhum perfil de refeiÃ§Ã£o selecionado.',
       horarioSugerido: '07:00',
       tipo: 'cafe',
     });
@@ -36,7 +36,7 @@ export const gerarDisneyCafe = (
 
   const nomeRegiaoNorm = regiao?.trim().toLowerCase();
 
-  // 1️⃣ Busca por coordenadas + priorização da mesma região
+  // 1ï¸âƒ£ Busca por coordenadas + priorizaÃ§Ã£o da mesma regiÃ£o
   if (latitude != null && longitude != null && nomeRegiaoNorm) {
     const cafesFiltrados = cafesDisney
       .filter(c => tipoInclui(c.tipo, perfilSelecionado))
@@ -60,7 +60,7 @@ export const gerarDisneyCafe = (
     }
   }
 
-  // 2️⃣ Busca por nome da região (caso coordenadas não funcionem)
+  // 2ï¸âƒ£ Busca por nome da regiÃ£o (caso coordenadas nÃ£o funcionem)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm2 = nomeRegiao.trim().toLowerCase();
@@ -73,17 +73,17 @@ export const gerarDisneyCafe = (
     }
   }
 
-  // 3️⃣ Busca por qualquer café com o tipo
+  // 3ï¸âƒ£ Busca por qualquer cafÃ© com o tipo
   const cafeQualquer = cafesDisney.find(c => tipoInclui(c.tipo, perfilSelecionado));
   if (cafeQualquer) {
     atividades.push(formatarCafeDisney(cafeQualquer));
     return atividades;
   }
 
-  // 4️⃣ Nada encontrado
+  // 4ï¸âƒ£ Nada encontrado
   atividades.push({
-    titulo: '☕ Café da Manhã',
-    descricao: 'Nenhuma sugestão encontrada com seu perfil nesta região.',
+    titulo: 'â˜• CafÃ© da ManhÃ£',
+    descricao: 'Nenhuma sugestÃ£o encontrada com seu perfil nesta regiÃ£o.',
     horarioSugerido: '07:00',
     tipo: 'cafe',
   });
@@ -91,13 +91,13 @@ export const gerarDisneyCafe = (
   return atividades;
 };
 
-// 🔧 Função auxiliar
+// ðŸ”§ FunÃ§Ã£o auxiliar
 function formatarCafeDisney(cafe: any): AtividadeDia {
   return {
-    titulo: `☕ ${cafe.nome} – Café da Manhã`,
+    titulo: `â˜• ${cafe.nome} â€“ CafÃ© da ManhÃ£`,
     descricao:
       `Tipo: ${Array.isArray(cafe.tipo) ? cafe.tipo.join(', ') : cafe.tipo}\n` +
-      `Preço médio: $${cafe.precoMedio}` +
+      `PreÃ§o mÃ©dio: $${cafe.precoMedio}` +
       (cafe.acesso ? `\nAcesso: ${cafe.acesso}` : '') +
       (cafe.destaque ? `\nDestaque: ${cafe.destaque}` : ''),
     horarioSugerido: '07:00',

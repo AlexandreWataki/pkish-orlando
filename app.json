@@ -1,12 +1,11 @@
 {
-  "expo": {
-    "extra": {
-      "eas": {
-        "projectId": "73d31851-0ae9-4a0d-abd5-b211c767cdb5"
-      }
-    },
-    "android": {
-      "package": "com.matheuswataki.roteirovisivelapp"
+  "android": {
+    "package": "com.matheuswataki.pkishorlando"
+  },
+  "extra": {
+    "eas": {
+      "projectId": "3a5c40cf-8775-40ff-b026-117509c9ceee"
     }
-  }
+  },
+  "owner": "matheuswataki"
 }

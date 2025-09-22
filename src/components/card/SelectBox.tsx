@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -64,13 +64,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   label: {
-    fontSize: 12,            // 🔹 menor para combinar com os cards
+    fontSize: 12,            // ðŸ”¹ menor para combinar com os cards
     fontWeight: '600',
     color: '#003366',
     marginBottom: 4,
   },
   caixa: {
-    backgroundColor: '#ffffffcc', // 🔹 igual aos cards translúcidos
+    backgroundColor: '#ffffffcc', // ðŸ”¹ igual aos cards translÃºcidos
     borderRadius: 10,
     paddingHorizontal: 20,
     paddingVertical: 12,
@@ -78,11 +78,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
 
-    // 🔹 remove borda
+    // ðŸ”¹ remove borda
     borderWidth: 0,
     borderColor: 'transparent',
 
-    // 🔹 remove sombra no Android
+    // ðŸ”¹ remove sombra no Android
     elevation: 0,
   },
   texto: {

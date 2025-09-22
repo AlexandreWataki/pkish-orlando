@@ -1,4 +1,4 @@
-package com.matheuswataki.roteirovisivelapp
+package com.matheuswataki.pkishorlando
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

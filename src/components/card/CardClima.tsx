@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import DiaCard from './DiaCard';
 import CatalogoDias from '../catalogo/CatalogoDias';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +8,7 @@ type Dia = {
   numero: number;
   tipo: string;
   data?: string;
-  [key: string]: any; // permite extensões como parque_nome, aeroporto, etc.
+  [key: string]: any; // permite extensÃµes como parque_nome, aeroporto, etc.
 };
 
 const ListaBlocos = () => {
@@ -67,12 +67,12 @@ const ListaBlocos = () => {
 
   return (
     <div className="relative z-10 px-3">
-      {/* Catálogo de navegação por dia */}
+      {/* CatÃ¡logo de navegaÃ§Ã£o por dia */}
       <div className="mb-4">
         <CatalogoDias onEscolher={setFiltroDia} />
       </div>
 
-      {/* Lista de cartões dos dias */}
+      {/* Lista de cartÃµes dos dias */}
       {isMobile ? (
         <Swiper spaceBetween={20} slidesPerView={1}>
           {diasFiltrados.map((dia) => (

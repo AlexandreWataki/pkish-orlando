@@ -1,10 +1,10 @@
-// src/logic/geradores/todasAtracoesUniversal.ts
+﻿// src/logic/geradores/todasAtracoesUniversal.ts
 
 import { AtracaoParque } from '@/logic/types/atracao';
 
-// — Universal Studios Florida
+// â€” Universal Studios Florida
 import { Hollywood } from './AreasUniversal/Hollywood';
-// ⬇️ Se o arquivo WorldExpo.ts exporta WorldExpoSpringfield, use alias:
+// â¬‡ï¸ Se o arquivo WorldExpo.ts exporta WorldExpoSpringfield, use alias:
 import { WorldExpo } from './AreasUniversal/WorldExpo';
 import { MinionsLand } from './AreasUniversal/MinionsLand';
 import { ProductionCentral } from './AreasUniversal/ProductionCentral';
@@ -13,27 +13,27 @@ import { NewYork } from './AreasUniversal/NewYork';
 import { TheWizardingWorld } from './AreasUniversal/TheWizardingWorld';
 import { TheWizardingWorldDiagonAlley } from './AreasUniversal/TheWizardingWorldDiagonAlley';
 
-// — Islands of Adventure
+// â€” Islands of Adventure
 import { MarvelSuperHeroIsland } from './AreasUniversal/MarvelSuperHeroIsland';
 import { ToonLagoon } from './AreasUniversal/ToonLagoon';
 import { SeussLanding } from './AreasUniversal/SeussLanding';
 import { JurassicPark } from './AreasUniversal/JurassicPark';
 import { LostContinent } from './AreasUniversal/LostContinent';
 import { TheWizardingWorldHogsmeade } from './AreasUniversal/TheWizardingWorldHogsmeade';
-import { SkullIsland } from './AreasUniversal/SkullIsland'; // ✅ NOVO
+import { SkullIsland } from './AreasUniversal/SkullIsland'; // âœ… NOVO
 
-// — Epic Universe
+// â€” Epic Universe
 import { UniversalMonsters } from './AreasUniversal/UniversalMonsters';
 import { SuperNintendoWorld } from './AreasUniversal/SuperNintendoWorld';
 import { HowToTrainYourDragon } from './AreasUniversal/HowToTrainYourDragon';
 import { MinistryOfMagic } from './AreasUniversal/MinistryOfMagic';
-import { CelestialPark } from './AreasUniversal/CelestialPark'; // ✅ NOVO
+import { CelestialPark } from './AreasUniversal/CelestialPark'; // âœ… NOVO
 
-// ❌ removido: TheWitcher
+// âŒ removido: TheWitcher
 // import { TheWitcher } from './AreasUniversal/TheWitcher';
 
 export const atracoesUniversal: Partial<AtracaoParque>[] = [
-  // — Universal Studios Florida
+  // â€” Universal Studios Florida
   ...Hollywood.atracoes.map((a) => ({
     ...a,
     regiao: 'Hollywood',
@@ -78,12 +78,12 @@ export const atracoesUniversal: Partial<AtracaoParque>[] = [
   })),
   ...TheWizardingWorldDiagonAlley.atracoes.map((a) => ({
     ...a,
-    regiao: 'The Wizarding World – Diagon Alley',
+    regiao: 'The Wizarding World â€“ Diagon Alley',
     parque: TheWizardingWorldDiagonAlley.parque,
     atracaoSemFila: a.atracaoSemFila ?? false,
   })),
 
-  // — Islands of Adventure
+  // â€” Islands of Adventure
   ...MarvelSuperHeroIsland.atracoes.map((a) => ({
     ...a,
     regiao: 'Marvel Super Hero Island',
@@ -113,10 +113,10 @@ export const atracoesUniversal: Partial<AtracaoParque>[] = [
     regiao: 'Skull Island',
     parque: SkullIsland.parque,
     atracaoSemFila: a.atracaoSemFila ?? false,
-  })), // ✅ NOVO
+  })), // âœ… NOVO
   ...TheWizardingWorldHogsmeade.atracoes.map((a) => ({
     ...a,
-    regiao: 'The Wizarding World – Hogsmeade',
+    regiao: 'The Wizarding World â€“ Hogsmeade',
     parque: TheWizardingWorldHogsmeade.parque,
     atracaoSemFila: a.atracaoSemFila ?? false,
   })),
@@ -127,7 +127,7 @@ export const atracoesUniversal: Partial<AtracaoParque>[] = [
     atracaoSemFila: a.atracaoSemFila ?? false,
   })),
 
-  // — Epic Universe
+  // â€” Epic Universe
   ...UniversalMonsters.atracoes.map((a) => ({
     ...a,
     regiao: 'Universal Monsters',
@@ -157,5 +157,5 @@ export const atracoesUniversal: Partial<AtracaoParque>[] = [
     regiao: 'Celestial Park',
     parque: CelestialPark.parque,
     atracaoSemFila: a.atracaoSemFila ?? false,
-  })), // ✅ NOVO
+  })), // âœ… NOVO
 ];

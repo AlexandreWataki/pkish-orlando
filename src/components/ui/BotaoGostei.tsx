@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 export default function BotaoGostei({ onPress }: Props) {
   return (
     <TouchableOpacity style={styles.botao} onPress={onPress}>
-      <Text style={styles.emoji}>❤️</Text>
+      <Text style={styles.emoji}>â¤ï¸</Text>
     </TouchableOpacity>
   );
 }

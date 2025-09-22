@@ -1,4 +1,4 @@
-// src/components/card/CardObjetivo.tsx
+﻿// src/components/card/CardObjetivo.tsx
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,12 +27,12 @@ export const CardObjetivo = ({ tipoDia = '', nomeParque = '' }: Props) => {
   };
 
   const getSubtitulo = () => {
-    if (tipo === 'chegada') return '→ Hotel';
-    if (tipo === 'saida') return '→ Aeroporto de Orlando';
+    if (tipo === 'chegada') return 'â†’ Hotel';
+    if (tipo === 'saida') return 'â†’ Aeroporto de Orlando';
     if (tipo === 'descanso') return 'Relaxar e aproveitar';
     if (tipo === 'compras') return 'Visitar shoppings ou outlets';
     if (tipo.includes('disney') || tipo.includes('universal')) {
-      return 'Diversão o dia todo';
+      return 'DiversÃ£o o dia todo';
     }
     return '';
   };
@@ -46,7 +46,7 @@ export const CardObjetivo = ({ tipoDia = '', nomeParque = '' }: Props) => {
     return 'flag';
   };
 
-  // 🔹 Efeito de fade do selo (2000ms)
+  // ðŸ”¹ Efeito de fade do selo (2000ms)
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -58,12 +58,12 @@ export const CardObjetivo = ({ tipoDia = '', nomeParque = '' }: Props) => {
     ).start();
   }, []);
 
-  // 🔹 Fundo translúcido (10% de azul)
+  // ðŸ”¹ Fundo translÃºcido (10% de azul)
   const backgroundColor = 'rgba(0, 119, 200, 0.2)';
 
   return (
     <View style={[styles.card, { backgroundColor }]}>
-      {/* 🔹 Selo animado no fundo do card */}
+      {/* ðŸ”¹ Selo animado no fundo do card */}
       <View style={styles.seloContainer}>
         <Animated.Image
           source={require('@/assets/imagens/selo_parque.png')}
@@ -80,7 +80,7 @@ export const CardObjetivo = ({ tipoDia = '', nomeParque = '' }: Props) => {
         />
       </View>
 
-      {/* 🔹 Conteúdo do card */}
+      {/* ðŸ”¹ ConteÃºdo do card */}
       <View style={styles.row}>
         <Ionicons name={getIcone()} size={16} color="#ffffff" style={styles.icon} />
         <View style={{ flex: 1 }}>
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
   card: {
     width: '98%',
     alignSelf: 'center',
-    borderRadius: 10,           // 🔹 Raio 10
+    borderRadius: 10,           // ðŸ”¹ Raio 10
     paddingVertical: 8,
     paddingHorizontal: '5%',
     marginVertical: 6,
-    overflow: 'hidden',         // 🔹 Mantém o selo dentro do card
-    // 🔹 Borda removida
+    overflow: 'hidden',         // ðŸ”¹ MantÃ©m o selo dentro do card
+    // ðŸ”¹ Borda removida
   },
   row: {
     flexDirection: 'row',

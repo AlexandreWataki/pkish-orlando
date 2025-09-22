@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 type Dia = {
@@ -22,12 +22,12 @@ export default function DiaCardPadrao({ bloco, onPress }: Props) {
                         bloco.tipo.toLowerCase().includes('saida') ? 'saida' : 'default';
 
   const icone = {
-    chegada: '🛬',
-    saida: '🛫',
-    disney: '🏰',
-    universal: '🎬',
-    compras: '🛍️',
-    default: '📅',
+    chegada: 'ðŸ›¬',
+    saida: 'ðŸ›«',
+    disney: 'ðŸ°',
+    universal: 'ðŸŽ¬',
+    compras: 'ðŸ›ï¸',
+    default: 'ðŸ“…',
   }[tipoFormatado];
 
   return (
@@ -35,10 +35,10 @@ export default function DiaCardPadrao({ bloco, onPress }: Props) {
       <Text style={styles.titulo}>{icone} Dia {bloco.numero} - {bloco.data}</Text>
       <Text style={styles.linha}>Tipo: <Text style={styles.valor}>{bloco.tipo}</Text></Text>
       {bloco.parque_nome && (
-        <Text style={styles.linha}>🎢 Parque: <Text style={styles.valor}>{bloco.parque_nome}</Text></Text>
+        <Text style={styles.linha}>ðŸŽ¢ Parque: <Text style={styles.valor}>{bloco.parque_nome}</Text></Text>
       )}
       {bloco.destino && (
-        <Text style={styles.linha}>📍 Destino: <Text style={styles.valor}>{bloco.destino}</Text></Text>
+        <Text style={styles.linha}>ðŸ“ Destino: <Text style={styles.valor}>{bloco.destino}</Text></Text>
       )}
     </TouchableOpacity>
   );

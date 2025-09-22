@@ -1,4 +1,4 @@
-package com.matheuswataki.roteirovisivelapp
+package com.matheuswataki.pkishorlando
 
 import android.app.Application
 import android.content.res.Configuration

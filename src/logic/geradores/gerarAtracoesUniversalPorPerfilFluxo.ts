@@ -1,27 +1,27 @@
-// src/logic/geradores/gerarAtracoesUniversalPorPerfilFluxo.ts
+﻿// src/logic/geradores/gerarAtracoesUniversalPorPerfilFluxo.ts
 
 import { AtividadeDia } from '@/logic/types/atividade';
 import { AtracaoParque } from '@/logic/types/atracao';
 import { atracoesUniversal } from './todasAtracoesUniversal';
 
-// Normaliza texto (remove acentos, troca traços por espaço, minúsculo e trim)
+// Normaliza texto (remove acentos, troca traÃ§os por espaÃ§o, minÃºsculo e trim)
 function normalizarTexto(txt: string): string {
   return txt
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[–—-]/g, ' ') // en/em dash e hífen → espaço
+    .replace(/[â€“â€”-]/g, ' ') // en/em dash e hÃ­fen â†’ espaÃ§o
     .toLowerCase()
     .replace(/\s+/g, ' ')
     .trim();
 }
 
-// Mapa para corrigir nomes de áreas
+// Mapa para corrigir nomes de Ã¡reas
 const mapaAreas: Record<string, string> = {
   // Wizarding
-  'the wizarding world hogsmeade': 'The Wizarding World – Hogsmeade',
-  'the wizarding world – hogsmeade': 'The Wizarding World – Hogsmeade',
-  'the wizarding world diagon alley': 'The Wizarding World – Diagon Alley',
-  'the wizarding world - diagon alley': 'The Wizarding World – Diagon Alley',
+  'the wizarding world hogsmeade': 'The Wizarding World â€“ Hogsmeade',
+  'the wizarding world â€“ hogsmeade': 'The Wizarding World â€“ Hogsmeade',
+  'the wizarding world diagon alley': 'The Wizarding World â€“ Diagon Alley',
+  'the wizarding world - diagon alley': 'The Wizarding World â€“ Diagon Alley',
   'the wizarding world': 'The Wizarding World',
 
   // World Expo / Springfield
@@ -29,7 +29,7 @@ const mapaAreas: Record<string, string> = {
   'springfield': 'World Expo',
   'world expo springfield': 'World Expo',
 
-  // Demais áreas USF
+  // Demais Ã¡reas USF
   'hollywood': 'Hollywood',
   'minions land': 'Minions Land',
   'production central': 'Production Central',
@@ -42,7 +42,7 @@ const mapaAreas: Record<string, string> = {
   'seuss landing': 'Seuss Landing',
   'jurassic park': 'Jurassic Park',
   'lost continent': 'Lost Continent',
-  'The Wizarding World – Hogsmeade': 'The Wizarding World – Hogsmeade',
+  'The Wizarding World â€“ Hogsmeade': 'The Wizarding World â€“ Hogsmeade',
   'skull island': 'Skull Island',
 
   // Epic Universe
@@ -57,7 +57,7 @@ function normalizarArea(area: string): string {
   return mapaAreas[normalizarTexto(area)] ?? area;
 }
 
-// Função principal
+// FunÃ§Ã£o principal
 export function gerarAtracoesUniversalPorPerfilFluxo(
   turno: 'manha' | 'tarde' | 'noite',
   parque: string,
@@ -71,16 +71,16 @@ export function gerarAtracoesUniversalPorPerfilFluxo(
       manha: ['Production Central', 'Minions Land', 'New York'],
       tarde: [
         'San Francisco',
-        'World Expo', // ✅ garantido no fluxo
+        'World Expo', // âœ… garantido no fluxo
         'Hollywood',
         'The Wizarding World',
-        'The Wizarding World – Diagon Alley',
+        'The Wizarding World â€“ Diagon Alley',
       ],
       noite: [],
     },
     'Islands of Adventure': {
       manha: ['Marvel Super Hero Island', 'Toon Lagoon', 'Seuss Landing'],
-      tarde: ['Jurassic Park', 'Skull Island', 'The Wizarding World – Hogsmeade', 'Lost Continent'],
+      tarde: ['Jurassic Park', 'Skull Island', 'The Wizarding World â€“ Hogsmeade', 'Lost Continent'],
       noite: [],
     },
     "Universal's Epic Universe": {
@@ -104,7 +104,7 @@ export function gerarAtracoesUniversalPorPerfilFluxo(
     todas: 'todas',
   };
 
-  // Áreas do turno (sem duplicar)
+  // Ãreas do turno (sem duplicar)
   const areasDoTurno = Array.from(
     new Set((fluxoAreasPorParque[parque]?.[turno] ?? []).map(normalizarArea))
   );
@@ -122,7 +122,7 @@ export function gerarAtracoesUniversalPorPerfilFluxo(
       ? [atracao.tipoPerfil.toLowerCase()]
       : [];
 
-    // Se algum perfil for "todas" ou não houver perfil, ignora filtro por perfil
+    // Se algum perfil for "todas" ou nÃ£o houver perfil, ignora filtro por perfil
     const ignorarPerfil = !perfil1 && !perfil2 || perfil1 === 'todas' || perfil2 === 'todas';
 
     const batePerfil =
@@ -138,12 +138,12 @@ export function gerarAtracoesUniversalPorPerfilFluxo(
 
   const agrupadasPorArea: Record<string, AtividadeDia[]> = {};
   atracoesFiltradas.forEach((atracao: Partial<AtracaoParque>) => {
-    const area = normalizarArea(atracao.regiao ?? 'Sem Área');
+    const area = normalizarArea(atracao.regiao ?? 'Sem Ãrea');
     agrupadasPorArea[area] = agrupadasPorArea[area] || [];
     agrupadasPorArea[area].push({
       id: atracao.id ?? `${atracao.titulo ?? 'sem-titulo'}-${turno}`,
       tipo: 'atracao',
-      titulo: atracao.icone ? `${atracao.icone} ${atracao.titulo ?? 'Sem título'}` : atracao.titulo ?? 'Sem título',
+      titulo: atracao.icone ? `${atracao.icone} ${atracao.titulo ?? 'Sem tÃ­tulo'}` : atracao.titulo ?? 'Sem tÃ­tulo',
       descricao: atracao.descricao ?? '',
       subtitulo: atracao.subtitulo ?? (atracao as any).area ?? atracao.regiao ?? '',
       regiao: atracao.regiao ?? '',

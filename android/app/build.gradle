@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.matheuswataki.roteirovisivelapp'
+    namespace 'com.matheuswataki.pkishorlando'
     defaultConfig {
-        applicationId 'com.matheuswataki.roteirovisivelapp'
+        applicationId 'com.matheuswataki.pkishorlando'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

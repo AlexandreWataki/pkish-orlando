@@ -1,4 +1,4 @@
-// src/components/card/HighlightLabelText.tsx
+﻿// src/components/card/HighlightLabelText.tsx
 import React from 'react';
 import { Text } from 'react-native';
 
@@ -22,11 +22,11 @@ export const HighlightLabelText = ({
             style={[
               style,
               {
-                fontSize: 10,           // 🔹 Fonte 10
-                lineHeight: 14,         // 🔹 Leitura confortável
-                textAlign: 'justify',   // 🔹 Sempre justificado
-                marginBottom: 2,        // 🔹 Espaço sutil entre linhas
-                color: '#fff',          // 🔹 Texto padrão branco
+                fontSize: 10,           // ðŸ”¹ Fonte 10
+                lineHeight: 14,         // ðŸ”¹ Leitura confortÃ¡vel
+                textAlign: 'justify',   // ðŸ”¹ Sempre justificado
+                marginBottom: 2,        // ðŸ”¹ EspaÃ§o sutil entre linhas
+                color: '#fff',          // ðŸ”¹ Texto padrÃ£o branco
               },
             ]}
           >

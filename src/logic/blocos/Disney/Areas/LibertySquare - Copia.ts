@@ -1,10 +1,10 @@
-export const LibertySquare = {
+﻿export const LibertySquare = {
   parque: "Magic Kingdom",
   regiao: "Liberty Square",
   latitude: 28.4194,
   longitude: -81.5812,
   descricao:
-    "Área com ambientação da era colonial americana, onde é possível explorar uma réplica da Philadelphia histórica, visitar uma mansão assombrada e aprender sobre a história dos Estados Unidos.",
+    "Ãrea com ambientaÃ§Ã£o da era colonial americana, onde Ã© possÃ­vel explorar uma rÃ©plica da Philadelphia histÃ³rica, visitar uma mansÃ£o assombrada e aprender sobre a histÃ³ria dos Estados Unidos.",
   imagem: "libertysquare.png",
   atracoes: [
     {
@@ -21,8 +21,8 @@ export const LibertySquare = {
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao:
-        "Passeio por uma mansão assombrada com efeitos especiais incríveis, fantasmas brincalhões e cenários icônicos. Mistura diversão com sustos leves.",
-      icone: "👻",
+        "Passeio por uma mansÃ£o assombrada com efeitos especiais incrÃ­veis, fantasmas brincalhÃµes e cenÃ¡rios icÃ´nicos. Mistura diversÃ£o com sustos leves.",
+      icone: "ðŸ‘»",
       imagem: "haunted-mansion.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"
@@ -41,8 +41,8 @@ export const LibertySquare = {
       atracaoSemFila: false,
       turnoRecomendado: "manha",
       descricao:
-        "Passeio tranquilo em um barco a vapor pelo Rivers of America, com vista para diferentes áreas do parque. Ideal para descansar e apreciar a paisagem.",
-      icone: "🚢",
+        "Passeio tranquilo em um barco a vapor pelo Rivers of America, com vista para diferentes Ã¡reas do parque. Ideal para descansar e apreciar a paisagem.",
+      icone: "ðŸš¢",
       imagem: "liberty-riverboat.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"
@@ -51,7 +51,7 @@ export const LibertySquare = {
       id: "hall-of-presidents",
       titulo: "The Hall of Presidents",
       subtitulo: "Liberty Square",
-      tipo: "Show com animatrônicos",
+      tipo: "Show com animatrÃ´nicos",
       tipoPerfil: ["tematicas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -61,8 +61,8 @@ export const LibertySquare = {
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Apresentação com figuras animatrônicas de todos os presidentes dos EUA, com narrativa sobre a história do país. Educativo e climatizado.",
-      icone: "🗽",
+        "ApresentaÃ§Ã£o com figuras animatrÃ´nicas de todos os presidentes dos EUA, com narrativa sobre a histÃ³ria do paÃ­s. Educativo e climatizado.",
+      icone: "ðŸ—½",
       imagem: "hall-of-presidents.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"
@@ -71,7 +71,7 @@ export const LibertySquare = {
       id: "liberty-bell-photo",
       titulo: "Liberty Bell Replica",
       subtitulo: "Liberty Square",
-      tipo: "Ponto histórico para fotos",
+      tipo: "Ponto histÃ³rico para fotos",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -81,8 +81,8 @@ export const LibertySquare = {
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Réplica da famosa Liberty Bell, com espaço para fotos e curiosidades sobre a independência americana. Fica ao ar livre e pode ser acessada a qualquer momento.",
-      icone: "🔔",
+        "RÃ©plica da famosa Liberty Bell, com espaÃ§o para fotos e curiosidades sobre a independÃªncia americana. Fica ao ar livre e pode ser acessada a qualquer momento.",
+      icone: "ðŸ””",
       imagem: "liberty-bell.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"

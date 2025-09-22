@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+﻿import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -12,105 +12,105 @@ import { ptBR } from 'date-fns/locale';
 
 const opcoes = [
   {
-    icone: '🛒',
+    icone: 'ðŸ›’',
     nome: 'Orlando Premium Outlets',
     valor: 'orlandoPremiumOutlets',
     descricao: (
       <Text>
-        Perfeito para caçadores de promoções em marcas famosas como{' '}
+        Perfeito para caÃ§adores de promoÃ§Ãµes em marcas famosas como{' '}
         <Text style={{ fontWeight: 'bold' }}>Nike</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Adidas</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Coach</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Michael Kors</Text> e{' '}
-        <Text style={{ fontWeight: 'bold' }}>Levi’s</Text>. Ambiente movimentado, ideal para{' '}
-        <Text style={{ fontWeight: 'bold' }}>compras intensas</Text> e oportunidades únicas.
+        <Text style={{ fontWeight: 'bold' }}>Leviâ€™s</Text>. Ambiente movimentado, ideal para{' '}
+        <Text style={{ fontWeight: 'bold' }}>compras intensas</Text> e oportunidades Ãºnicas.
       </Text>
     ),
   },
   {
-    icone: '💎',
+    icone: 'ðŸ’Ž',
     nome: 'The Mall at Millenia',
     valor: 'mallMillenia',
     descricao: (
       <Text>
-        Luxo e conforto com marcas de alto padrão como{' '}
+        Luxo e conforto com marcas de alto padrÃ£o como{' '}
         <Text style={{ fontWeight: 'bold' }}>Chanel</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Gucci</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Apple</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Prada</Text> e{' '}
         <Text style={{ fontWeight: 'bold' }}>Louis Vuitton</Text>. Perfeito para quem busca{' '}
-        <Text style={{ fontWeight: 'bold' }}>experiências refinadas</Text>.
+        <Text style={{ fontWeight: 'bold' }}>experiÃªncias refinadas</Text>.
       </Text>
     ),
   },
   {
-    icone: '🏬',
+    icone: 'ðŸ¬',
     nome: 'Florida Mall',
     valor: 'floridaMall',
     descricao: (
       <Text>
-        Shopping tradicional e variado com opções para todas as idades:{' '}
-        <Text style={{ fontWeight: 'bold' }}>Macy’s</Text>,{' '}
+        Shopping tradicional e variado com opÃ§Ãµes para todas as idades:{' '}
+        <Text style={{ fontWeight: 'bold' }}>Macyâ€™s</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Apple</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>GameStop</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Sephora</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Disney Store</Text> e{' '}
-        <Text style={{ fontWeight: 'bold' }}>M&M’s</Text>. Ideal para passeios em família.
+        <Text style={{ fontWeight: 'bold' }}>M&Mâ€™s</Text>. Ideal para passeios em famÃ­lia.
       </Text>
     ),
   },
   {
-    icone: '🧸',
+    icone: 'ðŸ§¸',
     nome: 'Walmart, Target & Five Below',
     valor: 'walmartTargetFive',
     descricao: (
       <Text>
-        Ótimo para{' '}
+        Ã“timo para{' '}
         <Text style={{ fontWeight: 'bold' }}>lembrancinhas baratas</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>snacks</Text>, itens infantis e utilidades do dia a dia. Perfeito para{' '}
-        <Text style={{ fontWeight: 'bold' }}>compras rápidas e práticas</Text>.
+        <Text style={{ fontWeight: 'bold' }}>compras rÃ¡pidas e prÃ¡ticas</Text>.
       </Text>
     ),
   },
   {
-    icone: '🎠',
+    icone: 'ðŸŽ ',
     nome: 'Disney Springs & CityWalk',
     valor: 'disneySpringsCityWalk',
     descricao: (
       <Text>
-        Passeio divertido com lojas temáticas como{' '}
+        Passeio divertido com lojas temÃ¡ticas como{' '}
         <Text style={{ fontWeight: 'bold' }}>Disney</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Universal</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>LEGO</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Coca-Cola</Text> e{' '}
         <Text style={{ fontWeight: 'bold' }}>Marvel</Text>. Ideal para{' '}
-        <Text style={{ fontWeight: 'bold' }}>curtir a noite</Text> com música e gastronomia.
+        <Text style={{ fontWeight: 'bold' }}>curtir a noite</Text> com mÃºsica e gastronomia.
       </Text>
     ),
   },
   {
-    icone: '🖼️',
+    icone: 'ðŸ–¼ï¸',
     nome: 'Lake Buena Vista Factory Stores',
     valor: 'lakeBuenaVista',
     descricao: (
       <Text>
         Outlet mais tranquilo, perfeito para{' '}
-        <Text style={{ fontWeight: 'bold' }}>evitar multidões</Text>, com lojas como{' '}
+        <Text style={{ fontWeight: 'bold' }}>evitar multidÃµes</Text>, com lojas como{' '}
         <Text style={{ fontWeight: 'bold' }}>Reebok</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Nike</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Gap</Text>,{' '}
-        <Text style={{ fontWeight: 'bold' }}>Levi’s</Text> e{' '}
-        <Text style={{ fontWeight: 'bold' }}>Carter’s</Text>.
+        <Text style={{ fontWeight: 'bold' }}>Leviâ€™s</Text> e{' '}
+        <Text style={{ fontWeight: 'bold' }}>Carterâ€™s</Text>.
       </Text>
     ),
   },
   {
-    icone: '🎨',
+    icone: 'ðŸŽ¨',
     nome: 'Arte local e feirinhas',
     valor: 'arteLocalFeiras',
     descricao: (
       <Text>
-        Presentes únicos e{' '}
+        Presentes Ãºnicos e{' '}
         <Text style={{ fontWeight: 'bold' }}>produtos artesanais</Text> em feiras e mercados locais. Ideal para quem gosta de{' '}
         <Text style={{ fontWeight: 'bold' }}>cultura</Text> e{' '}
         <Text style={{ fontWeight: 'bold' }}>criatividade</Text>.
@@ -140,14 +140,14 @@ export default function PerfilComprasPorDiaScreen() {
     if (diasCompras.length === 0) irParaProximaTela();
   }, []);
 
-  // 🔄 Reidrata a seleção a partir do CONTEXTO (string), não de .valor
+  // ðŸ”„ Reidrata a seleÃ§Ã£o a partir do CONTEXTO (string), nÃ£o de .valor
   useEffect(() => {
     if (!diaAtual) return;
     const salvo: string | undefined = (diaAtual as any)?.perfilCompras;
     setRespostas(prev => ({ ...prev, [dataISOAtual]: salvo || '' }));
   }, [dataISOAtual, diaAtual, parkisheiroAtual?.id, parkisheiroAtual?.roteiroFinal?.length]);
 
-  // tocar em uma opção -> salva no local e no contexto
+  // tocar em uma opÃ§Ã£o -> salva no local e no contexto
   const handleSelecionar = async (valor: string) => {
     if (!diaAtual || !dataISOAtual) return;
     setRespostas(prev => ({ ...prev, [dataISOAtual]: valor }));
@@ -167,7 +167,7 @@ export default function PerfilComprasPorDiaScreen() {
     else navigation.goBack();
   };
 
-  // 💾 salva no desfoco
+  // ðŸ’¾ salva no desfoco
   useFocusEffect(
     useCallback(() => {
       return () => {
@@ -204,7 +204,7 @@ export default function PerfilComprasPorDiaScreen() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}°C` : '28°C'}
+          temperatura={clima?.temp ? `${clima.temp}Â°C` : '28Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -213,9 +213,9 @@ export default function PerfilComprasPorDiaScreen() {
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.cardPergunta}>
             <Text style={styles.pergunta}>
-              🛍️ Escolha o melhor local de compras para este dia:{' '}
+              ðŸ›ï¸ Escolha o melhor local de compras para este dia:{' '}
               <Text style={styles.dataDia}>
-                {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} –{' '}
+                {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} â€“{' '}
                 {format(new Date(diaAtual.data), 'EEEE', { locale: ptBR })}
               </Text>
             </Text>

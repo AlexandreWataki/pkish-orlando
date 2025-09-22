@@ -1,9 +1,9 @@
-export const FutureWorld = {
+﻿export const FutureWorld = {
   parque: "Epcot",
   regiao: "Future World",
   latitude: 28.3747,
   longitude: -81.5494,
-  descricao: "Antiga área principal do Epcot dedicada à ciência, tecnologia e inovação. Algumas atrações ainda mantêm esse espírito futurista em experiências educativas e imersivas.",
+  descricao: "Antiga Ã¡rea principal do Epcot dedicada Ã  ciÃªncia, tecnologia e inovaÃ§Ã£o. Algumas atraÃ§Ãµes ainda mantÃªm esse espÃ­rito futurista em experiÃªncias educativas e imersivas.",
   imagem: "futureworld.png",
   atracoes: [
     {
@@ -17,8 +17,8 @@ export const FutureWorld = {
       tempoMedioFila: 30,
       filaAceitavel: 25,
       idadeRecomendada: "Todas as idades",
-      descricao: "Viagem através da história da comunicação humana, dentro do icônico globo prateado do Epcot. Tranquilo e educativo.",
-      icone: "🌐",
+      descricao: "Viagem atravÃ©s da histÃ³ria da comunicaÃ§Ã£o humana, dentro do icÃ´nico globo prateado do Epcot. Tranquilo e educativo.",
+      icone: "ðŸŒ",
       imagem: "spaceship-earth.jpg",
       regiao: "Future World",
       parque: "Epcot"
@@ -35,7 +35,7 @@ export const FutureWorld = {
       filaAceitavel: 15,
       idadeRecomendada: "Todas as idades",
       descricao: "Explore os sentidos e a criatividade com o personagem Figment em um passeio leve e cheio de surpresas.",
-      icone: "🎨",
+      icone: "ðŸŽ¨",
       imagem: "journey-into-imagination.jpg",
       regiao: "Future World",
       parque: "Epcot"
@@ -44,7 +44,7 @@ export const FutureWorld = {
       id: "project-tomorrow",
       titulo: "Project Tomorrow",
       subtitulo: "Future World",
-      tipo: "Espaço interativo",
+      tipo: "EspaÃ§o interativo",
       tipoPerfil: ["interativas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -52,17 +52,17 @@ export const FutureWorld = {
       filaAceitavel: 0,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
-      descricao: "Área interativa localizada na saída do Spaceship Earth, com jogos e experiências tecnológicas sem fila.",
-      icone: "🕹️",
+      descricao: "Ãrea interativa localizada na saÃ­da do Spaceship Earth, com jogos e experiÃªncias tecnolÃ³gicas sem fila.",
+      icone: "ðŸ•¹ï¸",
       imagem: "project-tomorrow.jpg",
       regiao: "Future World",
       parque: "Epcot"
     },
     {
       id: "imageworks",
-      titulo: "ImageWorks – The What-If Labs",
+      titulo: "ImageWorks â€“ The What-If Labs",
       subtitulo: "Future World",
-      tipo: "Laboratório de experiências criativas",
+      tipo: "LaboratÃ³rio de experiÃªncias criativas",
       tipoPerfil: ["interativas", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -70,8 +70,8 @@ export const FutureWorld = {
       filaAceitavel: 0,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
-      descricao: "Área interativa ao final da atração de Figment, com estações criativas para experimentar sons, luzes e movimento.",
-      icone: "🧠",
+      descricao: "Ãrea interativa ao final da atraÃ§Ã£o de Figment, com estaÃ§Ãµes criativas para experimentar sons, luzes e movimento.",
+      icone: "ðŸ§ ",
       imagem: "imageworks.jpg",
       regiao: "Future World",
       parque: "Epcot"
@@ -80,7 +80,7 @@ export const FutureWorld = {
       id: "discovery-spot",
       titulo: "Discovery Spot",
       subtitulo: "Future World",
-      tipo: "Ponto temático de descanso e explorações livres",
+      tipo: "Ponto temÃ¡tico de descanso e exploraÃ§Ãµes livres",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -88,8 +88,8 @@ export const FutureWorld = {
       filaAceitavel: 0,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
-      descricao: "Espaço ao ar livre com jardins tecnológicos, fontes interativas e bancos sombreados. Ideal para relaxar e explorar livremente.",
-      icone: "🧬",
+      descricao: "EspaÃ§o ao ar livre com jardins tecnolÃ³gicos, fontes interativas e bancos sombreados. Ideal para relaxar e explorar livremente.",
+      icone: "ðŸ§¬",
       imagem: "discovery-spot.jpg",
       regiao: "Future World",
       parque: "Epcot"

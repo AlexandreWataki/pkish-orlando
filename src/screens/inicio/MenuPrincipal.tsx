@@ -1,4 +1,4 @@
-// src/screens/inicio/MenuPrincipal.tsx
+﻿// src/screens/inicio/MenuPrincipal.tsx
 import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
@@ -19,6 +19,17 @@ import { CabecalhoDia } from '@/components/card/CabecalhoDia';
 import { buscarClima } from '@/logic/clima/buscarclima';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+
+type Rota = {
+  titulo: string;
+  icon: React.ComponentProps<typeof import('@expo/vector-icons').Ionicons>['name'];
+  corFundo: string;
+  corBorda: string;
+  corTexto: string;
+  destino: string;
+  ativo: boolean;
+  subtitulo: string;
+};
 
 export default function MenuPrincipal() {
   const navigation = useNavigation<any>();
@@ -126,11 +137,11 @@ export default function MenuPrincipal() {
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
 
-  // Textos revisados e sem “Off-line”
-  const botoesMenu = [
+  // Itens do menu (agora usando ícones do Ionicons)
+  const botoesMenu: Rota[] = [
     {
       titulo: 'Criar Roteiro Orlando',
-      emoji: '📖',
+      icon: 'map-outline',
       corFundo: '#0B3D91',
       corBorda: '#00FFFF',
       corTexto: '#FFFFFF',
@@ -140,7 +151,7 @@ export default function MenuPrincipal() {
     },
     {
       titulo: 'Último Roteiro Salvo',
-      emoji: '📂',
+      icon: 'save-outline',
       corFundo: '#4B0082',
       corBorda: '#FF00FF',
       corTexto: '#FFF0FF',
@@ -150,7 +161,7 @@ export default function MenuPrincipal() {
     },
     {
       titulo: 'Atrações dos Parques',
-      emoji: '🎢',
+      icon: 'star-outline',
       corFundo: '#FF8C00',
       corBorda: '#FFD700',
       corTexto: '#FFFFFF',
@@ -160,7 +171,7 @@ export default function MenuPrincipal() {
     },
     {
       titulo: 'Restaurantes e Refeições',
-      emoji: '🍽️',
+      icon: 'restaurant-outline',
       corFundo: '#0077CC',
       corBorda: '#00BFFF',
       corTexto: '#FFFFFF',
@@ -168,7 +179,7 @@ export default function MenuPrincipal() {
       ativo: true,
       subtitulo: 'Opções gastronômicas por parque e área',
     },
-  ] as const;
+  ];
 
   return (
     <LinearGradient
@@ -185,7 +196,7 @@ export default function MenuPrincipal() {
           <View key={btn.titulo} style={styles.cardWrapper}>
             <BotaoMenuCard
               titulo={btn.titulo}
-              emoji={btn.emoji}
+              icon={btn.icon}
               corFundo={btn.corFundo}
               corBorda={btn.corBorda}
               corTexto={btn.corTexto}
@@ -221,28 +232,26 @@ export default function MenuPrincipal() {
           </View>
         ))}
 
-        {/* Botão Clube de Vantagens Orlando */}
+        {/* Clube de Vantagens Orlando */}
         <View style={styles.cardWrapper}>
           <BotaoMenuNeon
+            icon="pricetags-outline"
             titulo="Clube de Vantagens Orlando"
-            emoji="🎟️"
             subtitulo="Promoções e descontos exclusivos"
             onPress={() => navigation.navigate('Promocoes')}
           />
         </View>
 
-        {/* ÚLTIMO: Voltar ao Cadastro / Login */}
+        {/* Último: Voltar ao Cadastro / Login */}
         <View style={styles.cardWrapper}>
           <BotaoMenuCard
+            icon="log-in-outline"
             titulo="Voltar ao Cadastro / Login"
-            emoji="👤"
             corFundo="#87CEFA"
             corBorda="#FFFFFF"
-            corTexto="#FFFFFF"
+            corTexto="#003B73"
             subtitulo="Acesse ou crie sua conta"
             onPress={() => navigation.navigate('Inicio')}
-            noShadow
-            forceWhiteEmoji
           />
         </View>
       </View>

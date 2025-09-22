@@ -1,4 +1,4 @@
-export type AtracaoParque = {
+﻿export type AtracaoParque = {
   id: string;
   titulo: string;
   subtitulo: string;

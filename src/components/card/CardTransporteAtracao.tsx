@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 
 type Props = {
@@ -53,7 +53,7 @@ export const CardTransporteAtracao = ({
       </View>
       <View style={styles.content}>
         <Text style={styles.descricao}>
-          Distância: {distancia ?? '---'} | Tempo estimado: {tempoEstimado} até {destino}
+          DistÃ¢ncia: {distancia ?? '---'} | Tempo estimado: {tempoEstimado} atÃ© {destino}
           {precoUber ? ` | Uber/Lyft: ${precoUber}` : ''}
         </Text>
       </View>

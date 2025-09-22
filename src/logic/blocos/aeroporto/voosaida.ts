@@ -1,26 +1,26 @@
-// src/logic/types/voosaida.ts
+﻿// src/logic/types/voosaida.ts
 
 export const sugestoesSaida: Record<string, string[]> = {
   madrugada: [
-    'Organizar malas à noite.',
-    'Descansar no início da noite.',
+    'Organizar malas Ã  noite.',
+    'Descansar no inÃ­cio da noite.',
     'Check-out noturno e transporte agendado.',
   ],
   manha: [
-    'Arrumar malas à noite anterior.',
+    'Arrumar malas Ã  noite anterior.',
     'Check-out cedo.',
-    'Transporte até o aeroporto com antecedência.',
+    'Transporte atÃ© o aeroporto com antecedÃªncia.',
   ],
   tarde: [
-    'Café da manhã tranquilo.',
-    'Últimas compras ou passeio leve próximo ao hotel.',
-    'Check-out até meio-dia.',
+    'CafÃ© da manhÃ£ tranquilo.',
+    'Ãšltimas compras ou passeio leve prÃ³ximo ao hotel.',
+    'Check-out atÃ© meio-dia.',
     'Transporte para o aeroporto.',
   ],
   noite: [
-    'Manhã e início da tarde livres para atividades leves.',
-    'Check-out no horário.',
-    'Almoço especial de despedida.',
+    'ManhÃ£ e inÃ­cio da tarde livres para atividades leves.',
+    'Check-out no horÃ¡rio.',
+    'AlmoÃ§o especial de despedida.',
     'Transporte para o aeroporto no fim da tarde.',
   ],
 };

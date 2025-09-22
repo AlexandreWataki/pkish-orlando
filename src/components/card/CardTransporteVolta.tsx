@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -72,8 +72,8 @@ export const CardTransporteVolta = ({
       </View>
       <View style={styles.content}>
         <Text style={styles.descricao}>
-          Distância: {distancia}
-          {'\n'}Tempo estimado: {tempoEstimado} até {destino}
+          DistÃ¢ncia: {distancia}
+          {'\n'}Tempo estimado: {tempoEstimado} atÃ© {destino}
           {precoUber ? `\nUber/Lyft: ${precoUber}` : ''}
         </Text>
       </View>

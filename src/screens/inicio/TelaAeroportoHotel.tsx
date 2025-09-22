@@ -1,4 +1,4 @@
-// src/screens/inicio/TelaAeroportoHotel.tsx
+﻿// src/screens/inicio/TelaAeroportoHotel.tsx
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -20,38 +20,38 @@ import { ptBR } from 'date-fns/locale';
 
 const horariosVoo = [
   { label: 'Madrugada', value: 'madrugada' },
-  { label: 'Manhã', value: 'manha' },
+  { label: 'ManhÃ£', value: 'manha' },
   { label: 'Tarde', value: 'tarde' },
   { label: 'Noite', value: 'noite' },
 ];
 
 const sugestoesChegada: Record<string, string[]> = {
   madrugada: [
-    'Chegada durante a madrugada: siga para o hotel com transporte agendado, faça o check-in e descanse. Se disponível, aproveite um jantar leve ou room service para relaxar após a viagem.',
+    'Chegada durante a madrugada: siga para o hotel com transporte agendado, faÃ§a o check-in e descanse. Se disponÃ­vel, aproveite um jantar leve ou room service para relaxar apÃ³s a viagem.',
   ],
   manha: [
-    'Chegada pela manhã: vá até o hotel para deixar as malas, depois aproveite para visitar a Disney Springs e retirar ingressos. Finalize o dia com compras rápidas no Walmart para abastecer o quarto.',
+    'Chegada pela manhÃ£: vÃ¡ atÃ© o hotel para deixar as malas, depois aproveite para visitar a Disney Springs e retirar ingressos. Finalize o dia com compras rÃ¡pidas no Walmart para abastecer o quarto.',
   ],
   tarde: [
-    'Chegada à tarde: faça o check-in no hotel com tranquilidade, dê um passeio leve em Disney Springs ou em um outlet próximo e encerre o dia com um jantar agradável em restaurante da região.',
+    'Chegada Ã  tarde: faÃ§a o check-in no hotel com tranquilidade, dÃª um passeio leve em Disney Springs ou em um outlet prÃ³ximo e encerre o dia com um jantar agradÃ¡vel em restaurante da regiÃ£o.',
   ],
   noite: [
-    'Chegada à noite: dirija-se diretamente ao hotel para o check-in. Descanse bem para aproveitar ao máximo o dia seguinte.',
+    'Chegada Ã  noite: dirija-se diretamente ao hotel para o check-in. Descanse bem para aproveitar ao mÃ¡ximo o dia seguinte.',
   ],
 };
 
 const sugestoesSaida: Record<string, string[]> = {
   madrugada: [
-    'Saída durante a madrugada: organize as malas na noite anterior e descanse cedo. Programe o check-out noturno e garanta o transporte antecipado até o aeroporto.',
+    'SaÃ­da durante a madrugada: organize as malas na noite anterior e descanse cedo. Programe o check-out noturno e garanta o transporte antecipado atÃ© o aeroporto.',
   ],
   manha: [
-    'Saída pela manhã: arrume as malas na noite anterior para um check-out sem pressa. Garanta o transporte com antecedência até o aeroporto.',
+    'SaÃ­da pela manhÃ£: arrume as malas na noite anterior para um check-out sem pressa. Garanta o transporte com antecedÃªncia atÃ© o aeroporto.',
   ],
   tarde: [
-    'Saída à tarde: aproveite um café da manhã tranquilo, faça as últimas compras ou um passeio leve próximo ao hotel. Realize o check-out até o meio-dia e siga para o aeroporto.',
+    'SaÃ­da Ã  tarde: aproveite um cafÃ© da manhÃ£ tranquilo, faÃ§a as Ãºltimas compras ou um passeio leve prÃ³ximo ao hotel. Realize o check-out atÃ© o meio-dia e siga para o aeroporto.',
   ],
   noite: [
-    'Saída à noite: aproveite a manhã e o início da tarde para atividades leves. Após o check-out no horário, faça um almoço especial de despedida e vá para o aeroporto no fim da tarde.',
+    'SaÃ­da Ã  noite: aproveite a manhÃ£ e o inÃ­cio da tarde para atividades leves. ApÃ³s o check-out no horÃ¡rio, faÃ§a um almoÃ§o especial de despedida e vÃ¡ para o aeroporto no fim da tarde.',
   ],
 };
 
@@ -185,14 +185,14 @@ export default function TelaAeroportoHotel() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}°C` : '28°C'}
+          temperatura={clima ? `${clima.temp}Â°C` : '28Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll}>
         {renderCampo(
-          'Selecione sua região ou a mais próxima',
+          'Selecione sua regiÃ£o ou a mais prÃ³xima',
           visivel.regiao,
           () => setVisivel(v => ({ ...v, regiao: !v.regiao })),
           <SelectBox
@@ -208,12 +208,12 @@ export default function TelaAeroportoHotel() {
               setVisivel(v => ({ ...v, regiao: false }));
             }}
           />,
-          !!regiaoHospedagem && regiaoHospedagem.nome !== 'Nenhuma área de hospedagem',
+          !!regiaoHospedagem && regiaoHospedagem.nome !== 'Nenhuma Ã¡rea de hospedagem',
           regiaoHospedagem ? renderDescricaoRegiao(regiaoHospedagem) : null
         )}
 
         {temChegada && renderCampo(
-          'Horário do Voo de Chegada',
+          'HorÃ¡rio do Voo de Chegada',
           visivel.chegada,
           () => setVisivel(v => ({ ...v, chegada: !v.chegada })),
           <SelectBox
@@ -230,7 +230,7 @@ export default function TelaAeroportoHotel() {
         )}
 
         {temSaida && renderCampo(
-          'Horário do Voo de Saída',
+          'HorÃ¡rio do Voo de SaÃ­da',
           visivel.saida,
           () => setVisivel(v => ({ ...v, saida: !v.saida })),
           <SelectBox

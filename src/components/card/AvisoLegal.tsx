@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated, TouchableOpacity, Platform, Text } from 'react-native';
 import LogoAtencao from './LogoAtencao';
 
 export type AvisoLegalProps = {
   children?: React.ReactNode;
   incluirGuiaNaoOficial?: boolean;
-  fixoNoRodape?: boolean;   // se true, fica acima do seu rodapé azul
+  fixoNoRodape?: boolean;   // se true, fica acima do seu rodapÃ© azul
   compact?: boolean;
   theme?: 'blue' | 'light'; // 'blue' = fundo azul, texto branco
   onPress?: () => void;
@@ -28,7 +28,7 @@ const AvisoLegal: React.FC<AvisoLegalProps> = ({
   compact = true,
   theme = 'blue',
   onPress,
-  variant = 'card', // padrão já igual aos outros cards
+  variant = 'card', // padrÃ£o jÃ¡ igual aos outros cards
 }) => {
   const pulse = useRef(new Animated.Value(1)).current;
 
@@ -42,7 +42,7 @@ const AvisoLegal: React.FC<AvisoLegalProps> = ({
   }, []);
 
   const textoBase = children ?? (
-    <>App independente sem vínculo Disney/Universal.</>
+    <>App independente sem vÃ­nculo Disney/Universal.</>
   );
 
   const isBlue = theme === 'blue';
@@ -73,7 +73,7 @@ const AvisoLegal: React.FC<AvisoLegalProps> = ({
           ]}
         >
           {textoBase}
-          {incluirGuiaNaoOficial ? ' • Guia não oficial' : ''}
+          {incluirGuiaNaoOficial ? ' â€¢ Guia nÃ£o oficial' : ''}
         </Text>
       </TouchableOpacity>
     </Animated.View>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: 106, // fica acima do seu rodapé azul
+    bottom: 106, // fica acima do seu rodapÃ© azul
   },
   androidElevation: {
     elevation: 3,

@@ -1,18 +1,18 @@
-// Tipos e utilitários compartilhados — NÃO importa listas para evitar ciclo
+﻿// Tipos e utilitÃ¡rios compartilhados â€” NÃƒO importa listas para evitar ciclo
 
 export type NomeMenu = { 
   nome: string; 
   menuUrl: string; 
 };
 
-// Normaliza nomes para casar corretamente (remove acentos, aspas, múltiplos espaços, etc.)
+// Normaliza nomes para casar corretamente (remove acentos, aspas, mÃºltiplos espaÃ§os, etc.)
 export function normalizeNome(s: string) {
   return (s || "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "") // tira acentos
-    .replace(/['’"“”`]/g, "")        // aspas variadas
-    .replace(/[–—\-]/g, "-")         // normaliza hífens
-    .replace(/\s+/g, " ")            // espaços múltiplos
+    .replace(/['â€™"â€œâ€`]/g, "")        // aspas variadas
+    .replace(/[â€“â€”\-]/g, "-")         // normaliza hÃ­fens
+    .replace(/\s+/g, " ")            // espaÃ§os mÃºltiplos
     .trim()
     .toLowerCase();
 }

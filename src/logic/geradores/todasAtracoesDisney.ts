@@ -1,4 +1,4 @@
-import { AtracaoParque } from '@/logic/types/atracao';
+﻿import { AtracaoParque } from '@/logic/types/atracao';
 
 import { Adventureland } from './Areas/Adventureland';
 import { Fantasyland } from './Areas/Fantasyland';
@@ -44,7 +44,7 @@ export const atracoesDisney: Partial<AtracaoParque>[] = [
   ...EchoLake.atracoes.map((a) => ({ ...a, regiao: 'Echo Lake', parque: EchoLake.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
   ...GrandAvenue.atracoes.map((a) => ({ ...a, regiao: 'Grand Avenue', parque: GrandAvenue.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
   ...HollywoodBoulevard.atracoes.map((a) => ({ ...a, regiao: 'Hollywood Boulevard', parque: HollywoodBoulevard.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
-  ...StarWars.atracoes.map((a) => ({ ...a, regiao: 'Star Wars: Galaxy’s Edge', parque: StarWars.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
+  ...StarWars.atracoes.map((a) => ({ ...a, regiao: 'Star Wars: Galaxyâ€™s Edge', parque: StarWars.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
   ...SunsetBoulevard.atracoes.map((a) => ({ ...a, regiao: 'Sunset Boulevard', parque: SunsetBoulevard.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
   ...ToyStoryLand.atracoes.map((a) => ({ ...a, regiao: 'Toy Story Land', parque: ToyStoryLand.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
 
@@ -53,5 +53,5 @@ export const atracoesDisney: Partial<AtracaoParque>[] = [
   ...DinoLand.atracoes.map((a) => ({ ...a, regiao: 'DinoLand U.S.A.', parque: DinoLand.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
   ...DiscoveryIsland.atracoes.map((a) => ({ ...a, regiao: 'Discovery Island', parque: DiscoveryIsland.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
   ...Oasis.atracoes.map((a) => ({ ...a, regiao: 'Oasis', parque: Oasis.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
-  ...Pandora.atracoes.map((a) => ({ ...a, regiao: 'Pandora – The World of Avatar', parque: Pandora.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
+  ...Pandora.atracoes.map((a) => ({ ...a, regiao: 'Pandora â€“ The World of Avatar', parque: Pandora.parque, atracaoSemFila: a.atracaoSemFila ?? false })),
 ];

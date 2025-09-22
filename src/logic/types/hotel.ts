@@ -1,4 +1,4 @@
-export interface Hotel {
+﻿export interface Hotel {
   nome: string;
   endereco: string;
   localizacao: {

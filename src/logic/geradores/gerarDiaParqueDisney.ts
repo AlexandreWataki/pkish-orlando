@@ -1,4 +1,4 @@
-// src/logic/geradores/gerarDiaParqueDisney.ts
+﻿// src/logic/geradores/gerarDiaParqueDisney.ts
 
 import { Dia } from '@/logic/types/dia';
 import { TurnoDia } from '@/logic/types/turno';
@@ -17,7 +17,7 @@ import { gerarAtracoesNoiteComFogos } from './gerarAtracoesNoiteComFogos';
 
 import { dicasParquesDisney } from '../blocos/Disney/dicasParquesDisney';
 
-// Importando áreas da Disney
+// Importando Ã¡reas da Disney
 import { Adventureland } from './Areas/Adventureland';
 import { Fantasyland } from './Areas/Fantasyland';
 import { LibertySquare } from './Areas/LibertySquare';
@@ -42,7 +42,7 @@ import { WorldShowcase } from './Areas/WorldShowcase';
 import { AnimationCourtyard } from './Areas/AnimationCourtyard';
 import { SunsetBoulevard } from './Areas/SunsetBoulevard';
 
-// Mapa de áreas Disney
+// Mapa de Ã¡reas Disney
 const mapaAreasDisney: Record<string, any> = {
   Adventureland,
   Fantasyland,
@@ -69,11 +69,11 @@ const mapaAreasDisney: Record<string, any> = {
   SunsetBoulevard,
 };
 
-// Mapa de nomes alternativos para áreas
+// Mapa de nomes alternativos para Ã¡reas
 const mapaAreasDisneyNomes: Record<string, string> = {
    'main street': 'MainStreet',
   'main street usa': 'MainStreet',
-  'main street u.s.a.': 'MainStreet',  // <--- Já existe, mas podemos reforçar
+  'main street u.s.a.': 'MainStreet',  // <--- JÃ¡ existe, mas podemos reforÃ§ar
   'main street, u.s.a.': 'MainStreet', // <--- ADICIONAR ESTA LINHA
  'adventureland': 'Adventureland',
   'fantasyland': 'Fantasyland',
@@ -100,7 +100,7 @@ const mapaAreasDisneyNomes: Record<string, string> = {
   'sunset boulevard': 'SunsetBoulevard',
 };
 
-// Função para normalizar áreas
+// FunÃ§Ã£o para normalizar Ã¡reas
 function normalizarArea(nome: string): string {
   return mapaAreasDisneyNomes[nome.toLowerCase().trim()] ?? nome;
 }
@@ -131,7 +131,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     const dia = parkisheiro.roteiroFinal?.find(d => d.id === `dia${numero}`);
     const perfilAtracao = dia?.perfilAtracoes?.valor;
     if (!perfilAtracao) {
-      throw new Error("Você precisa escolher um perfil de atrações!");
+      throw new Error("VocÃª precisa escolher um perfil de atraÃ§Ãµes!");
     }
 
     const nomeOriginal = dia?.nomeParque ?? 'Magic Kingdom';
@@ -146,7 +146,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
       'magik kingdom': 'Magic Kingdom',
       'mk park': 'Magic Kingdom',
       'magick': 'Magic Kingdom',
-      'mágic kingdom': 'Magic Kingdom',
+      'mÃ¡gic kingdom': 'Magic Kingdom',
       // EPCOT
       'epcot': 'EPCOT',
       'epcot center': 'EPCOT',
@@ -156,7 +156,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
       'epcot park center': 'EPCOT',
       'epcot center park': 'EPCOT',
       'epcotc': 'EPCOT',
-      'épcot': 'EPCOT',
+      'Ã©pcot': 'EPCOT',
       // HOLLYWOOD STUDIOS
       'hollywood studios': 'Hollywood Studios',
       'hollywood studio': 'Hollywood Studios',
@@ -195,7 +195,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     const transporteIda: any[] = [];
     const transporteVolta: any[] = [];
 
-    // ATRAÇÕES
+    // ATRAÃ‡Ã•ES
     const atracoesManhaPorArea = gerarAtracoesDisneyPorPerfilFluxo('manha', parque, perfilAtracao);
     const atracoesTardePorArea = gerarAtracoesDisneyPorPerfilFluxo('tarde', parque, perfilAtracao);
 
@@ -250,14 +250,14 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     data.setDate(data.getDate() + numero - 1);
     const dataIso = format(data, 'yyyy-MM-dd');
 
-    // Montar áreas e atrações
+    // Montar Ã¡reas e atraÃ§Ãµes
     const montarAtividadesPorTurno = (atracoesPorArea: { area: string; atracoes: any[] }[]) =>
       atracoesPorArea.flatMap(({ area, atracoes }) => {
         const areaNormalizada = normalizarArea(area);
         const areaModule = mapaAreasDisney[areaNormalizada];
-        const descricaoArea = areaModule?.descricao ?? `Bem-vindo à área ${area}`;
+        const descricaoArea = areaModule?.descricao ?? `Bem-vindo Ã  Ã¡rea ${area}`;
         return [
-          { titulo: `Área: ${area}`, descricao: descricaoArea, tipo: 'informativa' },
+          { titulo: `Ãrea: ${area}`, descricao: descricaoArea, tipo: 'informativa' },
           ...atracoes,
         ];
       });
@@ -265,9 +265,9 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
     const blocoDicas = dicasParquesDisney[parque] || dicasParquesDisney["Magic Kingdom"];
 
     const turnos: TurnoDia[] = [
-      { titulo: 'Transporte até o Parque', atividades: transporteIda },
+      { titulo: 'Transporte atÃ© o Parque', atividades: transporteIda },
       {
-        titulo: 'Manhã',
+        titulo: 'ManhÃ£',
         atividades: [
           {
             titulo: 'Dicas do dia',
@@ -275,17 +275,17 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
             descricao:
               (blocoDicas.resumo ? `${blocoDicas.resumo}\n` : '') +
               (blocoDicas.chegada ? `${blocoDicas.chegada}\n` : '') +
-              `Estratégia: ${blocoDicas.estrategia}\n` +
-              `Manhã: ${blocoDicas.manha}\n` +
+              `EstratÃ©gia: ${blocoDicas.estrategia}\n` +
+              `ManhÃ£: ${blocoDicas.manha}\n` +
               `Genie+: ${blocoDicas.genie}\n` +
-              `Refeição: ${blocoDicas.refeicao}\n` +
+              `RefeiÃ§Ã£o: ${blocoDicas.refeicao}\n` +
               `Tarde: ${blocoDicas.tarde}\n` +
               `Fogos: ${blocoDicas.fogos}\n` +
               `Perfil: ${blocoDicas.perfil}\n` +
               `App: ${blocoDicas.app}\n` +
               `Eventos: ${blocoDicas.eventos}\n` +
               `Local: ${blocoDicas.local}\n` +
-              `Recomendação: ${blocoDicas.recomendacao}\n` +
+              `RecomendaÃ§Ã£o: ${blocoDicas.recomendacao}\n` +
               `Dica: ${blocoDicas.dica}`,
             tipo: 'informativa',
           },
@@ -301,7 +301,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
         ],
       },
       { titulo: 'Noite', atividades: [...jantar, ...atracoesNoite] },
-      { titulo: `Volta para a Região – ${regiaoHospedagem?.nome ?? 'Hospedagem'}`, atividades: transporteVolta },
+      { titulo: `Volta para a RegiÃ£o â€“ ${regiaoHospedagem?.nome ?? 'Hospedagem'}`, atividades: transporteVolta },
     ];
 
     return {
@@ -310,18 +310,18 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
       numero,
       data: dataIso,
       cabecalho: {
-        titulo: 'Dia de Parque – Disney',
+        titulo: 'Dia de Parque â€“ Disney',
         imagem: 'disney.jpg',
         clima: { temperatura: 29, condicao: 'Ensolarado', icone: 'sunny' },
       },
-      objetivo: 'Aproveite um dia completo em um parque da Disney com atrações personalizadas para seu perfil.',
+      objetivo: 'Aproveite um dia completo em um parque da Disney com atraÃ§Ãµes personalizadas para seu perfil.',
       turnos,
       dicas: [],
       regiao: {
         nome: parque,
         descricao: `${parque}, ${baseLat && baseLon ? `${calcDistanciaKm(baseLat, baseLon, latitudeParque, longitudeParque).toFixed(2)} km` : ''}`,
       },
-      perfilAtracoes: { valor: perfilAtracao, nome: 'Perfil de atrações personalizado', icone: '🎢' },
+      perfilAtracoes: { valor: perfilAtracao, nome: 'Perfil de atraÃ§Ãµes personalizado', icone: 'ðŸŽ¢' },
       localizacaoFogos: primeiraAtracaoNoite || null,
     };
   } catch (erro) {
@@ -336,7 +336,7 @@ export async function gerarDiaParqueDisney(numero: number, parkisheiro: Parkishe
         imagem: 'disney.jpg',
         clima: { temperatura: 0, condicao: 'Indefinido', icone: 'error' },
       },
-      objetivo: 'Não foi possível gerar o conteúdo deste dia.',
+      objetivo: 'NÃ£o foi possÃ­vel gerar o conteÃºdo deste dia.',
       turnos: [],
       dicas: [],
       regiao: { nome: 'Desconhecido', descricao: 'Desconhecido' },

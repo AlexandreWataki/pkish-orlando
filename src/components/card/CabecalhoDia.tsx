@@ -1,4 +1,4 @@
-// src/components/card/CabecalhoDia.tsx
+﻿// src/components/card/CabecalhoDia.tsx
 import React from 'react';
 import {
   View,
@@ -34,13 +34,13 @@ type Props = {
   temperatura?: string | number;
   iconeClima?: ImageSourcePropType | string;
 
-  /** Mostra SOMENTE: Dia da semana • Temperatura • Condição (sem data/ícone) */
+  /** Mostra SOMENTE: Dia da semana â€¢ Temperatura â€¢ CondiÃ§Ã£o (sem data/Ã­cone) */
   soDiaTempCond?: boolean;
-  /** Mostra empilhado: DIA (número) em cima, dia da semana embaixo; temperatura ao lado */
+  /** Mostra empilhado: DIA (nÃºmero) em cima, dia da semana embaixo; temperatura ao lado */
   empilharDiaSemana?: boolean;
 };
 
-// ⬅️ deslocamento para a ESQUERDA (número negativo)
+// â¬…ï¸ deslocamento para a ESQUERDA (nÃºmero negativo)
 const SHIFT_LEFT = -20;
 
 export const CabecalhoDia = ({
@@ -67,15 +67,15 @@ export const CabecalhoDia = ({
 
   const temperaturaFinal = (() => {
     const val = temperatura ?? fromClimaTemp ?? 28;
-    if (typeof val === 'number') return `${Math.round(val)}°C`;
+    if (typeof val === 'number') return `${Math.round(val)}Â°C`;
     const s = String(val);
-    return s.includes('°') ? s : `${s}°C`;
+    return s.includes('Â°') ? s : `${s}Â°C`;
   })();
 
   const dateObj = data ? new Date(data) : new Date();
   const diaNumero = String(dateObj.getDate()).padStart(2, '0');
 
-  // ---- MODO compacto: só dia • temp • condição
+  // ---- MODO compacto: sÃ³ dia â€¢ temp â€¢ condiÃ§Ã£o
   if (soDiaTempCond) {
     return (
       <View style={styles.container}>
@@ -84,11 +84,11 @@ export const CabecalhoDia = ({
           <View style={[styles.infoBox, styles.infoBoxShift]}>
             <View style={styles.climaRow}>
               <Text style={styles.dataTexto}>{diaSemana}</Text>
-              <Text style={styles.bullet}> • </Text>
+              <Text style={styles.bullet}> â€¢ </Text>
               <Text style={styles.temperatura}>{temperaturaFinal}</Text>
               {!!condicaoClima && (
                 <>
-                  <Text style={styles.bullet}> • </Text>
+                  <Text style={styles.bullet}> â€¢ </Text>
                   <Text style={styles.climaTexto}>{condicaoClima}</Text>
                 </>
               )}
@@ -133,7 +133,7 @@ export const CabecalhoDia = ({
           {!!subtitulo && <Text style={styles.subtitulo}>{subtitulo}</Text>}
 
           <Text style={styles.dataTexto}>
-            {diaSemana}{data ? ` • ${String(data)}` : ''}
+            {diaSemana}{data ? ` â€¢ ${String(data)}` : ''}
           </Text>
 
           <View style={styles.climaRow}>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
 
   // bloco dos textos (direita)
   infoBox: { alignItems: 'flex-end' },
-  // ⬅️ puxa ~20px para a ESQUERDA
+  // â¬…ï¸ puxa ~20px para a ESQUERDA
   infoBoxShift: { transform: [{ translateX: SHIFT_LEFT }] },
 
   // comuns

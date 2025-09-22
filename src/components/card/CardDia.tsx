@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,7 +13,7 @@ export const CabecalhoDia = ({
   data = '01/06/2025',
   diaSemana = 'Domingo',
   clima = 'Ensolarado',
-  temperatura = '30°C',
+  temperatura = '30Â°C',
 }: Props) => {
   return (
     <ImageBackground

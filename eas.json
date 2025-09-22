@@ -1,25 +1,12 @@
-{
-  "cli": {
-    "version": ">= 13.0.0",
-    "appVersionSource": "remote"
-  },
+﻿{
+  "cli": { "version": ">= 8.0.0" },
   "build": {
-    "apk": {
-      "android": {
-        "buildType": "apk"
-      },
-      "env": {
-        "EXPO_PUBLIC_WEATHER_API_KEY": "${EXPO_PUBLIC_WEATHER_API_KEY}",
-        "EXPO_PUBLIC_API_URL": "${EXPO_PUBLIC_API_URL}"
-      }
-    },
+    "preview": { "android": { "buildType": "apk" } },
     "production": {
-      "android": {
-        "buildType": "app-bundle"
-      }
+      "autoIncrement": true,
+      "android": { "buildType": "app-bundle" },
+      "ios": { "simulator": false }
     }
   },
-  "submit": {
-    "production": {}
-  }
+  "submit": { "production": { "android": {}, "ios": {} } }
 }

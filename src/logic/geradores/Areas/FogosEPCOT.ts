@@ -1,25 +1,25 @@
-import { AtividadeDia } from '@/logic/types/atividade';
+﻿import { AtividadeDia } from '@/logic/types/atividade';
 
 export const fogosEPCOT: AtividadeDia[] = [
   {
     id: 'fotos-fogos-epcot',
     tipo: 'informativa',
-    titulo: `World Showcase Lagoon. Em frente ao Pavilhão dos EUA`,
+    titulo: `World Showcase Lagoon. Em frente ao PavilhÃ£o dos EUA`,
     descricao: `
 Show noturno com fogos, luzes, fontes e trilha sonora no lago central do World Showcase:
-Horário: Normalmente 21h (confirme no app My Disney Experience).
-Melhor local: Entre pavilhões dos EUA e México, longe de árvores ou pilares.
-Dica: Chegue 40–50 min antes (1h em dias cheios). Leve algo para sentar.
-Fotos: Modo noturno, sem flash, aproveitando reflexos na água.
-Saída: Espere 15–20 min após o show ou vá pelas laterais para evitar multidão.
+HorÃ¡rio: Normalmente 21h (confirme no app My Disney Experience).
+Melhor local: Entre pavilhÃµes dos EUA e MÃ©xico, longe de Ã¡rvores ou pilares.
+Dica: Chegue 40â€“50 min antes (1h em dias cheios). Leve algo para sentar.
+Fotos: Modo noturno, sem flash, aproveitando reflexos na Ã¡gua.
+SaÃ­da: Espere 15â€“20 min apÃ³s o show ou vÃ¡ pelas laterais para evitar multidÃ£o.
 Chuva: Acontece mesmo com chuva leve; leve capa ou guarda-chuva.
-Extra: Cada pavilhão oferece vista diferente. Prove doce francês ou japonês antes do show.
+Extra: Cada pavilhÃ£o oferece vista diferente. Prove doce francÃªs ou japonÃªs antes do show.
 Transporte:  
-Carro: Espere um pouco para evitar trânsito.  
-Uber/Lyft: Use a área de rideshare.  
-Hotéis Boardwalk/Yacht/Beach Club: Volte a pé.  
-Ônibus Disney: Confira o ponto e aguarde.
-Ao chegar no hotel: banho, hidratação, separar roupa e carregar celular para o dia seguinte.
+Carro: Espere um pouco para evitar trÃ¢nsito.  
+Uber/Lyft: Use a Ã¡rea de rideshare.  
+HotÃ©is Boardwalk/Yacht/Beach Club: Volte a pÃ©.  
+Ã”nibus Disney: Confira o ponto e aguarde.
+Ao chegar no hotel: banho, hidrataÃ§Ã£o, separar roupa e carregar celular para o dia seguinte.
 `,
     subtitulo: 'Noite',
     regiao: 'World Showcase',

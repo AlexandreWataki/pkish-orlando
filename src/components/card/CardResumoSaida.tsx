@@ -1,4 +1,4 @@
-// src/components/card/CardResumoSaida.tsx
+﻿// src/components/card/CardResumoSaida.tsx
 
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
@@ -22,7 +22,7 @@ export const CardResumoSaida = ({ titulo, dados }: Props) => {
       {listaDados.map((item, index) => (
         <View key={index} style={styles.blocoLinha}>
           <Text style={styles.label}>{item.label}: </Text>
-          <Text style={styles.valor}>{item.valor || 'Não informado'}</Text>
+          <Text style={styles.valor}>{item.valor || 'NÃ£o informado'}</Text>
         </View>
       ))}
     </View>

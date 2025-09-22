@@ -1,20 +1,20 @@
-const itensVooChegada = {
-  titulo: '✈️ Itens úteis para levar no voo',
+﻿const itensVooChegada = {
+  titulo: 'âœˆï¸ Itens Ãºteis para levar no voo',
   itens: [
     'Revistas, caderno de atividades ou leitura leve',
     'Celular carregado + power bank carregado',
-    'Carregador de celular portátil',
-    'Caneta (caso precise preencher formulários)',
+    'Carregador de celular portÃ¡til',
+    'Caneta (caso precise preencher formulÃ¡rios)',
     'Lanches leves: barrinhas, biscoito, frutas secas',
-    'Garrafinha de água vazia (encher após o raio-x)',
-    'Remédios essenciais de uso pessoal',
+    'Garrafinha de Ã¡gua vazia (encher apÃ³s o raio-x)',
+    'RemÃ©dios essenciais de uso pessoal',
     'Blusa ou casaco leve',
-    'Máscara (opcional, conforme preferência)',
+    'MÃ¡scara (opcional, conforme preferÃªncia)',
   ],
   dicas: [
-    'Deixe os eletrônicos e líquidos de fácil acesso para o raio-x.',
+    'Deixe os eletrÃ´nicos e lÃ­quidos de fÃ¡cil acesso para o raio-x.',
     'Leve uma troca leve para conforto extra durante o voo.',
-    'Mantenha itens importantes sempre com você na bagagem de mão.',
+    'Mantenha itens importantes sempre com vocÃª na bagagem de mÃ£o.',
   ],
 };
 

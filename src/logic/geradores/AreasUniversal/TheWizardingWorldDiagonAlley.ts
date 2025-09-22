@@ -1,7 +1,7 @@
-// /src/logic/geradores/AreasUniversal/TheWizardingWorldDiagonAlley.ts
+﻿// /src/logic/geradores/AreasUniversal/TheWizardingWorldDiagonAlley.ts
 export const TheWizardingWorldDiagonAlley = {
   parque: "Universal Studios Florida",
-  descricao: "O Beco Diagonal recria fielmente o cenário mágico com lojas, comidas e a atração principal, oferecendo imersão total no universo de *Harry Potter*.",
+  descricao: "O Beco Diagonal recria fielmente o cenÃ¡rio mÃ¡gico com lojas, comidas e a atraÃ§Ã£o principal, oferecendo imersÃ£o total no universo de *Harry Potter*.",
   imagem: "the-wizarding-world-diagonalley.png",
   latitude: 28.4742,
   longitude: -81.4679,
@@ -19,8 +19,8 @@ export const TheWizardingWorldDiagonAlley = {
       idadeRecomendada: "A partir de 8 anos",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Aventura híbrida de montanha-russa e simulador pelo banco Gringotts, com cenas 3D e encontros com personagens.",
-      icone: "🐉",
+      descricao: "Aventura hÃ­brida de montanha-russa e simulador pelo banco Gringotts, com cenas 3D e encontros com personagens.",
+      icone: "ðŸ‰",
       imagem: "escape-from-gringotts.jpg",
       regiao: "Diagon Alley",
       parque: "Universal Studios Florida",
@@ -29,7 +29,7 @@ export const TheWizardingWorldDiagonAlley = {
     },
     {
       id: "ollivanders-wand-shop-diagon",
-      titulo: "Ollivanders – Diagon Alley",
+      titulo: "Ollivanders â€“ Diagon Alley",
       subtitulo: "Diagon Alley",
       tipo: "Loja interativa",
       tipoPerfil: ["familiares", "interativas", "tematicas"],
@@ -40,8 +40,8 @@ export const TheWizardingWorldDiagonAlley = {
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "manha",
-      descricao: "Experiência da varinha escolher o bruxo e loja com varinhas interativas e réplicas.",
-      icone: "🪄",
+      descricao: "ExperiÃªncia da varinha escolher o bruxo e loja com varinhas interativas e rÃ©plicas.",
+      icone: "ðŸª„",
       imagem: "ollivanders-diagon.jpg",
       regiao: "Diagon Alley",
       parque: "Universal Studios Florida",

@@ -1,4 +1,4 @@
-// src/screens/inicio/TelaDefinirQuantidadeDias.tsx
+﻿// src/screens/inicio/TelaDefinirQuantidadeDias.tsx
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -156,15 +156,15 @@ export default function TelaDefinirQuantidadeDias() {
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
 
-  // 🔧 Normalização igual ao menu (agora inclui tempC)
+  // ðŸ”§ NormalizaÃ§Ã£o igual ao menu (agora inclui tempC)
   const condicaoClima = clima?.condicao ?? clima?.descricao ?? 'Parcialmente nublado';
   const tempValor = clima?.temp ?? clima?.temperatura ?? clima?.tempC ?? 28;
   const temperaturaClima =
     typeof tempValor === 'number'
-      ? `${Math.round(tempValor)}°C`
-      : String(tempValor).includes('°')
+      ? `${Math.round(tempValor)}Â°C`
+      : String(tempValor).includes('Â°')
       ? String(tempValor)
-      : `${tempValor}°C`;
+      : `${tempValor}Â°C`;
   const iconeClima = clima?.icone ?? clima?.icon;
 
   return (
@@ -182,7 +182,7 @@ export default function TelaDefinirQuantidadeDias() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={condicaoClima}
-          temperatura={temperaturaClima}  // ← agora aparece certinho na lateral
+          temperatura={temperaturaClima}  // â† agora aparece certinho na lateral
           iconeClima={iconeClima}
         />
       </View>
@@ -219,11 +219,11 @@ export default function TelaDefinirQuantidadeDias() {
           <View style={styles.cardWrapper}>
             <View style={styles.datasRow}>
               <Text style={styles.dataInfo}>
-                🛬 Chegada:{' '}
+                ðŸ›¬ Chegada:{' '}
                 {startDate ? startDate.dateString.split('-').reverse().join('/') : '--'}
               </Text>
               <Text style={styles.dataInfo}>
-                🛫 Saída:{' '}
+                ðŸ›« SaÃ­da:{' '}
                 {endDate ? endDate.dateString.split('-').reverse().join('/') : '--'}
               </Text>
             </View>
@@ -333,14 +333,14 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     right: 20,
     zIndex: 100,
     elevation: 0,
   },
   floatingBackButton: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     left: 20,
     zIndex: 100,
     elevation: 10,

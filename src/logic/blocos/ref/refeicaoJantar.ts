@@ -1,4 +1,4 @@
-import { jantaresProximos } from './jantaresProximos';
+﻿import { jantaresProximos } from './jantaresProximos';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 
@@ -13,15 +13,15 @@ export const gerarRefeicaoJantar = (
 
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: "🍝 Jantar",
-      descricao: "Nenhum perfil de refeição selecionado.",
+      titulo: "ðŸ Jantar",
+      descricao: "Nenhum perfil de refeiÃ§Ã£o selecionado.",
       horarioSugerido: '19:00',
       tipo: 'refeicao',
     });
     return atividades;
   }
 
-  // 🟡 PRIORIDADE 1: buscar por coordenadas
+  // ðŸŸ¡ PRIORIDADE 1: buscar por coordenadas
   if (latitude != null && longitude != null) {
     const jantarMaisProximo = jantaresProximos
       .filter((r) => r.tipo === perfilSelecionado)
@@ -37,7 +37,7 @@ export const gerarRefeicaoJantar = (
     }
   }
 
-  // 🟡 PRIORIDADE 2: buscar por nome de região (normalizado)
+  // ðŸŸ¡ PRIORIDADE 2: buscar por nome de regiÃ£o (normalizado)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -52,17 +52,17 @@ export const gerarRefeicaoJantar = (
     }
   }
 
-  // 🟡 PRIORIDADE 3: qualquer jantar com o perfil
+  // ðŸŸ¡ PRIORIDADE 3: qualquer jantar com o perfil
   const jantarQualquer = jantaresProximos.find(r => r.tipo === perfilSelecionado);
   if (jantarQualquer) {
     atividades.push(formatarJantar(jantarQualquer));
     return atividades;
   }
 
-  // 🟥 NENHUM encontrado
+  // ðŸŸ¥ NENHUM encontrado
   atividades.push({
-    titulo: "🍝 Jantar",
-    descricao: "Nenhum local de jantar encontrado para o perfil selecionado nesta região.",
+    titulo: "ðŸ Jantar",
+    descricao: "Nenhum local de jantar encontrado para o perfil selecionado nesta regiÃ£o.",
     horarioSugerido: '19:00',
     tipo: 'refeicao',
   });
@@ -70,14 +70,14 @@ export const gerarRefeicaoJantar = (
   return atividades;
 };
 
-// 🔧 função auxiliar para formatar o card
+// ðŸ”§ funÃ§Ã£o auxiliar para formatar o card
 function formatarJantar(jantar: any): AtividadeDia {
   return {
-    titulo: `🍝 ${jantar.nome}`,
+    titulo: `ðŸ ${jantar.nome}`,
     descricao:
       `Tipo: ${jantar.tipo}\n` +
-      `Preço médio: $${jantar.precoMedio}` +
-      (jantar.acesso ? `\nAcesso: ${jantar.acesso} (da região ${jantar.regiao})` : '') +
+      `PreÃ§o mÃ©dio: $${jantar.precoMedio}` +
+      (jantar.acesso ? `\nAcesso: ${jantar.acesso} (da regiÃ£o ${jantar.regiao})` : '') +
       (jantar.destaque ? `\nDestaque: ${jantar.destaque}` : ''),
     horarioSugerido: '19:00',
     tipo: 'refeicao',

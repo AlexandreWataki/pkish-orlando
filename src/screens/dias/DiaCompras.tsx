@@ -1,4 +1,4 @@
-// src/screens/dias/DiaCompras.tsx
+﻿// src/screens/dias/DiaCompras.tsx
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Dia } from '@/logic/types/dia';
@@ -36,7 +36,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
 
   if (!dia) return <Text style={styles.texto}>Carregando...</Text>;
 
-  // ===== Helpers para padronizar REFEIÇÃO =====
+  // ===== Helpers para padronizar REFEIÃ‡ÃƒO =====
   const semRotulo = (txt?: string) =>
     (txt ?? '')
       .replace(/^ *Acesso *: */i, '')
@@ -44,7 +44,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
       .trim();
 
   const removerPrecoDentro = (txt: string) =>
-    txt.replace(/(?:^|\s)pre(ç|c)o\s*m[eé]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
+    txt.replace(/(?:^|\s)pre(Ã§|c)o\s*m[eÃ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
 
   const extrairTipoPerfil = (a: any): string | undefined => {
     const bruto =
@@ -64,12 +64,12 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
   const extrairPreco = (a: any): string | undefined => {
     const bruto = a?.precoMedio ?? a?.preco ?? a?.precoEstimado;
     if (bruto === undefined || bruto === null || bruto === '') return undefined;
-    if (typeof bruto === 'number') return `$ ${bruto}`; // força espaço após $
+    if (typeof bruto === 'number') return `$ ${bruto}`; // forÃ§a espaÃ§o apÃ³s $
     return String(bruto).trim().replace(/^\$(\S)/, '$ $1'); // normaliza "$12" -> "$ 12"
   };
 
   const montarLinhaMeta = (preco?: string, tipo?: string): string =>
-    preco && tipo ? `Preço Médio: ${preco} - ${tipo}` : preco ? `Preço Médio: ${preco}` : tipo ?? '';
+    preco && tipo ? `PreÃ§o MÃ©dio: ${preco} - ${tipo}` : preco ? `PreÃ§o MÃ©dio: ${preco}` : tipo ?? '';
 
   const renderAtividade = (
     atividade: AtividadeDia,
@@ -78,23 +78,23 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
   ) => {
     const sufixoRefeicao =
       turnoPeriodo === 'manha'
-        ? 'Café da Manhã'
+        ? 'CafÃ© da ManhÃ£'
         : turnoPeriodo === 'tarde'
-        ? 'Almoço'
+        ? 'AlmoÃ§o'
         : turnoPeriodo === 'noite'
         ? 'Jantar'
         : '';
 
     if (atividade.tipo === 'area') {
       const nomeArea = (atividade.area || atividade.titulo || '')
-        .replace(/^área:\s*/i, '')
-        .replace(/^região:\s*/i, '')
+        .replace(/^Ã¡rea:\s*/i, '')
+        .replace(/^regiÃ£o:\s*/i, '')
         .trim();
 
       return (
         <CardSecao
           key={key}
-          titulo={`Área: ${nomeArea}`}
+          titulo={`Ãrea: ${nomeArea}`}
           icone="map-outline"
           tipo="area"
         >
@@ -106,16 +106,16 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
     }
 
     if (atividade.tipo === 'refeicao') {
-      // título com sufixo por período
-      const tituloBase = (atividade.titulo || '').split(' – ')[0].trim();
-      const titulo = sufixoRefeicao ? `${tituloBase} – ${sufixoRefeicao}` : tituloBase;
+      // tÃ­tulo com sufixo por perÃ­odo
+      const tituloBase = (atividade.titulo || '').split(' â€“ ')[0].trim();
+      const titulo = sufixoRefeicao ? `${tituloBase} â€“ ${sufixoRefeicao}` : tituloBase;
 
-      // linha meta "Preço Médio: $ 12 - Econômico"
+      // linha meta "PreÃ§o MÃ©dio: $ 12 - EconÃ´mico"
       const tipoPerfil = extrairTipoPerfil(atividade as any);
       const preco = extrairPreco(atividade as any);
       const linhaMeta = montarLinhaMeta(preco, tipoPerfil);
 
-      // textos só com descritivos (sem rótulos) e sem "Preço médio..." embutido
+      // textos sÃ³ com descritivos (sem rÃ³tulos) e sem "PreÃ§o mÃ©dio..." embutido
       const acesso = semRotulo(
         (atividade as any).acesso ?? (atividade as any).ondeFica ?? atividade.local
       );
@@ -128,7 +128,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
 
       const destaque = removerPrecoDentro(semRotulo(destaqueRaw));
 
-      // Descrição final: 1ª linha meta + quebra + destaque
+      // DescriÃ§Ã£o final: 1Âª linha meta + quebra + destaque
       const descricaoComMeta =
         (linhaMeta ? `${linhaMeta}${destaque ? '\n' : ''}` : '') + (destaque || '');
 
@@ -137,9 +137,9 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
           key={key}
           titulo={titulo}
           tipoRefeicao={sufixoRefeicao}
-          regiao={undefined}             // não usa 'regiao' como subtítulo
-          descricao={descricaoComMeta}   // 1ª linha: meta | 2ª: destaque
-          local={acesso || ''}           // só o descritivo (ex.: "Dentro do Walmart")
+          regiao={undefined}             // nÃ£o usa 'regiao' como subtÃ­tulo
+          descricao={descricaoComMeta}   // 1Âª linha: meta | 2Âª: destaque
+          local={acesso || ''}           // sÃ³ o descritivo (ex.: "Dentro do Walmart")
         />
       );
     }
@@ -219,7 +219,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
     }
   };
 
-  // Usa a última referência NÃO-AREA para calcular o transporte (garante Jantar -> 1ª atividade da noite)
+  // Usa a Ãºltima referÃªncia NÃƒO-AREA para calcular o transporte (garante Jantar -> 1Âª atividade da noite)
   const renderAtividadesComTransporte = (
     atividades: AtividadeDia[],
     turnoIndex: number,
@@ -257,7 +257,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
           } catch {}
         }
 
-        // atualiza a referência só para itens reais (ignora 'area')
+        // atualiza a referÃªncia sÃ³ para itens reais (ignora 'area')
         if (atividade.tipo !== 'area') {
           refLat = lat;
           refLon = lon;
@@ -295,7 +295,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
             turno.periodo
           );
 
-          // Apenas no ÚLTIMO turno (noite): retorno à região/hotel
+          // Apenas no ÃšLTIMO turno (noite): retorno Ã  regiÃ£o/hotel
           const cardRetornoRegiao =
             turno.periodo === 'noite' &&
             i === dia.turnos.length - 1 &&
@@ -312,7 +312,7 @@ export const DiaCompras = ({ diaBruto }: { diaBruto: { id: string; tipo: string 
                   );
                   const estimativa = calcularTransporteEstimado(distNum);
                   const destinoNome =
-                    parkisheiroAtual.regiaoHospedagem?.nome || 'Região de Hospedagem';
+                    parkisheiroAtual.regiaoHospedagem?.nome || 'RegiÃ£o de Hospedagem';
                   return criarCardTransporte(
                     distNum,
                     estimativa.tempoMin ?? 0,

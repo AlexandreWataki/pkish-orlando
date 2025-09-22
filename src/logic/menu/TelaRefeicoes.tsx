@@ -1,4 +1,4 @@
-// src/screens/inicio/TelaRefeicoes.tsx
+﻿// src/screens/inicio/TelaRefeicoes.tsx
 import React, {
   useEffect,
   useMemo,
@@ -35,13 +35,13 @@ import { CardRefeicao } from '@/components/card/CardRefeicao';
 // Dados base (use fallback [])
 import { refeicoesProximas as DATA } from '@/logic/blocos/ref/refeicoesProximas';
 
-// Catálogo unificado: nomes → urls
+// CatÃ¡logo unificado: nomes â†’ urls
 import { NOMES_REFEICOES } from '@/logic/menu/nomesRefeicoes';
 
-// Abrir WebView de cardápio
+// Abrir WebView de cardÃ¡pio
 import { openMenu } from '@/logic/menu/openMenu';
 
-// Tipagem de navegação
+// Tipagem de navegaÃ§Ã£o
 import type { RootStackParamList } from '@/logic/types/navigation';
 type Nav = NativeStackNavigationProp<RootStackParamList, 'TelaRefeicoes'>;
 
@@ -55,7 +55,7 @@ type Refeicao = {
   latitude?: number;
   longitude?: number;
   menuUrl?: string;
-  tipoRefeicao?: 'Café da Manhã' | 'Almoço' | 'Jantar' | string;
+  tipoRefeicao?: 'CafÃ© da ManhÃ£' | 'AlmoÃ§o' | 'Jantar' | string;
   icone?: string;
   imagem?: string;
 };
@@ -65,8 +65,8 @@ function normalizeNome(s: string) {
   return (s || '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/['’"“”`]/g, '')
-    .replace(/[–—\-]/g, '-')
+    .replace(/['â€™"â€œâ€`]/g, '')
+    .replace(/[â€“â€”\-]/g, '-')
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
@@ -87,7 +87,7 @@ const RefeicaoRow = memo(function RefeicaoRow({
         style={styles.menuFab}
         hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
       >
-        {/* Ícone Instagram */}
+        {/* Ãcone Instagram */}
         <FontAwesome name="instagram" size={22} color="#FFFFFF" />
       </TouchableOpacity>
 
@@ -140,13 +140,13 @@ export default function TelaRefeicoes() {
   const [regiao, setRegiao] = useState<string>('');
   const [openRegiao, setOpenRegiao] = useState(false);
 
-  const [refeicao, setRefeicao] = useState<string>(''); // Café/Almoço/Jantar
+  const [refeicao, setRefeicao] = useState<string>(''); // CafÃ©/AlmoÃ§o/Jantar
   const [openRefeicao, setOpenRefeicao] = useState(false);
 
-  const [tipo, setTipo] = useState<string>(''); // Rápido / Mesa / etc
+  const [tipo, setTipo] = useState<string>(''); // RÃ¡pido / Mesa / etc
   const [openTipo, setOpenTipo] = useState(false);
 
-  // Mapa nome normalizado → URL vindo do catálogo (sempre seguro)
+  // Mapa nome normalizado â†’ URL vindo do catÃ¡logo (sempre seguro)
   const mapMenus = useMemo(
     () =>
       new Map(
@@ -164,12 +164,12 @@ export default function TelaRefeicoes() {
     []
   );
 
-  // Normaliza dados e preenche menuUrl via catálogo
+  // Normaliza dados e preenche menuUrl via catÃ¡logo
   const itens: Refeicao[] = useMemo(
     () =>
       base.map((r) => ({
         ...r,
-        tipoRefeicao: r.tipoRefeicao || 'Almoço',
+        tipoRefeicao: r.tipoRefeicao || 'AlmoÃ§o',
         menuUrl: r.menuUrl || mapMenus.get(normalizeNome(r.nome)) || '',
       })),
     [base, mapMenus]
@@ -181,8 +181,8 @@ export default function TelaRefeicoes() {
       const url = r.menuUrl || mapMenus.get(normalizeNome(r.nome)) || '';
       if (!url) {
         Alert.alert(
-          'Cardápio indisponível',
-          'Ainda não temos o site de menu para este restaurante.'
+          'CardÃ¡pio indisponÃ­vel',
+          'Ainda nÃ£o temos o site de menu para este restaurante.'
         );
         return;
       }
@@ -191,7 +191,7 @@ export default function TelaRefeicoes() {
     [navigation, mapMenus]
   );
 
-  // Listas únicas (sempre arrays)
+  // Listas Ãºnicas (sempre arrays)
   const regioesDisponiveis = useMemo(() => {
     const set = new Set<string>();
     itens.forEach((r) => r.regiao && set.add(r.regiao));
@@ -216,7 +216,7 @@ export default function TelaRefeicoes() {
     setOpenTipo(false);
   }, [regiao, refeicao]);
 
-  // Filtro + agrupamento (sempre retorna array)
+  // Filtro + agrupamento
   const grupos = useMemo(() => {
     if (!regiao) return [] as { area: string; itens: Refeicao[] }[];
     const filtrados = itens.filter((r) => {
@@ -228,13 +228,13 @@ export default function TelaRefeicoes() {
     return [{ area: regiao, itens: filtrados }];
   }, [itens, regiao, refeicao, tipo]);
 
-  const tituloCard = 'Refeições';
+  const tituloCard = 'RefeiÃ§Ãµes';
   const subtituloCard =
-    (regiao ? `— ${regiao}` : '') +
-    (refeicao ? ` • ${refeicao}` : '') +
-    (tipo ? ` • ${tipo}` : '');
+    (regiao ? `â€” ${regiao}` : '') +
+    (refeicao ? ` â€¢ ${refeicao}` : '') +
+    (tipo ? ` â€¢ ${tipo}` : '');
 
-  // animação aviso
+  // animaÃ§Ã£o aviso
   const avisoBlink = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     Animated.loop(
@@ -253,19 +253,23 @@ export default function TelaRefeicoes() {
       end={{ x: 0, y: 1 }}
       style={{ flex: 1 }}
     >
-      {/* Cabeçalho */}
+      {/* CabeÃ§alho */}
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
-          clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}°C` : '—°C'}
+          clima={clima?.condicao || clima?.clima || 'Parcialmente nublado'}
+          temperatura={
+            Number.isFinite(clima?.temp ?? clima?.tempC)
+              ? `${Math.round((clima?.temp ?? clima?.tempC) as number)}Â°C`
+              : undefined
+          }
           iconeClima={clima?.icone}
         />
       </View>
 
-      {/* Seletor: Região */}
+      {/* Seletor: RegiÃ£o */}
       <View style={styles.wrapSeletor}>
         <TouchableOpacity
           onPress={() => {
@@ -276,7 +280,7 @@ export default function TelaRefeicoes() {
           style={styles.btnSeletorBranco}
         >
           <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-            {regiao || 'Selecione a Região'}
+            {regiao || 'Selecione a RegiÃ£o'}
           </Text>
           <Ionicons name={openRegiao ? 'chevron-up' : 'chevron-down'} size={18} color="#004b87" />
         </TouchableOpacity>
@@ -303,10 +307,10 @@ export default function TelaRefeicoes() {
         )}
       </View>
 
-      {/* Linha ÚNICA — Refeição + Tipo */}
+      {/* Linha ÃšNICA â€” RefeiÃ§Ã£o + Tipo */}
       {!!regiao && (
         <View style={[styles.wrapSeletor, styles.rowHalf]}>
-          {/* Refeição */}
+          {/* RefeiÃ§Ã£o */}
           <View style={styles.halfBox}>
             <TouchableOpacity
               onPress={() => {
@@ -317,7 +321,7 @@ export default function TelaRefeicoes() {
               style={styles.btnSeletorBranco}
             >
               <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-                {refeicao || 'Selecione a Refeição'}
+                {refeicao || 'Selecione a RefeiÃ§Ã£o'}
               </Text>
               <Ionicons name={openRefeicao ? 'chevron-up' : 'chevron-down'} size={18} color="#004b87" />
             </TouchableOpacity>
@@ -393,7 +397,7 @@ export default function TelaRefeicoes() {
             <CardSecao titulo={tituloCard} subtitulo={subtituloCard} style={{ width: '100%' }}>
               {grupos.map(({ area: nomeArea, itens }) => (
                 <View key={nomeArea} style={styles.areaBloco}>
-                  <Text style={styles.areaTitle}>🍽️ {nomeArea.toUpperCase()}</Text>
+                  <Text style={styles.areaTitle}>ðŸ½ï¸ {nomeArea.toUpperCase()}</Text>
                   {(itens || []).map((r, idx) => (
                     <RefeicaoRow
                       key={`${r.nome}-${idx}`}
@@ -409,7 +413,7 @@ export default function TelaRefeicoes() {
         <View style={{ height: 120 }} />
       </ScrollView>
 
-      {/* Rodapé */}
+      {/* RodapÃ© */}
       <View style={styles.rodapeFundo} />
       <View style={styles.rodapeConteudo}>
         <TouchableOpacity
@@ -422,8 +426,8 @@ export default function TelaRefeicoes() {
 
         <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
           <Text style={styles.avisoLegalTexto}>
-            Guia independente e não oficial, sem vínculo com Disney ou Universal.
-            Cardápios exibidos via sites oficiais dos restaurantes.
+            Guia independente e nÃ£o oficial, sem vÃ­nculo com Disney ou Universal.
+            CardÃ¡pios exibidos via sites oficiais dos restaurantes.
           </Text>
         </Animated.View>
       </View>

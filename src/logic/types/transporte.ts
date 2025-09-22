@@ -1,4 +1,4 @@
-// src/logic/blocos/ref/transporte.ts
+﻿// src/logic/blocos/ref/transporte.ts
 
 import { AtividadeDia } from '@/logic/types/atividade';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
@@ -33,7 +33,7 @@ export async function gerarTransporte(
 
   return {
     id: `transporte-${origem}-${destino}`,
-    titulo: `🚗 Transporte até ${destino}`,
+    titulo: `ðŸš— Transporte atÃ© ${destino}`,
     descricao: `Deslocamento entre ${origem} e ${destino} estimado em ${tempoMin} min de Uber por aproximadamente $${precoUber.toFixed(2)}.`,
     local: destino,
     tipo: 'descanso',

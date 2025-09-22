@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   View,
   Text,
@@ -30,18 +30,18 @@ export default function TelaResumoRoteiro() {
   );
 
   const formatarData = (data: Date | string | undefined) => {
-    if (!data) return 'Data não definida';
+    if (!data) return 'Data nÃ£o definida';
     return format(new Date(data), "EEEE, dd 'de' MMMM", { locale: ptBR });
   };
 
   const traduzirTipo = (tipo: string) => {
     switch (tipo) {
-      case 'chegada': return '🛬 Chegada';
-      case 'saida': return '🛫 Saída';
-      case 'disney': return '🎢 Parque Disney';
-      case 'universal': return '🎡 Parque Universal';
-      case 'compras': return '🛍️ Compras';
-      case 'descanso': return '😴 Descanso';
+      case 'chegada': return 'ðŸ›¬ Chegada';
+      case 'saida': return 'ðŸ›« SaÃ­da';
+      case 'disney': return 'ðŸŽ¢ Parque Disney';
+      case 'universal': return 'ðŸŽ¡ Parque Universal';
+      case 'compras': return 'ðŸ›ï¸ Compras';
+      case 'descanso': return 'ðŸ˜´ Descanso';
       default: return tipo;
     }
   };
@@ -62,15 +62,15 @@ export default function TelaResumoRoteiro() {
             {dia.tipo === 'chegada' && (
               <>
                 {dia.horarioVoo ? (
-                  <Text style={styles.horario}>⏰ Voo: {dia.horarioVoo} • Turno: {turno}</Text>
+                  <Text style={styles.horario}>â° Voo: {dia.horarioVoo} â€¢ Turno: {turno}</Text>
                 ) : (
                   <View style={styles.seletorHorario}>
-                    <Text style={styles.horario}>Definir horário do voo:</Text>
+                    <Text style={styles.horario}>Definir horÃ¡rio do voo:</Text>
                     {[
-                      { label: '🌙 Madrugada (00:01–06:00)', hora: '01:30' },
-                      { label: '☀️ Manhã (06:01–12:00)', hora: '07:30' },
-                      { label: '🌇 Tarde (12:01–18:00)', hora: '13:30' },
-                      { label: '🌃 Noite (18:01–00:00)', hora: '19:30' },
+                      { label: 'ðŸŒ™ Madrugada (00:01â€“06:00)', hora: '01:30' },
+                      { label: 'â˜€ï¸ ManhÃ£ (06:01â€“12:00)', hora: '07:30' },
+                      { label: 'ðŸŒ‡ Tarde (12:01â€“18:00)', hora: '13:30' },
+                      { label: 'ðŸŒƒ Noite (18:01â€“00:00)', hora: '19:30' },
                     ].map(({ label, hora }) => (
                       <TouchableOpacity
                         key={hora}
@@ -83,7 +83,7 @@ export default function TelaResumoRoteiro() {
                           });
                         }}
                       >
-                        <Text style={styles.botaoTexto}>{`✈️ ${label}`}</Text>
+                        <Text style={styles.botaoTexto}>{`âœˆï¸ ${label}`}</Text>
                       </TouchableOpacity>
                     ))}
                   </View>
@@ -95,7 +95,7 @@ export default function TelaResumoRoteiro() {
               <>
                 {turno === 'madrugada' && (
                   <Text style={styles.aviso}>
-                    🌙 Chegada de madrugada. Vá direto ao hotel, descanse bem e nos vemos cedo para o planejamento do dia.
+                    ðŸŒ™ Chegada de madrugada. VÃ¡ direto ao hotel, descanse bem e nos vemos cedo para o planejamento do dia.
                   </Text>
                 )}
 

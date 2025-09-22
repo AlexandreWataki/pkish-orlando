@@ -1,4 +1,4 @@
-// src/screens/login/LoginScreen.tsx
+﻿// src/screens/login/LoginScreen.tsx
 import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity,
@@ -21,7 +21,7 @@ const FONTE_PADRAO = 12;
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
   const { markVisited } = useParkisheiro();
-  const { signIn } = useAuth(); // assinatura: signIn(usernameOuEmail: string, senha: string)
+  const { signIn } = useAuth(); // signIn(usernameOrEmail: string, senha: string)
 
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -113,7 +113,7 @@ export default function LoginScreen() {
           disabled={loading}
         >
           <Text style={styles.buttonText}>{loading ? 'Entrando...' : 'Entrar'}</Text>
-          <Ionicons name="log-in" size={20} color="#fff" style={{ marginLeft: 8 }} />
+          <Ionicons name="log-in-outline" size={20} color="#fff" style={{ marginLeft: 8 }} />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -123,7 +123,7 @@ export default function LoginScreen() {
           disabled={loading}
         >
           <Text style={styles.buttonText}>Ir para Cadastro</Text>
-          <Ionicons name="person-add" size={20} color="#fff" style={{ marginLeft: 8 }} />
+          <Ionicons name="person-add-outline" size={20} color="#fff" style={{ marginLeft: 8 }} />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -133,7 +133,7 @@ export default function LoginScreen() {
           disabled={loading}
         >
           <Text style={styles.buttonText}>Voltar ao Início</Text>
-          <Ionicons name="arrow-back" size={20} color="#fff" style={{ marginLeft: 8 }} />
+          <Ionicons name="arrow-back-outline" size={20} color="#fff" style={{ marginLeft: 8 }} />
         </TouchableOpacity>
       </View>
 

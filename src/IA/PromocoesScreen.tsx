@@ -1,4 +1,4 @@
-// src/screens/promocoes/PromocoesScreen.tsx
+﻿// src/screens/promocoes/PromocoesScreen.tsx
 import React, { useMemo, useState, useEffect } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity,
@@ -24,7 +24,7 @@ const CATEGORIAS: Array<{ key: Promocao['categoria'] | 'todas'; label: string }>
   { key: 'todas', label: 'Todas' },
   { key: 'parques', label: 'Parques' },
   { key: 'restaurantes', label: 'Restaurantes' },
-  { key: 'hoteis', label: 'Hotéis' },
+  { key: 'hoteis', label: 'HotÃ©is' },
   { key: 'compras', label: 'Compras' },
   { key: 'transporte', label: 'Transporte' },
   { key: 'outros', label: 'Outros' },
@@ -34,7 +34,7 @@ export default function PromocoesScreen() {
   const navigation = useNavigation<any>();
   const [categoria, setCategoria] = useState<(typeof CATEGORIAS)[number]['key']>('todas');
 
-  // Cabeçalho com clima
+  // CabeÃ§alho com clima
   const [clima, setClima] = useState<any>(null);
   useEffect(() => { buscarClima('Orlando').then(setClima).catch(() => {}); }, []);
   const hoje = new Date();
@@ -56,14 +56,14 @@ export default function PromocoesScreen() {
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
-      {/* ===== Cabeçalho ===== */}
+      {/* ===== CabeÃ§alho ===== */}
       <View style={styles.headerWrap}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || clima?.clima || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}°C` : undefined}
+          temperatura={clima?.temp ? `${clima.temp}Â°C` : undefined}
           iconeClima={clima?.icone}
         />
 
@@ -72,7 +72,7 @@ export default function PromocoesScreen() {
         </View>
       </View>
 
-      {/* Conteúdo com filtros + lista */}
+      {/* ConteÃºdo com filtros + lista */}
       <ScrollView contentContainerStyle={{ paddingBottom: 160 }}>
         <View style={styles.filtrosRow}>
           {CATEGORIAS.map(f => {
@@ -96,19 +96,19 @@ export default function PromocoesScreen() {
           renderItem={({ item }) => <PromoCard item={item} onPress={abrir} />}
           ListEmptyComponent={
             <View style={{ padding: 24, alignItems: 'center' }}>
-              <Text style={{ color: '#fff' }}>Nenhuma promoção nessa categoria ainda.</Text>
+              <Text style={{ color: '#fff' }}>Nenhuma promoÃ§Ã£o nessa categoria ainda.</Text>
             </View>
           }
         />
       </ScrollView>
 
-      {/* ===== Rodapé (faixa preta até o fundo) ===== */}
+      {/* ===== RodapÃ© (faixa preta atÃ© o fundo) ===== */}
       <View style={styles.footerBlack} pointerEvents="none">
         {/* Logo sobe 50px dentro da faixa */}
         <Image source={LOGO} style={styles.footerLogo} resizeMode="contain" />
       </View>
 
-      {/* ===== Seta flutuante para voltar (também 50px acima) ===== */}
+      {/* ===== Seta flutuante para voltar (tambÃ©m 50px acima) ===== */}
       <TouchableOpacity
         style={styles.bottomBackLeft}
         onPress={() => navigation.navigate('MenuPrincipal')}
@@ -150,11 +150,11 @@ const styles = StyleSheet.create({
   filtroTxt: { color: '#cfefff', fontWeight: '600', fontSize: 12 },
   filtroTxtAtivo: { color: '#00FFFF' },
 
-  // ⬇️ Faixa preta vai até a borda inferior (altura aumentada)
+  // â¬‡ï¸ Faixa preta vai atÃ© a borda inferior (altura aumentada)
   footerBlack: {
     position: 'absolute',
     left: 0, right: 0, bottom: 0,
-    height: 120,               // ← aumentado (era 70)
+    height: 120,               // â† aumentado (era 70)
     backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'flex-end',

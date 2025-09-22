@@ -1,12 +1,12 @@
-// src/logic/media/entries/entriesIslands.ts
+﻿// src/logic/media/entries/entriesIslands.ts
 import type { Entry } from './types';
 
 export const ENTRIES_ISLANDS: Entry[] = [
-  // Marvel Super Hero Island – vídeos embed ajustados
+  // Marvel Super Hero Island â€“ vÃ­deos embed ajustados
   { attrKey: 'the-amazing-adventures-of-spider-man', titleKey: 'theadventuresofspiderman', yt: 'UEcj6yNV9ho' },         // Ride full POV  
   { attrKey: 'the-incredible-hulk-coaster',          titleKey: 'incrediblehulkcoaster',    yt: '3lJ-hBUtuXA' },        // Official ride POV :contentReference[oaicite:1]{index=1}  
-  { attrKey: 'doctor-stranges-journey',              titleKey: 'doctorsstrangesjourney',   yt: 'DPaW1RN9Vao' },        // Doctor Strange’s Journey is actually Doctor Doom’s Fearfall (not official DS) :contentReference[oaicite:2]{index=2}  
-  { attrKey: 'storm-force-acceleration',             titleKey: 'stormforceaccelatron',     yt: 'E3l2IgpH2es' },         // Linha intacta presumo válida
+  { attrKey: 'doctor-stranges-journey',              titleKey: 'doctorsstrangesjourney',   yt: 'DPaW1RN9Vao' },        // Doctor Strangeâ€™s Journey is actually Doctor Doomâ€™s Fearfall (not official DS) :contentReference[oaicite:2]{index=2}  
+  { attrKey: 'storm-force-acceleration',             titleKey: 'stormforceaccelatron',     yt: 'E3l2IgpH2es' },         // Linha intacta presumo vÃ¡lida
   { attrKey: 'meet-spider-man', titleKey: 'meetspiderman', yt: 'VWJurq0Xglw' },
 
   // Toon Lagoon
@@ -32,7 +32,7 @@ export const ENTRIES_ISLANDS: Entry[] = [
 { attrKey: 'the-mystic-fountain',          titleKey: 'themysticfountain',     yt: 'iqjXp8S4el4' },
 
 
-// The Wizarding World – Hogsmeade
+// The Wizarding World â€“ Hogsmeade
 { attrKey: 'harry-potter-and-the-forbidden-journey',        titleKey: 'forbiddenjourney',          yt: '6iBOvFcSCG8' },
 { attrKey: 'flight-of-the-hippogriff',                      titleKey: 'flightofthehippogriff',     yt: 'uL2heVdfhHE' },
 { attrKey: 'hagrids-magical-creatures-motorbike-adventure', titleKey: 'hagridsmotorbikeadventure', yt: 'cMtR5_TinqE' },

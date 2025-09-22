@@ -1,4 +1,4 @@
-// src/logic/geradores/gerarDiaParqueUniversal.ts
+﻿// src/logic/geradores/gerarDiaParqueUniversal.ts
 
 import { Dia } from '@/logic/types/dia';
 import { TurnoDia } from '@/logic/types/turno';
@@ -15,20 +15,20 @@ import { calcDistanciaKm } from '@/logic/types/calcDistanciaKm';
 import { gerarAtracoesUniversalPorPerfilFluxo } from './gerarAtracoesUniversalPorPerfilFluxo';
 import { dicasParquesUniversal } from '../blocos/ParquesUniversal/dicasParquesUniversal';
 
-// Importando áreas Universal
+// Importando Ã¡reas Universal
 
-// — Universal Studios Florida
+// â€” Universal Studios Florida
 import { ProductionCentral } from './AreasUniversal/ProductionCentral';
 import { MinionsLand } from './AreasUniversal/MinionsLand';
 import { NewYork } from './AreasUniversal/NewYork';
 import { SanFrancisco } from './AreasUniversal/SanFrancisco';
-// ⚠️ Se o arquivo exporta WorldExpoSpringfield, trazemos com alias:
+// âš ï¸ Se o arquivo exporta WorldExpoSpringfield, trazemos com alias:
 import { WorldExpo } from './AreasUniversal/WorldExpo';
 import { Hollywood } from './AreasUniversal/Hollywood';
 import { TheWizardingWorld } from './AreasUniversal/TheWizardingWorld';
 import { TheWizardingWorldDiagonAlley } from './AreasUniversal/TheWizardingWorldDiagonAlley';
 
-// — Islands of Adventure
+// â€” Islands of Adventure
 import { MarvelSuperHeroIsland } from './AreasUniversal/MarvelSuperHeroIsland';
 import { ToonLagoon } from './AreasUniversal/ToonLagoon';
 import { SeussLanding } from './AreasUniversal/SeussLanding';
@@ -37,20 +37,20 @@ import { TheWizardingWorldHogsmeade } from './AreasUniversal/TheWizardingWorldHo
 import { LostContinent } from './AreasUniversal/LostContinent';
 import { SkullIsland } from './AreasUniversal/SkullIsland'; // <-- NOVO
 
-// — Epic Universe
+// â€” Epic Universe
 import { CelestialPark } from './AreasUniversal/CelestialPark';
 import { SuperNintendoWorld } from './AreasUniversal/SuperNintendoWorld';
 import { HowToTrainYourDragon } from './AreasUniversal/HowToTrainYourDragon';
 import { UniversalMonsters } from './AreasUniversal/UniversalMonsters';
 import { MinistryOfMagic } from './AreasUniversal/MinistryOfMagic';
 
-// Importando experiências noturnas
+// Importando experiÃªncias noturnas
 import { experienciaUniversalStudiosNoite } from './AreasUniversal/FogosUniversalStudios';
 import { experienciaIslandsOfAdventureNoite } from './AreasUniversal/FogosIslandsOfAdventure';
 import { experienciaEpicoUniverseNoite } from './AreasUniversal/FogosEpicoUniverse';
 
 const mapaAreas: Record<string, any> = {
-  // — Universal Studios Florida
+  // â€” Universal Studios Florida
   'Production Central': ProductionCentral,
   'Minions Land': MinionsLand,
   'New York': NewYork,
@@ -58,18 +58,18 @@ const mapaAreas: Record<string, any> = {
   'World Expo': WorldExpo,
   'Hollywood': Hollywood,
   'The Wizarding World': TheWizardingWorld,
-  'The Wizarding World – Diagon Alley': TheWizardingWorldDiagonAlley,
+  'The Wizarding World â€“ Diagon Alley': TheWizardingWorldDiagonAlley,
 
-  // — Islands of Adventure
+  // â€” Islands of Adventure
   'Marvel Super Hero Island': MarvelSuperHeroIsland,
   'Toon Lagoon': ToonLagoon,
   'Seuss Landing': SeussLanding,
   'Jurassic Park': JurassicPark,
   'Skull Island': SkullIsland, // <-- NOVO
-  'The Wizarding World – Hogsmeade': TheWizardingWorldHogsmeade,
+  'The Wizarding World â€“ Hogsmeade': TheWizardingWorldHogsmeade,
   'Lost Continent': LostContinent,
 
-  // — Epic Universe
+  // â€” Epic Universe
   'Celestial Park': CelestialPark,
   'Super Nintendo World': SuperNintendoWorld,
   'How to Train Your Dragon': HowToTrainYourDragon,
@@ -83,7 +83,7 @@ const coordenadasParques: Record<string, { latitude: number; longitude: number }
   "Universal's Epic Universe": { latitude: 28.4729, longitude: -81.4690 },
 };
 
-// Áreas permitidas para cada parque (ordem define o fluxo básico)
+// Ãreas permitidas para cada parque (ordem define o fluxo bÃ¡sico)
 const mapaAreasPorParque: Record<string, string[]> = {
   'Universal Studios Florida': [
     'Production Central',
@@ -93,7 +93,7 @@ const mapaAreasPorParque: Record<string, string[]> = {
     'World Expo',
     'Hollywood',
     'The Wizarding World',
-    'The Wizarding World – Diagon Alley',
+    'The Wizarding World â€“ Diagon Alley',
   ],
   'Islands of Adventure': [
     'Marvel Super Hero Island',
@@ -101,7 +101,7 @@ const mapaAreasPorParque: Record<string, string[]> = {
     'Seuss Landing',
     'Jurassic Park',
     'Skull Island', // <-- NOVO
-    'The Wizarding World – Hogsmeade',
+    'The Wizarding World â€“ Hogsmeade',
     'Lost Continent',
   ],
   "Universal's Epic Universe": [
@@ -155,7 +155,7 @@ export async function gerarDiaParqueUniversal(
     const perfilAtracao = dia?.perfilAtracoes?.valor;
 
     if (!perfilAtracao) {
-      throw new Error('Você precisa escolher um perfil de atrações!');
+      throw new Error('VocÃª precisa escolher um perfil de atraÃ§Ãµes!');
     }
 
     const perfisArray = Array.isArray(perfilAtracao) ? perfilAtracao : [perfilAtracao];
@@ -197,7 +197,7 @@ export async function gerarDiaParqueUniversal(
       gerarAtracoesUniversalPorPerfilFluxo('tarde', parque, perfisArray)
     );
 
-    // Dedup dentro de cada área
+    // Dedup dentro de cada Ã¡rea
     for (const area of atracoesManhaPorArea) {
       area.atracoes = removerAtracoesDuplicadasPorId(area.atracoes);
     }
@@ -205,7 +205,7 @@ export async function gerarDiaParqueUniversal(
       area.atracoes = removerAtracoesDuplicadasPorId(area.atracoes);
     }
 
-    // Não repetir atrações que já foram na manhã
+    // NÃ£o repetir atraÃ§Ãµes que jÃ¡ foram na manhÃ£
     const idsManha = new Set(atracoesManhaPorArea.flatMap((a) => a.atracoes.map((x) => x.id)));
     for (const area of atracoesTardePorArea) {
       area.atracoes = area.atracoes.filter((a) => !idsManha.has(a.id));
@@ -237,7 +237,7 @@ export async function gerarDiaParqueUniversal(
         ? experienciaIslandsOfAdventureNoite
         : experienciaEpicoUniverseNoite;
 
-    // ** Jantar próximo ao show noturno (usa a 1ª referência do bloco de noite) **
+    // ** Jantar prÃ³ximo ao show noturno (usa a 1Âª referÃªncia do bloco de noite) **
     const refNoite = experienciaNoite?.[0];
     const jantar = await gerarUniversalJantar(
       parkisheiro,
@@ -253,15 +253,15 @@ export async function gerarDiaParqueUniversal(
     const montarAtividadesPorTurno = (atracoesPorArea: { area: string; atracoes: any[] }[]) =>
       atracoesPorArea.flatMap(({ area, atracoes }) => {
         const areaModule = mapaAreas[area];
-        const descricaoArea = areaModule?.descricao ?? `Bem-vindo à área ${area}`;
-        return [{ titulo: `Área: ${area}`, descricao: descricaoArea, tipo: 'informativa' }, ...atracoes];
+        const descricaoArea = areaModule?.descricao ?? `Bem-vindo Ã  Ã¡rea ${area}`;
+        return [{ titulo: `Ãrea: ${area}`, descricao: descricaoArea, tipo: 'informativa' }, ...atracoes];
       });
 
     const blocoDicas =
       dicasParquesUniversal[parque] || dicasParquesUniversal['Universal Studios Florida'];
 
     const turnoManha: TurnoDia = {
-      titulo: 'Manhã',
+      titulo: 'ManhÃ£',
       atividades: [
         {
           titulo: 'Dicas do dia',
@@ -269,15 +269,15 @@ export async function gerarDiaParqueUniversal(
           descricao:
             (blocoDicas.resumo ? `${blocoDicas.resumo}\n` : '') +
             (blocoDicas.chegada ? `${blocoDicas.chegada}\n` : '') +
-            `Estratégia: ${blocoDicas.estrategia}\n` +
-            `Manhã: ${blocoDicas.manha}\n` +
-            `Refeição: ${blocoDicas.refeicao}\n` +
+            `EstratÃ©gia: ${blocoDicas.estrategia}\n` +
+            `ManhÃ£: ${blocoDicas.manha}\n` +
+            `RefeiÃ§Ã£o: ${blocoDicas.refeicao}\n` +
             `Tarde: ${blocoDicas.tarde}\n` +
             `Fogos: ${blocoDicas.fogos}\n` +
             `Perfil: ${blocoDicas.perfil}\n` +
             `App: ${blocoDicas.app}\n` +
             `Eventos: ${blocoDicas.eventos}\n` +
-            `Recomendação: ${blocoDicas.recomendacao}\n` +
+            `RecomendaÃ§Ã£o: ${blocoDicas.recomendacao}\n` +
             `Dica: ${blocoDicas.dica}`,
           tipo: 'informativa',
         },
@@ -297,12 +297,12 @@ export async function gerarDiaParqueUniversal(
     };
 
     const turnos: TurnoDia[] = [
-      { titulo: 'Transporte até o Parque', atividades: transporteIda },
+      { titulo: 'Transporte atÃ© o Parque', atividades: transporteIda },
       turnoManha,
       turnoTarde,
       turnoNoite,
       {
-        titulo: `Volta para a Região – ${regiaoHospedagem?.nome ?? 'Hospedagem'}`,
+        titulo: `Volta para a RegiÃ£o â€“ ${regiaoHospedagem?.nome ?? 'Hospedagem'}`,
         atividades: transporteVolta,
       },
     ];
@@ -313,12 +313,12 @@ export async function gerarDiaParqueUniversal(
       numero,
       data: dataIso,
       cabecalho: {
-        titulo: 'Dia de Parque – Universal',
+        titulo: 'Dia de Parque â€“ Universal',
         imagem: 'universal.jpg',
         clima: { temperatura: 29, condicao: 'Ensolarado', icone: 'sunny' },
       },
       objetivo:
-        'Aproveite um dia completo em um parque da Universal com atrações personalizadas para seu perfil.',
+        'Aproveite um dia completo em um parque da Universal com atraÃ§Ãµes personalizadas para seu perfil.',
       turnos,
       dicas: [],
       regiao: {
@@ -331,8 +331,8 @@ export async function gerarDiaParqueUniversal(
       },
       perfilAtracoes: {
         valor: perfilAtracao,
-        nome: 'Perfil de atrações personalizado',
-        icone: '🎢',
+        nome: 'Perfil de atraÃ§Ãµes personalizado',
+        icone: 'ðŸŽ¢',
       },
       localizacaoFogos: refNoite || null,
     };
@@ -348,7 +348,7 @@ export async function gerarDiaParqueUniversal(
         imagem: 'universal.jpg',
         clima: { temperatura: 0, condicao: 'Indefinido', icone: 'error' },
       },
-      objetivo: 'Não foi possível gerar o conteúdo deste dia.',
+      objetivo: 'NÃ£o foi possÃ­vel gerar o conteÃºdo deste dia.',
       turnos: [],
       dicas: [],
       regiao: { nome: 'Desconhecido', descricao: 'Desconhecido' },

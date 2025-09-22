@@ -1,22 +1,22 @@
-const blocoItensVooSaida = {
-  titulo: '✈️Itens importantes para o voo de volta',
+﻿const blocoItensVooSaida = {
+  titulo: 'âœˆï¸Itens importantes para o voo de volta',
   tipo: 'informativa',
   descricao: [
-    'Organize a bagagem de mão com itens que possa precisar durante o voo e mantenha eletrônicos e documentos acessíveis para facilitar o raio-x e o embarque. Não despache objetos frágeis ou de valor, leve sempre com você.',
+    'Organize a bagagem de mÃ£o com itens que possa precisar durante o voo e mantenha eletrÃ´nicos e documentos acessÃ­veis para facilitar o raio-x e o embarque. NÃ£o despache objetos frÃ¡geis ou de valor, leve sempre com vocÃª.',
     'Documentos e acesso:',
     'Passaporte com carimbo de entrada nos EUA',
-    'Cartão de embarque (impresso ou no app da companhia)',
+    'CartÃ£o de embarque (impresso ou no app da companhia)',
     'Celular carregado e power bank',
-    'Carregador de celular portátil',
-    'Conforto e saúde:',
+    'Carregador de celular portÃ¡til',
+    'Conforto e saÃºde:',
     'Fones de ouvido e entretenimento pessoal',
-    'Remédios essenciais',
+    'RemÃ©dios essenciais',
     'Lanches leves como barrinhas, biscoito ou frutas secas',
-    'Garrafinha de água vazia para encher após o raio-x',
+    'Garrafinha de Ã¡gua vazia para encher apÃ³s o raio-x',
     'Blusa ou casaco leve (cabine pode estar fria)',
-    'Máscara (opcional)',
-    'Segurança:',
-    'Itens frágeis ou de valor sempre na bagagem de mão',
+    'MÃ¡scara (opcional)',
+    'SeguranÃ§a:',
+    'Itens frÃ¡geis ou de valor sempre na bagagem de mÃ£o',
   ].join('\n'),
 };
 

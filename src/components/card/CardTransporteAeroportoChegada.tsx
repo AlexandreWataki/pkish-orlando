@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const CardTransporteAeroportoChegada = ({
-  titulo = 'Transporte até a região',
+  titulo = 'Transporte atÃ© a regiÃ£o',
   local = '',
   opcoes = [],
 }: Props) => (
@@ -32,14 +32,14 @@ export const CardTransporteAeroportoChegada = ({
         </View>
       ))
     ) : (
-      <Text style={styles.valor}>Nenhuma opção de transporte disponível.</Text>
+      <Text style={styles.valor}>Nenhuma opÃ§Ã£o de transporte disponÃ­vel.</Text>
     )}
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0, 180, 255, 0.9)', // Azul claro translúcido
+    backgroundColor: 'rgba(0, 180, 255, 0.9)', // Azul claro translÃºcido
     borderRadius: 16,
     padding: 14,
     marginVertical: 10,

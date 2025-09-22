@@ -1,18 +1,18 @@
-// src/components/BlocoCard.tsx
+﻿// src/components/BlocoCard.tsx
 import { Card } from 'primereact/card';
 
 /**
- * Componente visual reutilizável que exibe um bloco com título, conteúdo e ícones.
+ * Componente visual reutilizÃ¡vel que exibe um bloco com tÃ­tulo, conteÃºdo e Ã­cones.
  * Props:
- * - title (string): título principal do bloco
- * - emoji (string): opcional, emoji antes do título
+ * - title (string): tÃ­tulo principal do bloco
+ * - emoji (string): opcional, emoji antes do tÃ­tulo
  * - content (string ou array): corpo do texto; pode ser string com quebras ou array de strings
- * - extra (JSX): opcional, ações ou conteúdo complementar abaixo
- * - children (JSX): opcional, conteúdo genérico adicional
+ * - extra (JSX): opcional, aÃ§Ãµes ou conteÃºdo complementar abaixo
+ * - children (JSX): opcional, conteÃºdo genÃ©rico adicional
  * - tipo (string): opcional, usado para mudar a cor de fundo (ex: 'disney', 'universal', 'compras')
  */
 const BlocoCard = ({ title, emoji = null, content = '', children, extra = null, tipo = '' }) => {
-  // Garante que o conteúdo seja um array de strings
+  // Garante que o conteÃºdo seja um array de strings
   const lines = Array.isArray(content)
     ? content
     : content
@@ -45,13 +45,13 @@ const BlocoCard = ({ title, emoji = null, content = '', children, extra = null, 
         boxShadow: 'inset 0 0 10px rgba(0,0,0,0.3)',
       }}
     >
-      {/* Título com emoji */}
+      {/* TÃ­tulo com emoji */}
       <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
         {emoji && <span>{emoji}</span>}
         <span>{title}</span>
       </h3>
 
-      {/* Conteúdo (string única ou lista) */}
+      {/* ConteÃºdo (string Ãºnica ou lista) */}
       {lines.length > 0 &&
         (lines.length === 1 ? (
           <p className="text-base leading-relaxed whitespace-pre-wrap">{lines[0]}</p>

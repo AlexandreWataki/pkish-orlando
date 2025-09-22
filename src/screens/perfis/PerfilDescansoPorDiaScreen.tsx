@@ -1,4 +1,4 @@
-// src/screens/perfis/PerfilDescansoPorDiaScreen.tsx
+﻿// src/screens/perfis/PerfilDescansoPorDiaScreen.tsx
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,20 +13,20 @@ import { ptBR } from 'date-fns/locale';
 
 const opcoes = [
   {
-    icone: '🛍️',
+    icone: 'ðŸ›ï¸',
     nome: 'Compras leves + Descanso',
     valor: 'comprasLevesDescanso',
     descricao: (
       <Text>
         Prefere um dia tranquilo com pequenas compras em <Text style={{ fontWeight: 'bold' }}>lojas</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>outlets</Text> ou <Text style={{ fontWeight: 'bold' }}>feirinhas</Text>, intercalando com momentos de{' '}
-        <Text style={{ fontWeight: 'bold' }}>descanso</Text> em cafés ou praças aconchegantes. <Text style={{ fontWeight: 'bold' }}>Dica:</Text> explore o{' '}
+        <Text style={{ fontWeight: 'bold' }}>descanso</Text> em cafÃ©s ou praÃ§as aconchegantes. <Text style={{ fontWeight: 'bold' }}>Dica:</Text> explore o{' '}
         <Text style={{ fontWeight: 'bold' }}>Pointe Orlando</Text> ou a charmosa <Text style={{ fontWeight: 'bold' }}>Celebration</Text>.
       </Text>
     ),
   },
   {
-    icone: '🌳',
+    icone: 'ðŸŒ³',
     nome: 'Natureza & Parques abertos',
     valor: 'naturezaParquesAbertos',
     descricao: (
@@ -37,35 +37,35 @@ const opcoes = [
     ),
   },
   {
-    icone: '🏙️',
+    icone: 'ðŸ™ï¸',
     nome: 'Passeios urbanos tranquilos',
     valor: 'passeiosUrbanos',
     descricao: (
       <Text>
-        Prefere explorar a cidade com calma, caminhando por <Text style={{ fontWeight: 'bold' }}>áreas arborizadas</Text>, <Text style={{ fontWeight: 'bold' }}>centros de lazer</Text> e bairros charmosos como{' '}
+        Prefere explorar a cidade com calma, caminhando por <Text style={{ fontWeight: 'bold' }}>Ã¡reas arborizadas</Text>, <Text style={{ fontWeight: 'bold' }}>centros de lazer</Text> e bairros charmosos como{' '}
         <Text style={{ fontWeight: 'bold' }}>Winter Park</Text> ou <Text style={{ fontWeight: 'bold' }}>ICON Park</Text>.
       </Text>
     ),
   },
   {
-    icone: '🦅',
+    icone: 'ðŸ¦…',
     nome: 'Conhecendo os EUA',
     valor: 'conhecendoEUA',
     descricao: (
       <Text>
-        Curte a <Text style={{ fontWeight: 'bold' }}>cultura americana</Text>? Este perfil inclui <Text style={{ fontWeight: 'bold' }}>locais históricos</Text>,{' '}
-        <Text style={{ fontWeight: 'bold' }}>memoriais</Text> e bairros típicos como <Text style={{ fontWeight: 'bold' }}>Downtown Orlando</Text> e a{' '}
-        <Text style={{ fontWeight: 'bold' }}>Kissimmee histórica</Text>.
+        Curte a <Text style={{ fontWeight: 'bold' }}>cultura americana</Text>? Este perfil inclui <Text style={{ fontWeight: 'bold' }}>locais histÃ³ricos</Text>,{' '}
+        <Text style={{ fontWeight: 'bold' }}>memoriais</Text> e bairros tÃ­picos como <Text style={{ fontWeight: 'bold' }}>Downtown Orlando</Text> e a{' '}
+        <Text style={{ fontWeight: 'bold' }}>Kissimmee histÃ³rica</Text>.
       </Text>
     ),
   },
   {
-    icone: '🍽️',
+    icone: 'ðŸ½ï¸',
     nome: 'Sabores do Mundo',
     valor: 'saboresDoMundo',
     descricao: (
       <Text>
-        Ama comer bem e experimentar <Text style={{ fontWeight: 'bold' }}>culturas pela culinária</Text>? Visite cafés e <Text style={{ fontWeight: 'bold' }}>restaurantes temáticos</Text> em{' '}
+        Ama comer bem e experimentar <Text style={{ fontWeight: 'bold' }}>culturas pela culinÃ¡ria</Text>? Visite cafÃ©s e <Text style={{ fontWeight: 'bold' }}>restaurantes temÃ¡ticos</Text> em{' '}
         <Text style={{ fontWeight: 'bold' }}>Sand Lake Road</Text>, <Text style={{ fontWeight: 'bold' }}>Dr. Phillips</Text> e <Text style={{ fontWeight: 'bold' }}>Celebration</Text>.
       </Text>
     ),
@@ -95,7 +95,7 @@ export default function PerfilDescansoPorDiaScreen() {
     }
   }, []);
 
-  // reidrata seleção salva quando muda de dia/tela
+  // reidrata seleÃ§Ã£o salva quando muda de dia/tela
   useEffect(() => {
     if (!diaAtual) return;
     const salvo = (diaAtual as any)?.perfilDescanso;
@@ -180,7 +180,7 @@ export default function PerfilDescansoPorDiaScreen() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}°C` : '28°C'}
+          temperatura={clima?.temp ? `${clima.temp}Â°C` : '28Â°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -189,10 +189,10 @@ export default function PerfilDescansoPorDiaScreen() {
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.cardPergunta}>
             <Text style={styles.pergunta}>
-              🧘‍♂️ Selecione o estilo ideal de descanso para este dia:{' '}
+              ðŸ§˜â€â™‚ï¸ Selecione o estilo ideal de descanso para este dia:{' '}
               {diaAtual && (
                 <Text style={styles.dataDia}>
-                  {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} – {format(new Date(diaAtual.data), 'EEEE', { locale: ptBR })}
+                  {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} â€“ {format(new Date(diaAtual.data), 'EEEE', { locale: ptBR })}
                 </Text>
               )}
             </Text>

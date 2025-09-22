@@ -1,4 +1,4 @@
-// src/contexts/AuthContext.tsx
+﻿// src/contexts/AuthContext.tsx
 import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '@/services/api';
@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUp = async (username: string, password: string) => {
-    await api.register(username, password); // se quiser já logar após cadastro:
+    await api.register(username, password); // se quiser jÃ¡ logar apÃ³s cadastro:
     await signIn(username, password);
   };
 

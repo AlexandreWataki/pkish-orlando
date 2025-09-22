@@ -1,50 +1,50 @@
-const dicasTurnoChegada: Record<string, { titulo: string; descricao: string }> = {
+﻿const dicasTurnoChegada: Record<string, { titulo: string; descricao: string }> = {
   madrugada: {
-    titulo: '🌙 Chegada de Madrugada – Modo Zumbi',
+    titulo: 'ðŸŒ™ Chegada de Madrugada â€“ Modo Zumbi',
     descricao: [
-      'Imigração: Rápida e com aeroporto silencioso.',
-      'Transporte: Uber e Lyft funcionam mesmo de madrugada mas podem demorar então confira placa e nome.',
-      'Chegada: Vá direto descansar e evite desfazer as malas.',
-      'Cuidados: Beba bastante água ao acordar.',
+      'ImigraÃ§Ã£o: RÃ¡pida e com aeroporto silencioso.',
+      'Transporte: Uber e Lyft funcionam mesmo de madrugada mas podem demorar entÃ£o confira placa e nome.',
+      'Chegada: VÃ¡ direto descansar e evite desfazer as malas.',
+      'Cuidados: Beba bastante Ã¡gua ao acordar.',
       'Atividades: Evite parques e prefira mercados ou locais leves como Disney Springs ou ICON Park.',
-      'Apps úteis: Uber, Lyft, Google Maps, Wise, My Disney Experience.',
-      'Preparação: Deixe prontos roupas, ingressos, mochila e carregadores para o dia seguinte.'
+      'Apps Ãºteis: Uber, Lyft, Google Maps, Wise, My Disney Experience.',
+      'PreparaÃ§Ã£o: Deixe prontos roupas, ingressos, mochila e carregadores para o dia seguinte.'
     ].join('\n'),
   },
 
   manha: {
-    titulo: '🌅 Chegada pela Manhã – Comece com leveza',
+    titulo: 'ðŸŒ… Chegada pela ManhÃ£ â€“ Comece com leveza',
     descricao: [
-      'Check-in: Faça logo que chegar e saia com apenas o necessário.',
+      'Check-in: FaÃ§a logo que chegar e saia com apenas o necessÃ¡rio.',
       'Atividades: Evite parques nesse primeiro dia e foque em se organizar.',
-      'Compras: Vá ao mercado ou farmácia buscar o que falta como snacks, água, adaptadores e protetor solar.',
-      'Ingressos: Pegue físicos se necessário em pontos de retirada.',
-      'Mochila: Organize com documentos, ingresso, boné e eletrônicos.',
+      'Compras: VÃ¡ ao mercado ou farmÃ¡cia buscar o que falta como snacks, Ã¡gua, adaptadores e protetor solar.',
+      'Ingressos: Pegue fÃ­sicos se necessÃ¡rio em pontos de retirada.',
+      'Mochila: Organize com documentos, ingresso, bonÃ© e eletrÃ´nicos.',
       'Apps recomendados: Uber, Walmart, Disney App, iFood.',
-      'Organização: Use Notion ou Google Keep para planejar os próximos dias.'
+      'OrganizaÃ§Ã£o: Use Notion ou Google Keep para planejar os prÃ³ximos dias.'
     ].join('\n'),
   },
 
   tarde: {
-    titulo: '☀️ Chegada à Tarde – Ainda dá tempo',
+    titulo: 'â˜€ï¸ Chegada Ã  Tarde â€“ Ainda dÃ¡ tempo',
     descricao: [
-      'Imigração: Pode estar cheia então mantenha paciência.',
-      'Hotel: Pegue só o essencial como roupa leve e carregadores.',
-      'Compras rápidas: Se puder, passe em mercado ou farmácia.',
-      'Alimentação: Peça comida por delivery se preferir algo prático.',
-      'Passeio leve: Se estiver disposto, vá até Disney Springs ou caminhe pela região do hotel.',
+      'ImigraÃ§Ã£o: Pode estar cheia entÃ£o mantenha paciÃªncia.',
+      'Hotel: Pegue sÃ³ o essencial como roupa leve e carregadores.',
+      'Compras rÃ¡pidas: Se puder, passe em mercado ou farmÃ¡cia.',
+      'AlimentaÃ§Ã£o: PeÃ§a comida por delivery se preferir algo prÃ¡tico.',
+      'Passeio leve: Se estiver disposto, vÃ¡ atÃ© Disney Springs ou caminhe pela regiÃ£o do hotel.',
       'Apps: Uber, Eats, Disney App, Calm.',
       'Descanso: Programe um alarme suave para o dia seguinte com SleepCycle.'
     ].join('\n'),
   },
 
   noite: {
-    titulo: '🌆 Chegada à Noite – Tudo certo, descanso merecido',
+    titulo: 'ðŸŒ† Chegada Ã  Noite â€“ Tudo certo, descanso merecido',
     descricao: [
-      'Descanso: Vá direto repousar e recarregar as energias.',
-      'Essenciais: Separe pijama, documentos e roupa para amanhã.',
-      'Fome: Peça algo leve no iFood ou Uber Eats.',
-      'Organização: Prepare mochila com itens importantes como boné, ingresso e carregador.',
+      'Descanso: VÃ¡ direto repousar e recarregar as energias.',
+      'Essenciais: Separe pijama, documentos e roupa para amanhÃ£.',
+      'Fome: PeÃ§a algo leve no iFood ou Uber Eats.',
+      'OrganizaÃ§Ã£o: Prepare mochila com itens importantes como bonÃ©, ingresso e carregador.',
       'Atividades: Evite parques e prefira locais calmos como mercados ou ICON Park.',
       'Apps: Uber, Calm, Wise, Tradutor, Disney App.',
       'Dica extra: Use Parkify para lembrar onde estacionou.'

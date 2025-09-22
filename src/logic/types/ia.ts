@@ -1,6 +1,6 @@
-// src/types/ia.ts
+﻿// src/types/ia.ts
 
-/** Estrutura das preferências enviadas para a IA */
+/** Estrutura das preferÃªncias enviadas para a IA */
 export type Preferencias = {
   dataInicial: string;
   dataFinal: string;
@@ -18,12 +18,12 @@ export type DiaGerado = {
   data: string;                // Ex: "2025-08-15"
   parque?: string;             // Nome do parque (opcional)
   atividades: string[];        // Lista de atividades do dia
-  refeicoes?: string[];        // Lista de refeições planejadas
-  observacoes?: string;        // Observações adicionais
+  refeicoes?: string[];        // Lista de refeiÃ§Ãµes planejadas
+  observacoes?: string;        // ObservaÃ§Ãµes adicionais
   turnos?: {
-    manha: string[];           // Atividades de manhã
-    tarde: string[];           // Atividades à tarde
-    noite: string[];           // Atividades à noite
+    manha: string[];           // Atividades de manhÃ£
+    tarde: string[];           // Atividades Ã  tarde
+    noite: string[];           // Atividades Ã  noite
   };
 };
 

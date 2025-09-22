@@ -1,18 +1,18 @@
-export const experienciaEpicoUniverseNoite: AtividadeDia[] = [
+﻿export const experienciaEpicoUniverseNoite: AtividadeDia[] = [
   {
     id: 'epic-universe-noite',
     tipo: 'informativa',
-    titulo: `Cosmos Fountain Show – Celestial Park (fonte central)`,
-    descricao: `\nEspetáculo noturno do novo Universal's Epic Universe, no coração do Celestial Park, com projeções, fontes iluminadas, efeitos especiais e trilha sonora, encerrando o dia de forma memorável.
-Horário: geralmente no fechamento (~21h).
-Onde assistir: próximo à fonte central, com visão ampla de toda a área.
-Saída estratégica: enquanto o público se dispersa, aproveite as últimas atrações e caminhe até a saída próxima ao Celestial Park.
-Macete: fique até o último momento para explorar Super Nintendo World e The Witcher com menos filas e fotos sem multidões.
-Carro: siga para a saída principal e, se possível, espere alguns minutos para evitar o trânsito.
+    titulo: `Cosmos Fountain Show â€“ Celestial Park (fonte central)`,
+    descricao: `\nEspetÃ¡culo noturno do novo Universal's Epic Universe, no coraÃ§Ã£o do Celestial Park, com projeÃ§Ãµes, fontes iluminadas, efeitos especiais e trilha sonora, encerrando o dia de forma memorÃ¡vel.
+HorÃ¡rio: geralmente no fechamento (~21h).
+Onde assistir: prÃ³ximo Ã  fonte central, com visÃ£o ampla de toda a Ã¡rea.
+SaÃ­da estratÃ©gica: enquanto o pÃºblico se dispersa, aproveite as Ãºltimas atraÃ§Ãµes e caminhe atÃ© a saÃ­da prÃ³xima ao Celestial Park.
+Macete: fique atÃ© o Ãºltimo momento para explorar Super Nintendo World e The Witcher com menos filas e fotos sem multidÃµes.
+Carro: siga para a saÃ­da principal e, se possÃ­vel, espere alguns minutos para evitar o trÃ¢nsito.
 Uber/Lyft: utilize o ponto de embarque de rideshare indicado no aplicativo, perto da entrada.
-Hotéis Universal: siga placas para o transporte oficial gratuito.
-Ônibus Universal: frequentes para diversas áreas e hotéis parceiros; confira horários para evitar esperas.
-Ao chegar ao hotel, relaxe, recarregue dispositivos e prepare-se para o próximo dia.`,
+HotÃ©is Universal: siga placas para o transporte oficial gratuito.
+Ã”nibus Universal: frequentes para diversas Ã¡reas e hotÃ©is parceiros; confira horÃ¡rios para evitar esperas.
+Ao chegar ao hotel, relaxe, recarregue dispositivos e prepare-se para o prÃ³ximo dia.`,
     subtitulo: 'Noite',
     regiao: 'Celestial Park',
     latitude: 28.4745,

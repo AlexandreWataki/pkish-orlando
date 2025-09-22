@@ -1,25 +1,25 @@
-const documentosCh = {
-  titulo: '📌 Documentos obrigatórios na Imigração',
+﻿const documentosCh = {
+  titulo: 'ðŸ“Œ Documentos obrigatÃ³rios na ImigraÃ§Ã£o',
   itens: [
-    'Passaporte com visto B1/B2 (mín. 6 meses)',
+    'Passaporte com visto B1/B2 (mÃ­n. 6 meses)',
     'Passagem de volta ao Brasil',
-    'Endereço ou reserva da hospedagem',
-    'Seguro viagem com cobertura médica',
+    'EndereÃ§o ou reserva da hospedagem',
+    'Seguro viagem com cobertura mÃ©dica',
     'Ingressos ou vouchers',
-    'Comprovante da compra (site, app ou agência)',
-    'Cartão internacional ou multimoeda',
-    'US$ 50 a 100 em espécie',
-    'Extrato bancário (opcional)',
+    'Comprovante da compra (site, app ou agÃªncia)',
+    'CartÃ£o internacional ou multimoeda',
+    'US$ 50 a 100 em espÃ©cie',
+    'Extrato bancÃ¡rio (opcional)',
   ],
   postura: [
     'Seja calmo e direto',
-    'Responda só o necessário',
-    'Ouça com atenção',
-    'Se não souber inglês -"I don’t speak English."',
+    'Responda sÃ³ o necessÃ¡rio',
+    'OuÃ§a com atenÃ§Ã£o',
+    'Se nÃ£o souber inglÃªs -"I donâ€™t speak English."',
     'Sorria e mantenha a calma'
   ],
   dicas: [
-    'Tenha tudo à mão e bem organizado'
+    'Tenha tudo Ã  mÃ£o e bem organizado'
   ],
 };
 

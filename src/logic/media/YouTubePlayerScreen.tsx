@@ -1,11 +1,11 @@
-// src/logic/media/YouTubePlayerScreen.tsx
+﻿// src/logic/media/YouTubePlayerScreen.tsx
 import React, { useMemo, useState } from 'react';
 import { View, ActivityIndicator, TouchableOpacity, StyleSheet, Platform, Text } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { WebView } from 'react-native-webview';
-import type { RootStackParamList } from '@/navigation/RootStack'; // ✅ AJUSTADO
+import type { RootStackParamList } from '@/navigation/RootStack'; // âœ… AJUSTADO
 
 type Nav = NativeStackNavigationProp<RootStackParamList, 'YouTubePlayer'>;
 type Rt = RouteProp<RootStackParamList, 'YouTubePlayer'>;
@@ -29,15 +29,15 @@ export default function YouTubePlayerScreen() {
   const embedUrl = useMemo(() => {
     const id = extractId(idOrUrl);
     if (!id) return null;
-    // inicia com áudio (sem mute), e com suporte a fullscreen
+    // inicia com Ã¡udio (sem mute), e com suporte a fullscreen
     return `https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&fs=1`;
   }, [idOrUrl]);
 
-  // Fallback simples se não houver vídeo
+  // Fallback simples se nÃ£o houver vÃ­deo
   if (!embedUrl) {
     return (
       <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <Text style={{ color: '#fff', marginBottom: 12 }}>Vídeo indisponível</Text>
+        <Text style={{ color: '#fff', marginBottom: 12 }}>VÃ­deo indisponÃ­vel</Text>
         <TouchableOpacity
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
@@ -69,7 +69,7 @@ export default function YouTubePlayerScreen() {
         />
       </View>
 
-      {/* 🔴 Botão voltar no canto SUPERIOR DIREITO */}
+      {/* ðŸ”´ BotÃ£o voltar no canto SUPERIOR DIREITO */}
       <TouchableOpacity
         style={styles.backBtn}
         onPress={() => navigation.goBack()}
@@ -90,10 +90,10 @@ export default function YouTubePlayerScreen() {
 }
 
 const styles = StyleSheet.create({
-  // Fundo preto e conteúdo centralizado verticalmente
+  // Fundo preto e conteÃºdo centralizado verticalmente
   container: { flex: 1, backgroundColor: '#000', justifyContent: 'center' },
 
-  // Caixa com proporção 16:9 ocupando toda a largura
+  // Caixa com proporÃ§Ã£o 16:9 ocupando toda a largura
   playerBox: {
     width: '100%',
     aspectRatio: 16 / 9,
@@ -107,11 +107,11 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 
-  // 🔴 seta vermelha no canto DIREITO
+  // ðŸ”´ seta vermelha no canto DIREITO
   backBtn: {
     position: 'absolute',
     top: Platform.OS === 'ios' ? 312 : 312,
-    left: 16,                 // ✅ trocado de left -> right
+    left: 16,                 // âœ… trocado de left -> right
     backgroundColor: 'red',
     borderRadius: 22,
     padding: 6,

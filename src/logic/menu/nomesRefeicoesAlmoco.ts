@@ -1,11 +1,11 @@
-// ⚠️ Importa apenas do módulo de tipos compartilhados para evitar require cycle.
+﻿// âš ï¸ Importa apenas do mÃ³dulo de tipos compartilhados para evitar require cycle.
 import type { NomeMenu } from "./nomesRefeicoes.shared";
 
 /**
  * Perfis oficiais (ou de loja/unidade) no Instagram para marcas/grandes redes.
- * Se não houver no mapa, caímos no fallback de busca do Instagram (segue abaixo).
+ * Se nÃ£o houver no mapa, caÃ­mos no fallback de busca do Instagram (segue abaixo).
  *
- * IMPORTANTE: As chaves PRECISAM ser únicas. Para unidades repetidas, diferencie pelo bairro/região.
+ * IMPORTANTE: As chaves PRECISAM ser Ãºnicas. Para unidades repetidas, diferencie pelo bairro/regiÃ£o.
  */
 const IG_MAP: Record<string, string> = {
   // 1 - International Drive
@@ -19,18 +19,18 @@ const IG_MAP: Record<string, string> = {
   "Rainforest Cafe Lunch": "https://www.instagram.com/rainforest_cafe/",
   "Cheddar's Scratch Kitchen Lunch": "https://www.instagram.com/cheddarskitchen/",
   "Subway Vineland Lunch": "https://www.instagram.com/subway/",
-  "Jason’s Deli Lake Buena Vista": "https://www.instagram.com/jasonsdeli/",
+  "Jasonâ€™s Deli Lake Buena Vista": "https://www.instagram.com/jasonsdeli/",
     
  // 3 - Kissimmee
 "LongHorn Steakhouse Kissimmee": "https://www.instagram.com/longhornsteaks/",
 "Medieval Times Kissimmee": "https://www.instagram.com/medievaltimes/",
 "Cracker Barrel Kissimmee": "https://www.instagram.com/crackerbarrel/",
-"Wendy’s Kissimmee": "https://www.instagram.com/wendys/",
-"Nature’s Table Kissimmee": "https://www.instagram.com/naturestable/",
+"Wendyâ€™s Kissimmee": "https://www.instagram.com/wendys/",
+"Natureâ€™s Table Kissimmee": "https://www.instagram.com/naturestable/",
  
 // 4 - Celebration
   "Columbia Restaurant Lunch": "https://www.instagram.com/columbiarestaurant/",
-  "Cafe D’Antonio Celebration": "https://www.instagram.com/explore/search/keyword/",
+  "Cafe Dâ€™Antonio Celebration": "https://www.instagram.com/explore/search/keyword/",
   "Market Street Cafe Lunch": "https://www.instagram.com/explore/search/keyword/",
   "Tijuana Flats Lunch": "https://www.instagram.com/tijuanaflats/",
   "Vitality Bowls Celebration": "https://www.instagram.com/vitalitybowls/",
@@ -44,26 +44,26 @@ const IG_MAP: Record<string, string> = {
 
   // 6 - Windsor Hills
   "Drafts Sports Bar & Grill (Windsor Hills)": "https://www.instagram.com/westgateresorts/",
-  "Minnie’s Cafe Lunch": "https://www.instagram.com/disneyparks/",
+  "Minnieâ€™s Cafe Lunch": "https://www.instagram.com/disneyparks/",
   "Perkins Restaurant & Bakery (Windsor Hills)": "https://www.instagram.com/perkinsrestaurant/",
   "McDonald's Formosa Blvd": "https://www.instagram.com/mcdonalds/",
   "Freshii Windsor Hills": "https://www.instagram.com/freshii/",
 
   // 7 - ChampionsGate
-  "Miller’s Ale House ChampionsGate": "https://www.instagram.com/millers_ale_house/",
+  "Millerâ€™s Ale House ChampionsGate": "https://www.instagram.com/millers_ale_house/",
   "Blue Coast Asian Grill": "https://www.instagram.com/explore/search/keyword/",
   "Panera Bread ChampionsGate": "https://www.instagram.com/panerabread/",
   "Taco Bell ChampionsGate": "https://www.instagram.com/tacobell/",
   "Bolay ChampionsGate": "https://www.instagram.com/bolay/",
 
   // 8 - Four Corners
-  "Applebee’s Four Corners": "https://www.instagram.com/applebees/",
+  "Applebeeâ€™s Four Corners": "https://www.instagram.com/applebees/",
   "Flippers Pizzeria Lunch": "https://www.instagram.com/flipperspizzeria/",
   "Perkins Family Restaurant": "https://www.instagram.com/perkinsrestaurant/",
   "Popeyes Louisiana Kitchen": "https://www.instagram.com/popeyes/",
   "Tropical Smoothie Cafe": "https://www.instagram.com/tropicalsmoothiecafe/",
 
-    // 9 - Vineland Premium Outlets (Almoço)
+    // 9 - Vineland Premium Outlets (AlmoÃ§o)
   "The Cheesecake Factory Vineland": "https://www.instagram.com/cheesecakefactory/",
   "Benihana Orlando": "https://www.instagram.com/benihana/",
   "BJ's Restaurant & Brewhouse Vineland": "https://www.instagram.com/bjsrestaurants/",
@@ -77,11 +77,11 @@ const IG_MAP: Record<string, string> = {
   "Grand Lobby Sushi Bar": "https://www.instagram.com/explore/search/keyword/",
   "Traditions at Nicklaus Clubhouse": "https://www.instagram.com/explore/search/keyword/",
   "7-Eleven Lunch": "https://www.instagram.com/7eleven/",
-  "Nature’s Table Reunion": "https://www.instagram.com/naturestable/",
+  "Natureâ€™s Table Reunion": "https://www.instagram.com/naturestable/",
 
   // 10 - Davenport
   "Ovation Bistro & Bar": "https://www.instagram.com/explore/search/keyword/",
-  "Giovanni’s Pizza Lunch": "https://www.instagram.com/explore/search/keyword/",
+  "Giovanniâ€™s Pizza Lunch": "https://www.instagram.com/explore/search/keyword/",
   "IHOP Davenport": "https://www.instagram.com/ihop/",
   "Burger King Davenport": "https://www.instagram.com/burgerking/",
   "Smoothie King Davenport": "https://www.instagram.com/smoothieking/",
@@ -89,15 +89,15 @@ const IG_MAP: Record<string, string> = {
   // 11 - Westgate Lakes
   "Drafts Sports Bar & Grill (Westgate Lakes)": "https://www.instagram.com/westgateresorts/",
   "Villa Italiano Chophouse": "https://www.instagram.com/explore/search/keyword/",
-  "Cordovano Joe’s Pizza": "https://www.instagram.com/explore/search/keyword/",
+  "Cordovano Joeâ€™s Pizza": "https://www.instagram.com/explore/search/keyword/",
   "Subway Westgate": "https://www.instagram.com/subway/",
   "Juice Bar Westgate": "https://www.instagram.com/westgateresorts/",
 
   // 12 - Vista Cay
-  "Spencer’s for Steaks and Chops": "https://www.instagram.com/explore/search/keyword/",
+  "Spencerâ€™s for Steaks and Chops": "https://www.instagram.com/explore/search/keyword/",
   "NYPD Pizza Vista Cay": "https://www.instagram.com/explore/search/keyword/",
-  "The Bistro – Vista Cay": "https://www.instagram.com/explore/search/keyword/",
-  "Domino’s Pizza": "https://www.instagram.com/dominos/",
+  "The Bistro â€“ Vista Cay": "https://www.instagram.com/explore/search/keyword/",
+  "Dominoâ€™s Pizza": "https://www.instagram.com/dominos/",
   "Fresh Kitchen Vista Cay": "https://www.instagram.com/eatfreshkitchen/",
 
   // 14 - Dr. Phillips
@@ -108,31 +108,31 @@ const IG_MAP: Record<string, string> = {
   "Clean Eatz Dr. Phillips": "https://www.instagram.com/cleaneatz/",
 
 // 16 - Orlando Airport Area
-"Chili’s Grill & Bar – Orlando Airport": "https://www.instagram.com/chilis/",
+"Chiliâ€™s Grill & Bar â€“ Orlando Airport": "https://www.instagram.com/chilis/",
 "Another Broken Egg Cafe": "https://www.instagram.com/anotherbrokenegg/",
 "Rock & Brews - Lee Vista": "https://www.instagram.com/rockbrews/",
 "Bar Louie - Orlando Airport": "https://www.instagram.com/barlouie/",
-"Nature’s Table Airport": "https://www.instagram.com/naturestable/",
+"Natureâ€™s Table Airport": "https://www.instagram.com/naturestable/",
 
 // 17 - Downtown Orlando
   "Hamburger Mary's Orlando": "https://www.instagram.com/hamburgermarysorlando/",
-  "Cindy’s Cuban Café": "https://www.instagram.com/cindyscafeorlando/",
+  "Cindyâ€™s Cuban CafÃ©": "https://www.instagram.com/cindyscafeorlando/",
   "The Stubborn Mule": "https://www.instagram.com/thestubbornmuleorlando/",
   "Planted Kitchen": "https://www.instagram.com/plantedinorlando/",
-  "Dunkin’ Downtown Orlando": "https://www.instagram.com/dunkin/",
+  "Dunkinâ€™ Downtown Orlando": "https://www.instagram.com/dunkin/",
 
   // 18 - Hunter's Creek
   "The Porch South Orange": "https://www.instagram.com/theporchorlando/",
   "La Fiesta Mexican Grill": "https://www.instagram.com/explore/search/keyword/",
-  "Miller’s Ale House Hunter’s Creek": "https://www.instagram.com/millers_ale_house/",
-  "Taco Bell Hunter’s Creek": "https://www.instagram.com/tacobell/",
-  "Bolay Hunter’s Creek": "https://www.instagram.com/bolay/",
+  "Millerâ€™s Ale House Hunterâ€™s Creek": "https://www.instagram.com/millers_ale_house/",
+  "Taco Bell Hunterâ€™s Creek": "https://www.instagram.com/tacobell/",
+  "Bolay Hunterâ€™s Creek": "https://www.instagram.com/bolay/",
 
   // 19 - Windermere
   "Yellow Dog Eats": "https://www.instagram.com/yellowdogeats/",
   "Bella Tuscany": "https://www.instagram.com/explore/search/keyword/",
   "Peach Valley Cafe": "https://www.instagram.com/peachvalleycafe/",
-  "McDonald’s Windermere": "https://www.instagram.com/mcdonalds/",
+  "McDonaldâ€™s Windermere": "https://www.instagram.com/mcdonalds/",
   "Greenbeat Windermere": "https://www.instagram.com/greenbeatlife/",
 
   // 20 - Winter Garden
@@ -140,7 +140,7 @@ const IG_MAP: Record<string, string> = {
   "Crooked Can Brewing Company": "https://www.instagram.com/crookedcan/",
   "Urban on Plant Kitchen & Bar": "https://www.instagram.com/explore/search/keyword/",
   "Taco Bell Winter Garden": "https://www.instagram.com/tacobell/",
-  "Plant Street Market – Press’d": "https://www.instagram.com/explore/search/keyword/",
+  "Plant Street Market â€“ Pressâ€™d": "https://www.instagram.com/explore/search/keyword/",
 
   // 21 - Altamonte Springs
   "Bahama Breeze": "https://www.instagram.com/bahamabreezeislandgrille/",
@@ -150,31 +150,31 @@ const IG_MAP: Record<string, string> = {
   "Vitality Bowls Altamonte": "https://www.instagram.com/vitalitybowls/",
 
   // 22 - Clermont
-  "Chili’s Grill & Bar Clermont": "https://www.instagram.com/chilis/",
+  "Chiliâ€™s Grill & Bar Clermont": "https://www.instagram.com/chilis/",
   "The Crooked Spoon Gastropub": "https://www.instagram.com/crookedspoonclermont/",
   "Bob Evans Clermont": "https://www.instagram.com/bobevansfarms/",
   "Taco Bell Clermont": "https://www.instagram.com/tacobell/",
   "Vitality Bowls Clermont": "https://www.instagram.com/vitalitybowls/",
 
   // 23 - Oak Ridge
-  "Applebee’s Grill + Bar": "https://www.instagram.com/applebees/",
-  "Café Tu Tu Tango": "https://www.instagram.com/explore/search/keyword/",
+  "Applebeeâ€™s Grill + Bar": "https://www.instagram.com/applebees/",
+  "CafÃ© Tu Tu Tango": "https://www.instagram.com/explore/search/keyword/",
   "Perkins Restaurant & Bakery (Oak Ridge)": "https://www.instagram.com/perkinsrestaurant/",
   "Pollo Tropical Oak Ridge": "https://www.instagram.com/pollotropical/",
   "Smoothie King Oak Ridge": "https://www.instagram.com/smoothieking/",
 
   // 24 - Maingate East
   "Olive Garden Maingate East": "https://www.instagram.com/olivegarden/",
-  "Pirate’s Dinner Adventure Lunch": "https://www.instagram.com/explore/search/keyword/",
+  "Pirateâ€™s Dinner Adventure Lunch": "https://www.instagram.com/explore/search/keyword/",
   "Cracker Barrel Maingate East": "https://www.instagram.com/crackerbarrel/",
   "Taco Bell Maingate East": "https://www.instagram.com/tacobell/",
-  "Nature’s Table Maingate East": "https://www.instagram.com/naturestable/",
+  "Natureâ€™s Table Maingate East": "https://www.instagram.com/naturestable/",
 
   // 25 - Maingate West
   "Ford's Garage Sunset Walk": "https://www.instagram.com/explore/search/keyword/",
-  "Logan’s Roadhouse": "https://www.instagram.com/explore/search/keyword/",
+  "Loganâ€™s Roadhouse": "https://www.instagram.com/explore/search/keyword/",
   "Bob Evans Maingate West": "https://www.instagram.com/bobevansfarms/",
-  "Wendy’s Maingate West": "https://www.instagram.com/wendys/",
+  "Wendyâ€™s Maingate West": "https://www.instagram.com/wendys/",
   "Freshii Maingate West": "https://www.instagram.com/freshii/",
 
   // 26 - Bonnet Creek
@@ -190,7 +190,7 @@ const IG_MAP: Record<string, string> = {
   "Hash House A Go Go": "https://www.instagram.com/hashhouseagogo/",
   "Applebee's Flamingo": "https://www.instagram.com/applebees/",
   "Taco Bell Flamingo": "https://www.instagram.com/tacobell/",
-  "Green Fork Café": "https://www.instagram.com/explore/search/keyword/",
+  "Green Fork CafÃ©": "https://www.instagram.com/explore/search/keyword/",
 
   // 29 - MetroWest
   "Teak Neighborhood Grill": "https://www.instagram.com/teakorlando/",
@@ -211,11 +211,11 @@ const IG_MAP: Record<string, string> = {
   "Planet Hollywood Lunch": "https://www.instagram.com/planethollywood/",
   "Perkins Restaurant Osceola": "https://www.instagram.com/perkinsrestaurant/",
   "Burger King Osceola Parkway": "https://www.instagram.com/burgerking/",
-  "Tropical Smoothie Café Osceola": "https://www.instagram.com/tropicalsmoothiecafe/",
+  "Tropical Smoothie CafÃ© Osceola": "https://www.instagram.com/tropicalsmoothiecafe/",
 
   // 32 - Millenia Area
   "The Cheesecake Factory Millenia": "https://www.instagram.com/cheesecakefactory/",
-  "P.F. Chang’s Millenia": "https://www.instagram.com/pfchangs/",
+  "P.F. Changâ€™s Millenia": "https://www.instagram.com/pfchangs/",
   "Brio Italian Grille": "https://www.instagram.com/brioitaliangrille/",
   "Chipotle Millenia": "https://www.instagram.com/chipotlemexicangrill/",
   "Bolay Millenia": "https://www.instagram.com/bolay/",
@@ -238,29 +238,29 @@ const IG_MAP: Record<string, string> = {
   "Rocco's Tacos and Tequila Bar": "https://www.instagram.com/roccostacos/",
   "The Melting Pot Orlando": "https://www.instagram.com/themeltingpot/",
   "The Whiskey": "https://www.instagram.com/thewhiskeyorlando/",
-  "Moe’s Southwest Grill": "https://www.instagram.com/moes/",
+  "Moeâ€™s Southwest Grill": "https://www.instagram.com/moes/",
   "Too Much Sauce": "https://www.instagram.com/toomuchsaucefl/",
 
   // 36 - North Kissimmee
   "Medieval Times Lunch Hall": "https://www.instagram.com/medievaltimes/",
   "Broadway Pizza Bar": "https://www.instagram.com/broadwaypizzabar/",
-  "Denny’s North Kissimmee": "https://www.instagram.com/dennysdiner/",
+  "Dennyâ€™s North Kissimmee": "https://www.instagram.com/dennysdiner/",
   "Taco Bell North Kissimmee": "https://www.instagram.com/tacobell/",
-  "Nature’s Table North Kissimmee": "https://www.instagram.com/naturestable/",
+  "Natureâ€™s Table North Kissimmee": "https://www.instagram.com/naturestable/",
 
 
 // 37 - Four Corners
-"Chili’s Grill & Bar – Four Corners": "https://www.instagram.com/chilis/",
+"Chiliâ€™s Grill & Bar â€“ Four Corners": "https://www.instagram.com/chilis/",
 "Sr. Tequila Mexican Grill": "https://www.instagram.com/srtequilamexicangrill/",
-"Friar Tuck – British Fish & Chips": "https://www.instagram.com/friartuckfishnchips/",
-"Orlando Cat Café": "https://www.instagram.com/orlandocatcafe/",
-"I Love NY Pizza – Cagan Crossings": "https://www.instagram.com/ilovenypizza_clermont/",
+"Friar Tuck â€“ British Fish & Chips": "https://www.instagram.com/friartuckfishnchips/",
+"Orlando Cat CafÃ©": "https://www.instagram.com/orlandocatcafe/",
+"I Love NY Pizza â€“ Cagan Crossings": "https://www.instagram.com/ilovenypizza_clermont/",
 // 30 - Winter Park
 "The Glass Knife": "https://www.instagram.com/theglassknife/",
-"Barnie’s Coffee & Tea Co. – Park Ave": "https://www.instagram.com/barniescoffee/",
-"Foxtail Coffee Co. – Winter Park": "https://www.instagram.com/foxtailcoffee/",
-"First Watch – Winter Park": "https://www.instagram.com/firstwatch/",
-"Keke’s Breakfast Café – Winter Park": "https://www.instagram.com/kekesbreakfastcafe/",
+"Barnieâ€™s Coffee & Tea Co. â€“ Park Ave": "https://www.instagram.com/barniescoffee/",
+"Foxtail Coffee Co. â€“ Winter Park": "https://www.instagram.com/foxtailcoffee/",
+"First Watch â€“ Winter Park": "https://www.instagram.com/firstwatch/",
+"Kekeâ€™s Breakfast CafÃ© â€“ Winter Park": "https://www.instagram.com/kekesbreakfastcafe/",
 
 
 };

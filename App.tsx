@@ -1,10 +1,10 @@
-// src/App.tsx
+﻿// src/App.tsx
 import { LogBox } from 'react-native';
 
-// 🔕 Ignorar warning globalmente (logo no início, antes de qualquer outro import)
+// ðŸ”• Ignorar warning globalmente (logo no inÃ­cio, antes de qualquer outro import)
 LogBox.ignoreLogs([
   'setLayoutAnimationEnabledExperimental', // substring ampla
-  'no-op in the New Architecture',         // reforço para pegar qualquer quebra de linha
+  'no-op in the New Architecture',         // reforÃ§o para pegar qualquer quebra de linha
 ]);
 
 import React, { useEffect } from 'react';
@@ -21,14 +21,14 @@ import InicioScreen from '@/screens/login/InicioScreen';
 import LoginScreen from '@/screens/login/LoginScreen';
 import CadastroScreen from '@/screens/login/CadastroScreen';
 
-// início/fluxo principal
+// inÃ­cio/fluxo principal
 import MenuPrincipal from '@/screens/inicio/MenuPrincipal';
 import TelaDefinirQuantidadeDias from '@/screens/inicio/TelaDefinirQuantidadeDias';
 import TelaDefinirTiposDias from '@/screens/inicio/TelaDefinirTiposDias';
 import TelaDistribuirDias from '@/screens/inicio/TelaDistribuirDias';
 import TelaAeroportoHotel from '@/screens/inicio/TelaAeroportoHotel';
 
-// mídias
+// mÃ­dias
 import TelaAtracoes from '@/logic/media/TelaAtracoes';
 import TelaRefeicoes from '@/logic/menu/TelaRefeicoes';
 
@@ -41,18 +41,18 @@ import PerfilAtracoesScreen from '@/screens/perfis/PerfilAtracoesScreen';
 // dias
 import DiaDetalheScreen from '@/screens/dias/DiaDetalheScreen';
 
-// 🛍️ Clube de Vantagens / Promoções (nova)
+// ðŸ›ï¸ Clube de Vantagens / PromoÃ§Ãµes (nova)
 import PromocoesScreen from '@/IA/PromocoesScreen';
 
-// ▶️ player de YouTube
+// â–¶ï¸ player de YouTube
 import YouTubePlayerScreen from '@/logic/media/YouTubePlayerScreen';
 
-// 🧾 WebView para cardápio
+// ðŸ§¾ WebView para cardÃ¡pio
 import MenuWebScreen from '@/logic/menu/MenuWebScreen';
 
 import { enableLayoutAnimationAndroidLegacy } from '@/logic/types/enableLayoutAnimationAndroidLegacy';
 
-// 🔇 Desabilitar logs em produção
+// ðŸ”‡ Desabilitar logs em produÃ§Ã£o
 if (!__DEV__) {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   console.log = () => {};
@@ -78,7 +78,7 @@ export type RootStackParamList = {
   DistribuicaodeDias: undefined;
   'Aeroporto&Hotel': undefined;
 
-  // Conteúdo
+  // ConteÃºdo
   TelaAtracoes: undefined;
   TelaRefeicoes: undefined;
 
@@ -91,10 +91,10 @@ export type RootStackParamList = {
   // Dias
   DiaCompleto: { diaId?: string } | undefined;
 
-  // 🛍️ Promoções
+  // ðŸ›ï¸ PromoÃ§Ãµes
   Promocoes: undefined;
 
-  // Mídia/Web
+  // MÃ­dia/Web
   YouTubePlayer: { title?: string; idOrUrl: string };
   MenuWeb: { url: string; title?: string };
 };
@@ -119,7 +119,7 @@ export default function App() {
               headerShown: false,
             }}
           >
-            {/* Fluxo de splash/autenticação */}
+            {/* Fluxo de splash/autenticaÃ§Ã£o */}
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen name="Inicio" component={InicioScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
@@ -143,17 +143,17 @@ export default function App() {
             {/* Dias */}
             <Stack.Screen name="DiaCompleto" component={DiaDetalheScreen} />
 
-            {/* 🛍️ Clube de Vantagens / Promoções */}
+            {/* ðŸ›ï¸ Clube de Vantagens / PromoÃ§Ãµes */}
             <Stack.Screen name="Promocoes" component={PromocoesScreen} />
 
-            {/* ▶️ Vídeo YouTube */}
+            {/* â–¶ï¸ VÃ­deo YouTube */}
             <Stack.Screen
               name="YouTubePlayer"
               component={YouTubePlayerScreen}
               options={{ headerShown: false }}
             />
 
-            {/* 🧾 Cardápio (WebView) */}
+            {/* ðŸ§¾ CardÃ¡pio (WebView) */}
             <Stack.Screen
               name="MenuWeb"
               component={MenuWebScreen}

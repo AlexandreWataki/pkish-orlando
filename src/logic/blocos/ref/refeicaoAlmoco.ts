@@ -1,4 +1,4 @@
-import { almocosProximos } from './almocosProximos';
+﻿import { almocosProximos } from './almocosProximos';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 
@@ -13,15 +13,15 @@ export const gerarRefeicaoAlmoco = (
 
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: "🍽️ Almoço",
-      descricao: "Nenhum perfil de refeição selecionado.",
+      titulo: "ðŸ½ï¸ AlmoÃ§o",
+      descricao: "Nenhum perfil de refeiÃ§Ã£o selecionado.",
       horarioSugerido: '12:00',
       tipo: 'refeicao',
     });
     return atividades;
   }
 
-  // 🟡 PRIORIDADE 1: buscar por coordenadas
+  // ðŸŸ¡ PRIORIDADE 1: buscar por coordenadas
   if (latitude != null && longitude != null) {
     const almocoMaisProximo = almocosProximos
       .filter((r) => r.tipo === perfilSelecionado)
@@ -37,7 +37,7 @@ export const gerarRefeicaoAlmoco = (
     }
   }
 
-  // 🟡 PRIORIDADE 2: buscar por nome de região (normalizado)
+  // ðŸŸ¡ PRIORIDADE 2: buscar por nome de regiÃ£o (normalizado)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -52,17 +52,17 @@ export const gerarRefeicaoAlmoco = (
     }
   }
 
-  // 🟡 PRIORIDADE 3: pegar qualquer almoço com o perfil
+  // ðŸŸ¡ PRIORIDADE 3: pegar qualquer almoÃ§o com o perfil
   const almocoFallback = almocosProximos.find(r => r.tipo === perfilSelecionado);
   if (almocoFallback) {
     atividades.push(formatarAlmoco(almocoFallback));
     return atividades;
   }
 
-  // 🟥 NENHUM encontrado
+  // ðŸŸ¥ NENHUM encontrado
   atividades.push({
-    titulo: "🍽️ Almoço",
-    descricao: "Nenhum local de almoço encontrado para o perfil selecionado.",
+    titulo: "ðŸ½ï¸ AlmoÃ§o",
+    descricao: "Nenhum local de almoÃ§o encontrado para o perfil selecionado.",
     horarioSugerido: '12:00',
     tipo: 'refeicao',
   });
@@ -70,14 +70,14 @@ export const gerarRefeicaoAlmoco = (
   return atividades;
 };
 
-// 🔧 função auxiliar
+// ðŸ”§ funÃ§Ã£o auxiliar
 function formatarAlmoco(almoco: any): AtividadeDia {
   return {
-    titulo: `🍽️ ${almoco.nome}`,
+    titulo: `ðŸ½ï¸ ${almoco.nome}`,
     descricao:
       `Tipo: ${almoco.tipo}\n` +
-      `Preço médio: $${almoco.precoMedio}` +
-      (almoco.acesso ? `\nAcesso: ${almoco.acesso} (da região ${almoco.regiao})` : '') +
+      `PreÃ§o mÃ©dio: $${almoco.precoMedio}` +
+      (almoco.acesso ? `\nAcesso: ${almoco.acesso} (da regiÃ£o ${almoco.regiao})` : '') +
       (almoco.destaque ? `\nDestaque: ${almoco.destaque}` : ''),
     horarioSugerido: '12:00',
     tipo: 'refeicao',

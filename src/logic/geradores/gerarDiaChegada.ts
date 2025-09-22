@@ -1,4 +1,4 @@
-import { Dia } from '@/logic/types/dia';
+﻿import { Dia } from '@/logic/types/dia';
 import { TurnoDia } from '@/logic/types/turno';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import documentosCh from '@/logic/blocos/chegada/documentosCh';
@@ -51,8 +51,8 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
     clima,
   };
 
-  const destinoNome = regiao?.nome || 'Destino não definido';
-  const trajeto = `${voo.aeroporto} → ${destinoNome}`;
+  const destinoNome = regiao?.nome || 'Destino nÃ£o definido';
+  const trajeto = `${voo.aeroporto} â†’ ${destinoNome}`;
 
   // CARD DE TRANSPORTE AEROPORTO
   const baseLat = regiao?.latitude ?? null;
@@ -71,16 +71,16 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
         descricao: [
           `Tempo estimado: ${estimativa.tempoMin ?? '--'} min`,
           `Valor estimado: US$ ${estimativa.precoUber?.toFixed(2) ?? '--'}`,
-          'Serviço: Uber ou Lyft',
+          'ServiÃ§o: Uber ou Lyft',
         ].join('\n'),
       },
       {
         subtitulo: 'Carro alugado',
         descricao: [
-          `Distância: ${distanciaKm.toFixed(2)} km`,
-          'Diárias médias por categoria:',
-          'Econômico / Compacto: US$ 40 a US$ 60',
-          'SUV / Intermediário: US$ 60 a US$ 90',
+          `DistÃ¢ncia: ${distanciaKm.toFixed(2)} km`,
+          'DiÃ¡rias mÃ©dias por categoria:',
+          'EconÃ´mico / Compacto: US$ 40 a US$ 60',
+          'SUV / IntermediÃ¡rio: US$ 60 a US$ 90',
           'Van / 7 lugares: US$ 80 a US$ 120',
           'Luxo / Premium: US$ 100 a US$ 200',
         ].join('\n'),
@@ -90,7 +90,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
     opcoesTransporte = [
       {
         subtitulo: 'Uber / Lyft',
-        descricao: 'Não foi possível calcular transporte (verifique dados da hospedagem).',
+        descricao: 'NÃ£o foi possÃ­vel calcular transporte (verifique dados da hospedagem).',
       },
     ];
   }
@@ -101,13 +101,13 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
       titulo: documentosCh.titulo,
       tipo: 'informativa',
       descricao: [
-        '🛬 Chegando aos EUA, separe antes de sair do avião:',
+        'ðŸ›¬ Chegando aos EUA, separe antes de sair do aviÃ£o:',
         ...documentosCh.itens.map(item => '' + item),
        
-        '💡 Dicas importantes:',
+        'ðŸ’¡ Dicas importantes:',
         documentosCh.dicas.join('\n'),
         
-        '🎯 Postura recomendada:',
+        'ðŸŽ¯ Postura recomendada:',
         documentosCh.postura.join('\n'),
       ].join('\n'),
       justificado: true,
@@ -115,17 +115,17 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
     { ...tChegada, justificado: true },
     {
       tipo: 'transporte',
-      titulo: 'Transporte até a região',
+      titulo: 'Transporte atÃ© a regiÃ£o',
       local: trajeto,
       opcoes: opcoesTransporte,
       justificado: true,
     },
     {
-      titulo: dicasTurnoChegada[turnoChave]?.titulo || 'Chegada e Organização',
+      titulo: dicasTurnoChegada[turnoChave]?.titulo || 'Chegada e OrganizaÃ§Ã£o',
       tipo: 'informativa',
       descricao:
         dicasTurnoChegada[turnoChave]?.descricao ||
-        'Organize sua chegada e prepare-se bem para o começo da viagem!',
+        'Organize sua chegada e prepare-se bem para o comeÃ§o da viagem!',
       justificado: true,
     },
   ];
@@ -134,7 +134,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
     { titulo: turnoChave.charAt(0).toUpperCase() + turnoChave.slice(1), periodo: turnoChave, atividades: cardsPrincipais },
   ];
 
-  // Função utilitária para gerar turnos adicionais
+  // FunÃ§Ã£o utilitÃ¡ria para gerar turnos adicionais
   async function gerarTurnosAdicionais(blocos: any[], turnosDesejados: { periodo: string; gerarRefeicaoFn: any }[]) {
     for (const { periodo, gerarRefeicaoFn } of turnosDesejados) {
       const bloco = blocos.find(b => b.periodo === periodo);
@@ -151,7 +151,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
     }
   }
 
-  // Função que monta um turno com transporte + refeição
+  // FunÃ§Ã£o que monta um turno com transporte + refeiÃ§Ã£o
   async function gerarTurnoComTransportes({
     bloco,
     gerarRefeicaoFn,
@@ -186,7 +186,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
       const estimativa = calcularTransporteEstimado(distKm);
       atividades.push({
         tipo: 'transporte',
-        titulo: `Transporte até ${refeicao[0].titulo || 'o restaurante'}`,
+        titulo: `Transporte atÃ© ${refeicao[0].titulo || 'o restaurante'}`,
         meio: distKm <= 0.5 ? 'Caminhada' : distKm <= 1.0 ? 'Caminhada ou Carro' : 'Carro',
         distancia: distKm,
         tempoMin: estimativa.tempoMin,
@@ -218,7 +218,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
         const estimativa = calcularTransporteEstimado(distKm);
         atividades.push({
           tipo: 'transporte',
-          titulo: `Transporte até ${atual.titulo || 'próxima atividade'}`,
+          titulo: `Transporte atÃ© ${atual.titulo || 'prÃ³xima atividade'}`,
           meio: distKm <= 0.5 ? 'Caminhada' : distKm <= 1.0 ? 'Caminhada ou Carro' : 'Carro',
           distancia: distKm,
           tempoMin: estimativa.tempoMin,
@@ -242,7 +242,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
       const estimativa = calcularTransporteEstimado(distKm);
       atividades.push({
         tipo: 'transporte',
-        titulo: `Retorno à região`,
+        titulo: `Retorno Ã  regiÃ£o`,
         meio: distKm <= 0.5 ? 'Caminhada' : distKm <= 1.0 ? 'Caminhada ou Carro' : 'Carro',
         distancia: distKm,
         tempoMin: estimativa.tempoMin,
@@ -280,7 +280,7 @@ export async function gerarDiaChegada(numero: number, parkisheiro: Parkisheiro):
     data,
     tipo: 'chegada',
     cabecalho,
-    objetivo: 'Organize sua chegada e prepare-se bem para o começo da viagem!',
+    objetivo: 'Organize sua chegada e prepare-se bem para o comeÃ§o da viagem!',
     turnos,
   };
 }
