@@ -1,4 +1,4 @@
-﻿ï»¿import { Dia } from '@/logic/types/dia';
+import { Dia } from '@/logic/types/dia';
 import { TurnoDia, TurnoDescansoRegiao } from '@/logic/types/turno';
 import { AtividadeDia } from '../types/atividade';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
@@ -43,13 +43,13 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
     };
 
     const infoPerfisCompras: Record<string, { nome: string; icone: string }> = {
-      orlandoPremiumOutlets: { nome: 'Orlando Premium Outlets', icone: 'Ã°Å¸â€ºâ€™' },
-      mallMillenia: { nome: 'The Mall at Millenia', icone: 'Ã°Å¸â€™Å½' },
-      floridaMall: { nome: 'Florida Mall', icone: 'Ã°Å¸ÂÂ¬' },
-      walmartTargetFive: { nome: 'Walmart, Target & Five Below', icone: 'Ã°Å¸Â§Â¸' },
-      disneySpringsCityWalk: { nome: 'Disney Springs & CityWalk', icone: 'Ã°Å¸Å½Â ' },
-      lakeBuenaVista: { nome: 'Lake Buena Vista Factory Stores', icone: 'Ã°Å¸â€“Â¼Ã¯Â¸Â' },
-      arteLocalFeiras: { nome: 'Arte local e feirinhas', icone: 'Ã°Å¸Å½Â¨' },
+      orlandoPremiumOutlets: { nome: 'Orlando Premium Outlets', icone: '🛒' },
+      mallMillenia: { nome: 'The Mall at Millenia', icone: '💎' },
+      floridaMall: { nome: 'Florida Mall', icone: '🏬' },
+      walmartTargetFive: { nome: 'Walmart, Target & Five Below', icone: '🧸' },
+      disneySpringsCityWalk: { nome: 'Disney Springs & CityWalk', icone: '🎠' },
+      lakeBuenaVista: { nome: 'Lake Buena Vista Factory Stores', icone: '🖼️' },
+      arteLocalFeiras: { nome: 'Arte local e feirinhas', icone: '🎨' },
     };
 
     const blocos = mapaPerfisCompras[perfilTexto] || blocosOrlandoPremiumOutlets;
@@ -66,7 +66,7 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
           (a): AtividadeDia => ({
             ...a,
             area: a.regiao,
-            subtitulo: bloco.referencia ? `Ã¢â‚¬â€œ ${bloco.referencia}` : '',
+            subtitulo: bloco.referencia ? `– ${bloco.referencia}` : '',
           })
         )
       );
@@ -108,12 +108,12 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
     const turnos: TurnoDia[] = [
       {
         periodo: 'manha',
-        titulo: 'ManhÃƒÂ£',
+        titulo: 'Manhã',
         atividades: [
           ...cafe,
           {
             tipo: 'area',
-            titulo: blocos.find(b => b.periodo === 'manha')?.atividades[0]?.regiao || 'ÃƒÂrea',
+            titulo: blocos.find(b => b.periodo === 'manha')?.atividades[0]?.regiao || 'Área',
             descricao: blocos.find(b => b.periodo === 'manha')?.descricaoRegiao ?? '',
             latitude: refManha?.latitude,
             longitude: refManha?.longitude,
@@ -129,7 +129,7 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
           ...almoco,
           {
             tipo: 'area',
-            titulo: blocos.find(b => b.periodo === 'tarde')?.atividades[0]?.regiao || 'ÃƒÂrea',
+            titulo: blocos.find(b => b.periodo === 'tarde')?.atividades[0]?.regiao || 'Área',
             descricao: blocos.find(b => b.periodo === 'tarde')?.descricaoRegiao ?? '',
             latitude: refTarde?.latitude,
             longitude: refTarde?.longitude,
@@ -145,7 +145,7 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
           ...jantar,
           {
             tipo: 'area',
-            titulo: blocos.find(b => b.periodo === 'noite')?.atividades[0]?.regiao || 'ÃƒÂrea',
+            titulo: blocos.find(b => b.periodo === 'noite')?.atividades[0]?.regiao || 'Área',
             descricao: blocos.find(b => b.periodo === 'noite')?.descricaoRegiao ?? '',
             latitude: refNoite?.latitude,
             longitude: refNoite?.longitude,
@@ -169,21 +169,21 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
       baseLon: number | null
     ): string {
       if (!regiaoLat || !regiaoLon || !baseLat || !baseLon) {
-        return resumo || 'RegiÃƒÂ£o definida no inÃƒÂ­cio da viagem';
+        return resumo || 'Região definida no início da viagem';
       }
 
       const distanciaKm = calcDistanciaKm(baseLat, baseLon, regiaoLat, regiaoLon);
       const { tempoMin: tempoUber, precoUber } = calcularTransporteEstimado(distanciaKm);
       const tempoPe = Math.round((distanciaKm / 5) * 60);
 
-      return `${resumo}, ${distanciaKm.toFixed(2)} km, ${tempoPe} min a pÃƒÂ©, ${tempoUber} min de Uber, $${precoUber.toFixed(
+      return `${resumo}, ${distanciaKm.toFixed(2)} km, ${tempoPe} min a pé, ${tempoUber} min de Uber, $${precoUber.toFixed(
         2
       )}`;
     }
 
     const descricaoRegiaoDetalhada = montarDescricaoRegiao(
-      regiao?.nome || 'RegiÃƒÂ£o escolhida',
-      regiao?.descricao || 'RegiÃƒÂ£o definida no inÃƒÂ­cio da viagem',
+      regiao?.nome || 'Região escolhida',
+      regiao?.descricao || 'Região definida no início da viagem',
       regiao?.latitude ?? null,
       regiao?.longitude ?? null,
       baseLat,
@@ -209,7 +209,7 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
       turnos,
       dicas: parkisheiro.perfis?.compras?.dicas || [],
       regiao: {
-        nome: regiao?.nome || 'RegiÃƒÂ£o escolhida',
+        nome: regiao?.nome || 'Região escolhida',
         descricao: descricaoRegiaoDetalhada,
       },
       perfilCompras: {
@@ -234,7 +234,7 @@ export async function gerarDiaCompras(numero: number, parkisheiro: Parkisheiro):
           icone: 'error',
         },
       },
-      objetivo: 'NÃƒÂ£o foi possÃƒÂ­vel gerar o conteÃƒÂºdo deste dia.',
+      objetivo: 'Não foi possível gerar o conteúdo deste dia.',
       turnos: [],
       dicas: [],
       regiao: {

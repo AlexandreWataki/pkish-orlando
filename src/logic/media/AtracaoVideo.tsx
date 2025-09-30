@@ -1,4 +1,4 @@
-﻿ï»¿// src/components/media/AtracaoVideo.tsx
+// src/components/media/AtracaoVideo.tsx
 import React, { useMemo, useRef, useEffect, useCallback } from 'react';
 import { TouchableOpacity, Animated, StyleProp, ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,11 +7,11 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/RootStack';
 
 type Props = {
-  /** ID do YouTube (11 chars) ou URL (watch/shorts/embed/youtu.be). Se nada vÃƒÂ¡lido vier, nÃƒÂ£o renderiza. */
+  /** ID do YouTube (11 chars) ou URL (watch/shorts/embed/youtu.be). Se nada válido vier, não renderiza. */
   videoIdOrUrl?: string | null;
-  /** Tamanho do ÃƒÂ­cone (default 18) */
+  /** Tamanho do ícone (default 18) */
   size?: number;
-  /** Estilo extra para posicionamento Ã¢â‚¬â€ por padrÃƒÂ£o jÃƒÂ¡ fica absolute no canto superior esquerdo */
+  /** Estilo extra para posicionamento — por padrão já fica absolute no canto superior esquerdo */
   style?: StyleProp<ViewStyle>;
 };
 
@@ -30,7 +30,7 @@ export default function AtracaoVideo({ videoIdOrUrl, size = 18, style }: Props) 
   const navigation = useNavigation<Nav>();
   const videoId = useMemo(() => extractId(videoIdOrUrl ?? ''), [videoIdOrUrl]);
 
-  // animaÃƒÂ§ÃƒÂ£o de Ã¢â‚¬Å“piscarÃ¢â‚¬Â
+  // animação de “piscar”
   const opacity = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     const loop = Animated.loop(
@@ -45,7 +45,7 @@ export default function AtracaoVideo({ videoIdOrUrl, size = 18, style }: Props) 
 
   const open = useCallback(() => {
     if (!videoIdOrUrl && !videoId) return;
-    // Passa exatamente o que vocÃƒÂª tiver; a screen resolve ID/URL e abre watch
+    // Passa exatamente o que você tiver; a screen resolve ID/URL e abre watch
     navigation.navigate('YouTubePlayer', { idOrUrl: videoIdOrUrl || videoId! });
   }, [navigation, videoIdOrUrl, videoId]);
 

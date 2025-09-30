@@ -1,4 +1,4 @@
-﻿// src/screens/inicio/TelaDistribuirDias.tsx
+// src/screens/inicio/TelaDistribuirDias.tsx
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   View,
@@ -10,16 +10,15 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { useParkisheiro } from '@/contexts/ParkisheiroContext';
 import { Ionicons } from '@expo/vector-icons';
-import { addDays } from 'date-fns';
+import { addDays, format } from 'date-fns';
 import { LinearGradient } from 'expo-linear-gradient';
 import SelectBox from '@/components/card/SelectBox';
 import { CabecalhoDia } from '@/components/card/CabecalhoDia';
 import { buscarClima } from '@/logic/clima/buscarclima';
-import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import AvisoLegal from '@/components/card/AvisoLegal';
 
-// ðŸ”’ Listas SEM "(guia)"
+// 🔒 Listas SEM "(guia)"
 const parquesDisney = [
   'Magic Kingdom',
   'Epcot',
@@ -36,7 +35,7 @@ const parquesUniversal = [
 const comprasOpcoes = ['Dia de Compras'];
 const descansoOpcoes = ['Dia de Descanso'];
 
-// ðŸ‘‡ RÃ³tulos humanos para selects
+// 👇 Rótulos humanos para selects
 const LABELS_TIPO: Record<string, string> = {
   disney: 'Parques Disney',
   universal: 'Parques Universal',
@@ -44,20 +43,20 @@ const LABELS_TIPO: Record<string, string> = {
   descanso: 'Dia de Descanso',
 };
 
-// ðŸ‘‡ RÃ³tulos painel lateral
+// 👇 Rótulos painel lateral
 const LABELS_TIPO_PAINEL: Record<string, [string, string?]> = {
-  chegada:  ['chegada'],
-  saida:    ['saÃ­da'],
+  chegada: ['chegada'],
+  saida: ['saída'],
   descanso: ['Dia de', 'Descanso'],
-  compras:  ['Dia de', 'Compras'],
-  disney:   ['Parques Disney'],
-  universal:['Parques Universal'],
+  compras: ['Dia de', 'Compras'],
+  disney: ['Parques Disney'],
+  universal: ['Parques Universal'],
 };
 
 function formatarData(data: Date) {
   const diasSemana = [
-    'Domingo', 'Segunda-Feira', 'TerÃ§a-Feira', 'Quarta-Feira',
-    'Quinta-Feira', 'Sexta-Feira', 'SÃ¡bado'
+    'Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira',
+    'Quinta-Feira', 'Sexta-Feira', 'Sábado'
   ];
   const dia = data.getDate().toString().padStart(2, '0');
   const mes = (data.getMonth() + 1).toString().padStart(2, '0');
@@ -85,10 +84,10 @@ export default function TelaDistribuirDias() {
 
   const dataInicio = parkisheiroAtual.dataInicio
     ? new Date(
-        parkisheiroAtual.dataInicio.getFullYear(),
-        parkisheiroAtual.dataInicio.getMonth(),
-        parkisheiroAtual.dataInicio.getDate()
-      )
+      parkisheiroAtual.dataInicio.getFullYear(),
+      parkisheiroAtual.dataInicio.getMonth(),
+      parkisheiroAtual.dataInicio.getDate()
+    )
     : new Date();
 
   const esperado: Record<string, number> = parkisheiroAtual.diasDistribuidos || {};
@@ -99,7 +98,7 @@ export default function TelaDistribuirDias() {
 
     if (distribuicao.chegada) {
       for (let i = 0; i < distribuicao.chegada; i++) {
-        estrutura.push({ tipo: 'Chegada de AviÃ£o', completo: true });
+        estrutura.push({ tipo: 'Chegada de Avião', completo: true });
       }
     }
     ['disney', 'universal', 'compras', 'descanso'].forEach(tipo => {
@@ -115,7 +114,7 @@ export default function TelaDistribuirDias() {
     });
     if (distribuicao.saida) {
       for (let i = 0; i < distribuicao.saida; i++) {
-        estrutura.push({ tipo: 'SaÃ­da de AviÃ£o', completo: true });
+        estrutura.push({ tipo: 'Saída de Avião', completo: true });
       }
     }
     return estrutura;
@@ -133,7 +132,7 @@ export default function TelaDistribuirDias() {
 
   const reabrirEdicao = (index: number) => {
     const atual = { ...dias[index] };
-    if (atual.tipo === 'chegada' || atual.tipo === 'saida' || atual.tipo === 'Chegada de AviÃ£o' || atual.tipo === 'SaÃ­da de AviÃ£o') return;
+    if (atual.tipo === 'chegada' || atual.tipo === 'saida' || atual.tipo === 'Chegada de Avião' || atual.tipo === 'Saída de Avião') return;
     const novo = { ...atual, completo: false };
     if (atual.tipo === 'disney' || atual.tipo === 'universal') novo.nomeParque = '';
     setDia(index, novo);
@@ -155,11 +154,11 @@ export default function TelaDistribuirDias() {
   }, [dias]);
 
   const completosChegada = useMemo(
-    () => dias.filter(d => d.tipo === 'Chegada de AviÃ£o').length,
+    () => dias.filter(d => d.tipo === 'Chegada de Avião').length,
     [dias]
   );
   const completosSaida = useMemo(
-    () => dias.filter(d => d.tipo === 'SaÃ­da de AviÃ£o').length,
+    () => dias.filter(d => d.tipo === 'Saída de Avião').length,
     [dias]
   );
 
@@ -187,29 +186,39 @@ export default function TelaDistribuirDias() {
       .filter(tipo => getCompletos(tipo) < (esperado[tipo] || 0));
   }, [esperado, contagemUsados, completosChegada, completosSaida]);
 
-  // ðŸ”¹ ordem fixa do painel + filtragem dos que realmente aparecem
+  // 🔹 ordem fixa do painel + filtragem dos que realmente aparecem
   const ordemPainel = ['chegada', 'descanso', 'disney', 'universal', 'compras', 'saida'] as const;
   const tiposExibidosPainel = useMemo(
     () => ordemPainel.filter(t => (esperado[t] || 0) > 0),
     [esperado]
   );
-  const ultimoTipoDoPainel = tiposExibidosPainel[tiposExibidosPainel.length - 1]; // pode ser undefined se nada exibido
+  const ultimoTipoDoPainel = tiposExibidosPainel[tiposExibidosPainel.length - 1];
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={styles.container}
-    >
+<LinearGradient
+  colors={[
+    '#0077cc', // azul piscina
+    '#00c5d4', // turquesa
+    '#f5deb3', // areia clara
+    '#ffffff', // branco normal
+    '#ffffff', // branco final (rasinho bem claro)
+  ]}
+  locations={[0, 0.3, 0.6, 0.85, 1]}
+  start={{ x: 0, y: 0 }}
+  end={{ x: 0, y: 1 }}
+  style={styles.container}
+>
+
+
+
+
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}Â°C` : '28Â°C'}
+          temperatura={clima ? `${clima.temp}°C` : '28°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -225,9 +234,9 @@ export default function TelaDistribuirDias() {
 
           const parques = isDisney ? parquesDisney
             : isUniversal ? parquesUniversal
-            : isCompras ? comprasOpcoes
-            : isDescanso ? descansoOpcoes
-            : [];
+              : isCompras ? comprasOpcoes
+                : isDescanso ? descansoOpcoes
+                  : [];
 
           return (
             <View
@@ -244,7 +253,7 @@ export default function TelaDistribuirDias() {
               {dia.completo ? (
                 <TouchableOpacity
                   onPress={() => reabrirEdicao(index)}
-                  disabled={dia.tipo === 'chegada' || dia.tipo === 'saida' || dia.tipo === 'Chegada de AviÃ£o' || dia.tipo === 'SaÃ­da de AviÃ£o'}
+                  disabled={dia.tipo === 'chegada' || dia.tipo === 'saida' || dia.tipo === 'Chegada de Avião' || dia.tipo === 'Saída de Avião'}
                   style={[styles.botaoSelecionado, { backgroundColor: '#004b87' }]}
                 >
                   <Text style={styles.textoSelecionado}>
@@ -286,11 +295,10 @@ export default function TelaDistribuirDias() {
                 </>
               )}
 
-              {/* FAB de aviso somente para Disney/Universal */}
               {(isDisney || isUniversal) && (
                 <View style={[styles.fab, { marginTop: 8 }]}>
                   <Ionicons name="information-circle" size={16} color="#fff" />
-                  <Text style={styles.fabText}>(guia nÃ£o oficial)</Text>
+                  <Text style={styles.fabText}>(guia não oficial)</Text>
                 </View>
               )}
             </View>
@@ -300,13 +308,13 @@ export default function TelaDistribuirDias() {
         {podeAvancar && (
           <View style={[styles.card, styles.cardAviso]}>
             <AvisoLegal theme="blue" compact incluirGuiaNaoOficial={false}>
-              App independente sem vÃ­nculo Disney/Universal.
+              App independente sem vínculo Disney/Universal.
             </AvisoLegal>
           </View>
         )}
       </ScrollView>
 
-      {/* Painel lateral com TICK no Ãºltimo item exibido quando tudo completo */}
+      {/* Painel lateral */}
       <View style={styles.painelLateral}>
         {tiposExibidosPainel.map((tipo) => {
           const total = esperado[tipo] || 0;
@@ -320,11 +328,10 @@ export default function TelaDistribuirDias() {
           const isLong = tipo === 'disney' || tipo === 'universal';
 
           const isUltimo = tipo === ultimoTipoDoPainel;
-          const mostrarTick = podeAvancar && isUltimo; // âœ… tick apenas no Ãºltimo e sÃ³ quando tudo concluÃ­do
+          const mostrarTick = podeAvancar && isUltimo;
 
           return (
             <View key={tipo} style={[styles.itemPainel, { backgroundColor: cor }]}>
-              {/* âœ… TICK igual ao do roteiro lÃ¡ em cima */}
               {mostrarTick && (
                 <Ionicons name="checkmark" size={18} color="#fff" style={styles.itemTick} />
               )}
@@ -336,6 +343,7 @@ export default function TelaDistribuirDias() {
         })}
       </View>
 
+      {/* Rodapé branco */}
       <View style={styles.rodapeFundo} />
       <View style={styles.rodapeConteudo}>
         <TouchableOpacity onPress={voltar} style={styles.botaoSeta}>
@@ -401,7 +409,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
   },
-  // âœ… checkmark posicionado no canto superior direito do bloco
   itemTick: {
     position: 'absolute',
     top: 6,
@@ -436,14 +443,24 @@ const styles = StyleSheet.create({
   fabText: { color: '#fff', fontSize: 11, fontWeight: '700' },
 
   rodapeFundo: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    height: 100, backgroundColor: '#52D6FF',
-    borderBottomLeftRadius: 10, borderBottomRightRadius: 10
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    backgroundColor: '#ffffff', // branco sólido
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   rodapeConteudo: {
-    position: 'absolute', bottom: 60, left: 0, right: 0,
-    flexDirection: 'row', justifyContent: 'space-between',
-    alignItems: 'center', paddingHorizontal: 20
+    position: 'absolute',
+    bottom: 50,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
   },
   botaoSeta: { justifyContent: 'center', alignItems: 'center' },
 });

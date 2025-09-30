@@ -1,4 +1,4 @@
-﻿import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GLOBAL_KEY = 'OPENAI_KEY';
 const USER_PREFIX = 'OPENAI_KEY:';

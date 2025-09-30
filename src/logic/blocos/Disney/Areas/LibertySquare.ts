@@ -1,10 +1,10 @@
-﻿ï»¿export const LibertySquare = {
+export const LibertySquare = {
   parque: "Magic Kingdom",
   regiao: "Liberty Square",
   latitude: 28.4194,
   longitude: -81.5812,
   descricao:
-    "ÃƒÂrea com ambientaÃƒÂ§ÃƒÂ£o da era colonial americana, onde ÃƒÂ© possÃƒÂ­vel explorar uma rÃƒÂ©plica da Philadelphia histÃƒÂ³rica, visitar uma mansÃƒÂ£o assombrada e aprender sobre a histÃƒÂ³ria dos Estados Unidos.",
+    "Área com ambientação da era colonial americana, onde é possível explorar uma réplica da Philadelphia histórica, visitar uma mansão assombrada e aprender sobre a história dos Estados Unidos.",
   imagem: "libertysquare.png",
   atracoes: [
     {
@@ -21,8 +21,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao:
-        "Passeio por uma mansÃƒÂ£o assombrada com efeitos especiais incrÃƒÂ­veis, fantasmas brincalhÃƒÂµes e cenÃƒÂ¡rios icÃƒÂ´nicos. Mistura diversÃƒÂ£o com sustos leves.",
-      icone: "Ã°Å¸â€˜Â»",
+        "Passeio por uma mansão assombrada com efeitos especiais incríveis, fantasmas brincalhões e cenários icônicos. Mistura diversão com sustos leves.",
+      icone: "👻",
       imagem: "haunted-mansion.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"
@@ -41,8 +41,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "manha",
       descricao:
-        "Passeio tranquilo em um barco a vapor pelo Rivers of America, com vista para diferentes ÃƒÂ¡reas do parque. Ideal para descansar e apreciar a paisagem.",
-      icone: "Ã°Å¸Å¡Â¢",
+        "Passeio tranquilo em um barco a vapor pelo Rivers of America, com vista para diferentes áreas do parque. Ideal para descansar e apreciar a paisagem.",
+      icone: "🚢",
       imagem: "liberty-riverboat.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"
@@ -51,7 +51,7 @@
       id: "hall-of-presidents",
       titulo: "The Hall of Presidents",
       subtitulo: "Liberty Square",
-      tipo: "Show com animatrÃƒÂ´nicos",
+      tipo: "Show com animatrônicos",
       tipoPerfil: ["tematicas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -61,8 +61,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "ApresentaÃƒÂ§ÃƒÂ£o com figuras animatrÃƒÂ´nicas de todos os presidentes dos EUA, com narrativa sobre a histÃƒÂ³ria do paÃƒÂ­s. Educativo e climatizado.",
-      icone: "Ã°Å¸â€”Â½",
+        "Apresentação com figuras animatrônicas de todos os presidentes dos EUA, com narrativa sobre a história do país. Educativo e climatizado.",
+      icone: "🗽",
       imagem: "hall-of-presidents.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"
@@ -71,7 +71,7 @@
       id: "liberty-bell-photo",
       titulo: "Liberty Bell Replica",
       subtitulo: "Liberty Square",
-      tipo: "Ponto histÃƒÂ³rico para fotos",
+      tipo: "Ponto histórico para fotos",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -81,8 +81,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "RÃƒÂ©plica da famosa Liberty Bell, com espaÃƒÂ§o para fotos e curiosidades sobre a independÃƒÂªncia americana. Fica ao ar livre e pode ser acessada a qualquer momento.",
-      icone: "Ã°Å¸â€â€",
+        "Réplica da famosa Liberty Bell, com espaço para fotos e curiosidades sobre a independência americana. Fica ao ar livre e pode ser acessada a qualquer momento.",
+      icone: "🔔",
       imagem: "liberty-bell.jpg",
       regiao: "Liberty Square",
       parque: "Magic Kingdom"

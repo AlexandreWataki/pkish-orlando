@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/exportar/salvarPerfis.ts
+// src/logic/exportar/salvarPerfis.ts
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,12 +13,12 @@ export async function salvarPerfis(tipo: PerfilTipo, respostas: any) {
   try {
     let dadosParaSalvar: any = respostas;
 
-    // Ã°Å¸Å’Å¸ Ajuste inteligente para lidar com strings ou array de strings
+    // 🌟 Ajuste inteligente para lidar com strings ou array de strings
     if (['refeicoes', 'descanso', 'compras', 'viagem', 'atracoes'].includes(tipo)) {
       if (typeof respostas === 'string') {
         dadosParaSalvar = { perfil: respostas };
       } else if (Array.isArray(respostas) && typeof respostas[0] === 'string') {
-        // Se for um array como ["Ã°Å¸Å½Â¢ Radicais"]
+        // Se for um array como ["🎢 Radicais"]
         const nome = respostas[0];
         dadosParaSalvar = {
           perfil: nome.replace(/[^a-zA-Z]/g, '').toLowerCase(),
@@ -28,10 +28,10 @@ export async function salvarPerfis(tipo: PerfilTipo, respostas: any) {
       }
     }
 
-    // Ã°Å¸â€™Â¾ Salvar em arquivo (apenas no mobile)
+    // 💾 Salvar em arquivo (apenas no mobile)
     if (Platform.OS === 'web') {
       perfisWeb[tipo] = dadosParaSalvar;
-      console.warn(`Ã¢Å¡Â Ã¯Â¸Â [WEB] Perfil '${tipo}' salvo em memÃƒÂ³ria:`, dadosParaSalvar);
+      console.warn(`⚠️ [WEB] Perfil '${tipo}' salvo em memória:`, dadosParaSalvar);
     } else {
       const nomeArquivo = `${tipo}.json`;
       const pasta = `${FileSystem.documentDirectory}perfis`;
@@ -41,10 +41,10 @@ export async function salvarPerfis(tipo: PerfilTipo, respostas: any) {
       }
       const caminho = `${pasta}/${nomeArquivo}`;
       await FileSystem.writeAsStringAsync(caminho, JSON.stringify(dadosParaSalvar, null, 2));
-      console.log(`Ã¢Å“â€¦ Perfil '${tipo}' salvo com sucesso em:`, caminho);
+      console.log(`✅ Perfil '${tipo}' salvo com sucesso em:`, caminho);
     }
 
-    // Ã°Å¸Â§Â  Salvar em AsyncStorage
+    // 🧠 Salvar em AsyncStorage
     const json = await AsyncStorage.getItem(USUARIO_ATUAL_KEY);
     if (json) {
       const usuario: Parkisheiro = JSON.parse(json);
@@ -60,6 +60,6 @@ export async function salvarPerfis(tipo: PerfilTipo, respostas: any) {
       }
     }
   } catch (error) {
-    console.error(`Ã¢ÂÅ’ Erro ao salvar perfil '${tipo}':`, error);
+    console.error(`❌ Erro ao salvar perfil '${tipo}':`, error);
   }
 }

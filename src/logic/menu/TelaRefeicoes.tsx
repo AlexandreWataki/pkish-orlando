@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/inicio/TelaRefeicoes.tsx
+// src/screens/inicio/TelaRefeicoes.tsx
 import React, {
   useEffect,
   useMemo,
@@ -35,13 +35,13 @@ import { CardRefeicao } from '@/components/card/CardRefeicao';
 // Dados base (use fallback [])
 import { refeicoesProximas as DATA } from '@/logic/blocos/ref/refeicoesProximas';
 
-// CatÃƒÂ¡logo unificado: nomes Ã¢â€ â€™ urls
+// Catálogo unificado: nomes → urls
 import { NOMES_REFEICOES } from '@/logic/menu/nomesRefeicoes';
 
-// Abrir WebView de cardÃƒÂ¡pio
+// Abrir WebView de cardápio
 import { openMenu } from '@/logic/menu/openMenu';
 
-// Tipagem de navegaÃƒÂ§ÃƒÂ£o
+// Tipagem de navegação
 import type { RootStackParamList } from '@/logic/types/navigation';
 type Nav = NativeStackNavigationProp<RootStackParamList, 'TelaRefeicoes'>;
 
@@ -55,7 +55,7 @@ type Refeicao = {
   latitude?: number;
   longitude?: number;
   menuUrl?: string;
-  tipoRefeicao?: 'CafÃƒÂ© da ManhÃƒÂ£' | 'AlmoÃƒÂ§o' | 'Jantar' | string;
+  tipoRefeicao?: 'Café da Manhã' | 'Almoço' | 'Jantar' | string;
   icone?: string;
   imagem?: string;
 };
@@ -65,8 +65,8 @@ function normalizeNome(s: string) {
   return (s || '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/['Ã¢â‚¬â„¢"Ã¢â‚¬Å“Ã¢â‚¬Â`]/g, '')
-    .replace(/[Ã¢â‚¬â€œÃ¢â‚¬â€\-]/g, '-')
+    .replace(/['’"“”`]/g, '')
+    .replace(/[–—\-]/g, '-')
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
@@ -87,7 +87,7 @@ const RefeicaoRow = memo(function RefeicaoRow({
         style={styles.menuFab}
         hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
       >
-        {/* ÃƒÂcone Instagram */}
+        {/* Ícone Instagram */}
         <FontAwesome name="instagram" size={22} color="#FFFFFF" />
       </TouchableOpacity>
 
@@ -132,6 +132,18 @@ export default function TelaRefeicoes() {
     };
   }, [markVisited]);
 
+  // 🔹 Normaliza o clima para o mesmo shape usado no Menu/TelaAtracoes
+  const climaHeader = useMemo(() => {
+    if (clima && typeof clima.temp === 'number' && !Number.isNaN(clima.temp)) {
+      return {
+        tempC: Math.round(clima.temp),
+        condition: clima.condicao ?? '',
+        iconUrl: clima.icone ?? undefined,
+      };
+    }
+    return null;
+  }, [clima]);
+
   const hoje = new Date();
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
@@ -140,13 +152,13 @@ export default function TelaRefeicoes() {
   const [regiao, setRegiao] = useState<string>('');
   const [openRegiao, setOpenRegiao] = useState(false);
 
-  const [refeicao, setRefeicao] = useState<string>(''); // CafÃƒÂ©/AlmoÃƒÂ§o/Jantar
+  const [refeicao, setRefeicao] = useState<string>(''); // Café/Almoço/Jantar
   const [openRefeicao, setOpenRefeicao] = useState(false);
 
-  const [tipo, setTipo] = useState<string>(''); // RÃƒÂ¡pido / Mesa / etc
+  const [tipo, setTipo] = useState<string>(''); // Rápido / Mesa / etc
   const [openTipo, setOpenTipo] = useState(false);
 
-  // Mapa nome normalizado Ã¢â€ â€™ URL vindo do catÃƒÂ¡logo (sempre seguro)
+  // Mapa nome normalizado → URL vindo do catálogo (sempre seguro)
   const mapMenus = useMemo(
     () =>
       new Map(
@@ -164,12 +176,12 @@ export default function TelaRefeicoes() {
     []
   );
 
-  // Normaliza dados e preenche menuUrl via catÃƒÂ¡logo
+  // Normaliza dados e preenche menuUrl via catálogo
   const itens: Refeicao[] = useMemo(
     () =>
       base.map((r) => ({
         ...r,
-        tipoRefeicao: r.tipoRefeicao || 'AlmoÃƒÂ§o',
+        tipoRefeicao: r.tipoRefeicao || 'Almoço',
         menuUrl: r.menuUrl || mapMenus.get(normalizeNome(r.nome)) || '',
       })),
     [base, mapMenus]
@@ -181,8 +193,8 @@ export default function TelaRefeicoes() {
       const url = r.menuUrl || mapMenus.get(normalizeNome(r.nome)) || '';
       if (!url) {
         Alert.alert(
-          'CardÃƒÂ¡pio indisponÃƒÂ­vel',
-          'Ainda nÃƒÂ£o temos o site de menu para este restaurante.'
+          'Cardápio indisponível',
+          'Ainda não temos o site de menu para este restaurante.'
         );
         return;
       }
@@ -191,7 +203,7 @@ export default function TelaRefeicoes() {
     [navigation, mapMenus]
   );
 
-  // Listas ÃƒÂºnicas (sempre arrays)
+  // Listas únicas (sempre arrays)
   const regioesDisponiveis = useMemo(() => {
     const set = new Set<string>();
     itens.forEach((r) => r.regiao && set.add(r.regiao));
@@ -216,7 +228,7 @@ export default function TelaRefeicoes() {
     setOpenTipo(false);
   }, [regiao, refeicao]);
 
-  // Filtro + agrupamento
+  // Filtro + agrupamento (sempre retorna array)
   const grupos = useMemo(() => {
     if (!regiao) return [] as { area: string; itens: Refeicao[] }[];
     const filtrados = itens.filter((r) => {
@@ -228,13 +240,13 @@ export default function TelaRefeicoes() {
     return [{ area: regiao, itens: filtrados }];
   }, [itens, regiao, refeicao, tipo]);
 
-  const tituloCard = 'RefeiÃƒÂ§ÃƒÂµes';
+  const tituloCard = 'Refeições';
   const subtituloCard =
-    (regiao ? `Ã¢â‚¬â€ ${regiao}` : '') +
-    (refeicao ? ` Ã¢â‚¬Â¢ ${refeicao}` : '') +
-    (tipo ? ` Ã¢â‚¬Â¢ ${tipo}` : '');
+    (regiao ? `— ${regiao}` : '') +
+    (refeicao ? ` • ${refeicao}` : '') +
+    (tipo ? ` • ${tipo}` : '');
 
-  // animaÃƒÂ§ÃƒÂ£o aviso
+  // animação aviso
   const avisoBlink = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     Animated.loop(
@@ -246,30 +258,30 @@ export default function TelaRefeicoes() {
   }, [avisoBlink]);
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={{ flex: 1 }}
-    >
-      {/* CabeÃƒÂ§alho */}
+       <LinearGradient
+     colors={[
+       '#0077cc', // azul piscina
+       '#00c5d4', // turquesa
+       '#f5deb3', // areia clara
+       '#ffffff', // branco normal
+       '#ffffff', // branco final (rasinho bem claro)
+     ]}
+     locations={[0, 0.25, 0.5, 0.78, 1]} // últimos 22% já brancos
+     start={{ x: 0, y: 0 }}
+     end={{ x: 0, y: 1 }}
+     style={{ flex: 1 }}
+   >
+      {/* Cabeçalho */}
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
-          clima={clima?.condicao || clima?.clima || 'Parcialmente nublado'}
-          temperatura={
-            Number.isFinite(clima?.temp ?? clima?.tempC)
-              ? `${Math.round((clima?.temp ?? clima?.tempC) as number)}Ã‚Â°C`
-              : undefined
-          }
-          iconeClima={clima?.icone}
+          clima={climaHeader}  // 👈 mesmo padrão do Menu/TelaAtracoes
         />
       </View>
 
-      {/* Seletor: RegiÃƒÂ£o */}
+      {/* Seletor: Região */}
       <View style={styles.wrapSeletor}>
         <TouchableOpacity
           onPress={() => {
@@ -280,7 +292,7 @@ export default function TelaRefeicoes() {
           style={styles.btnSeletorBranco}
         >
           <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-            {regiao || 'Selecione a RegiÃƒÂ£o'}
+            {regiao || 'Selecione a Região'}
           </Text>
           <Ionicons name={openRegiao ? 'chevron-up' : 'chevron-down'} size={18} color="#004b87" />
         </TouchableOpacity>
@@ -307,10 +319,10 @@ export default function TelaRefeicoes() {
         )}
       </View>
 
-      {/* Linha ÃƒÅ¡NICA Ã¢â‚¬â€ RefeiÃƒÂ§ÃƒÂ£o + Tipo */}
+      {/* Linha ÚNICA — Refeição + Tipo */}
       {!!regiao && (
         <View style={[styles.wrapSeletor, styles.rowHalf]}>
-          {/* RefeiÃƒÂ§ÃƒÂ£o */}
+          {/* Refeição */}
           <View style={styles.halfBox}>
             <TouchableOpacity
               onPress={() => {
@@ -321,7 +333,7 @@ export default function TelaRefeicoes() {
               style={styles.btnSeletorBranco}
             >
               <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-                {refeicao || 'Selecione a RefeiÃƒÂ§ÃƒÂ£o'}
+                {refeicao || 'Selecione a Refeição'}
               </Text>
               <Ionicons name={openRefeicao ? 'chevron-up' : 'chevron-down'} size={18} color="#004b87" />
             </TouchableOpacity>
@@ -397,7 +409,7 @@ export default function TelaRefeicoes() {
             <CardSecao titulo={tituloCard} subtitulo={subtituloCard} style={{ width: '100%' }}>
               {grupos.map(({ area: nomeArea, itens }) => (
                 <View key={nomeArea} style={styles.areaBloco}>
-                  <Text style={styles.areaTitle}>Ã°Å¸ÂÂ½Ã¯Â¸Â {nomeArea.toUpperCase()}</Text>
+                  <Text style={styles.areaTitle}>🍽️ {nomeArea.toUpperCase()}</Text>
                   {(itens || []).map((r, idx) => (
                     <RefeicaoRow
                       key={`${r.nome}-${idx}`}
@@ -413,7 +425,7 @@ export default function TelaRefeicoes() {
         <View style={{ height: 120 }} />
       </ScrollView>
 
-      {/* RodapÃƒÂ© */}
+      {/* Rodapé */}
       <View style={styles.rodapeFundo} />
       <View style={styles.rodapeConteudo}>
         <TouchableOpacity
@@ -426,8 +438,8 @@ export default function TelaRefeicoes() {
 
         <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
           <Text style={styles.avisoLegalTexto}>
-            Guia independente e nÃƒÂ£o oficial, sem vÃƒÂ­nculo com Disney ou Universal.
-            CardÃƒÂ¡pios exibidos via sites oficiais dos restaurantes.
+            Guia independente e não oficial, sem vínculo com Disney ou Universal.
+            Cardápios exibidos via sites oficiais dos restaurantes.
           </Text>
         </Animated.View>
       </View>
@@ -513,7 +525,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 130,
-    backgroundColor: '#52D6FF',
+    backgroundColor: '#ffffffff',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },

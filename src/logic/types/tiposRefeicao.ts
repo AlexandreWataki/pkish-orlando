@@ -1,12 +1,12 @@
-﻿ï»¿// src/logic/types/tiposRefeicao.ts
+// src/logic/types/tiposRefeicao.ts
 
 /**
- * Tipos possÃƒÂ­veis de refeiÃƒÂ§ÃƒÂ£o por nome (usado nas funÃƒÂ§ÃƒÂµes)
+ * Tipos possíveis de refeição por nome (usado nas funções)
  */
 export type NomeTipoRefeicao = 'cafe' | 'almoco' | 'jantar' | 'refeicao_rapida';
 
 /**
- * Interface completa com dados de cada tipo de refeiÃƒÂ§ÃƒÂ£o
+ * Interface completa com dados de cada tipo de refeição
  */
 export interface TipoRefeicao {
   tipo: NomeTipoRefeicao;
@@ -18,7 +18,7 @@ export interface TipoRefeicao {
 }
 
 /**
- * Estrutura dos locais sugeridos para refeiÃƒÂ§ÃƒÂµes
+ * Estrutura dos locais sugeridos para refeições
  */
 export type SugestaoRefeicao = {
   nome: string;
@@ -28,21 +28,21 @@ export type SugestaoRefeicao = {
 };
 
 /**
- * Lista padrÃƒÂ£o com os tipos de refeiÃƒÂ§ÃƒÂ£o e seus dados
+ * Lista padrão com os tipos de refeição e seus dados
  */
 export const tiposRefeicao: TipoRefeicao[] = [
   {
     tipo: 'cafe',
-    nome: 'CafÃƒÂ© da ManhÃƒÂ£',
-    horarioSugerido: '06:30 Ã¢â‚¬â€œ 07:30',
+    nome: 'Café da Manhã',
+    horarioSugerido: '06:30 – 07:30',
     duracaoMinutos: 60,
     turnosPermitidos: ['manha'],
     horariosPossiveis: ['06:30'],
   },
   {
     tipo: 'almoco',
-    nome: 'AlmoÃƒÂ§o',
-    horarioSugerido: '12:00 Ã¢â‚¬â€œ 13:00',
+    nome: 'Almoço',
+    horarioSugerido: '12:00 – 13:00',
     duracaoMinutos: 60,
     turnosPermitidos: ['tarde'],
     horariosPossiveis: ['12:00'],
@@ -50,15 +50,15 @@ export const tiposRefeicao: TipoRefeicao[] = [
   {
     tipo: 'jantar',
     nome: 'Jantar',
-    horarioSugerido: '19:00 Ã¢â‚¬â€œ 20:00',
+    horarioSugerido: '19:00 – 20:00',
     duracaoMinutos: 60,
     turnosPermitidos: ['noite'],
     horariosPossiveis: ['19:00'],
   },
   {
     tipo: 'refeicao_rapida',
-    nome: 'RefeiÃƒÂ§ÃƒÂ£o RÃƒÂ¡pida',
-    horarioSugerido: '10:00 Ã¢â‚¬â€œ 11:00 ou 16:00 Ã¢â‚¬â€œ 17:00',
+    nome: 'Refeição Rápida',
+    horarioSugerido: '10:00 – 11:00 ou 16:00 – 17:00',
     duracaoMinutos: 30,
     turnosPermitidos: ['manha', 'tarde'],
     horariosPossiveis: ['10:00', '16:00'],

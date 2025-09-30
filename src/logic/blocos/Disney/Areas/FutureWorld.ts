@@ -1,9 +1,9 @@
-﻿ï»¿export const FutureWorld = {
+export const FutureWorld = {
   parque: "Epcot",
   regiao: "Future World",
   latitude: 28.3747,
   longitude: -81.5494,
-  descricao: "Antiga ÃƒÂ¡rea principal do Epcot dedicada ÃƒÂ  ciÃƒÂªncia, tecnologia e inovaÃƒÂ§ÃƒÂ£o. Algumas atraÃƒÂ§ÃƒÂµes ainda mantÃƒÂªm esse espÃƒÂ­rito futurista em experiÃƒÂªncias educativas e imersivas.",
+  descricao: "Antiga área principal do Epcot dedicada à ciência, tecnologia e inovação. Algumas atrações ainda mantêm esse espírito futurista em experiências educativas e imersivas.",
   imagem: "futureworld.png",
   atracoes: [
     {
@@ -17,8 +17,8 @@
       tempoMedioFila: 30,
       filaAceitavel: 25,
       idadeRecomendada: "Todas as idades",
-      descricao: "Viagem atravÃƒÂ©s da histÃƒÂ³ria da comunicaÃƒÂ§ÃƒÂ£o humana, dentro do icÃƒÂ´nico globo prateado do Epcot. Tranquilo e educativo.",
-      icone: "Ã°Å¸Å’Â",
+      descricao: "Viagem através da história da comunicação humana, dentro do icônico globo prateado do Epcot. Tranquilo e educativo.",
+      icone: "🌐",
       imagem: "spaceship-earth.jpg",
       regiao: "Future World",
       parque: "Epcot"
@@ -35,7 +35,7 @@
       filaAceitavel: 15,
       idadeRecomendada: "Todas as idades",
       descricao: "Explore os sentidos e a criatividade com o personagem Figment em um passeio leve e cheio de surpresas.",
-      icone: "Ã°Å¸Å½Â¨",
+      icone: "🎨",
       imagem: "journey-into-imagination.jpg",
       regiao: "Future World",
       parque: "Epcot"
@@ -44,7 +44,7 @@
       id: "project-tomorrow",
       titulo: "Project Tomorrow",
       subtitulo: "Future World",
-      tipo: "EspaÃƒÂ§o interativo",
+      tipo: "Espaço interativo",
       tipoPerfil: ["interativas", "imersivas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -52,17 +52,17 @@
       filaAceitavel: 0,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
-      descricao: "ÃƒÂrea interativa localizada na saÃƒÂ­da do Spaceship Earth, com jogos e experiÃƒÂªncias tecnolÃƒÂ³gicas sem fila.",
-      icone: "Ã°Å¸â€¢Â¹Ã¯Â¸Â",
+      descricao: "Área interativa localizada na saída do Spaceship Earth, com jogos e experiências tecnológicas sem fila.",
+      icone: "🕹️",
       imagem: "project-tomorrow.jpg",
       regiao: "Future World",
       parque: "Epcot"
     },
     {
       id: "imageworks",
-      titulo: "ImageWorks Ã¢â‚¬â€œ The What-If Labs",
+      titulo: "ImageWorks – The What-If Labs",
       subtitulo: "Future World",
-      tipo: "LaboratÃƒÂ³rio de experiÃƒÂªncias criativas",
+      tipo: "Laboratório de experiências criativas",
       tipoPerfil: ["interativas", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -70,8 +70,8 @@
       filaAceitavel: 0,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
-      descricao: "ÃƒÂrea interativa ao final da atraÃƒÂ§ÃƒÂ£o de Figment, com estaÃƒÂ§ÃƒÂµes criativas para experimentar sons, luzes e movimento.",
-      icone: "Ã°Å¸Â§Â ",
+      descricao: "Área interativa ao final da atração de Figment, com estações criativas para experimentar sons, luzes e movimento.",
+      icone: "🧠",
       imagem: "imageworks.jpg",
       regiao: "Future World",
       parque: "Epcot"
@@ -80,7 +80,7 @@
       id: "discovery-spot",
       titulo: "Discovery Spot",
       subtitulo: "Future World",
-      tipo: "Ponto temÃƒÂ¡tico de descanso e exploraÃƒÂ§ÃƒÂµes livres",
+      tipo: "Ponto temático de descanso e explorações livres",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -88,8 +88,8 @@
       filaAceitavel: 0,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
-      descricao: "EspaÃƒÂ§o ao ar livre com jardins tecnolÃƒÂ³gicos, fontes interativas e bancos sombreados. Ideal para relaxar e explorar livremente.",
-      icone: "Ã°Å¸Â§Â¬",
+      descricao: "Espaço ao ar livre com jardins tecnológicos, fontes interativas e bancos sombreados. Ideal para relaxar e explorar livremente.",
+      icone: "🧬",
       imagem: "discovery-spot.jpg",
       regiao: "Future World",
       parque: "Epcot"

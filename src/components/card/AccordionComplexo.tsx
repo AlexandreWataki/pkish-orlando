@@ -1,12 +1,12 @@
-﻿ï»¿// src/components/card/AccordionComplexo.tsx
+// src/components/card/AccordionComplexo.tsx
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 type Props = {
-  options: string[];                    // ex.: ['Todas as ÃƒÂ¡reas','Disney','Universal']
+  options: string[];                    // ex.: ['Todas as áreas','Disney','Universal']
   defaultLabel?: string;                // ex.: 'Selecione o Complexo (Disney/Universal)'
-  onSelect?: (value: string) => void;   // callback na seleÃƒÂ§ÃƒÂ£o
+  onSelect?: (value: string) => void;   // callback na seleção
   value?: string;                       // controle externo opcional
 };
 
@@ -32,14 +32,14 @@ const AccordionComplexo: React.FC<Props> = ({
 
   return (
     <View style={styles.wrapper}>
-      {/* CabeÃƒÂ§alho sempre visÃƒÂ­vel (mostra label ou seleÃƒÂ§ÃƒÂ£o) */}
+      {/* Cabeçalho sempre visível (mostra label ou seleção) */}
       <TouchableOpacity
         activeOpacity={0.9}
         style={styles.header}
         onPress={() => setExpanded(prev => !prev)}
       >
         <Ionicons
-          name={expanded ? 'chevron-down' : 'chevron-up'} // Ã°Å¸â€Â½ expandir | Ã°Å¸â€Â¼ reabrir
+          name={expanded ? 'chevron-down' : 'chevron-up'} // 🔽 expandir | 🔼 reabrir
           size={18}
           color={DARK}
           style={{ marginRight: 10 }}
@@ -57,7 +57,7 @@ const AccordionComplexo: React.FC<Props> = ({
         />
       </TouchableOpacity>
 
-      {/* Lista de opÃƒÂ§ÃƒÂµes (aparece somente expandido) */}
+      {/* Lista de opções (aparece somente expandido) */}
       {expanded && (
         <View style={styles.options}>
           {options.map((opt) => {

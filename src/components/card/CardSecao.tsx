@@ -1,4 +1,4 @@
-﻿ï»¿import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   StyleSheet,
@@ -6,14 +6,17 @@ import {
   Animated,
   ImageBackground,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // ✅ ADIÇÃO
 import fundo from '../../assets/imagens/fundo.png';
 
 type Props = {
   titulo: string;
   subtitulo?: string;
-  tipo?: 'importante' | 'descanso' | 'compras' | 'refeicao' | 'disney' | 'universal' | 'area' | 'noite' | 'informativa';
+  // ✅ ADIÇÃO: suportar 'chegada' | 'saida'
+  tipo?: 'importante' | 'descanso' | 'compras' | 'refeicao' | 'disney' | 'universal' | 'area' | 'noite' | 'informativa' | 'chegada' | 'saida';
   children: React.ReactNode;
   style?: ViewStyle | ViewStyle[];
+  icone?: keyof typeof Ionicons.glyphMap; // ✅ ADIÇÃO (opcional, não quebra nada)
 };
 
 export const CardSecao = ({
@@ -22,21 +25,27 @@ export const CardSecao = ({
   tipo = 'descanso',
   children,
   style,
+  icone, // ✅ ADIÇÃO
 }: Props) => {
   const tituloCompleto = subtitulo ? `${titulo} ${subtitulo}` : titulo;
 
   const corBase =
-    tipo === 'noite' || tipo === 'importante' || tipo === 'area' || tipo === 'informativa'
+    // ✅ ADIÇÃO: cores específicas para chegada/saida (leve, sem mudar os demais)
+    tipo === 'chegada'
+      ? 'rgba(0, 200, 83, 0.2)' // verde claro 20%
+    : tipo === 'saida'
+      ? 'rgba(255, 87, 34, 0.2)' // laranja claro 20%
+    : tipo === 'noite' || tipo === 'importante' || tipo === 'area' || tipo === 'informativa'
       ? '#6A0DAD'
-      : tipo === 'compras'
+    : tipo === 'compras'
       ? 'rgba(255,204,0,0.2)'
-      : tipo === 'refeicao'
+    : tipo === 'refeicao'
       ? 'rgba(255,183,77,0.2)'
-      : tipo === 'disney'
+    : tipo === 'disney'
       ? 'rgba(0,119,204,0.05)'
-      : tipo === 'universal'
+    : tipo === 'universal'
       ? 'rgba(85,0,170,0.2)'
-      : 'rgba(0,119,204,0.2)';
+    : 'rgba(0,119,204,0.2)';
 
   const brilhoAnim = useRef(new Animated.Value(1)).current;
 
@@ -85,7 +94,10 @@ export const CardSecao = ({
         style={styles.background}
       >
         <View style={[styles.innerCard, { backgroundColor: corBase }]}>
-          <View style={styles.header}>
+          <View style={[styles.header, { flexDirection: 'row', alignItems: 'center' }]}>
+            {icone ? ( // ✅ ADIÇÃO: renderiza o ícone somente se for passado
+              <Ionicons name={icone} size={14} color="#FFFFFF" style={{ marginRight: 6 }} />
+            ) : null}
             <Animated.Text
               style={[
                 styles.title,
@@ -94,7 +106,7 @@ export const CardSecao = ({
               ]}
               numberOfLines={2}
             >
-              Ã¢Å“Â¨ {tituloCompleto.toUpperCase()} Ã¢Å“Â¨
+              ✨ {tituloCompleto.toUpperCase()} ✨
             </Animated.Text>
           </View>
           <View style={styles.content}>{children}</View>

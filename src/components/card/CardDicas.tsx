@@ -1,4 +1,4 @@
-﻿ï»¿import React from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 interface Props {
@@ -10,10 +10,10 @@ export function CardDicas({ dicas }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Ã°Å¸â€™Â¡ Dicas do Dia</Text>
+      <Text style={styles.titulo}>💡 Dicas do Dia</Text>
       {dicas.map((dica, index) => (
         <Text key={index} style={styles.dica}>
-          Ã¢â‚¬Â¢ {dica}
+          • {dica}
         </Text>
       ))}
     </View>

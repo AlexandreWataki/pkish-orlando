@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/perfis/PerfilAtracoesScreen.tsx
+// src/screens/perfis/PerfilAtracoesScreen.tsx
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,93 +13,93 @@ import AvisoLegal from '@/components/card/AvisoLegal';
 import LogoAtencao from '@/components/card/LogoAtencao';
 
 const opcoes = [
-  { icone: 'Ã°Å¸Å½Â¢', nome: 'Radicais', tipo: 'radicais', descricao: 'Adrenalina pura: VelociCoaster, Rock Ã¢â‚¬â„¢nÃ¢â‚¬â„¢ Roller Coaster e Expedition Everest.' },
-  { icone: 'Ã°Å¸â€˜Â¨Ã¢â‚¬ÂÃ°Å¸â€˜Â©Ã¢â‚¬ÂÃ°Å¸â€˜Â§', nome: 'Familiares', tipo: 'familiares', descricao: 'DiversÃƒÂ£o para todas as idades: Peter PanÃ¢â‚¬â„¢s Flight, ItÃ¢â‚¬â„¢s a Small World e Nemo & Friends.' },
-  { icone: 'Ã°Å¸ÂÂ°', nome: 'TemÃƒÂ¡ticas', tipo: 'tematicas', descricao: 'CenÃƒÂ¡rios mÃƒÂ¡gicos de filmes: Harry Potter, Star Wars GalaxyÃ¢â‚¬â„¢s Edge, Toy Story Land e Frozen Ever After.' },
-  { icone: 'Ã°Å¸Å½Â¯', nome: 'Interativas', tipo: 'interativas', descricao: 'AtraÃƒÂ§ÃƒÂµes que testam suas habilidades: Men in Black, Buzz Lightyear e Toy Story Mania.' },
-  { icone: 'Ã°Å¸Å’Å’', nome: 'Imersivas', tipo: 'imersivas', descricao: 'Tecnologia e realismo: Avatar Flight of Passage, Spider-Man e SoarinÃ¢â‚¬â„¢.' },
+  { icone: '🎢', nome: 'Radicais', tipo: 'radicais', descricao: 'Adrenalina pura: VelociCoaster, Rock ’n’ Roller Coaster e Expedition Everest.' },
+  { icone: '👨‍👩‍👧', nome: 'Familiares', tipo: 'familiares', descricao: 'Diversão para todas as idades: Peter Pan’s Flight, It’s a Small World e Nemo & Friends.' },
+  { icone: '🏰', nome: 'Temáticas', tipo: 'tematicas', descricao: 'Cenários mágicos de filmes: Harry Potter, Star Wars Galaxy’s Edge, Toy Story Land e Frozen Ever After.' },
+  { icone: '🎯', nome: 'Interativas', tipo: 'interativas', descricao: 'Atrações que testam suas habilidades: Men in Black, Buzz Lightyear e Toy Story Mania.' },
+  { icone: '🌌', nome: 'Imersivas', tipo: 'imersivas', descricao: 'Tecnologia e realismo: Avatar Flight of Passage, Spider-Man e Soarin’.' },
 ];
 
-// DescriÃƒÂ§ÃƒÂµes especÃƒÂ­ficas por parque (mantidas iguais ÃƒÂ s suas)
+// Descrições específicas por parque (mantidas iguais às suas)
 const descricoesParque: Record<string, Record<string, JSX.Element>> = {
   'Magic Kingdom': {
     radicais: (
       <Text>
-        No Magic Kingdom, os mais corajosos encaram atraÃƒÂ§ÃƒÂµes como <Text style={{ fontWeight: 'bold' }}>Space Mountain</Text>, uma montanha-russa veloz no escuro que simula uma jornada espacial; <Text style={{ fontWeight: 'bold' }}>Big Thunder Mountain</Text>, com trilhos por uma mina do velho oeste cheia de curvas e emoÃƒÂ§ÃƒÂ£o; e a clÃƒÂ¡ssica <Text style={{ fontWeight: 'bold' }}>Splash Mountain</Text>, um passeio molhado com mÃƒÂºsicas animadas e uma grande queda refrescante.
+        No Magic Kingdom, os mais corajosos encaram atrações como <Text style={{ fontWeight: 'bold' }}>Space Mountain</Text>, uma montanha-russa veloz no escuro que simula uma jornada espacial; <Text style={{ fontWeight: 'bold' }}>Big Thunder Mountain</Text>, com trilhos por uma mina do velho oeste cheia de curvas e emoção; e a clássica <Text style={{ fontWeight: 'bold' }}>Splash Mountain</Text>, um passeio molhado com músicas animadas e uma grande queda refrescante.
       </Text>
     ),
     familiares: (
       <Text>
-        ExperiÃƒÂªncias suaves encantam todas as idades com <Text style={{ fontWeight: 'bold' }}>Peter PanÃ¢â‚¬â„¢s Flight</Text>, que voa sobre Londres atÃƒÂ© a Terra do Nunca; <Text style={{ fontWeight: 'bold' }}>ItÃ¢â‚¬â„¢s a Small World</Text>, um barco por culturas e mÃƒÂºsicas ao redor do mundo; e <Text style={{ fontWeight: 'bold' }}>Dumbo</Text>, que gira pelo cÃƒÂ©u em elefantes voadores com vista do parque.
+        Experiências suaves encantam todas as idades com <Text style={{ fontWeight: 'bold' }}>Peter Pan’s Flight</Text>, que voa sobre Londres até a Terra do Nunca; <Text style={{ fontWeight: 'bold' }}>It’s a Small World</Text>, um barco por culturas e músicas ao redor do mundo; e <Text style={{ fontWeight: 'bold' }}>Dumbo</Text>, que gira pelo céu em elefantes voadores com vista do parque.
       </Text>
     ),
     tematicas: (
       <Text>
-        Ambientes mÃƒÂ¡gicos envolvem os visitantes em <Text style={{ fontWeight: 'bold' }}>Adventureland</Text>, com selvas e piratas; <Text style={{ fontWeight: 'bold' }}>Fantasyland</Text>, que traz contos de fadas ÃƒÂ  vida; e o icÃƒÂ´nico <Text style={{ fontWeight: 'bold' }}>Castelo da Cinderela</Text>, sÃƒÂ­mbolo da fantasia clÃƒÂ¡ssica da Disney.
+        Ambientes mágicos envolvem os visitantes em <Text style={{ fontWeight: 'bold' }}>Adventureland</Text>, com selvas e piratas; <Text style={{ fontWeight: 'bold' }}>Fantasyland</Text>, que traz contos de fadas à vida; e o icônico <Text style={{ fontWeight: 'bold' }}>Castelo da Cinderela</Text>, símbolo da fantasia clássica da Disney.
       </Text>
     ),
     interativas: (
       <Text>
-        Atividades participativas como <Text style={{ fontWeight: 'bold' }}>Buzz Lightyear</Text>, onde se atira em alvos em missÃƒÂ£o espacial; <Text style={{ fontWeight: 'bold' }}>Monsters Inc Laugh Floor</Text>, com comÃƒÂ©dia ao vivo e respostas do pÃƒÂºblico; e <Text style={{ fontWeight: 'bold' }}>Sorcerers of the Magic Kingdom</Text>, jogo de cartas mÃƒÂ¡gico pelo parque.
+        Atividades participativas como <Text style={{ fontWeight: 'bold' }}>Buzz Lightyear</Text>, onde se atira em alvos em missão espacial; <Text style={{ fontWeight: 'bold' }}>Monsters Inc Laugh Floor</Text>, com comédia ao vivo e respostas do público; e <Text style={{ fontWeight: 'bold' }}>Sorcerers of the Magic Kingdom</Text>, jogo de cartas mágico pelo parque.
       </Text>
     ),
     imersivas: (
       <Text>
-        Aventuras profundas com <Text style={{ fontWeight: 'bold' }}>Pirates of the Caribbean</Text>, viagem entre piratas e tesouros; <Text style={{ fontWeight: 'bold' }}>Haunted Mansion</Text>, com fantasmas danÃƒÂ§antes e clima misterioso; e <Text style={{ fontWeight: 'bold' }}>Jungle Cruise</Text>, passeio guiado por selvas com piadas e animais animatrÃƒÂ´nicos.
+        Aventuras profundas com <Text style={{ fontWeight: 'bold' }}>Pirates of the Caribbean</Text>, viagem entre piratas e tesouros; <Text style={{ fontWeight: 'bold' }}>Haunted Mansion</Text>, com fantasmas dançantes e clima misterioso; e <Text style={{ fontWeight: 'bold' }}>Jungle Cruise</Text>, passeio guiado por selvas com piadas e animais animatrônicos.
       </Text>
     ),
   },
   'EPCOT': {
     radicais: (
       <Text>
-        Em EPCOT, os aventureiros enfrentam <Text style={{ fontWeight: 'bold' }}>Test Track</Text>, com curvas e aceleraÃƒÂ§ÃƒÂµes em testes automotivos; e <Text style={{ fontWeight: 'bold' }}>Mission: SPACE</Text>, que simula uma intensa viagem espacial com lanÃƒÂ§amento e ÃƒÂ³rbita realista.
+        Em EPCOT, os aventureiros enfrentam <Text style={{ fontWeight: 'bold' }}>Test Track</Text>, com curvas e acelerações em testes automotivos; e <Text style={{ fontWeight: 'bold' }}>Mission: SPACE</Text>, que simula uma intensa viagem espacial com lançamento e órbita realista.
       </Text>
     ),
     familiares: (
       <Text>
-        Momentos mÃƒÂ¡gicos com <Text style={{ fontWeight: 'bold' }}>Frozen Ever After</Text>, passeio por Arendelle com personagens queridos; e <Text style={{ fontWeight: 'bold' }}>The Seas with Nemo & Friends</Text>, mergulho animado por cenÃƒÂ¡rios oceÃƒÂ¢nicos coloridos.
+        Momentos mágicos com <Text style={{ fontWeight: 'bold' }}>Frozen Ever After</Text>, passeio por Arendelle com personagens queridos; e <Text style={{ fontWeight: 'bold' }}>The Seas with Nemo & Friends</Text>, mergulho animado por cenários oceânicos coloridos.
       </Text>
     ),
     tematicas: (
       <Text>
-        Descubra o mundo em <Text style={{ fontWeight: 'bold' }}>World Showcase</Text>, com pavilhÃƒÂµes de paÃƒÂ­ses, e conheÃƒÂ§a a evoluÃƒÂ§ÃƒÂ£o da comunicaÃƒÂ§ÃƒÂ£o em <Text style={{ fontWeight: 'bold' }}>Spaceship Earth</Text>, dentro do icÃƒÂ´nico globo.
+        Descubra o mundo em <Text style={{ fontWeight: 'bold' }}>World Showcase</Text>, com pavilhões de países, e conheça a evolução da comunicação em <Text style={{ fontWeight: 'bold' }}>Spaceship Earth</Text>, dentro do icônico globo.
       </Text>
     ),
     interativas: (
       <Text>
-        A criatividade ganha vida em <Text style={{ fontWeight: 'bold' }}>Journey Into Imagination</Text>, com o dragÃƒÂ£o Figment, e em <Text style={{ fontWeight: 'bold' }}>ExibiÃƒÂ§ÃƒÂµes Interativas</Text>, cheias de ciÃƒÂªncia e diversÃƒÂ£o prÃƒÂ¡tica.
+        A criatividade ganha vida em <Text style={{ fontWeight: 'bold' }}>Journey Into Imagination</Text>, com o dragão Figment, e em <Text style={{ fontWeight: 'bold' }}>Exibições Interativas</Text>, cheias de ciência e diversão prática.
       </Text>
     ),
     imersivas: (
       <Text>
-        Viva experiÃƒÂªncias ÃƒÂºnicas em <Text style={{ fontWeight: 'bold' }}>SoarinÃ¢â‚¬â„¢</Text>, um voo de asa-delta por paisagens mundiais, e em <Text style={{ fontWeight: 'bold' }}>Ratatouille Adventure</Text>, uma corrida 4D deliciosa pelo restaurante de Gusteau.
+        Viva experiências únicas em <Text style={{ fontWeight: 'bold' }}>Soarin’</Text>, um voo de asa-delta por paisagens mundiais, e em <Text style={{ fontWeight: 'bold' }}>Ratatouille Adventure</Text>, uma corrida 4D deliciosa pelo restaurante de Gusteau.
       </Text>
     ),
   },
   'Hollywood Studios': {
     radicais: (
       <Text>
-        No Hollywood Studios, a emoÃƒÂ§ÃƒÂ£o atinge o ÃƒÂ¡pice com <Text style={{ fontWeight: 'bold' }}>Rock Ã¢â‚¬â„¢nÃ¢â‚¬â„¢ Roller Coaster</Text>, uma montanha-russa com loops e trilha sonora do Aerosmith; e <Text style={{ fontWeight: 'bold' }}>Tower of Terror</Text>, onde um elevador despenca em quedas imprevisÃƒÂ­veis com efeitos assustadores.
+        No Hollywood Studios, a emoção atinge o ápice com <Text style={{ fontWeight: 'bold' }}>Rock ’n’ Roller Coaster</Text>, uma montanha-russa com loops e trilha sonora do Aerosmith; e <Text style={{ fontWeight: 'bold' }}>Tower of Terror</Text>, onde um elevador despenca em quedas imprevisíveis com efeitos assustadores.
       </Text>
     ),
     familiares: (
       <Text>
-        DiversÃƒÂ£o em famÃƒÂ­lia com <Text style={{ fontWeight: 'bold' }}>Toy Story Mania</Text>, jogo 3D interativo cheio de desafios; e <Text style={{ fontWeight: 'bold' }}>Alien Swirling Saucers</Text>, giros suaves inspirados nos aliens de Toy Story.
+        Diversão em família com <Text style={{ fontWeight: 'bold' }}>Toy Story Mania</Text>, jogo 3D interativo cheio de desafios; e <Text style={{ fontWeight: 'bold' }}>Alien Swirling Saucers</Text>, giros suaves inspirados nos aliens de Toy Story.
       </Text>
     ),
     tematicas: (
       <Text>
-        ImersÃƒÂ£o total em <Text style={{ fontWeight: 'bold' }}>Star Wars GalaxyÃ¢â‚¬â„¢s Edge</Text>, uma vila espacial detalhada; e <Text style={{ fontWeight: 'bold' }}>Toy Story Land</Text>, onde tudo ÃƒÂ© gigante como se vocÃƒÂª fosse um brinquedo.
+        Imersão total em <Text style={{ fontWeight: 'bold' }}>Star Wars Galaxy’s Edge</Text>, uma vila espacial detalhada; e <Text style={{ fontWeight: 'bold' }}>Toy Story Land</Text>, onde tudo é gigante como se você fosse um brinquedo.
       </Text>
     ),
     interativas: (
       <Text>
-        Participe de aventuras como <Text style={{ fontWeight: 'bold' }}>Millennium Falcon Smugglers Run</Text>, onde vocÃƒÂª pilota a nave em missÃƒÂ£o; e <Text style={{ fontWeight: 'bold' }}>Frozen Sing-Along</Text>, um show musical divertido com efeitos gelados.
+        Participe de aventuras como <Text style={{ fontWeight: 'bold' }}>Millennium Falcon Smugglers Run</Text>, onde você pilota a nave em missão; e <Text style={{ fontWeight: 'bold' }}>Frozen Sing-Along</Text>, um show musical divertido com efeitos gelados.
       </Text>
     ),
     imersivas: (
       <Text>
-        ExperiÃƒÂªncias cinematogrÃƒÂ¡ficas em <Text style={{ fontWeight: 'bold' }}>Rise of the Resistance</Text>, com perseguiÃƒÂ§ÃƒÂµes e animatrÃƒÂ´nicos; e <Text style={{ fontWeight: 'bold' }}>MuppetVision 3D</Text>, um show 3D cÃƒÂ´mico com efeitos interativos.
+        Experiências cinematográficas em <Text style={{ fontWeight: 'bold' }}>Rise of the Resistance</Text>, com perseguições e animatrônicos; e <Text style={{ fontWeight: 'bold' }}>MuppetVision 3D</Text>, um show 3D cômico com efeitos interativos.
       </Text>
     ),
   },
@@ -111,103 +111,103 @@ const descricoesParque: Record<string, Record<string, JSX.Element>> = {
     ),
     familiares: (
       <Text>
-        Atividades para todos em <Text style={{ fontWeight: 'bold' }}>Kilimanjaro Safaris</Text>, passeio por savanas africanas; e <Text style={{ fontWeight: 'bold' }}>Triceratop Spin</Text>, carrossel giratÃƒÂ³rio de dinossauros.
+        Atividades para todos em <Text style={{ fontWeight: 'bold' }}>Kilimanjaro Safaris</Text>, passeio por savanas africanas; e <Text style={{ fontWeight: 'bold' }}>Triceratop Spin</Text>, carrossel giratório de dinossauros.
       </Text>
     ),
     tematicas: (
       <Text>
-        Viva culturas e mundos como <Text style={{ fontWeight: 'bold' }}>ÃƒÂfrica</Text>, com mÃƒÂºsica e danÃƒÂ§a; e <Text style={{ fontWeight: 'bold' }}>Pandora</Text>, com bioluminescÃƒÂªncia e natureza fantÃƒÂ¡stica.
+        Viva culturas e mundos como <Text style={{ fontWeight: 'bold' }}>África</Text>, com música e dança; e <Text style={{ fontWeight: 'bold' }}>Pandora</Text>, com bioluminescência e natureza fantástica.
       </Text>
     ),
     interativas: (
       <Text>
-        Participe dos <Text style={{ fontWeight: 'bold' }}>Tambores africanos</Text>, com ritmos vibrantes, e explore o <Text style={{ fontWeight: 'bold' }}>Boneyard</Text>, ÃƒÂ¡rea infantil de escavaÃƒÂ§ÃƒÂ£o de fÃƒÂ³sseis.
+        Participe dos <Text style={{ fontWeight: 'bold' }}>Tambores africanos</Text>, com ritmos vibrantes, e explore o <Text style={{ fontWeight: 'bold' }}>Boneyard</Text>, área infantil de escavação de fósseis.
       </Text>
     ),
     imersivas: (
       <Text>
-        Embarque no <Text style={{ fontWeight: 'bold' }}>NaÃ¢â‚¬â„¢vi River Journey</Text>, um passeio de barco por florestas brilhantes; e assista ao <Text style={{ fontWeight: 'bold' }}>ItÃ¢â‚¬â„¢s Tough to Be a Bug</Text>, show 3D cheio de surpresas.
+        Embarque no <Text style={{ fontWeight: 'bold' }}>Na’vi River Journey</Text>, um passeio de barco por florestas brilhantes; e assista ao <Text style={{ fontWeight: 'bold' }}>It’s Tough to Be a Bug</Text>, show 3D cheio de surpresas.
       </Text>
     ),
   },
   'Universal Studios': {
     radicais: (
       <Text>
-        Em Universal Studios, a adrenalina comeÃƒÂ§a com a <Text style={{ fontWeight: 'bold' }}>Rip Ride Rockit</Text>, montanha-russa veloz com mÃƒÂºsica personalizada e queda quase vertical, e <Text style={{ fontWeight: 'bold' }}>Revenge of the Mummy</Text>, uma aventura escura com fogo, sustos e reviravoltas surpreendentes.
+        Em Universal Studios, a adrenalina começa com a <Text style={{ fontWeight: 'bold' }}>Rip Ride Rockit</Text>, montanha-russa veloz com música personalizada e queda quase vertical, e <Text style={{ fontWeight: 'bold' }}>Revenge of the Mummy</Text>, uma aventura escura com fogo, sustos e reviravoltas surpreendentes.
       </Text>
     ),
     familiares: (
       <Text>
-        DiversÃƒÂ£o para todos com <Text style={{ fontWeight: 'bold' }}>Despicable Me Minion Mayhem</Text>, simulaÃƒÂ§ÃƒÂ£o com os Minions cheia de trapalhadas, e <Text style={{ fontWeight: 'bold' }}>Shrek 4D</Text>, cinema interativo com vibraÃƒÂ§ÃƒÂµes e efeitos durante a histÃƒÂ³ria do ogro.
+        Diversão para todos com <Text style={{ fontWeight: 'bold' }}>Despicable Me Minion Mayhem</Text>, simulação com os Minions cheia de trapalhadas, e <Text style={{ fontWeight: 'bold' }}>Shrek 4D</Text>, cinema interativo com vibrações e efeitos durante a história do ogro.
       </Text>
     ),
     tematicas: (
       <Text>
-        Explore <Text style={{ fontWeight: 'bold' }}>Harry Potter Diagon Alley</Text>, com becos mÃƒÂ¡gicos e lojas temÃƒÂ¡ticas, e mergulhe no humor de <Text style={{ fontWeight: 'bold' }}>Springfield dos Simpsons</Text>, com restaurantes, lojas e atraÃƒÂ§ÃƒÂµes divertidas.
+        Explore <Text style={{ fontWeight: 'bold' }}>Harry Potter Diagon Alley</Text>, com becos mágicos e lojas temáticas, e mergulhe no humor de <Text style={{ fontWeight: 'bold' }}>Springfield dos Simpsons</Text>, com restaurantes, lojas e atrações divertidas.
       </Text>
     ),
     interativas: (
       <Text>
-        Torne-se herÃƒÂ³i em <Text style={{ fontWeight: 'bold' }}>Men in Black Alien Attack</Text>, atirando em alienÃƒÂ­genas para marcar pontos, e divirta-se no <Text style={{ fontWeight: 'bold' }}>Kang & Kodos Twirl</Text>, passeio giratÃƒÂ³rio com os famosos aliens dos Simpsons.
+        Torne-se herói em <Text style={{ fontWeight: 'bold' }}>Men in Black Alien Attack</Text>, atirando em alienígenas para marcar pontos, e divirta-se no <Text style={{ fontWeight: 'bold' }}>Kang & Kodos Twirl</Text>, passeio giratório com os famosos aliens dos Simpsons.
       </Text>
     ),
     imersivas: (
       <Text>
-        Viva batalhas ÃƒÂ©picas em <Text style={{ fontWeight: 'bold' }}>Transformers</Text>, com robÃƒÂ´s em 3D e efeitos explosivos, e no <Text style={{ fontWeight: 'bold' }}>Bourne Stuntacular</Text>, show ao vivo com acrobacias, tecnologia e cenas de aÃƒÂ§ÃƒÂ£o realistas.
+        Viva batalhas épicas em <Text style={{ fontWeight: 'bold' }}>Transformers</Text>, com robôs em 3D e efeitos explosivos, e no <Text style={{ fontWeight: 'bold' }}>Bourne Stuntacular</Text>, show ao vivo com acrobacias, tecnologia e cenas de ação realistas.
       </Text>
     ),
   },
   'Islands of Adventure': {
     radicais: (
       <Text>
-        Enfrente emoÃƒÂ§ÃƒÂµes extremas na <Text style={{ fontWeight: 'bold' }}>VelociCoaster</Text>, montanha-russa com inversÃƒÂµes e dinossauros, e na <Text style={{ fontWeight: 'bold' }}>The Incredible Hulk</Text>, com arrancadas potentes, loopings e giros de tirar o fÃƒÂ´lego.
+        Enfrente emoções extremas na <Text style={{ fontWeight: 'bold' }}>VelociCoaster</Text>, montanha-russa com inversões e dinossauros, e na <Text style={{ fontWeight: 'bold' }}>The Incredible Hulk</Text>, com arrancadas potentes, loopings e giros de tirar o fôlego.
       </Text>
     ),
     familiares: (
       <Text>
-        Aventure-se com a famÃƒÂ­lia no <Text style={{ fontWeight: 'bold' }}>Popeye</Text>, uma jornada aquÃƒÂ¡tica cheia de correntezas e respingos, e no <Text style={{ fontWeight: 'bold' }}>Cat in the Hat</Text>, passeio lÃƒÂºdico pelos contos do Dr. Seuss.
+        Aventure-se com a família no <Text style={{ fontWeight: 'bold' }}>Popeye</Text>, uma jornada aquática cheia de correntezas e respingos, e no <Text style={{ fontWeight: 'bold' }}>Cat in the Hat</Text>, passeio lúdico pelos contos do Dr. Seuss.
       </Text>
     ),
     tematicas: (
       <Text>
-        Descubra <Text style={{ fontWeight: 'bold' }}>Hogsmeade</Text>, vila mÃƒÂ¡gica do universo Harry Potter, e explore <Text style={{ fontWeight: 'bold' }}>Jurassic Park</Text>, com dinossauros animatrÃƒÂ´nicos em selvas tropicais.
+        Descubra <Text style={{ fontWeight: 'bold' }}>Hogsmeade</Text>, vila mágica do universo Harry Potter, e explore <Text style={{ fontWeight: 'bold' }}>Jurassic Park</Text>, com dinossauros animatrônicos em selvas tropicais.
       </Text>
     ),
     interativas: (
       <Text>
-        Encare surpresas em <Text style={{ fontWeight: 'bold' }}>Skull Island</Text>, com King Kong realista, e aprenda brincando no <Text style={{ fontWeight: 'bold' }}>Discovery Center</Text>, centro educativo de dinossauros com experiÃƒÂªncias interativas.
+        Encare surpresas em <Text style={{ fontWeight: 'bold' }}>Skull Island</Text>, com King Kong realista, e aprenda brincando no <Text style={{ fontWeight: 'bold' }}>Discovery Center</Text>, centro educativo de dinossauros com experiências interativas.
       </Text>
     ),
     imersivas: (
       <Text>
-        Voe com <Text style={{ fontWeight: 'bold' }}>Forbidden Journey</Text>, acompanhando Harry Potter por castelos e criaturas mÃƒÂ¡gicas, e sinta a aÃƒÂ§ÃƒÂ£o em <Text style={{ fontWeight: 'bold' }}>King Kong</Text>, experiÃƒÂªncia 4D com criaturas gigantes.
+        Voe com <Text style={{ fontWeight: 'bold' }}>Forbidden Journey</Text>, acompanhando Harry Potter por castelos e criaturas mágicas, e sinta a ação em <Text style={{ fontWeight: 'bold' }}>King Kong</Text>, experiência 4D com criaturas gigantes.
       </Text>
     ),
   },
   'Epic Universe': {
     radicais: (
       <Text>
-        Em Epic Universe, desafie os limites na <Text style={{ fontWeight: 'bold' }}>How to Train Your Dragon</Text>, montanha-russa veloz entre cenÃƒÂ¡rios vikings, e na <Text style={{ fontWeight: 'bold' }}>Starfall Racers</Text>, corrida aÃƒÂ©rea com giros futuristas e muita adrenalina.
+        Em Epic Universe, desafie os limites na <Text style={{ fontWeight: 'bold' }}>How to Train Your Dragon</Text>, montanha-russa veloz entre cenários vikings, e na <Text style={{ fontWeight: 'bold' }}>Starfall Racers</Text>, corrida aérea com giros futuristas e muita adrenalina.
       </Text>
     ),
     familiares: (
       <Text>
-        DiversÃƒÂ£o para todos com <Text style={{ fontWeight: 'bold' }}>Super Nintendo World</Text>, cheio de cores e desafios com Mario e Luigi, e o <Text style={{ fontWeight: 'bold' }}>Hotel Monstro</Text>, uma atraÃƒÂ§ÃƒÂ£o temÃƒÂ¡tica repleta de surpresas e humor monstruoso.
+        Diversão para todos com <Text style={{ fontWeight: 'bold' }}>Super Nintendo World</Text>, cheio de cores e desafios com Mario e Luigi, e o <Text style={{ fontWeight: 'bold' }}>Hotel Monstro</Text>, uma atração temática repleta de surpresas e humor monstruoso.
       </Text>
     ),
     tematicas: (
       <Text>
-        Explore o <Text style={{ fontWeight: 'bold' }}>MinistÃƒÂ©rio da Magia</Text>, com feitiÃƒÂ§os e corredores mÃƒÂ¡gicos, e encante-se com o <Text style={{ fontWeight: 'bold' }}>Celestial Park</Text>, jardins futuristas cheios de iluminaÃƒÂ§ÃƒÂ£o e detalhes cÃƒÂ³smicos.
+        Explore o <Text style={{ fontWeight: 'bold' }}>Ministério da Magia</Text>, com feitiços e corredores mágicos, e encante-se com o <Text style={{ fontWeight: 'bold' }}>Celestial Park</Text>, jardins futuristas cheios de iluminação e detalhes cósmicos.
       </Text>
     ),
     interativas: (
       <Text>
-        Corra com emoÃƒÂ§ÃƒÂ£o em <Text style={{ fontWeight: 'bold' }}>Mario Kart</Text>, atraÃƒÂ§ÃƒÂ£o interativa com realidade aumentada, e salte obstÃƒÂ¡culos em <Text style={{ fontWeight: 'bold' }}>Donkey Kong</Text>, trilho interativo em cenÃƒÂ¡rios tropicais.
+        Corra com emoção em <Text style={{ fontWeight: 'bold' }}>Mario Kart</Text>, atração interativa com realidade aumentada, e salte obstáculos em <Text style={{ fontWeight: 'bold' }}>Donkey Kong</Text>, trilho interativo em cenários tropicais.
       </Text>
     ),
     imersivas: (
       <Text>
-        Sinta-se dentro de mundos completos com os <Text style={{ fontWeight: 'bold' }}>Mundos TemÃƒÂ¡ticos</Text>, cheios de sons, cheiros e visuais envolventes, e curta as <Text style={{ fontWeight: 'bold' }}>AtraÃƒÂ§ÃƒÂµes 4D exclusivas</Text>, que misturam simulaÃƒÂ§ÃƒÂ£o, movimento e tecnologia de ponta.
+        Sinta-se dentro de mundos completos com os <Text style={{ fontWeight: 'bold' }}>Mundos Temáticos</Text>, cheios de sons, cheiros e visuais envolventes, e curta as <Text style={{ fontWeight: 'bold' }}>Atrações 4D exclusivas</Text>, que misturam simulação, movimento e tecnologia de ponta.
       </Text>
     ),
   }
@@ -270,7 +270,7 @@ export default function PerfilAtracoesScreen() {
       icone: perfisEscolhidos.map(p => p.icone),
     };
 
-    // Ã¢Å“â€¦ grava apenas no contexto (nÃƒÂ£o salva arquivo em /data)
+    // ✅ grava apenas no contexto (não salva arquivo em /data)
     await atualizarPerfilAtracoesPorDia(format(diaAtual.data, 'yyyy-MM-dd'), perfilObj);
 
     if (indice < diasParque.length - 1) {
@@ -298,7 +298,7 @@ export default function PerfilAtracoesScreen() {
   if (!diaAtual) {
     return (
       <View style={styles.empty}>
-        <Text style={styles.emptyText}>NÃƒÂ£o hÃƒÂ¡ dias de parque para preencher perfil de atraÃƒÂ§ÃƒÂµes!</Text>
+        <Text style={styles.emptyText}>Não há dias de parque para preencher perfil de atrações!</Text>
         <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginTop: 12 }}>
           <Ionicons name="arrow-back-circle" size={48} color="#004b87" />
         </TouchableOpacity>
@@ -315,30 +315,42 @@ export default function PerfilAtracoesScreen() {
   }
 
   return (
-    <LinearGradient colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']} locations={[0, 0.6, 0.9, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={styles.container}>
+ <LinearGradient
+   colors={[
+     '#0077cc', // azul piscina
+     '#00c5d4', // turquesa
+     '#f5deb3', // areia clara
+     '#ffffff', // branco normal
+     '#ffffff', // branco final (rasinho bem claro)
+   ]}
+   locations={[0, 0.3, 0.6, 0.85, 1]}
+   start={{ x: 0, y: 0 }}
+   end={{ x: 0, y: 1 }}
+   style={styles.container}
+ >
       <View style={{ marginTop: 40 }}>
-        <CabecalhoDia titulo="" data={dataFormatada} diaSemana={diaSemana} clima={clima?.condicao || 'Parcialmente nublado'} temperatura={clima?.temp ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'} iconeClima={clima?.icone} />
+        <CabecalhoDia titulo="" data={dataFormatada} diaSemana={diaSemana} clima={clima?.condicao || 'Parcialmente nublado'} temperatura={clima?.temp ? `${clima.temp}°C` : '28°C'} iconeClima={clima?.icone} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.caixaPergunta}>
           <Text style={styles.pergunta}>
-            Ã°Å¸Å¡â‚¬ Escolha <Text style={styles.destaque}>DOIS(2)</Text> perfis de atraÃƒÂ§ÃƒÂ£o
+            🚀 Escolha <Text style={styles.destaque}>DOIS(2)</Text> perfis de atração
           </Text>
 
-          {/* Linha com nome do parque Ã¢â‚¬â€œ ÃƒÂ­cone piscante Ã¢â‚¬â€œ 'guia nÃƒÂ£o oficial' Ã¢â‚¬â€œ data */}
+          {/* Linha com nome do parque – ícone piscante – 'guia não oficial' – data */}
           <View style={styles.perguntaLinha}>
             <Text style={styles.tituloDia}>{nomeParque}</Text>
             <Text style={styles.tracinho}> - </Text>
 
             <View style={styles.subInfoWrap}>
               <LogoAtencao size={14} color="#FFFFFF" blink />
-              <Text style={styles.subInfo}> guia nÃƒÂ£o oficial</Text>
+              <Text style={styles.subInfo}> guia não oficial</Text>
             </View>
 
             <Text style={styles.tracinho}>  </Text>
             <Text style={styles.tituloDia}>
-              {format(diaAtual.data, 'dd/MM/yyyy', { locale: ptBR })} Ã¢â‚¬â€œ {format(diaAtual.data, 'EEEE', { locale: ptBR })}
+              {format(diaAtual.data, 'dd/MM/yyyy', { locale: ptBR })} – {format(diaAtual.data, 'EEEE', { locale: ptBR })}
             </Text>
           </View>
         </View>
@@ -359,10 +371,10 @@ export default function PerfilAtracoesScreen() {
           </TouchableOpacity>
         ))}
 
-        {/* Ã°Å¸â€Âµ ÃƒÅ¡LTIMO CARD: aviso legal com MESMA largura/raio/espaÃƒÂ§amento dos outros cards */}
+        {/* 🔵 ÚLTIMO CARD: aviso legal com MESMA largura/raio/espaçamento dos outros cards */}
         <View style={styles.cardAviso}>
           <AvisoLegal theme="blue" fixoNoRodape={false}>
-            App independente sem vÃƒÂ­nculo Disney/Universal.
+            App independente sem vínculo Disney/Universal.
           </AvisoLegal>
         </View>
 
@@ -399,7 +411,7 @@ const styles = StyleSheet.create({
   destaque: { fontWeight: 'bold', color: '#fff' },
   tituloDia: { fontSize: 12, fontWeight: 'bold', color: '#fff' },
 
-  // linha flexÃƒÂ­vel para caber em telas menores (quebra com wrap)
+  // linha flexível para caber em telas menores (quebra com wrap)
   perguntaLinha: {
     marginTop: 4,
     flexDirection: 'row',
@@ -431,17 +443,17 @@ const styles = StyleSheet.create({
   descricao: { fontSize: 10, color: '#444', marginTop: 4, textAlign: 'justify', lineHeight: 12 },
   linha: { flexDirection: 'row', alignItems: 'center' },
 
-  // Ã°Å¸â€Âµ Aviso legal com mesmo tamanho/raio/espaÃƒÂ§amento dos cards
+  // 🔵 Aviso legal com mesmo tamanho/raio/espaçamento dos cards
 cardAviso: {
   backgroundColor: '#004b87',  // ou use o tema do AvisoLegal
   borderRadius: 10,
   marginBottom: 10,
   marginTop: 0,
-  alignSelf: 'stretch',   // Ã¢Â¬â€¦Ã¯Â¸Â isso garante mesma largura dos outros
+  alignSelf: 'stretch',   // ⬅️ isso garante mesma largura dos outros
 },
 
 
-  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#52D6FF', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
+  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#ffffffff', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
   rodapeConteudo: { position: 'absolute', bottom: 50, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20 },
   botaoSeta: { justifyContent: 'center', alignItems: 'center' },
 });

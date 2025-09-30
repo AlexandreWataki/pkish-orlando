@@ -1,4 +1,4 @@
-﻿ï»¿import { Regiao } from '@/logic/types/regioesHospedagem';
+import { Regiao } from '@/logic/types/regioesHospedagem';
 
 function calcularDistanciaKm(
   lat1: number,
@@ -23,7 +23,7 @@ export function opcoesTransporteChegada(
   origem: string,
    regiao?: Regiao
 ) {
-  const nomeDestino =  regiao?.nome || 'Hospedagem nÃƒÂ£o definida';
+  const nomeDestino =  regiao?.nome || 'Hospedagem não definida';
   const tempoDestino = regiao?.tempoAteAeroportoMCO ?? 30;
 
   const latDestino = regiao?.latitude ?? null;
@@ -43,29 +43,29 @@ export function opcoesTransporteChegada(
   const descricaoUber = [
     `Tempo estimado: ${tempoDestino} min`,
     `Valor estimado: US$ ${precoUberMin} a US$ ${precoUberMax}`,
-    `ServiÃƒÂ§o: Uber ou Lyft`,
+    `Serviço: Uber ou Lyft`,
   ].join('\n');
 
   const descricaoCarro = [
-    `DistÃƒÂ¢ncia: ${distanciaKm.toFixed(1)} km`,
-    `DiÃƒÂ¡rias mÃƒÂ©dias por categoria:`,
-    `EconÃƒÂ´mico / Compacto: US$ 40 a US$ 60`,
-    `SUV / IntermediÃƒÂ¡rio: US$ 60 a US$ 90`,
+    `Distância: ${distanciaKm.toFixed(1)} km`,
+    `Diárias médias por categoria:`,
+    `Econômico / Compacto: US$ 40 a US$ 60`,
+    `SUV / Intermediário: US$ 60 a US$ 90`,
     `Van / 7 lugares: US$ 80 a US$ 120`,
     `Luxo / Premium: US$ 100 a US$ 200`,
   ].join('\n');
 
   return {
-    titulo: 'Ã°Å¸Å¡â„¢ Transporte atÃƒÂ© o hotel',
+    titulo: '🚙 Transporte até o hotel',
     tipo: 'transporte',
-    local: `${origem} Ã¢â€ â€™ ${nomeDestino}`,
+    local: `${origem} → ${nomeDestino}`,
     opcoes: [
       {
-        subtitulo: 'Ã°Å¸Å¡â€” Uber / Lyft',
+        subtitulo: '🚗 Uber / Lyft',
         descricao: descricaoUber,
       },
       {
-        subtitulo: 'Ã°Å¸Å¡Ëœ Carro alugado',
+        subtitulo: '🚘 Carro alugado',
         descricao: descricaoCarro,
       },
     ],

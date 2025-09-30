@@ -1,9 +1,9 @@
-﻿ï»¿// Ã¢Å¡Â Ã¯Â¸Â Importa apenas do mÃƒÂ³dulo de tipos compartilhados para evitar require cycle.
+// ⚠️ Importa apenas do módulo de tipos compartilhados para evitar require cycle.
 import type { NomeMenu } from "./nomesRefeicoes.shared";
 
 /**
  * Perfis oficiais (ou de loja/unidade) no Instagram para marcas/grandes redes.
- * Se nÃƒÂ£o houver no mapa, caÃƒÂ­mos no fallback de busca do Instagram (segue abaixo).
+ * Se não houver no mapa, caímos no fallback de busca do Instagram (segue abaixo).
  */
 const IG_MAP: Record<string, string> = {
   // 1 - International Drive
@@ -11,47 +11,47 @@ const IG_MAP: Record<string, string> = {
   "Toothsome Chocolate Emporium Dinner": "https://www.instagram.com/universalorlando/",
   "Olive Garden I-Drive": "https://www.instagram.com/olivegarden/",
   "Green Fork": "https://www.instagram.com/greenforkorlando/",
-  "DennyÃ¢â‚¬â„¢s I-Drive": "https://www.instagram.com/dennysdiner/",
+  "Denny’s I-Drive": "https://www.instagram.com/dennysdiner/",
 
   // 2 - Lake Buena Vista
   "Chevys Fresh Mex": "https://www.instagram.com/chevysfreshmex/",
   "Rainforest Cafe": "https://www.instagram.com/rainforest_cafe/",
   "The Polite Pig": "https://www.instagram.com/thepolitepig/",
   "First Watch LBV": "https://www.instagram.com/firstwatch/",
-  "MillerÃ¢â‚¬â„¢s Ale House LBV": "https://www.instagram.com/millers_ale_house/",
+  "Miller’s Ale House LBV": "https://www.instagram.com/millers_ale_house/",
 
   // 3 - Kissimmee
-  "LoganÃ¢â‚¬â„¢s Roadhouse": "https://www.instagram.com/logansroadhouse/",
+  "Logan’s Roadhouse": "https://www.instagram.com/logansroadhouse/",
   "Medieval Times Dinner & Tournament": "https://www.instagram.com/medievaltimes/",
   "Cracker Barrel Kissimmee": "https://www.instagram.com/crackerbarrel/",
   "Green Leaf Grill": "https://www.instagram.com/explore/search/keyword/?q=Green%20Leaf%20Grill%20Kissimmee",
-  "WendyÃ¢â‚¬â„¢s Kissimmee": "https://www.instagram.com/wendys/",
+  "Wendy’s Kissimmee": "https://www.instagram.com/wendys/",
 
   // 4 - Celebration
   "Columbia Restaurant Celebration": "https://www.instagram.com/columbiarestaurant/",
-  "Bohemian Hotel Ã¢â‚¬â€œ Lakeside Bar & Grill": "https://www.instagram.com/grandbohemianorlando/",
+  "Bohemian Hotel – Lakeside Bar & Grill": "https://www.instagram.com/grandbohemianorlando/",
   "Celebration Town Tavern": "https://www.instagram.com/celebrationtowntavern/",
   "Vitality Bowls Celebration": "https://www.instagram.com/vitalitybowls/",
   "Upper Crust Pizza": "https://www.instagram.com/explore/search/keyword/?q=Upper%20Crust%20Pizza%20Celebration",
 
   // 5 - Disney Springs Area
   "The Boathouse": "https://www.instagram.com/disneysprings/",
-  "Rainforest CafÃƒÂ© Disney Springs": "https://www.instagram.com/rainforest_cafe/",
-  "Chef Art SmithÃ¢â‚¬â„¢s HomecominÃ¢â‚¬â„¢": "https://www.instagram.com/disneysprings/",
-  "Blaze Fast-FireÃ¢â‚¬â„¢d Pizza": "https://www.instagram.com/blazepizza/",
+  "Rainforest Café Disney Springs": "https://www.instagram.com/rainforest_cafe/",
+  "Chef Art Smith’s Homecomin’": "https://www.instagram.com/disneysprings/",
+  "Blaze Fast-Fire’d Pizza": "https://www.instagram.com/blazepizza/",
   "Earl of Sandwich": "https://www.instagram.com/earlofsandwich/",
 
   // 6 - Windsor Hills
   "Outback Steakhouse Kissimmee": "https://www.instagram.com/outback/",
-  "FordÃ¢â‚¬â„¢s Garage Sunset Walk": "https://www.instagram.com/fordsgarageusa/",
-  "CarrabbaÃ¢â‚¬â„¢s Italian Grill": "https://www.instagram.com/carrabbas/",
+  "Ford’s Garage Sunset Walk": "https://www.instagram.com/fordsgarageusa/",
+  "Carrabba’s Italian Grill": "https://www.instagram.com/carrabbas/",
   "Freshii Windsor": "https://www.instagram.com/freshii/",
   "IHOP Windsor Hills": "https://www.instagram.com/ihop/",
 
   // 7 - ChampionsGate
-  "ChiliÃ¢â‚¬â„¢s ChampionsGate": "https://www.instagram.com/chilis/",
-  "TreviÃ¢â‚¬â„¢s at Omni Orlando": "https://www.instagram.com/omnichampionsgate/",
-  "MillerÃ¢â‚¬â„¢s Ale House ChampionsGate": "https://www.instagram.com/millers_ale_house/",
+  "Chili’s ChampionsGate": "https://www.instagram.com/chilis/",
+  "Trevi’s at Omni Orlando": "https://www.instagram.com/omnichampionsgate/",
+  "Miller’s Ale House ChampionsGate": "https://www.instagram.com/millers_ale_house/",
   "Bolay ChampionsGate": "https://www.instagram.com/bolay/",
   "Subway ChampionsGate": "https://www.instagram.com/subway/",
 
@@ -65,7 +65,7 @@ const IG_MAP: Record<string, string> = {
   // 9 - Reunion
   "Eleven at Reunion Resort": "https://www.instagram.com/reunionresort/",
   "Forte at Reunion Resort": "https://www.instagram.com/reunionresort/",
-  "Reunion CafÃƒÂ©": "https://www.instagram.com/reunionresort/",
+  "Reunion Café": "https://www.instagram.com/reunionresort/",
   "Vitality Bowls Reunion": "https://www.instagram.com/vitalitybowls/",
   "Burger King Reunion": "https://www.instagram.com/burgerking/",
 
@@ -73,25 +73,25 @@ const IG_MAP: Record<string, string> = {
   "LongHorn Steakhouse Davenport": "https://www.instagram.com/longhornsteaks/",
   "Ovation Bistro & Bar": "https://www.instagram.com/ovationbistroandbar/",
   "Perkins Restaurant & Bakery": "https://www.instagram.com/perkinsrestaurant/",
-  "NatureÃ¢â‚¬â„¢s Table Davenport": "https://www.instagram.com/naturestable/",
+  "Nature’s Table Davenport": "https://www.instagram.com/naturestable/",
   "Little Caesars Davenport": "https://www.instagram.com/littlecaesars/",
 
   // 11 - Westgate Lakes
   "Drafts Sports Bar & Grill": "https://www.instagram.com/westgateresorts/",
   "Villa Italiano Chophouse": "https://www.instagram.com/westgateresorts/",
-  "SidÃ¢â‚¬â„¢s Bistro": "https://www.instagram.com/westgateresorts/",
+  "Sid’s Bistro": "https://www.instagram.com/westgateresorts/",
   "The Juice Bar Westgate": "https://www.instagram.com/westgateresorts/",
-  "Cordovano JoeÃ¢â‚¬â„¢s Pizza": "https://www.instagram.com/westgateresorts/",
+  "Cordovano Joe’s Pizza": "https://www.instagram.com/westgateresorts/",
 
   // 12 - Vista Cay
   "NYPD Pizza": "https://www.instagram.com/nypdpizzeria/",
   "Mikado Japanese Steakhouse": "https://www.instagram.com/explore/search/keyword/?q=Mikado%20Japanese%20Steakhouse%20Orlando",
-  "BethÃ¢â‚¬â„¢s Burger Bar": "https://www.instagram.com/bethsburgerbar/",
+  "Beth’s Burger Bar": "https://www.instagram.com/bethsburgerbar/",
   "Freshii Vista Cay": "https://www.instagram.com/freshii/",
   "Subway Vista Cay": "https://www.instagram.com/subway/",
 
   // 14 - Dr. Phillips
-  "RuthÃ¢â‚¬â„¢s Chris Steak House": "https://www.instagram.com/ruthschris/",
+  "Ruth’s Chris Steak House": "https://www.instagram.com/ruthschris/",
   "The Melting Pot": "https://www.instagram.com/themeltingpot/",
   "Seasons 52": "https://www.instagram.com/seasons52/",
   "Fresh Kitchen Dr. Phillips": "https://www.instagram.com/eatfreshkitchen/",
@@ -99,28 +99,28 @@ const IG_MAP: Record<string, string> = {
 
   // 16 - Orlando Airport Area
   "Bonefish Grill Airport": "https://www.instagram.com/bonefishgrill/",
-  "MarlowÃ¢â‚¬â„¢s Tavern": "https://www.instagram.com/marlowstavern/",
+  "Marlow’s Tavern": "https://www.instagram.com/marlowstavern/",
   "LongHorn Steakhouse MCO": "https://www.instagram.com/longhornsteaks/",
   "Harvest Bistro": "https://www.instagram.com/hyattregencyorlandoairport/",
-  "ChiliÃ¢â‚¬â„¢s MCO": "https://www.instagram.com/chilis/",
+  "Chili’s MCO": "https://www.instagram.com/chilis/",
 
   // 17 - Downtown Orlando
   "The Boheme": "https://www.instagram.com/grandbohemianorlando/",
-  "Hamburger MaryÃ¢â‚¬â„¢s": "https://www.instagram.com/hamburgermarysorlando/",
-  "ArtisanÃ¢â‚¬â„¢s Table": "https://www.instagram.com/artisanstableorlando/",
-  "Dandelion Community CafÃƒÂ©": "https://www.instagram.com/dandelioncommunitycafe/",
+  "Hamburger Mary’s": "https://www.instagram.com/hamburgermarysorlando/",
+  "Artisan’s Table": "https://www.instagram.com/artisanstableorlando/",
+  "Dandelion Community Café": "https://www.instagram.com/dandelioncommunitycafe/",
   "Gringos Locos": "https://www.instagram.com/gringoslocosorlando/",
 
   // 18 - Hunter's Creek
-  "Outback Steakhouse HunterÃ¢â‚¬â„¢s Creek": "https://www.instagram.com/outback/",
-  "Tijuana Flats HunterÃ¢â‚¬â„¢s Creek": "https://www.instagram.com/tijuanaflats/",
-  "MillerÃ¢â‚¬â„¢s Ale House HunterÃ¢â‚¬â„¢s Creek": "https://www.instagram.com/millers_ale_house/",
+  "Outback Steakhouse Hunter’s Creek": "https://www.instagram.com/outback/",
+  "Tijuana Flats Hunter’s Creek": "https://www.instagram.com/tijuanaflats/",
+  "Miller’s Ale House Hunter’s Creek": "https://www.instagram.com/millers_ale_house/",
   "Bolay Fresh Bold Kitchen": "https://www.instagram.com/bolay/",
-  "McDonald's HunterÃ¢â‚¬â„¢s Creek": "https://www.instagram.com/mcdonalds/",
+  "McDonald's Hunter’s Creek": "https://www.instagram.com/mcdonalds/",
 
   // 19 - Windermere
   "Yellow Dog Eats": "https://www.instagram.com/yellowdogeats/",
-  "My French CafÃƒÂ©": "https://www.instagram.com/myfrenchcafeorlando/",
+  "My French Café": "https://www.instagram.com/myfrenchcafeorlando/",
   "Bella Tuscany": "https://www.instagram.com/explore/search/keyword/?q=Bella%20Tuscany%20Windermere",
   "The Grove Orlando": "https://www.instagram.com/explore/search/keyword/?q=The%20Grove%20Orlando%20Windermere",
   "Subway Windermere": "https://www.instagram.com/subway/",
@@ -129,7 +129,7 @@ const IG_MAP: Record<string, string> = {
   "Urban Flats": "https://www.instagram.com/plantstreetmarket/",
   "MoonCricket Grille": "https://www.instagram.com/mooncricketgrille/",
   "The Whole Enchilada": "https://www.instagram.com/wholeenchiladafl/",
-  "Plant St. Market - PressÃ¢â‚¬â„¢d": "https://www.instagram.com/plantstreetmarket/",
+  "Plant St. Market - Press’d": "https://www.instagram.com/plantstreetmarket/",
   "Five Guys Winter Garden": "https://www.instagram.com/fiveguys/",
 
   // 21 - Altamonte Springs
@@ -148,8 +148,8 @@ const IG_MAP: Record<string, string> = {
 
   // 23 - Oak Ridge
   "Red Lobster Oak Ridge": "https://www.instagram.com/redlobster/",
-  "Azteca DÃ¢â‚¬â„¢Oro Mexican Restaurant": "https://www.instagram.com/aztecadorofl/",
-  "CheddarÃ¢â‚¬â„¢s Scratch Kitchen Oak Ridge": "https://www.instagram.com/cheddarskitchen/",
+  "Azteca D’Oro Mexican Restaurant": "https://www.instagram.com/aztecadorofl/",
+  "Cheddar’s Scratch Kitchen Oak Ridge": "https://www.instagram.com/cheddarskitchen/",
   "Greenbeat Oak Ridge": "https://www.instagram.com/greenbeatlife/",
   "Taco Bell Oak Ridge": "https://www.instagram.com/tacobell/",
 
@@ -163,9 +163,9 @@ const IG_MAP: Record<string, string> = {
   // 25 - Maingate West
   "Cracker Barrel Maingate West": "https://www.instagram.com/crackerbarrel/",
   "El Ranchito Mexican Grill": "https://www.instagram.com/explore/search/keyword/?q=El%20Ranchito%20Mexican%20Grill%20Kissimmee",
-  "GiordanoÃ¢â‚¬â„¢s Maingate": "https://www.instagram.com/explore/search/keyword/?q=Giordano%27s%20Pizza%20Orlando",
+  "Giordano’s Maingate": "https://www.instagram.com/explore/search/keyword/?q=Giordano%27s%20Pizza%20Orlando",
   "Panera Bread Maingate": "https://www.instagram.com/panerabread/",
-  "WendyÃ¢â‚¬â„¢s Maingate West": "https://www.instagram.com/wendys/",
+  "Wendy’s Maingate West": "https://www.instagram.com/wendys/",
 
   // 26 - Bonnet Creek
   "Bull & Bear": "https://www.instagram.com/waldorforlando/",
@@ -174,6 +174,12 @@ const IG_MAP: Record<string, string> = {
   "Zeta Asia": "https://www.instagram.com/waldorforlando/",
   "Subway Bonnet Creek": "https://www.instagram.com/subway/",
 
+  // 27 - Bay Lake (Disney)
+  "Steakhouse 71": "https://www.instagram.com/disneyparks/",
+  "Be Our Guest Restaurant": "https://www.instagram.com/disneyparks/",
+  "Chef Mickey's": "https://www.instagram.com/disneyparks/",
+  "California Grill": "https://www.instagram.com/disneyparks/",
+  "Cosmic Ray's Starlight Café": "https://www.instagram.com/disneyparks/",
 
   // 28 - Flamingo Crossings
   "PDQ Flamingo Crossings": "https://www.instagram.com/eatpdq/",
@@ -193,21 +199,21 @@ const IG_MAP: Record<string, string> = {
   "The Ravenous Pig": "https://www.instagram.com/theravenouspig/",
   "Bulla Gastrobar": "https://www.instagram.com/bullagastrobar/",
   "Hillstone Restaurant": "https://www.instagram.com/hillstonerestaurant/",
-  "First Watch Ã¢â‚¬â€œ Winter Park": "https://www.instagram.com/firstwatch/",
+  "First Watch – Winter Park": "https://www.instagram.com/firstwatch/",
   "BurgerFi Winter Park": "https://www.instagram.com/burgerfi/",
 
   // 31 - Osceola Parkway
   "Olive Garden Osceola": "https://www.instagram.com/olivegarden/",
   "T-Rex Cafe (The Loop/Bay Lake routing)": "https://www.instagram.com/t_rexcafe/",
-  "CheddarÃ¢â‚¬â„¢s Scratch Kitchen (The Loop)": "https://www.instagram.com/cheddarskitchen/",
-  "Panera Bread Ã¢â‚¬â€œ The Loop": "https://www.instagram.com/panerabread/",
+  "Cheddar’s Scratch Kitchen (The Loop)": "https://www.instagram.com/cheddarskitchen/",
+  "Panera Bread – The Loop": "https://www.instagram.com/panerabread/",
   "Taco Bell Osceola": "https://www.instagram.com/tacobell/",
 
   // 32 - Millenia Area
   "Earls Kitchen + Bar": "https://www.instagram.com/earlsonly/",
-  "P.F. ChangÃ¢â‚¬â„¢s": "https://www.instagram.com/pfchangs/",
-  "The Cheesecake Factory Ã¢â‚¬â€œ Millenia": "https://www.instagram.com/cheesecakefactory/",
-  "Panera Bread Ã¢â‚¬â€œ Millenia Plaza": "https://www.instagram.com/panerabread/",
+  "P.F. Chang’s": "https://www.instagram.com/pfchangs/",
+  "The Cheesecake Factory – Millenia": "https://www.instagram.com/cheesecakefactory/",
+  "Panera Bread – Millenia Plaza": "https://www.instagram.com/panerabread/",
   "Chick-fil-A Millenia": "https://www.instagram.com/chickfila/",
 
   // 33 - Southchase
@@ -220,19 +226,19 @@ const IG_MAP: Record<string, string> = {
   // 34 - Baldwin Park
   "The Osprey": "https://www.instagram.com/theospreyorlando/",
   "Seito Sushi": "https://www.instagram.com/seitobp/",
-  "Gators Dockside Ã¢â‚¬â€œ Baldwin Park": "https://www.instagram.com/gatorsdockside/",
+  "Gators Dockside – Baldwin Park": "https://www.instagram.com/gatorsdockside/",
   "Green Kitchen": "https://www.instagram.com/greenkitchenorlando/",
   "Subway Baldwin Park": "https://www.instagram.com/subway/",
 
   // 35 - Sand Lake Road Area
-  "RuthÃ¢â‚¬â„¢s Chris Steak House (Sand Lake)": "https://www.instagram.com/ruthschris/",
+  "Ruth’s Chris Steak House (Sand Lake)": "https://www.instagram.com/ruthschris/",
   "Benihana I-Drive": "https://www.instagram.com/benihanarestaurants/",
   "Seasons 52 (Sand Lake)": "https://www.instagram.com/seasons52/",
   "True Food Kitchen": "https://www.instagram.com/truefoodkitchen/",
-  "WendyÃ¢â‚¬â„¢s Sand Lake": "https://www.instagram.com/wendys/",
+  "Wendy’s Sand Lake": "https://www.instagram.com/wendys/",
 
   // 36 - North Kissimmee
-  "LoganÃ¢â‚¬â„¢s Roadhouse (North Kissimmee)": "https://www.instagram.com/logansroadhouse/",
+  "Logan’s Roadhouse (North Kissimmee)": "https://www.instagram.com/logansroadhouse/",
   "El Tenampa (North Kissimmee)": "https://www.instagram.com/explore/search/keyword/?q=El%20Tenampa%20Kissimmee",
   "Cracker Barrel Old Country Store": "https://www.instagram.com/crackerbarrel/",
   "Vitality Bowls (North Kissimmee)": "https://www.instagram.com/vitalitybowls/",

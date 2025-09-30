@@ -1,4 +1,4 @@
-﻿ï»¿// src/navigation/RootStack.tsx
+// src/navigation/RootStack.tsx
 import React from 'react';
 import { Platform } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -6,13 +6,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Telas principais (import direto evita require cycles)
 import MenuPrincipal from '@/screens/inicio/MenuPrincipal';
 
-// Ã°Å¸Å½Â¥ Tela de vÃƒÂ­deo
+// 🎥 Tela de vídeo
 import YouTubePlayerScreen from '@/logic/media/YouTubePlayerScreen';
 
-// Ã°Å¸Â§Â¾ WebView de cardÃƒÂ¡pio
+// 🧾 WebView de cardápio
 import MenuWebScreen from '@/logic/menu/MenuWebScreen';
 
-// Ã°Å¸ÂÂ½Ã¯Â¸Â Tela de refeiÃƒÂ§ÃƒÂµes
+// 🍽️ Tela de refeições
 import TelaRefeicoes from '@/logic/menu/TelaRefeicoes';
 
 /** Tipagem das rotas internas do App (stack logado) */
@@ -31,9 +31,9 @@ export default function RootStack() {
       initialRouteName="MenuPrincipal"
       screenOptions={{
         headerShown: false,
-        // evita botÃƒÂ£o "Back" com texto no iOS antigo
+        // evita botão "Back" com texto no iOS antigo
         ...(Platform.OS !== 'web' && { headerBackTitleVisible: false }),
-        // animaÃƒÂ§ÃƒÂ£o padrÃƒÂ£o mais suave
+        // animação padrão mais suave
         animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
         // performance
         gestureEnabled: true,

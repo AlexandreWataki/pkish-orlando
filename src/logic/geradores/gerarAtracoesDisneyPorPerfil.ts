@@ -1,4 +1,4 @@
-﻿ï»¿import { AtividadeDia } from '@/logic/types/atividade';
+import { AtividadeDia } from '@/logic/types/atividade';
 import { AtracaoParque } from '@/logic/types/atracao';
 import { atracoesDisney } from './todasAtracoesDisney';
 
@@ -42,7 +42,7 @@ export function gerarAtracoesDisneyPorPerfil(
     .map((atracao) => ({
       id: atracao.id ?? `${atracao.titulo}-${turno}`,
       tipo: 'atracao',
-      titulo: atracao.titulo ?? 'Sem tÃƒÂ­tulo',
+      titulo: atracao.titulo ?? 'Sem título',
       descricao: atracao.descricao ?? '',
       subtitulo: atracao.subtitulo ?? atracao.area ?? atracao.regiao ?? '',
       regiao: atracao.regiao,

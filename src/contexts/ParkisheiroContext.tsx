@@ -1,4 +1,4 @@
-﻿ï»¿import React, { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addDays, format } from 'date-fns';
 import { buscarClima } from '@/logic/clima/buscarclima';
@@ -62,13 +62,13 @@ type RegiaoHospedagem = {
 type VooChegada = { aeroporto?: string; horario?: string; horarioHora?: string };
 type VooSaida = { aeroporto?: string; horario?: string; horarioHora?: string };
 
-/** Tipos para IA (compatÃƒÂ­vel com seu IAventureSeScreen atual) */
+/** Tipos para IA (compatível com seu IAventureSeScreen atual) */
 export type PreferenciasIA = {
   dataInicial: string;
   dataFinal: string;
   adultos: number;
   criancas: number;
-  parques: string; // separado por vÃƒÂ­rgula
+  parques: string; // separado por vírgula
   ritmo: 'lento' | 'medio' | 'rapido';
   orcamentoPorDia: number;
   perfilRefeicoes: string;
@@ -119,25 +119,25 @@ export const USUARIO_ATUAL_KEY = '@OrlandoApp:usuarioAtual';
 const IA_PREFS = 'IA_PREFS';
 const IA_ROTEIRO = 'IA_ROTEIRO';
 
-/** Context Type Ã¢â‚¬â€ adicionadas as propriedades/aÃƒÂ§ÃƒÂµes de IA */
+/** Context Type — adicionadas as propriedades/ações de IA */
 type ParkisheiroContextType = {
   parkisheiros: Parkisheiro[];
   parkisheiroAtual: Parkisheiro;
   regiaoHospedagem: RegiaoHospedagem | null;
   escolhasPorTurno: EscolhasPorTurno;
 
-  // UsuÃƒÂ¡rios / sessÃƒÂ£o
+  // Usuários / sessão
   adicionarParkisheiro: (novo: Parkisheiro) => void;
   atualizarParkisheiro: (id: string, dados: Partial<Parkisheiro>) => void;
   loginParkisheiro: (email: string, senha: string) => Parkisheiro | null;
   setUsuarioAtual: (usuario: Parkisheiro) => void;
 
-  // DistribuiÃƒÂ§ÃƒÂ£o / dias
+  // Distribuição / dias
   setTipoManualDoDia: (index: number, dia: DiaManual) => void;
   gerarRoteiroFinal: () => Promise<void>;
   setHorarioVoo: (tipo: 'chegada' | 'saida', valor: string) => void;
 
-  // Local / navegaÃƒÂ§ÃƒÂ£o
+  // Local / navegação
   setRegiaoHospedagem: (regiao: RegiaoHospedagem | null) => void;
   getLocalHospedagem: () => RegiaoHospedagem | null;
   salvarEscolhaTurno: (diaId: string, turno: string, atividade: string) => void;
@@ -153,7 +153,7 @@ type ParkisheiroContextType = {
     perfil: { valor: string[]; nome?: string[]; icone?: string[] }
   ) => Promise<void>;
 
-  // IA Ã¢â‚¬â€ NOVO
+  // IA — NOVO
   preferenciasIA: PreferenciasIA | null;
   roteiroIA: RoteiroIATipo | null;
   salvarRoteiroIA: (r: RoteiroIATipo, prefs?: PreferenciasIA) => Promise<void>;
@@ -164,11 +164,11 @@ type ParkisheiroContextType = {
   limparRoteiroFinal: () => Promise<void>;
 };
 
-/** InstÃƒÂ¢ncia e hook */
+/** Instância e hook */
 const ParkisheiroContext = createContext<ParkisheiroContextType>({} as ParkisheiroContextType);
 export const useParkisheiro = () => useContext(ParkisheiroContext);
 
-/** Estado inicial do usuÃƒÂ¡rio atual */
+/** Estado inicial do usuário atual */
 export let parkisheiroAtual: Parkisheiro = {
   id: 'default',
   nome: '',
@@ -183,7 +183,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
   const [escolhasPorTurno, setEscolhasPorTurno] = useState<EscolhasPorTurno>({});
   const [parkisheiroAtualState, setParkisheiroAtual] = useState<Parkisheiro>(parkisheiroAtual);
 
-  /** IA Ã¢â‚¬â€ estado */
+  /** IA — estado */
   const [preferenciasIA, setPreferenciasIA] = useState<PreferenciasIA | null>(null);
   const [roteiroIA, setRoteiroIA] = useState<RoteiroIATipo | null>(null);
 
@@ -221,7 +221,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
     carregar();
   }, []);
 
-  /** PersistÃƒÂªncias */
+  /** Persistências */
   useEffect(() => {
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(parkisheiros)).catch(console.warn);
   }, [parkisheiros]);
@@ -231,7 +231,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
     parkisheiroAtual = { ...parkisheiroAtualState };
   }, [parkisheiroAtualState]);
 
-  /** AÃƒÂ§ÃƒÂµes base */
+  /** Ações base */
   const adicionarParkisheiro = (novo: Parkisheiro) => {
     setParkisheiros(prev => [...prev, novo]);
     setParkisheiroAtual(novo);
@@ -342,7 +342,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
         const climaCompleto = await buscarClima('Orlando');
         clima = climaCompleto
           ? {
-              temperatura: `${climaCompleto.temp}Ã‚Â°C`,
+              temperatura: `${climaCompleto.temp}°C`,
               condicao: climaCompleto.condicao,
               icone: climaCompleto.icone,
             }
@@ -389,7 +389,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
     atualizarParkisheiro(parkisheiroAtualState.id, { perfis: perfisAtualizados });
   };
 
-  /** Ã¢Å“â€¦ Agora atualiza roteiroFinal e diasDistribuidosManuais */
+  /** ✅ Agora atualiza roteiroFinal e diasDistribuidosManuais */
   const atualizarPerfilDescansoPorDia = async (data: string, perfil: string) => {
     const novoRoteiro = (parkisheiroAtualState.roteiroFinal || []).map((dia) =>
       format(dia.data, 'yyyy-MM-dd') === data
@@ -412,7 +412,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  /** Ã¢Å“â€¦ Agora atualiza roteiroFinal e diasDistribuidosManuais */
+  /** ✅ Agora atualiza roteiroFinal e diasDistribuidosManuais */
   const atualizarPerfilComprasPorDia = async (data: string, perfil: string) => {
     const novoRoteiro = (parkisheiroAtualState.roteiroFinal || []).map((dia) =>
       format(dia.data, 'yyyy-MM-dd') === data
@@ -460,7 +460,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  /** IA Ã¢â‚¬â€ aÃƒÂ§ÃƒÂµes */
+  /** IA — ações */
   const salvarRoteiroIA = useCallback(async (r: RoteiroIATipo, prefs?: PreferenciasIA) => {
     setRoteiroIA(r);
     if (prefs) {
@@ -484,7 +484,7 @@ export const ParkisheiroProvider = ({ children }: { children: ReactNode }) => {
     await AsyncStorage.multiRemove([IA_PREFS, IA_ROTEIRO]);
   }, []);
 
-  /** Limpeza geral (mantida sua lÃƒÂ³gica) */
+  /** Limpeza geral (mantida sua lógica) */
   const limparRoteiroFinal = async () => {
     const atualizado = {
       ...parkisheiroAtualState,

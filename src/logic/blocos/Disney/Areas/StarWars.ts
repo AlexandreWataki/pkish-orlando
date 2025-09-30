@@ -1,17 +1,17 @@
-﻿ï»¿export const StarWars = {
+export const StarWars = {
   parque: "Hollywood Studios",
-  regiao: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+  regiao: "Star Wars: Galaxy’s Edge",
   latitude: 28.3541,
   longitude: -81.5909,
   descricao:
-    "ÃƒÂrea totalmente imersiva que recria o planeta Batuu, com naves em escala real, lojas temÃƒÂ¡ticas, interaÃƒÂ§ÃƒÂµes com personagens e duas atraÃƒÂ§ÃƒÂµes ÃƒÂ©picas do universo Star Wars.",
+    "Área totalmente imersiva que recria o planeta Batuu, com naves em escala real, lojas temáticas, interações com personagens e duas atrações épicas do universo Star Wars.",
   imagem: "starwarsgalaxyedge.png",
   atracoes: [
     {
       id: "rise-of-the-resistance",
       titulo: "Star Wars: Rise of the Resistance",
-      subtitulo: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
-      tipo: "Aventura imersiva com mÃƒÂºltiplos sistemas",
+      subtitulo: "Star Wars: Galaxy’s Edge",
+      tipo: "Aventura imersiva com múltiplos sistemas",
       tipoPerfil: ["imersivas", "tematicas"],
       alturaMinima: 102,
       filaExpress: false,
@@ -20,10 +20,10 @@
       idadeRecomendada: "7+",
       turnoRecomendado: "manha",
       descricao:
-        "Uma das experiÃƒÂªncias mais tecnolÃƒÂ³gicas da Disney. VocÃƒÂª faz parte da ResistÃƒÂªncia em uma missÃƒÂ£o contra a Primeira Ordem, com mÃƒÂºltiplos ambientes e efeitos surpreendentes.",
-      icone: "Ã°Å¸Å¡â‚¬",
+        "Uma das experiências mais tecnológicas da Disney. Você faz parte da Resistência em uma missão contra a Primeira Ordem, com múltiplos ambientes e efeitos surpreendentes.",
+      icone: "🚀",
       imagem: "rise-of-the-resistance.jpg",
-      regiao: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      regiao: "Star Wars: Galaxy’s Edge",
       parque: "Hollywood Studios",
       latitude: 28.3545,
       longitude: -81.5914
@@ -31,7 +31,7 @@
     {
       id: "millennium-falcon-smugglers-run",
       titulo: "Millennium Falcon: Smugglers Run",
-      subtitulo: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      subtitulo: "Star Wars: Galaxy’s Edge",
       tipo: "Simulador interativo",
       tipoPerfil: ["interativas", "imersivas"],
       alturaMinima: 97,
@@ -41,10 +41,10 @@
       idadeRecomendada: "6+",
       turnoRecomendado: "tarde",
       descricao:
-        "Pilotar a nave mais famosa da galÃƒÂ¡xia em uma missÃƒÂ£o como piloto, atirador ou engenheiro. A atraÃƒÂ§ÃƒÂ£o ÃƒÂ© interativa e muda conforme o desempenho do grupo.",
-      icone: "Ã°Å¸â€ºÂ¸",
+        "Pilotar a nave mais famosa da galáxia em uma missão como piloto, atirador ou engenheiro. A atração é interativa e muda conforme o desempenho do grupo.",
+      icone: "🛸",
       imagem: "millennium-falcon.jpg",
-      regiao: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      regiao: "Star Wars: Galaxy’s Edge",
       parque: "Hollywood Studios",
       latitude: 28.3537,
       longitude: -81.5912
@@ -52,7 +52,7 @@
     {
       id: "encontro-chewbacca",
       titulo: "Encontro com Chewbacca",
-      subtitulo: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      subtitulo: "Star Wars: Galaxy’s Edge",
       tipo: "Personagem para fotos",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
@@ -63,10 +63,10 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Encontre o lendÃƒÂ¡rio Chewbacca em Batuu para tirar fotos e interagir. Ele costuma aparecer prÃƒÂ³ximo ÃƒÂ  ÃƒÂ¡rea da ResistÃƒÂªncia.",
-      icone: "Ã°Å¸Â§Â¸",
+        "Encontre o lendário Chewbacca em Batuu para tirar fotos e interagir. Ele costuma aparecer próximo à área da Resistência.",
+      icone: "🧸",
       imagem: "chewbacca.jpg",
-      regiao: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      regiao: "Star Wars: Galaxy’s Edge",
       parque: "Hollywood Studios",
       latitude: 28.3542,
       longitude: -81.5908
@@ -74,7 +74,7 @@
     {
       id: "encontro-kylo-ren",
       titulo: "Encontro com Kylo Ren",
-      subtitulo: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      subtitulo: "Star Wars: Galaxy’s Edge",
       tipo: "Personagem para fotos",
       tipoPerfil: ["tematicas", "imersivas"],
       alturaMinima: 0,
@@ -85,10 +85,10 @@
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Kylo Ren aparece em patrulhas e interaÃƒÂ§ÃƒÂµes intensas com visitantes. Prepare-se para sentir a forÃƒÂ§a do lado sombrio.",
-      icone: "Ã°Å¸â€“Â¤",
+        "Kylo Ren aparece em patrulhas e interações intensas com visitantes. Prepare-se para sentir a força do lado sombrio.",
+      icone: "🖤",
       imagem: "kylo-ren.jpg",
-      regiao: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      regiao: "Star Wars: Galaxy’s Edge",
       parque: "Hollywood Studios",
       latitude: 28.3540,
       longitude: -81.5906
@@ -96,8 +96,8 @@
     {
       id: "patrulha-stormtroopers",
       titulo: "Patrulha de Stormtroopers",
-      subtitulo: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
-      tipo: "InteraÃƒÂ§ÃƒÂ£o temÃƒÂ¡tica ao ar livre",
+      subtitulo: "Star Wars: Galaxy’s Edge",
+      tipo: "Interação temática ao ar livre",
       tipoPerfil: ["tematicas", "interativas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -107,10 +107,10 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Stormtroopers circulam pela ÃƒÂ¡rea de Galaxy's Edge interagindo com os visitantes de forma divertida (e ÃƒÂ s vezes intimidadora).",
-      icone: "Ã¢Å¡â€Ã¯Â¸Â",
+        "Stormtroopers circulam pela área de Galaxy's Edge interagindo com os visitantes de forma divertida (e às vezes intimidadora).",
+      icone: "⚔️",
       imagem: "stormtroopers.jpg",
-      regiao: "Star Wars: GalaxyÃ¢â‚¬â„¢s Edge",
+      regiao: "Star Wars: Galaxy’s Edge",
       parque: "Hollywood Studios",
       latitude: 28.3543,
       longitude: -81.5911

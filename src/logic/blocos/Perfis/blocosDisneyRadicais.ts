@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/parques/Perfis/blocosDisneyRadicais.ts
+// src/logic/blocos/parques/Perfis/blocosDisneyRadicais.ts
 
 import { BlocoPerfilParque } from '@/logic/types/turno';
 
@@ -56,7 +56,7 @@ export const blocosDisneyRadicais: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Sunset Boulevard', 'Star Wars: GalaxyÃ¢â‚¬â„¢s Edge'],
+        areas: ['Sunset Boulevard', 'Star Wars: Galaxy’s Edge'],
       },
       {
         periodo: 'tarde',
@@ -79,7 +79,7 @@ export const blocosDisneyRadicais: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Pandora Ã¢â‚¬â€œ The World of Avatar'],
+        areas: ['Pandora – The World of Avatar'],
       },
       {
         periodo: 'tarde',

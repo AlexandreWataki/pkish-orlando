@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/descanso/blocosComprasLevesDescanso.ts
+// src/logic/blocos/descanso/blocosComprasLevesDescanso.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
@@ -8,10 +8,10 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Celebration Lake',
     descricaoRegiao:
-      'Durante a manhÃƒÂ£: Ruas arborizadas e clima fresco para iniciar o dia com tranquilidade.\n' +
-      'Lojas: Market Street reÃƒÂºne papelarias, galerias e presentes locais, perfeitos para compras leves.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos ÃƒÂ  sombra ao redor do lago e cafÃƒÂ©s na praÃƒÂ§a central oferecem pausas agradÃƒÂ¡veis.\n' +
-      'Dica: Comece pela trilha do lago, observando os reflexos na ÃƒÂ¡gua, e termine na papelaria artesanal para garantir souvenirs exclusivos.',
+      'Durante a manhã: Ruas arborizadas e clima fresco para iniciar o dia com tranquilidade.\n' +
+      'Lojas: Market Street reúne papelarias, galerias e presentes locais, perfeitos para compras leves.\n' +
+      'Alimentação e descanso: Bancos à sombra ao redor do lago e cafés na praça central oferecem pausas agradáveis.\n' +
+      'Dica: Comece pela trilha do lago, observando os reflexos na água, e termine na papelaria artesanal para garantir souvenirs exclusivos.',
     atividades: [
       {
         tipo: 'descanso',
@@ -22,7 +22,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         longitude: -81.5392,
         local: '631 Sycamore St, Celebration, FL',
         descricao:
-          'Caminhada plana com bancos ÃƒÂ  sombra e vista do lago. Excelente para respirar ar puro e relaxar antes das compras.',
+          'Caminhada plana com bancos à sombra e vista do lago. Excelente para respirar ar puro e relaxar antes das compras.',
       },
       {
         tipo: 'compras',
@@ -33,18 +33,18 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         longitude: -81.5447,
         local: 'Market St, Celebration, FL',
         descricao:
-          'Boutiques charmosas e papelaria artesanal com itens ÃƒÂºnicos. Ideal para quem busca presentes diferenciados.',
+          'Boutiques charmosas e papelaria artesanal com itens únicos. Ideal para quem busca presentes diferenciados.',
       },
       {
         tipo: 'descanso',
-        titulo: 'PraÃƒÂ§a central de Celebration',
+        titulo: 'Praça central de Celebration',
         regiao: 'Celebration',
         area: 'Celebration',
         latitude: 28.3183,
         longitude: -81.5436,
         local: 'Front St, Celebration, FL',
         descricao:
-          'EspaÃƒÂ§o arborizado com bancos e cafÃƒÂ©s ao redor. Bom ponto para observar o movimento antes de seguir passeio.',
+          'Espaço arborizado com bancos e cafés ao redor. Bom ponto para observar o movimento antes de seguir passeio.',
       },
       {
         tipo: 'compras',
@@ -55,7 +55,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         longitude: -81.5439,
         local: 'Front St, Celebration, FL',
         descricao:
-          'Obras de artistas locais, incluindo peÃƒÂ§as inspiradas nos parques da Disney e na cultura regional.',
+          'Obras de artistas locais, incluindo peças inspiradas nos parques da Disney e na cultura regional.',
       },
     ],
   },
@@ -63,11 +63,11 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
     periodo: 'tarde',
     horarioInicio: '13:00',
     horarioFim: '19:00',
-    referencia: 'Waterview Park Ã¢â‚¬â€œ Disney Springs',
+    referencia: 'Waterview Park – Disney Springs',
     descricaoRegiao:
-      'Durante a tarde: Atmosfera vibrante com mÃƒÂºsica ambiente e clima descontraÃƒÂ­do.\n' +
+      'Durante a tarde: Atmosfera vibrante com música ambiente e clima descontraído.\n' +
       'Lojas: Destaque para a World of Disney e o criativo Marketplace Co-Op.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos com vista para o lago e ÃƒÂ¡reas sombreadas garantem pausas agradÃƒÂ¡veis.\n' +
+      'Alimentação e descanso: Bancos com vista para o lago e áreas sombreadas garantem pausas agradáveis.\n' +
       'Dica: Sente-se no Waterview Park para observar barcos e tirar fotos antes de explorar a World of Disney.',
     atividades: [
       {
@@ -77,7 +77,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         area: 'Disney Springs Area',
         latitude: 28.3703,
         longitude: -81.5158,
-        local: 'Disney Springs Ã¢â‚¬â€œ Lake Buena Vista',
+        local: 'Disney Springs – Lake Buena Vista',
         descricao:
           'Microlojas de designers independentes e produtos exclusivos. Visite a WonderGround Gallery para arte Disney alternativa.',
       },
@@ -90,7 +90,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         longitude: -81.5144,
         local: '1486 Buena Vista Dr, Lake Buena Vista, FL',
         descricao:
-          'Bancos voltados para a ÃƒÂ¡gua, sombra natural e brisa suave. Ãƒâ€œtimo para sorvete e fotos.',
+          'Bancos voltados para a água, sombra natural e brisa suave. Ótimo para sorvete e fotos.',
       },
       {
         tipo: 'compras',
@@ -99,20 +99,20 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         area: 'Disney Springs Area',
         latitude: 28.3706,
         longitude: -81.5159,
-        local: 'Disney Springs Ã¢â‚¬â€œ Lake Buena Vista',
+        local: 'Disney Springs – Lake Buena Vista',
         descricao:
-          'Maior loja temÃƒÂ¡tica da Disney, com itens exclusivos e ediÃƒÂ§ÃƒÂµes limitadas.',
+          'Maior loja temática da Disney, com itens exclusivos e edições limitadas.',
       },
       {
         tipo: 'descanso',
-        titulo: 'ÃƒÂrea verde prÃƒÂ³xima ÃƒÂ  ponte',
+        titulo: 'Área verde próxima à ponte',
         regiao: 'Disney Springs Area',
         area: 'Disney Springs Area',
         latitude: 28.3701,
         longitude: -81.5162,
-        local: 'Disney Springs Ã¢â‚¬â€œ Lake Buena Vista',
+        local: 'Disney Springs – Lake Buena Vista',
         descricao:
-          'Sombra agradÃƒÂ¡vel e vista privilegiada para o pÃƒÂ´r do sol sobre a ponte.',
+          'Sombra agradável e vista privilegiada para o pôr do sol sobre a ponte.',
       },
     ],
   },
@@ -122,9 +122,9 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
     horarioFim: '23:59',
     referencia: 'Pointe Orlando',
     descricaoRegiao:
-      'Durante a noite: A I-Drive iluminada cria um ambiente agradÃƒÂ¡vel para passeios descontraÃƒÂ­dos.\n' +
-      'Lojas: Pointe Orlando e Premium Outlets com corredores mais vazios e confortÃƒÂ¡veis.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: PraÃƒÂ§as com bancos e fontes prÃƒÂ³ximas ao ICON Park.\n' +
+      'Durante a noite: A I-Drive iluminada cria um ambiente agradável para passeios descontraídos.\n' +
+      'Lojas: Pointe Orlando e Premium Outlets com corredores mais vazios e confortáveis.\n' +
+      'Alimentação e descanso: Praças com bancos e fontes próximas ao ICON Park.\n' +
       'Dica: Finalize o passeio no letreiro iluminado do ICON Park com a roda-gigante ao fundo.',
     atividades: [
       {
@@ -136,7 +136,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         longitude: -81.4513,
         local: '4951 International Dr, Orlando, FL',
         descricao:
-          'Grandes marcas com descontos atraentes; ÃƒÂ  noite, o ambiente ÃƒÂ© mais calmo.',
+          'Grandes marcas com descontos atraentes; à noite, o ambiente é mais calmo.',
       },
       {
         tipo: 'descanso',
@@ -147,7 +147,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
         longitude: -81.4513,
         local: '4951 International Dr, Orlando, FL',
         descricao:
-          'ÃƒÂreas arborizadas com fontes para descansar entre as compras.',
+          'Áreas arborizadas com fontes para descansar entre as compras.',
       },
       {
         tipo: 'compras',
@@ -162,7 +162,7 @@ export const blocosComprasLevesDescanso: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'PraÃƒÂ§a ao ar livre do ICON Park',
+        titulo: 'Praça ao ar livre do ICON Park',
         regiao: 'International Drive',
         area: 'International Drive',
         latitude: 28.4442,

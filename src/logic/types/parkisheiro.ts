@@ -1,4 +1,4 @@
-﻿import { Regiao } from './regioesHospedagem';
+import { Regiao } from './regioesHospedagem';
 import { EstiloRefeicao } from './perfilRefeicao';
 
 export type DiasDistribuidos = {

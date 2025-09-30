@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/dias/DiaParqueDisney.tsx
+// src/screens/dias/DiaParqueDisney.tsx
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -95,7 +95,7 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
 
   if (!dia) return <Text style={styles.texto}>Carregando...</Text>;
 
-  // Helpers para REF EIÃƒâ€¡ÃƒÆ’O
+  // Helpers para REF EIÇÃO
   const semRotulo = (txt?: string) =>
     (txt ?? '')
       .replace(/^ *Acesso *: */i, '')
@@ -103,7 +103,7 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
       .trim();
 
   const removerPrecoDentro = (txt: string) =>
-    txt.replace(/(?:^|\s)pre(ÃƒÂ§|c)o\s*m[eÃƒÂ©]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
+    txt.replace(/(?:^|\s)pre(ç|c)o\s*m[eé]dio\s*:\s*\$?\s*\d+[.,]?\d*\s*\.?/gi, '').trim();
 
   const extrairTipoPerfil = (a: any): string | undefined => {
     const bruto =
@@ -123,12 +123,12 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
   const extrairPreco = (a: any): string | undefined => {
     const bruto = a?.precoMedio ?? a?.preco ?? a?.precoEstimado;
     if (bruto === undefined || bruto === null || bruto === '') return undefined;
-    if (typeof bruto === 'number') return `$ ${bruto}`; // espaÃƒÂ§o apÃƒÂ³s $
+    if (typeof bruto === 'number') return `$ ${bruto}`; // espaço após $
     return String(bruto).trim().replace(/^\$(\S)/, '$ $1'); // normaliza "$12" -> "$ 12"
   };
 
   const montarLinhaMeta = (preco?: string, tipo?: string): string =>
-    preco && tipo ? `PreÃƒÂ§o MÃƒÂ©dio: ${preco} - ${tipo}` : preco ? `PreÃƒÂ§o MÃƒÂ©dio: ${preco}` : tipo ?? '';
+    preco && tipo ? `Preço Médio: ${preco} - ${tipo}` : preco ? `Preço Médio: ${preco}` : tipo ?? '';
 
   const renderAtividade = (atividade: AtividadeDia, index: number, periodo?: string) => {
     const wrapper = (content: React.ReactNode) => (
@@ -140,29 +140,29 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
       // sufixo (de acordo com tipo/periodo)
       let tipoRefeicao =
         atividade.tipo === 'cafe'
-          ? 'CafÃƒÂ© da ManhÃƒÂ£'
+          ? 'Café da Manhã'
           : atividade.tipo === 'almoco'
-          ? 'AlmoÃƒÂ§o'
+          ? 'Almoço'
           : atividade.tipo === 'jantar'
           ? 'Jantar'
           : periodo === 'manha'
-          ? 'CafÃƒÂ© da ManhÃƒÂ£'
+          ? 'Café da Manhã'
           : periodo === 'tarde'
-          ? 'AlmoÃƒÂ§o'
+          ? 'Almoço'
           : periodo === 'noite'
           ? 'Jantar'
           : '';
 
-      // tÃƒÂ­tulo (remove sufixo antigo e reaplica)
-      const tituloBase = (atividade.titulo || '').split(' Ã¢â‚¬â€œ ')[0].trim();
-      const titulo = tipoRefeicao ? `${tituloBase} Ã¢â‚¬â€œ ${tipoRefeicao}` : tituloBase;
+      // título (remove sufixo antigo e reaplica)
+      const tituloBase = (atividade.titulo || '').split(' – ')[0].trim();
+      const titulo = tipoRefeicao ? `${tituloBase} – ${tipoRefeicao}` : tituloBase;
 
-      // linha meta "PreÃƒÂ§o MÃƒÂ©dio: $ 12 - EconÃƒÂ´mico"
+      // linha meta "Preço Médio: $ 12 - Econômico"
       const tipoPerfil = extrairTipoPerfil(atividade as any);
       const preco = extrairPreco(atividade as any);
       const linhaMeta = montarLinhaMeta(preco, tipoPerfil);
 
-      // textos: sÃƒÂ³ descritivos (sem rÃƒÂ³tulos) e sem "PreÃƒÂ§o mÃƒÂ©dio" embutido
+      // textos: só descritivos (sem rótulos) e sem "Preço médio" embutido
       const acesso = semRotulo(
         (atividade as any).acesso ?? (atividade as any).ondeFica ?? atividade.local
       );
@@ -183,8 +183,8 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
           titulo={titulo}
           tipoRefeicao={tipoRefeicao}
           regiao={undefined}                 // evitamos depender de 'regiao'
-          descricao={descricaoComMeta}       // 1Ã‚Âª linha: meta | 2Ã‚Âª: destaque
-          local={acesso || ''}               // sÃƒÂ³ o descritivo (ex.: "Dentro do Disney Springs")
+          descricao={descricaoComMeta}       // 1ª linha: meta | 2ª: destaque
+          local={acesso || ''}               // só o descritivo (ex.: "Dentro do Disney Springs")
         />
       );
     }
@@ -196,11 +196,11 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
     if (atividade.tipo === 'informativa') {
       const titulo = atividade.titulo?.toLowerCase() || '';
 
-      // forÃƒÂ§a roxo para dicas do dia e ÃƒÂ¡reas
+      // força roxo para dicas do dia e áreas
       const tipoCard =
-        titulo.includes('dicas') || titulo.startsWith('ÃƒÂ¡rea:')
+        titulo.includes('dicas') || titulo.startsWith('área:')
           ? 'noite'
-          : titulo.includes('informaÃƒÂ§ÃƒÂµes importantes')
+          : titulo.includes('informações importantes')
           ? 'importante'
           : titulo.includes('noite') || titulo.includes('show') || titulo.includes('fogos')
           ? 'noite'
@@ -226,7 +226,7 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
     <View style={styles.container}>
       {cardTransporteChegada && (
         <View style={styles.cardWrapper}>
-          <CardSecao titulo="Transporte atÃƒÂ© o Parque" icone="car-outline" tipo="chegada">
+          <CardSecao titulo="Transporte até o Parque" icone="car-outline" tipo="chegada">
             {cardTransporteChegada}
           </CardSecao>
         </View>
@@ -247,7 +247,7 @@ export const DiaParqueDisney = ({ diaBruto }: {diaBruto: Dia }) => {
             ? 'Tarde'
             : turno.titulo.includes('Noite')
             ? 'Noite'
-            : 'ManhÃƒÂ£';
+            : 'Manhã';
 
           return (
             <View key={`turno-${i}`} style={styles.cardWrapper}>

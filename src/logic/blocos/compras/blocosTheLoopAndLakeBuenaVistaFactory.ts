@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/descanso/blocosTheLoopAndLakeBuenaVistaFactory.ts
+// src/logic/blocos/descanso/blocosTheLoopAndLakeBuenaVistaFactory.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
@@ -8,16 +8,16 @@ export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'The Loop Kissimmee',
     descricaoRegiao:
-      'Durante a manhÃƒÂ£: Clima fresco, lojas organizadas e pouco movimento.\n' +
+      'Durante a manhã: Clima fresco, lojas organizadas e pouco movimento.\n' +
       'Lojas: Ross, Old Navy, TJ Maxx, Five Below e Best Buy.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos cobertos e cafÃƒÂ©s prÃƒÂ³ximos ao cinema.\n' +
+      'Alimentação e descanso: Bancos cobertos e cafés próximos ao cinema.\n' +
       'Dica: Comece pela Ross e depois TJ Maxx para achar os melhores itens.',
     atividades: [
       {
         tipo: 'compras',
-        titulo: 'The Loop Ã¢â‚¬â€œ compras a cÃƒÂ©u aberto',
+        titulo: 'The Loop – compras a céu aberto',
         descricao:
-          'Ambiente espaÃƒÂ§oso com Ross, Old Navy, TJ Maxx, Best Buy e Five Below. Ãƒâ€œtimo para explorar com calma.',
+          'Ambiente espaçoso com Ross, Old Navy, TJ Maxx, Best Buy e Five Below. Ótimo para explorar com calma.',
         local: '3208 N John Young Pkwy, Kissimmee, FL',
         regiao: 'The Loop',
         area: 'The Loop',
@@ -26,9 +26,9 @@ export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'ÃƒÂrea de descanso central',
+        titulo: 'Área de descanso central',
         descricao:
-          'Bancos e mesas prÃƒÂ³ximas ao cinema, ideais para pausa ÃƒÂ  sombra.',
+          'Bancos e mesas próximas ao cinema, ideais para pausa à sombra.',
         local: '3208 N John Young Pkwy, Kissimmee, FL',
         regiao: 'The Loop',
         area: 'The Loop',
@@ -44,15 +44,15 @@ export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
     referencia: 'Lake Buena Vista Factory Stores',
     descricaoRegiao:
       'Durante a tarde: Outlet tranquilo e arborizado.\n' +
-      'Lojas: Converse, LeviÃ¢â‚¬â„¢s, Reebok, Timberland e Rawlings.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos sombreados no centro.\n' +
-      'Dica: Visite a Timberland para promoÃƒÂ§ÃƒÂµes de mochila e tÃƒÂªnis.',
+      'Lojas: Converse, Levi’s, Reebok, Timberland e Rawlings.\n' +
+      'Alimentação e descanso: Bancos sombreados no centro.\n' +
+      'Dica: Visite a Timberland para promoções de mochila e tênis.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Lake Buena Vista Factory Stores',
         descricao:
-          'Lojas de marca com preÃƒÂ§os competitivos e pouco movimento. Timberland com combos promocionais.',
+          'Lojas de marca com preços competitivos e pouco movimento. Timberland com combos promocionais.',
         local: '15657 S Apopka Vineland Rd, Orlando, FL',
         regiao: 'Lake Buena Vista',
         area: 'Lake Buena Vista',
@@ -61,9 +61,9 @@ export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'ÃƒÂrea sombreada central',
+        titulo: 'Área sombreada central',
         descricao:
-          'Bancos e mesas no centro do outlet, perfeitos para um cafÃƒÂ© tranquilo.',
+          'Bancos e mesas no centro do outlet, perfeitos para um café tranquilo.',
         local: '15657 S Apopka Vineland Rd, Orlando, FL',
         regiao: 'Lake Buena Vista',
         area: 'Lake Buena Vista',
@@ -79,15 +79,15 @@ export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
     referencia: 'The Loop Kissimmee',
     descricaoRegiao:
       'Durante a noite: Clima calmo e iluminado, ideal para passeio leve.\n' +
-      'Lojas: TJ Maxx e Best Buy abertas atÃƒÂ© mais tarde.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos iluminados e mÃƒÂºsica ambiente.\n' +
-      'Dica: Revise a TJ Maxx ÃƒÂ  noite para achar promoÃƒÂ§ÃƒÂµes.',
+      'Lojas: TJ Maxx e Best Buy abertas até mais tarde.\n' +
+      'Alimentação e descanso: Bancos iluminados e música ambiente.\n' +
+      'Dica: Revise a TJ Maxx à noite para achar promoções.',
     atividades: [
       {
         tipo: 'descanso',
         titulo: 'Passeio noturno no The Loop',
         descricao:
-          'Caminhada leve com iluminaÃƒÂ§ÃƒÂ£o suave e menos movimento.',
+          'Caminhada leve com iluminação suave e menos movimento.',
         local: '3208 N John Young Pkwy, Kissimmee, FL',
         regiao: 'The Loop',
         area: 'The Loop',
@@ -96,9 +96,9 @@ export const blocosTheLoopAndLakeBuenaVistaFactory: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'compras',
-        titulo: 'TJ Maxx Ã¢â‚¬â€œ compras noturnas',
+        titulo: 'TJ Maxx – compras noturnas',
         descricao:
-          'Ãƒâ€œtimo para garimpar roupas e itens de casa com mais tranquilidade.',
+          'Ótimo para garimpar roupas e itens de casa com mais tranquilidade.',
         local: '3208 N John Young Pkwy, Kissimmee, FL',
         regiao: 'The Loop',
         area: 'The Loop',

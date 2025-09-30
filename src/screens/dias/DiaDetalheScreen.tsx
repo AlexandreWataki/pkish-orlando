@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/dias/DiaDetalheScreen.tsx
+// src/screens/dias/DiaDetalheScreen.tsx
 import React, { useState, useEffect } from 'react';
 import {
   ScrollView,
@@ -101,11 +101,11 @@ const DiaDetalheScreen = () => {
     ? format(new Date(diaBruto.data), 'EEEE', { locale: ptBR })
     : '';
 
-  // Ã¢Å“â€¦ sem datas no texto do scroll/lista
+  // ✅ sem datas no texto do scroll/lista
   const getNomeDisplay = (d: any) => {
     if (!d) return '';
     if (d.tipo === 'chegada') return 'Chegada em Orlando';
-    if (d.tipo === 'saida') return 'SaÃƒÂ­da de Orlando';
+    if (d.tipo === 'saida') return 'Saída de Orlando';
     if (d.tipo === 'compras') return 'Dia de Compras';
     if (d.tipo === 'descanso') return 'Dia de Descanso';
     return d.nomeParque || (d.tipo === 'disney'
@@ -116,7 +116,7 @@ const DiaDetalheScreen = () => {
   };
 
   const renderDiaEspecifico = (dia: typeof diaBruto | null) => {
-    if (!dia) return <Text style={styles.textoJustificado}>Dia nÃƒÂ£o encontrado.</Text>;
+    if (!dia) return <Text style={styles.textoJustificado}>Dia não encontrado.</Text>;
     switch (dia.tipo) {
       case 'chegada':   return <DiaChegada diaBruto={dia} />;
       case 'compras':   return <DiaCompras diaBruto={dia} />;
@@ -131,7 +131,7 @@ const DiaDetalheScreen = () => {
   if (!diaBruto) {
     return (
       <View style={styles.emptyContainer}>
-        <Text style={styles.emptyText}>Ã°Å¸Å¡Â« Dia nÃƒÂ£o encontrado. Verifique o roteiro.</Text>
+        <Text style={styles.emptyText}>🚫 Dia não encontrado. Verifique o roteiro.</Text>
       </View>
     );
   }
@@ -144,7 +144,7 @@ const DiaDetalheScreen = () => {
   };
 
   const mostrarCardBranco = () => {
-    Alert.alert('Ã°Å¸â€œâ€“ Roteiro salvo!', 'VocÃƒÂª pode acessar em "ÃƒÅ¡ltimo Roteiro" no menu.', [
+    Alert.alert('📖 Roteiro salvo!', 'Você pode acessar em "Último Roteiro" no menu.', [
       { text: 'OK', onPress: () => navigation.navigate('MenuPrincipal') },
     ]);
   };
@@ -162,20 +162,27 @@ const DiaDetalheScreen = () => {
 
   return (
     <LinearGradient
-      colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={{ flex: 1 }}
-    >
-      {/* CabeÃƒÂ§alho mantÃƒÂ©m a data */}
+  colors={[
+    '#0077cc', // azul piscina
+    '#00c5d4', // turquesa
+    '#f5deb3', // areia clara
+    '#ffffff', // branco normal
+    '#ffffff', // branco final (rasinho bem claro)
+  ]}
+  locations={[0, 0.25, 0.5, 0.78, 1]} // últimos 22% já brancos
+  start={{ x: 0, y: 0 }}
+  end={{ x: 0, y: 1 }}
+  style={{ flex: 1 }}
+>
+
+      {/* Cabeçalho mantém a data */}
       <View style={styles.cabecalho}>
         <CabecalhoDia
           titulo=""
           data={dataCabecalho}
           diaSemana={nomeDoDia}
           clima={clima?.condicao || undefined}
-          temperatura={clima?.temp != null ? `${clima.temp}Ã‚Â°C` : undefined}
+          temperatura={clima?.temp != null ? `${clima.temp}°C` : undefined}
           iconeClima={clima?.icone}
         />
       </View>
@@ -228,11 +235,11 @@ const DiaDetalheScreen = () => {
           )}
         </View>
 
-        {/* Ã°Å¸â€Âµ SOMENTE nos dias de parque: ÃƒÂ­cone piscante + "guia nÃƒÂ£o oficial" (sem card) */}
+        {/* 🔵 SOMENTE nos dias de parque: ícone piscante + "guia não oficial" (sem card) */}
         {(diaBruto?.tipo === 'disney' || diaBruto?.tipo === 'universal') && (
           <View style={styles.inlineAviso}>
             <LogoAtencao size={14} color="#FFFFFF" blink />
-            <Text style={styles.inlineAvisoTexto}>Guia NÃƒÂ£o Oficial - App sem vÃƒÂ­nculo Disney/Universal</Text>
+            <Text style={styles.inlineAvisoTexto}>Guia Não Oficial - App sem vínculo Disney/Universal</Text>
           </View>
         )}
 
@@ -295,11 +302,11 @@ const styles = StyleSheet.create({
   textoDia: { color: '#fff', fontSize: 11, textAlign: 'left' },
   textoSelecionado: { color: '#000', fontWeight: 'bold' },
 
-  // Cards do conteÃƒÂºdo do dia
+  // Cards do conteúdo do dia
   cardPrincipal: { width: '96%', alignSelf: 'center', marginBottom: -7 },
   cardsContainer: { width: '100%', alignSelf: 'center', marginBottom: -50 },
 
-  // Ã°Å¸â€Âµ Linha simples do aviso (sem card)
+  // 🔵 Linha simples do aviso (sem card)
   inlineAviso: {
     alignSelf: 'center',
     width: '94%',
@@ -316,14 +323,14 @@ const styles = StyleSheet.create({
     textTransform: 'lowercase',
   },
 
-  // RodapÃƒÂ©
+  // Rodapé
   rodapeFundo: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     height: 100,
-    backgroundColor: '#52D6FF',
+    backgroundColor: '#ffffffff',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },

@@ -1,11 +1,11 @@
-﻿ï»¿import React, { memo, useRef, useEffect } from 'react';
+import React, { memo, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type { Promocao } from './promocao';
 
 const AZUL_NEON = '#00FFFF';
 const AZUL_BORDA = '#00BFFF';
-const AZUL_ESCURO = '#001F3F';
+const AZUL_ESCURO = '#002B5B';
 
 type Props = {
   item: Promocao & { sobre?: string; oQueTem?: string[] };
@@ -23,13 +23,12 @@ const PromoCard = ({ item, onPress }: Props) => {
     ).start();
   }, [blink]);
 
-  // monta o texto ÃƒÂºnico
   const texto = [
     item.sobre || item.descricao,
     item.oQueTem ? item.oQueTem.join(', ') : null,
   ]
     .filter(Boolean)
-    .join(' Ã¢â‚¬â€ ');
+    .join(' — ');
 
   return (
     <TouchableOpacity
@@ -41,7 +40,7 @@ const PromoCard = ({ item, onPress }: Props) => {
         <Text numberOfLines={2} style={styles.title}>{item.titulo}</Text>
         {item.parceiro ? <Text style={styles.parceiro}>{item.parceiro}</Text> : null}
 
-        {/* Descritivo ÃƒÂºnico justificado */}
+        {/* Descritivo único justificado */}
         <Text style={styles.textJust}>{texto}</Text>
       </View>
 
@@ -74,11 +73,12 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   right: { flex: 1 },
-  title: { flex: 1, color: '#fff', fontWeight: '700', fontSize: 16 },
+  // ⬇️ cores alinhadas aos filtros
+  title: { flex: 1, color: AZUL_NEON, fontWeight: '700', fontSize: 16 },
   parceiro: { color: '#bfefff', fontSize: 12, marginTop: 2 },
   textJust: {
     marginTop: 8,
-    color: '#e6f7ff',
+    color: '#cfefff',
     fontSize: 13,
     textAlign: 'justify',
     lineHeight: 19,

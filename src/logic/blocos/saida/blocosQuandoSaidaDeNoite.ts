@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/saida/blocosQuandoSaidaDeNoite.ts
+// src/logic/blocos/saida/blocosQuandoSaidaDeNoite.ts
 
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
@@ -7,7 +7,7 @@ export const blocosQuandoSaidaDeNoite: TurnoDescansoRegiao[] = [
     periodo: 'manha',
     horarioInicio: '08:00',
     horarioFim: '12:00',
-    referencia: 'Celebration + CafÃƒÂ© local',
+    referencia: 'Celebration + Café local',
     atividades: [
       {
         tipo: 'descanso',
@@ -16,7 +16,7 @@ export const blocosQuandoSaidaDeNoite: TurnoDescansoRegiao[] = [
         latitude: 28.3244,
         longitude: -81.5418,
         local: 'Lago de Celebration, 701 Front St, Celebration, FL',
-        descricao: 'Comece o dia com uma caminhada pelo lago de Celebration, aprecie o visual, tome um cafÃƒÂ© em uma padaria local e registre fotos de despedida.',
+        descricao: 'Comece o dia com uma caminhada pelo lago de Celebration, aprecie o visual, tome um café em uma padaria local e registre fotos de despedida.',
       },
     ],
   },
@@ -24,7 +24,7 @@ export const blocosQuandoSaidaDeNoite: TurnoDescansoRegiao[] = [
     periodo: 'tarde',
     horarioInicio: '13:00',
     horarioFim: '19:00',
-    referencia: 'International Drive Ã¢â‚¬â€œ Pointe Orlando + Orlando International Premium Outlets',
+    referencia: 'International Drive – Pointe Orlando + Orlando International Premium Outlets',
     atividades: [
       {
         tipo: 'compras',
@@ -33,16 +33,16 @@ export const blocosQuandoSaidaDeNoite: TurnoDescansoRegiao[] = [
         latitude: 28.4355,
         longitude: -81.4695,
         local: '9101 International Dr, Orlando, FL',
-        descricao: 'Garanta lembranÃƒÂ§as e presentes no Pointe Orlando, que oferece lojas temÃƒÂ¡ticas e boutiques ideais para itens especiais sem pesar na mala.',
+        descricao: 'Garanta lembranças e presentes no Pointe Orlando, que oferece lojas temáticas e boutiques ideais para itens especiais sem pesar na mala.',
       },
       {
         tipo: 'compras',
-        titulo: 'Outlet Ã¢â‚¬â€œ ÃƒÅ¡ltima Chance',
+        titulo: 'Outlet – Última Chance',
         regiao: 'Orlando International Premium Outlets',
         latitude: 28.4743,
         longitude: -81.4505,
         local: '4951 International Dr, Orlando, FL',
-        descricao: 'Antes do aeroporto, visite o Premium Outlets para roupas, lembranÃƒÂ§as ou eletrÃƒÂ´nicos em promoÃƒÂ§ÃƒÂ£o, cuidando para deixar espaÃƒÂ§o na mala.',
+        descricao: 'Antes do aeroporto, visite o Premium Outlets para roupas, lembranças ou eletrônicos em promoção, cuidando para deixar espaço na mala.',
       },
     ],
   },

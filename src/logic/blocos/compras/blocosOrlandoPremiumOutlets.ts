@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/descanso/blocosOrlandoPremiumOutlets.ts
+// src/logic/blocos/descanso/blocosOrlandoPremiumOutlets.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
@@ -8,16 +8,16 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Vineland Premium Outlets',
     descricaoRegiao:
-      'Durante a manhÃƒÂ£: Vineland ÃƒÂ© ideal para compras tranquilas, clima ameno e pouco movimento.\n' +
+      'Durante a manhã: Vineland é ideal para compras tranquilas, clima ameno e pouco movimento.\n' +
       'Lojas: Prada, Lacoste, Ralph Lauren, Michael Kors e Adidas com ofertas para os primeiros clientes.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: ÃƒÂreas cobertas com sombra, bancos e ventiladores para pausas rÃƒÂ¡pidas.\n' +
-      'Dica: VÃƒÂ¡ direto ÃƒÂ  Adidas pela manhÃƒÂ£, pois costuma ter liquidaÃƒÂ§ÃƒÂµes na seÃƒÂ§ÃƒÂ£o de calÃƒÂ§ados.',
+      'Alimentação e descanso: Áreas cobertas com sombra, bancos e ventiladores para pausas rápidas.\n' +
+      'Dica: Vá direto à Adidas pela manhã, pois costuma ter liquidações na seção de calçados.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Grifes com desconto no Vineland',
         descricao:
-          'Explore Prada, Lacoste, Ralph Lauren e Michael Kors com preÃƒÂ§os reduzidos. Passe na Adidas logo cedo para pegar as melhores ofertas.',
+          'Explore Prada, Lacoste, Ralph Lauren e Michael Kors com preços reduzidos. Passe na Adidas logo cedo para pegar as melhores ofertas.',
         local: '8200 Vineland Ave, Orlando, FL',
         regiao: 'Vineland',
         latitude: 28.3852,
@@ -25,9 +25,9 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'ÃƒÂrea coberta com bancos',
+        titulo: 'Área coberta com bancos',
         descricao:
-          'EspaÃƒÂ§os cobertos com bancos e ventiladores para sentar, hidratar e organizar compras. PrÃƒÂ³ximo ÃƒÂ  Nike hÃƒÂ¡ sombra e banheiros.',
+          'Espaços cobertos com bancos e ventiladores para sentar, hidratar e organizar compras. Próximo à Nike há sombra e banheiros.',
         local: '8200 Vineland Ave, Orlando, FL',
         regiao: 'Vineland',
         latitude: 28.3852,
@@ -41,16 +41,16 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
     horarioFim: '19:00',
     referencia: 'Vineland Premium Outlets',
     descricaoRegiao:
-      'Durante a tarde: Mais movimento, mas boas oportunidades surgem apÃƒÂ³s as 15h.\n' +
-      'Lojas: Disney Outlet, LeviÃ¢â‚¬â„¢s, Calvin Klein, GAP e CarterÃ¢â‚¬â„¢s com promoÃƒÂ§ÃƒÂµes e menos filas.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: PraÃƒÂ§a central com ar-condicionado, bancos e barracas de smoothies.\n' +
-      'Dica: Prove o smoothie de manga com hortelÃƒÂ£ na barraca central.',
+      'Durante a tarde: Mais movimento, mas boas oportunidades surgem após as 15h.\n' +
+      'Lojas: Disney Outlet, Levi’s, Calvin Klein, GAP e Carter’s com promoções e menos filas.\n' +
+      'Alimentação e descanso: Praça central com ar-condicionado, bancos e barracas de smoothies.\n' +
+      'Dica: Prove o smoothie de manga com hortelã na barraca central.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Disney Outlet e infantis',
         descricao:
-          'Produtos oficiais em promoÃƒÂ§ÃƒÂ£o na Disney Outlet. Veja tambÃƒÂ©m CarterÃ¢â‚¬â„¢s e The ChildrenÃ¢â‚¬â„¢s Place. Confira prateleiras centrais para liquidaÃƒÂ§ÃƒÂµes.',
+          'Produtos oficiais em promoção na Disney Outlet. Veja também Carter’s e The Children’s Place. Confira prateleiras centrais para liquidações.',
         local: '8200 Vineland Ave, Orlando, FL',
         regiao: 'Vineland',
         latitude: 28.3852,
@@ -58,9 +58,9 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'PraÃƒÂ§a de alimentaÃƒÂ§ÃƒÂ£o (AC)',
+        titulo: 'Praça de alimentação (AC)',
         descricao:
-          'Mesas internas e ar-condicionado para pausa do calor. Ãƒâ€œtimo para famÃƒÂ­lias. Prove o smoothie natural no centro da praÃƒÂ§a.',
+          'Mesas internas e ar-condicionado para pausa do calor. Ótimo para famílias. Prove o smoothie natural no centro da praça.',
         local: '8200 Vineland Ave, Orlando, FL',
         regiao: 'Vineland',
         latitude: 28.3852,
@@ -74,16 +74,16 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
     horarioFim: '23:59',
     referencia: 'Vineland Premium Outlets',
     descricaoRegiao:
-      'Durante a noite: Ambiente calmo e iluminado, ideal para ÃƒÂºltimas compras e caminhadas leves.\n' +
-      'Lojas: LeviÃ¢â‚¬â„¢s, Nike e Coach com ofertas e queimas-relÃƒÂ¢mpago.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos iluminados e mÃƒÂºsica ambiente.\n' +
-      'Dica: Na entrada lateral da LeviÃ¢â‚¬â„¢s hÃƒÂ¡ bancos confortÃƒÂ¡veis e Wi-Fi forte para chamar Uber.',
+      'Durante a noite: Ambiente calmo e iluminado, ideal para últimas compras e caminhadas leves.\n' +
+      'Lojas: Levi’s, Nike e Coach com ofertas e queimas-relâmpago.\n' +
+      'Alimentação e descanso: Bancos iluminados e música ambiente.\n' +
+      'Dica: Na entrada lateral da Levi’s há bancos confortáveis e Wi-Fi forte para chamar Uber.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Compras finais e ofertas',
         descricao:
-          'Aproveite liquidaÃƒÂ§ÃƒÂµes do fim do dia. Revisitar lojas como LeviÃ¢â‚¬â„¢s pode render ÃƒÂ³timos achados.',
+          'Aproveite liquidações do fim do dia. Revisitar lojas como Levi’s pode render ótimos achados.',
         local: '8200 Vineland Ave, Orlando, FL',
         regiao: 'Vineland',
         latitude: 28.3852,
@@ -91,9 +91,9 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'ÃƒÂrea externa iluminada',
+        titulo: 'Área externa iluminada',
         descricao:
-          'Caminhada leve com luzes e mÃƒÂºsica suave. Bancos estratÃƒÂ©gicos para relaxar e fechar o dia.',
+          'Caminhada leve com luzes e música suave. Bancos estratégicos para relaxar e fechar o dia.',
         local: '8200 Vineland Ave, Orlando, FL',
         regiao: 'Vineland',
         latitude: 28.3852,
@@ -103,10 +103,10 @@ export const blocosOrlandoPremiumOutlets: TurnoDescansoRegiao[] = [
   },
 ];
 
-// Metadados para exibiÃƒÂ§ÃƒÂ£o na seleÃƒÂ§ÃƒÂ£o de perfil
+// Metadados para exibição na seleção de perfil
 export const perfilOrlandoPremiumOutlets = {
-  icone: 'Ã°Å¸â€ºÂÃ¯Â¸Â',
+  icone: '🛍️',
   nome: 'Orlando Premium Outlets',
   descricao:
-    'Para quem busca marcas grandes com desconto: Nike, Adidas, Coach, Michael Kors e LeviÃ¢â‚¬â„¢s. Chegue cedo para evitar filas e pegar as melhores ofertas.',
+    'Para quem busca marcas grandes com desconto: Nike, Adidas, Coach, Michael Kors e Levi’s. Chegue cedo para evitar filas e pegar as melhores ofertas.',
 };

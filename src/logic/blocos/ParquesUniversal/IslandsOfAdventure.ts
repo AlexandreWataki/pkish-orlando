@@ -1,1 +1,1 @@
-﻿export const IslandsOfAdventure = [];
+export const IslandsOfAdventure = [];

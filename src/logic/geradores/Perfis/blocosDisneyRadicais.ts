@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/parques/Perfis/blocosDisneyRadicais.ts
+// src/logic/blocos/parques/Perfis/blocosDisneyRadicais.ts
 
 import { BlocoPerfilParque } from '@/logic/types/turno';
 
@@ -16,7 +16,7 @@ export const blocosDisneyRadicais: BlocoPerfilParque[] = [
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        // A ÃƒÂºltima ÃƒÂ¡rea do turno da tarde ÃƒÂ© a ÃƒÂ¡rea dos fogos que serÃƒÂ¡ destacada ÃƒÂ  noite
+        // A última área do turno da tarde é a área dos fogos que será destacada à noite
         areas: ['Adventureland', 'Fantasyland', 'Main Street, U.S.A.'],
       },
       {
@@ -40,7 +40,7 @@ export const blocosDisneyRadicais: BlocoPerfilParque[] = [
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        areas: ['World Showcase'], // ÃƒÅ¡ltima ÃƒÂ¡rea para fogos ÃƒÂ  noite
+        areas: ['World Showcase'], // Última área para fogos à noite
       },
       {
         periodo: 'noite',
@@ -57,13 +57,13 @@ export const blocosDisneyRadicais: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Sunset Boulevard', 'Star Wars: GalaxyÃ¢â‚¬â„¢s Edge'],
+        areas: ['Sunset Boulevard', 'Star Wars: Galaxy’s Edge'],
       },
       {
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        areas: ['Toy Story Land', 'Echo Lake'], // ÃƒÅ¡ltimas ÃƒÂ¡reas antes dos fogos
+        areas: ['Toy Story Land', 'Echo Lake'], // Últimas áreas antes dos fogos
       },
       {
         periodo: 'noite',
@@ -80,19 +80,19 @@ export const blocosDisneyRadicais: BlocoPerfilParque[] = [
         periodo: 'manha',
         horarioInicio: '08:00',
         horarioFim: '12:00',
-        areas: ['Pandora Ã¢â‚¬â€œ The World of Avatar'],
+        areas: ['Pandora – The World of Avatar'],
       },
       {
         periodo: 'tarde',
         horarioInicio: '13:00',
         horarioFim: '19:00',
-        areas: ['Africa', 'Asia'], // ÃƒÅ¡ltimas ÃƒÂ¡reas antes da noite
+        areas: ['Africa', 'Asia'], // Últimas áreas antes da noite
       },
       {
         periodo: 'noite',
         horarioInicio: '20:00',
         horarioFim: '23:59',
-        areas: [], // Noite para experiÃƒÂªncia noturna de Pandora
+        areas: [], // Noite para experiência noturna de Pandora
       },
     ],
   },

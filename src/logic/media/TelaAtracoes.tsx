@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/inicio/TelaAtracoes.tsx
+// src/screens/inicio/TelaAtracoes.tsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, LayoutAnimation, Animated, Alert,
@@ -19,14 +19,13 @@ import CardAtracao from '@/components/card/CardAtracao';
 import CardAtracaoUniversal from '@/components/card/CardAtracaoUniversal';
 import { CardSecao } from '@/components/card/CardSecao';
 
-import { getVideoUrlFromMap } from '@/logic/media/YoutubeUtils';
-import { searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
+import { getVideoUrlFromMap, searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
 
 // Dados
 import * as disneyData from '@/logic/geradores/todasAtracoesDisney';
 import * as universalData from '@/logic/geradores/todasAtracoesUniversal';
 
-// NavegaÃƒÂ§ÃƒÂ£o tipada
+// Navegação tipada para abrir a YouTubePlayer screen
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/RootStack';
 
@@ -49,7 +48,7 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
     return directArrays.map((a: AnyObj) => ({
       id: a.id ?? `${a.titulo ?? 'atracao'}-${Math.random().toString(36).slice(2, 7)}`,
       tipo: 'atracao',
-      titulo: a.titulo ?? 'Sem tÃƒÂ­tulo',
+      titulo: a.titulo ?? 'Sem título',
       descricao: a.descricao ?? '',
       subtitulo: a.subtitulo ?? a.area ?? a.regiao ?? '',
       regiao: a.regiao ?? a.area ?? a.land ?? a.setor ?? '',
@@ -75,7 +74,7 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
         out.push({
           id: a.id ?? `${a.titulo ?? 'atracao'}-${Math.random().toString(36).slice(2, 7)}`,
           tipo: 'atracao',
-          titulo: a.titulo ?? 'Sem tÃƒÂ­tulo',
+          titulo: a.titulo ?? 'Sem título',
           descricao: a.descricao ?? '',
           subtitulo: a.subtitulo ?? areaName,
           regiao: a.regiao ?? areaName,
@@ -98,7 +97,7 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
 
 const AREA_TODAS = '__TODAS__';
 
-// TÃƒÂ­tulo animado da ÃƒÂ¡rea
+// Título animado da área
 const AreaTitle: React.FC<{ text: string }> = ({ text }) => {
   const anim = useRef(new Animated.Value(1)).current;
   useEffect(() => {
@@ -109,10 +108,10 @@ const AreaTitle: React.FC<{ text: string }> = ({ text }) => {
       ])
     ).start();
   }, [anim]);
-  return <Animated.Text style={[styles.areaTitle, { opacity: anim }]} numberOfLines={2}>Ã¢Å“Â¨ {text.toUpperCase()} Ã¢Å“Â¨</Animated.Text>;
+  return <Animated.Text style={[styles.areaTitle, { opacity: anim }]} numberOfLines={2}>✨ {text.toUpperCase()} ✨</Animated.Text>;
 };
 
-// ÃƒÂcone piscando (YouTube)
+// Ícone piscando (YouTube)
 const BlinkingIcon: React.FC<{ name: any; size?: number; style?: any }> = ({ name, size = 30, style }) => {
   const opacity = useRef(new Animated.Value(1)).current;
   useEffect(() => {
@@ -137,11 +136,9 @@ export default function TelaAtracoes() {
   const route = useRoute<any>();
   const { markVisited } = useParkisheiro?.() || {};
 
-  // Ã¢â€ºâ€¦ estado do clima
   const [clima, setClima] = useState<any>(null);
-
-  const [avisoAceito, setAvisoAceito] = useState(false);
-  const [step, setStep] = useState<Step>('rede');
+  const [avisoAceito, setAvisoAceito] = useState(true); // já aceito
+  const [step, setStep] = useState<Step>('rede');       // começa em "selecione o complexo"
 
   const [rede, setRede] = useState<'disney' | 'universal' | ''>('');
   const [parque, setParque] = useState<string>('');
@@ -150,55 +147,32 @@ export default function TelaAtracoes() {
   const [videoById, setVideoById] = useState<Record<string, string>>({});
   const YT_API_KEY = (Constants?.expoConfig?.extra as any)?.YT_API_KEY || '';
 
-  // Ã°Å¸â€â€ animaÃƒÂ§ÃƒÂ£o do aviso
-  const avisoBlink = useRef(new Animated.Value(1)).current;
+  // clima para cabeçalho
+  useEffect(() => { buscarClima('Orlando').then(setClima).catch(() => setClima(null)); }, []);
+  useEffect(() => { markVisited?.('TelaAtracoes'); }, []);
+
+  // ⚠️ Sem auto-pular: sempre reseta pro passo "rede" ao abrir
   useEffect(() => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(avisoBlink, { toValue: 0.78, duration: 900, useNativeDriver: true }),
-        Animated.timing(avisoBlink, { toValue: 1, duration: 900, useNativeDriver: true }),
-      ])
-    ).start();
-  }, [avisoBlink]);
-
-  // --- CIDADE POR PARQUE
-  const cidadePorParque = (p?: string) => {
-    if (!p) return 'Orlando';
-    switch ((p || '').trim()) {
-      case 'Magic Kingdom':
-      case 'EPCOT':
-      case "Disney's Hollywood Studios":
-      case "Disney's Animal Kingdom":
-        return 'Bay Lake';
-      case 'Universal Studios Florida':
-      case "Universal's Islands of Adventure":
-      case "Universal's Volcano Bay":
-        return 'Orlando';
-      default:
-        return 'Orlando';
-    }
-  };
-
-  // Ã°Å¸â€â€ž Busca clima baseado no parque selecionado
-  useEffect(() => {
-    let ativo = true;
-    (async () => {
-      try {
-        const cidade = cidadePorParque(parque);
-        const dados = await buscarClima(cidade);
-        if (ativo) setClima(dados);
-      } catch {
-        if (ativo) setClima(null);
-      }
-    })();
-    return () => { ativo = false; };
-  }, [parque]);
-
-  useEffect(() => { markVisited?.('TelaAtracoes'); }, [markVisited]);
+    setRede('');
+    setParque('');
+    setArea('');
+    setStep('rede');
+  }, [route.params]);
 
   const hoje = new Date();
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
+
+  const climaHeader = useMemo(() => {
+    if (clima && typeof clima.temp === 'number' && !Number.isNaN(clima.temp)) {
+      return {
+        tempC: Math.round(clima.temp),
+        condition: clima.condicao ?? '',
+        iconUrl: clima.icone ?? undefined,
+      };
+    }
+    return null;
+  }, [clima]);
 
   const listaDisney = useMemo(() => flattenModule(disneyData), []);
   const listaUniversal = useMemo(() => flattenModule(universalData), []);
@@ -208,37 +182,6 @@ export default function TelaAtracoes() {
     for (const a of lista) if (a.parque) set.add(String(a.parque));
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   };
-
-  const bootRef = useRef(false);
-  useEffect(() => {
-    if (bootRef.current) return;
-    bootRef.current = true;
-
-    const redeInicial: 'disney' | 'universal' =
-      route.params?.redeInicial === 'universal' ? 'universal' : 'disney';
-
-    const parquesBase =
-      redeInicial === 'disney' ? getParquesFromList(listaDisney) : getParquesFromList(listaUniversal);
-
-    const parqueInicial: string = (route.params?.parqueInicial as string) || parquesBase[0] || '';
-    const areaInicialParam = route.params?.areaInicial as string | undefined;
-    const areaInicial = areaInicialParam === 'Todas as ÃƒÂ¡reas' || !areaInicialParam ? AREA_TODAS : areaInicialParam;
-
-    if (!parqueInicial) {
-      setAvisoAceito(true);
-      setRede(redeInicial);
-      setParque('');
-      setArea('');
-      setStep('rede');
-      return;
-    }
-
-    setAvisoAceito(true);
-    setRede(redeInicial);
-    setParque(parqueInicial);
-    setArea(areaInicial);
-    setStep('lista');
-  }, [listaDisney, listaUniversal, route.params]);
 
   const listaRede = useMemo(
     () => (rede === 'disney' ? listaDisney : rede === 'universal' ? listaUniversal : []),
@@ -257,7 +200,7 @@ export default function TelaAtracoes() {
       }
     }
     const arr = Array.from(set).sort((a, b) => a.localeCompare(b));
-    return ['Todas as ÃƒÂ¡reas', ...arr];
+    return ['Todas as áreas', ...arr];
   }, [listaRede, parque]);
 
   const handleSelectRede = (p: 'disney' | 'universal') => {
@@ -298,8 +241,8 @@ export default function TelaAtracoes() {
     return [{ area, atracoes }];
   }, [listaRede, parque, area]);
 
-  const tituloCard = parque ? parque : 'AtraÃƒÂ§ÃƒÂµes';
-  const subtituloCard = area ? (area === AREA_TODAS ? 'Ã¢â‚¬â€ Todas as ÃƒÂ¡reas' : `Ã¢â‚¬â€ ${area}`) : '';
+  const tituloCard = parque ? parque : 'Atrações';
+  const subtituloCard = area ? (area === AREA_TODAS ? '— Todas as áreas' : `— ${area}`) : '';
   const tipoCard: 'disney' | 'universal' | 'area' = rede === 'disney' ? 'disney' : rede === 'universal' ? 'universal' : 'area';
 
   const extractYouTubeId = (input?: string | null): string | null => {
@@ -331,7 +274,7 @@ export default function TelaAtracoes() {
     }
 
     if (!watch) {
-      Alert.alert('VÃƒÂ­deo indisponÃƒÂ­vel', 'Ainda nÃƒÂ£o temos um vÃƒÂ­deo para esta atraÃƒÂ§ÃƒÂ£o.');
+      Alert.alert('Vídeo indisponível', 'Ainda não temos um vídeo para esta atração.');
       return;
     }
 
@@ -351,7 +294,7 @@ export default function TelaAtracoes() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="information-circle-outline" size={18} color="#004b87" />
               <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-                Guia nÃƒÂ£o oficial Ã¢â‚¬â€ toque para continuar
+                Guia não oficial — toque para continuar
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color="#004b87" />
@@ -359,12 +302,12 @@ export default function TelaAtracoes() {
 
           <View style={[styles.avisoBox, { marginTop: 6 }]}>
             <Text style={styles.avisoTitulo}>
-              Este app ÃƒÂ© um <Text style={{ fontWeight: '900' }}>guia nÃƒÂ£o oficial</Text>.
+              Este app é um <Text style={{ fontWeight: '900' }}>guia não oficial</Text>.
             </Text>
             <Text style={styles.avisoTexto}>
-              Marcas e nomes podem pertencer ÃƒÂ  Disney Enterprises, Inc., Universal City Studios LLC e demais detentores.
+              Marcas e nomes podem pertencer à Disney Enterprises, Inc., Universal City Studios LLC e demais detentores.
             </Text>
-            <Text style={styles.avisoTexto}>Consulte canais oficiais para horÃƒÂ¡rios, filas e polÃƒÂ­ticas.</Text>
+            <Text style={styles.avisoTexto}>Consulte canais oficiais para horários, filas e políticas.</Text>
           </View>
         </View>
       );
@@ -400,7 +343,7 @@ export default function TelaAtracoes() {
             onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('rede'); }}
           >
             <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-              Selecione o Parque Ã¢â‚¬â€ {rede === 'disney' ? 'Complexo Disney' : 'Complexo Universal'}
+              Selecione o Parque — {rede === 'disney' ? 'Complexo Disney' : 'Complexo Universal'}
             </Text>
             <Ionicons name="chevron-up" size={18} color="#004b87" />
           </TouchableOpacity>
@@ -425,7 +368,7 @@ export default function TelaAtracoes() {
             onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('parque'); }}
           >
             <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-              Selecione a ÃƒÂrea Ã¢â‚¬â€ {parque}
+              Selecione a Área — {parque}
             </Text>
             <Ionicons name="chevron-up" size={18} color="#004b87" />
           </TouchableOpacity>
@@ -433,7 +376,7 @@ export default function TelaAtracoes() {
           <View style={styles.listaContainer}>
             {areasDisponiveis.map((a) => (
               <TouchableOpacity key={a} activeOpacity={0.9} style={styles.linhaItem}
-                onPress={() => handleSelectArea(a === 'Todas as ÃƒÂ¡reas' ? AREA_TODAS : a)}>
+                onPress={() => handleSelectArea(a === 'Todas as áreas' ? AREA_TODAS : a)}>
                 <Text style={styles.textoItem}>{a}</Text>
               </TouchableOpacity>
             ))}
@@ -450,7 +393,7 @@ export default function TelaAtracoes() {
           onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('area'); }}
         >
           <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-            {area === AREA_TODAS ? 'Todas as ÃƒÂ¡reas' : `${area} (ÃƒÂrea)`} Ã¢â‚¬â€ {parque}
+            {area === AREA_TODAS ? 'Todas as áreas' : `${area} (Área)`} — {parque}
           </Text>
           <Ionicons name="chevron-up" size={18} color="#004b87" />
         </TouchableOpacity>
@@ -459,18 +402,20 @@ export default function TelaAtracoes() {
   };
 
   return (
-    <LinearGradient colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={{ flex: 1 }}>
-
-      {/* CabeÃƒÂ§alho com clima Ã¢â‚¬â€ MESMA LÃƒâ€œGICA do PromocoesScreen */}
+    <LinearGradient
+      colors={['#0077cc', '#00bfff', '#add8e6', '#ffffff', '#ffffff']}
+      locations={[0, 0.25, 0.5, 0.78, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={{ flex: 1 }}
+    >
+      {/* Cabeçalho SEMPRE visível */}
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
-          clima={clima?.condicao || clima?.clima || 'Parcialmente nublado'}
-          temperatura={Number.isFinite(clima?.temp) ? `${Math.round(clima.temp)}Ã‚Â°C` : undefined}
-          iconeClima={clima?.icone}
+          clima={climaHeader}
         />
       </View>
 
@@ -511,7 +456,7 @@ export default function TelaAtracoes() {
         <View style={{ height: 120 }} />
       </ScrollView>
 
-      {/* RodapÃƒÂ© */}
+      {/* Rodapé SEMPRE visível */}
       <View style={styles.rodapeFundo} />
       <View style={styles.rodapeConteudo}>
         <TouchableOpacity
@@ -522,13 +467,12 @@ export default function TelaAtracoes() {
           <Ionicons name="arrow-back-circle" size={40} color="#0077cc" />
         </TouchableOpacity>
 
-        <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
+        <Animated.View style={[styles.avisoLegalCard, { opacity: 1 }]}>
           <Text style={styles.avisoLegalTexto}>
-            Guia independente e nÃƒÂ£o oficial, sem vÃƒÂ­nculo com Disney ou Universal. VÃƒÂ­deos incorporados do YouTube, exibidos apenas para visualizaÃƒÂ§ÃƒÂ£o.
+            Guia independente e não oficial, sem vínculo com Disney ou Universal. Vídeos incorporados do YouTube, exibidos apenas para visualização.
           </Text>
         </Animated.View>
       </View>
-
     </LinearGradient>
   );
 }
@@ -559,6 +503,7 @@ const styles = StyleSheet.create({
     textShadowColor: '#00BFFF', textShadowOffset: { width: 0, height: 0 }, textShadowRadius: 16, marginBottom: 4,
   },
 
+  // Ícone do YouTube — sem fundo escuro
   videoIconTouch: {
     position: 'absolute',
     right: 5,
@@ -569,6 +514,7 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
 
+  // Rodapé
   avisoLegalCard: {
     flex: 1,
     backgroundColor: '#004b87',
@@ -584,10 +530,9 @@ const styles = StyleSheet.create({
     lineHeight: 13,
     textAlign: 'justify',
   },
-
   rodapeFundo: {
     position: 'absolute', bottom: 0, left: 0, right: 0, height: 130,
-    backgroundColor: '#52D6FF', borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
+    backgroundColor: '#ffffffff', borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
   },
   rodapeConteudo: {
     position: 'absolute', bottom: 50, left: 0, right: 0,

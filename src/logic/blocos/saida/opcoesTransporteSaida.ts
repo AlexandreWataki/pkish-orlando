@@ -1,4 +1,4 @@
-﻿ï»¿import { Regiao } from '@/logic/types/regioesHospedagem';
+import { Regiao } from '@/logic/types/regioesHospedagem';
 
 function calcularDistanciaKm(
   lat1: number,
@@ -23,7 +23,7 @@ export function opcoesTransporteSaida(
   destino: string,
   regiao?: Regiao
 ) {
-  const nomeOrigem = regiao?.nome || 'Hospedagem nÃƒÂ£o definida';
+  const nomeOrigem = regiao?.nome || 'Hospedagem não definida';
   const tempoAteMCO =regiao?.tempoAteAeroportoMCO ?? 30;
 
   const latOrigem =regiao?.latitude ?? null;
@@ -41,28 +41,28 @@ export function opcoesTransporteSaida(
   const precoUberMax = precoUberMin + 10;
 
   const descricaoUber = [
-    `Ã°Å¸â€¢â€™ Tempo estimado: ${tempoAteMCO} min`,
-    `Ã°Å¸â€™Â° Valor estimado: US$ ${precoUberMin} a US$ ${precoUberMax}`,
-    `Ã°Å¸â€œÂ± ServiÃƒÂ§o: Uber ou Lyft`,
+    `🕒 Tempo estimado: ${tempoAteMCO} min`,
+    `💰 Valor estimado: US$ ${precoUberMin} a US$ ${precoUberMax}`,
+    `📱 Serviço: Uber ou Lyft`,
   ].join('\n');
 
   const descricaoCarro = [
-    `Ã°Å¸Å¡â€” Se vocÃƒÂª alugou um carro no aeroporto (MCO), verifique se precisa devolver com tanque cheio.`,
-    `Ã¢â€ºÂ½ Localize o posto de combustÃƒÂ­vel mais prÃƒÂ³ximo antes de sair do hotel.`,
-    `Ã°Å¸â€¢â€˜ Reserve tempo extra para devoluÃƒÂ§ÃƒÂ£o e deslocamento atÃƒÂ© o terminal.`,
+    `🚗 Se você alugou um carro no aeroporto (MCO), verifique se precisa devolver com tanque cheio.`,
+    `⛽ Localize o posto de combustível mais próximo antes de sair do hotel.`,
+    `🕑 Reserve tempo extra para devolução e deslocamento até o terminal.`,
   ].join('\n');
 
   return {
-    titulo: 'Ã°Å¸â€ºÂ« Transporte atÃƒÂ© o Aeroporto',
+    titulo: '🛫 Transporte até o Aeroporto',
     tipo: 'transporte',
-    local: `${nomeOrigem} Ã¢â€ â€™ ${destino}`,
+    local: `${nomeOrigem} → ${destino}`,
     opcoes: [
       {
-        subtitulo: 'Ã°Å¸Å¡â€” Uber / Lyft',
+        subtitulo: '🚗 Uber / Lyft',
         descricao: descricaoUber,
       },
       {
-        subtitulo: 'Ã°Å¸Å¡Ëœ Carro alugado',
+        subtitulo: '🚘 Carro alugado',
         descricao: descricaoCarro,
       },
     ],

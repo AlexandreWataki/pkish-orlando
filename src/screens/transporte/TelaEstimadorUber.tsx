@@ -1,4 +1,4 @@
-﻿ï»¿import React from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 type Props = {
@@ -11,10 +11,10 @@ export default function EstimadorUber({ distanciaKm }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Ã°Å¸Å¡â€” Estimativa Uber</Text>
-      <Text>Ã°Å¸â€ºÂ£Ã¯Â¸Â DistÃƒÂ¢ncia: {distanciaKm} km</Text>
-      <Text>Ã°Å¸â€¢â€™ Tempo estimado: {tempoEstimado} min</Text>
-      <Text>Ã°Å¸â€™Â² Custo estimado: R$ {precoEstimado}</Text>
+      <Text style={styles.label}>🚗 Estimativa Uber</Text>
+      <Text>🛣️ Distância: {distanciaKm} km</Text>
+      <Text>🕒 Tempo estimado: {tempoEstimado} min</Text>
+      <Text>💲 Custo estimado: R$ {precoEstimado}</Text>
     </View>
   );
 }

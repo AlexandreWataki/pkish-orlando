@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/descanso/blocosMallAtMillenia.ts
+// src/logic/blocos/descanso/blocosMallAtMillenia.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
@@ -8,16 +8,16 @@ export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Millenia',
     descricaoRegiao:
-      'Durante a manhÃƒÂ£: Mall calmo e elegante, ideal para explorar com tranquilidade.\n' +
+      'Durante a manhã: Mall calmo e elegante, ideal para explorar com tranquilidade.\n' +
       'Lojas: Chanel, Gucci, Tesla, Louis Vuitton e Apple sem filas.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: SofÃƒÂ¡s e poltronas prÃƒÂ³ximos ÃƒÂ  fonte central.\n' +
-      'Dica: Sente-se perto da fonte com um cafÃƒÂ© para comeÃƒÂ§ar o dia.',
+      'Alimentação e descanso: Sofás e poltronas próximos à fonte central.\n' +
+      'Dica: Sente-se perto da fonte com um café para começar o dia.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Lojas de luxo e design',
         descricao:
-          'Explore Chanel, Gucci, Tesla e Apple com atendimento rÃƒÂ¡pido e ambiente climatizado.',
+          'Explore Chanel, Gucci, Tesla e Apple com atendimento rápido e ambiente climatizado.',
         local: '4200 Conroy Rd, Orlando, FL',
         regiao: 'Millenia',
         area: 'Millenia',
@@ -28,7 +28,7 @@ export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
         tipo: 'descanso',
         titulo: 'Fonte central interna',
         descricao:
-          'ÃƒÂrea com sofÃƒÂ¡s e poltronas em torno da fonte central. Ambiente climatizado e silencioso.',
+          'Área com sofás e poltronas em torno da fonte central. Ambiente climatizado e silencioso.',
         local: '4200 Conroy Rd, Orlando, FL',
         regiao: 'Millenia',
         area: 'Millenia',
@@ -44,15 +44,15 @@ export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
     referencia: 'Millenia',
     descricaoRegiao:
       'Durante a tarde: Mais movimento, mas ambiente sofisticado.\n' +
-      'Lojas: MacyÃ¢â‚¬â„¢s, BloomingdaleÃ¢â‚¬â„¢s, decoraÃƒÂ§ÃƒÂ£o e moda.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Jardim com bancos e espelho dÃ¢â‚¬â„¢ÃƒÂ¡gua.\n' +
-      'Dica: ApÃƒÂ³s a MacyÃ¢â‚¬â„¢s, relaxe no jardim com vista para o espelho dÃ¢â‚¬â„¢ÃƒÂ¡gua.',
+      'Lojas: Macy’s, Bloomingdale’s, decoração e moda.\n' +
+      'Alimentação e descanso: Jardim com bancos e espelho d’água.\n' +
+      'Dica: Após a Macy’s, relaxe no jardim com vista para o espelho d’água.',
     atividades: [
       {
         tipo: 'compras',
-        titulo: 'MacyÃ¢â‚¬â„¢s Ã¢â‚¬â€œ moda, casa e beleza',
+        titulo: 'Macy’s – moda, casa e beleza',
         descricao:
-          'Andares amplos com grande variedade de produtos e promoÃƒÂ§ÃƒÂµes.',
+          'Andares amplos com grande variedade de produtos e promoções.',
         local: '4298 Millenia Blvd, Orlando, FL',
         regiao: 'Millenia',
         area: 'Millenia',
@@ -61,9 +61,9 @@ export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'Jardim e espelho dÃ¢â‚¬â„¢ÃƒÂ¡gua',
+        titulo: 'Jardim e espelho d’água',
         descricao:
-          'ÃƒÂrea externa com bancos e vista para o espelho dÃ¢â‚¬â„¢ÃƒÂ¡gua, ideal no fim da tarde.',
+          'Área externa com bancos e vista para o espelho d’água, ideal no fim da tarde.',
         local: '4200 Conroy Rd, Orlando, FL',
         regiao: 'Millenia',
         area: 'Millenia',
@@ -79,9 +79,9 @@ export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
     referencia: 'Millenia',
     descricaoRegiao:
       'Durante a noite: Clima refinado e tranquilo.\n' +
-      'Lojas: Apple aberta atÃƒÂ© mais tarde.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Restaurantes sofisticados com vista interna.\n' +
-      'Dica: Jante em um restaurante com vista para o pÃƒÂ¡tio iluminado.',
+      'Lojas: Apple aberta até mais tarde.\n' +
+      'Alimentação e descanso: Restaurantes sofisticados com vista interna.\n' +
+      'Dica: Jante em um restaurante com vista para o pátio iluminado.',
     atividades: [
       {
         tipo: 'descanso',
@@ -98,7 +98,7 @@ export const blocosMallAtMillenia: TurnoDescansoRegiao[] = [
         tipo: 'compras',
         titulo: 'Apple Store',
         descricao:
-          'Teste lanÃƒÂ§amentos e aproveite o atendimento premium atÃƒÂ© mais tarde.',
+          'Teste lançamentos e aproveite o atendimento premium até mais tarde.',
         local: '4200 Conroy Rd, Orlando, FL',
         regiao: 'Millenia',
         area: 'Millenia',

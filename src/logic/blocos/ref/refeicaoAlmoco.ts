@@ -1,4 +1,4 @@
-﻿ï»¿import { almocosProximos } from './almocosProximos';
+import { almocosProximos } from './almocosProximos';
 import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
 
@@ -13,15 +13,15 @@ export const gerarRefeicaoAlmoco = (
 
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: "Ã°Å¸ÂÂ½Ã¯Â¸Â AlmoÃƒÂ§o",
-      descricao: "Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.",
+      titulo: "🍽️ Almoço",
+      descricao: "Nenhum perfil de refeição selecionado.",
       horarioSugerido: '12:00',
       tipo: 'refeicao',
     });
     return atividades;
   }
 
-  // Ã°Å¸Å¸Â¡ PRIORIDADE 1: buscar por coordenadas
+  // 🟡 PRIORIDADE 1: buscar por coordenadas
   if (latitude != null && longitude != null) {
     const almocoMaisProximo = almocosProximos
       .filter((r) => r.tipo === perfilSelecionado)
@@ -37,7 +37,7 @@ export const gerarRefeicaoAlmoco = (
     }
   }
 
-  // Ã°Å¸Å¸Â¡ PRIORIDADE 2: buscar por nome de regiÃƒÂ£o (normalizado)
+  // 🟡 PRIORIDADE 2: buscar por nome de região (normalizado)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm = nomeRegiao.trim().toLowerCase();
@@ -52,17 +52,17 @@ export const gerarRefeicaoAlmoco = (
     }
   }
 
-  // Ã°Å¸Å¸Â¡ PRIORIDADE 3: pegar qualquer almoÃƒÂ§o com o perfil
+  // 🟡 PRIORIDADE 3: pegar qualquer almoço com o perfil
   const almocoFallback = almocosProximos.find(r => r.tipo === perfilSelecionado);
   if (almocoFallback) {
     atividades.push(formatarAlmoco(almocoFallback));
     return atividades;
   }
 
-  // Ã°Å¸Å¸Â¥ NENHUM encontrado
+  // 🟥 NENHUM encontrado
   atividades.push({
-    titulo: "Ã°Å¸ÂÂ½Ã¯Â¸Â AlmoÃƒÂ§o",
-    descricao: "Nenhum local de almoÃƒÂ§o encontrado para o perfil selecionado.",
+    titulo: "🍽️ Almoço",
+    descricao: "Nenhum local de almoço encontrado para o perfil selecionado.",
     horarioSugerido: '12:00',
     tipo: 'refeicao',
   });
@@ -70,14 +70,14 @@ export const gerarRefeicaoAlmoco = (
   return atividades;
 };
 
-// Ã°Å¸â€Â§ funÃƒÂ§ÃƒÂ£o auxiliar
+// 🔧 função auxiliar
 function formatarAlmoco(almoco: any): AtividadeDia {
   return {
-    titulo: `Ã°Å¸ÂÂ½Ã¯Â¸Â ${almoco.nome}`,
+    titulo: `🍽️ ${almoco.nome}`,
     descricao:
       `Tipo: ${almoco.tipo}\n` +
-      `PreÃƒÂ§o mÃƒÂ©dio: $${almoco.precoMedio}` +
-      (almoco.acesso ? `\nAcesso: ${almoco.acesso} (da regiÃƒÂ£o ${almoco.regiao})` : '') +
+      `Preço médio: $${almoco.precoMedio}` +
+      (almoco.acesso ? `\nAcesso: ${almoco.acesso} (da região ${almoco.regiao})` : '') +
       (almoco.destaque ? `\nDestaque: ${almoco.destaque}` : ''),
     horarioSugerido: '12:00',
     tipo: 'refeicao',

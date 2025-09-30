@@ -1,26 +1,26 @@
-﻿ï»¿import { AtividadeDia } from '@/logic/types/atividade';
+import { AtividadeDia } from '@/logic/types/atividade';
 
 export const fogosMagicKingdom: AtividadeDia[] = [
   {
     id: 'fotos-fogos-mk',
     tipo: 'informativa',
-    titulo: `Show Main Street, U.S.A. Em frente ÃƒÂ  CaseyÃ¢â‚¬â„¢s Corne)`,
+    titulo: `Show Main Street, U.S.A. Em frente à Casey’s Corne)`,
     descricao: `
-Show no Castelo da Cinderela com fogos, projeÃƒÂ§ÃƒÂµes e trilhas icÃƒÂ´nicas:
-HorÃƒÂ¡rio: Normalmente 21h ou 21h20 (confirme no app My Disney Experience).
-Melhor local: Da Main Street atÃƒÂ© a CaseyÃ¢â‚¬â„¢s Corner para ver projeÃƒÂ§ÃƒÂµes e fogos.
+Show no Castelo da Cinderela com fogos, projeções e trilhas icônicas:
+Horário: Normalmente 21h ou 21h20 (confirme no app My Disney Experience).
+Melhor local: Da Main Street até a Casey’s Corner para ver projeções e fogos.
 Dica: Chegue 1h antes ou 1h30 em alta temporada. Leve toalha/canga para sentar.
-Fotos: Modo noturno, sem flash, tripÃƒÂ© pequeno. Slow motion no inÃƒÂ­cio fica ÃƒÂ³timo.
-Barulho: Protetor auricular para crianÃƒÂ§as sensÃƒÂ­veis.
-SaÃƒÂ­da: Use lojas do lado direito para evitar multidÃƒÂ£o ou aguarde 20Ã¢â‚¬â€œ30 min. Boat para estacionamento costuma ter menos fila que monorail.
+Fotos: Modo noturno, sem flash, tripé pequeno. Slow motion no início fica ótimo.
+Barulho: Protetor auricular para crianças sensíveis.
+Saída: Use lojas do lado direito para evitar multidão ou aguarde 20–30 min. Boat para estacionamento costuma ter menos fila que monorail.
 Chuva: Raramente cancelado; leve capa.
 Extra: Curta o momento, cante junto e aproveite para registrar o castelo iluminado.
 Transporte:  
 Carro: Prefira o boat para o estacionamento.  
-Uber/Lyft: Siga para a ÃƒÂ¡rea indicada no app.  
-HotÃƒÂ©is prÃƒÂ³ximos: Monorail ou caminhada segura.  
-Ãƒâ€nibus Disney: Procure a placa da sua linha e aguarde com calma.
-Ao chegar no hotel: banho, hidrataÃƒÂ§ÃƒÂ£o, separar roupa e carregar celular para o dia seguinte.
+Uber/Lyft: Siga para a área indicada no app.  
+Hotéis próximos: Monorail ou caminhada segura.  
+Ônibus Disney: Procure a placa da sua linha e aguarde com calma.
+Ao chegar no hotel: banho, hidratação, separar roupa e carregar celular para o dia seguinte.
 `,
     subtitulo: 'Noite',
     regiao: 'Main Street, U.S.A.',

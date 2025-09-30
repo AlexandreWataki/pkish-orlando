@@ -1,13 +1,13 @@
-﻿ï»¿import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 
 type Props = {
   titulo: string;
-  tipoRefeicao?: string; // CafÃƒÂ© da ManhÃƒÂ£, AlmoÃƒÂ§o, Jantar
-  tipo?: string;         // EconÃƒÂ´mico, ClÃƒÂ¡ssico, etc.
+  tipoRefeicao?: string; // Café da Manhã, Almoço, Jantar
+  tipo?: string;         // Econômico, Clássico, etc.
   precoMedio?: number | string;
-  descricao?: string;    // mostra sem rÃƒÂ³tulo
-  local?: string;        // mostra sem rÃƒÂ³tulo
+  descricao?: string;    // mostra sem rótulo
+  local?: string;        // mostra sem rótulo
 };
 
 export const CardRefeicao = ({ titulo, tipoRefeicao, tipo, precoMedio, descricao, local }: Props) => {
@@ -27,7 +27,7 @@ export const CardRefeicao = ({ titulo, tipoRefeicao, tipo, precoMedio, descricao
   const tituloFormatado =
     tipoRefeicao && titulo.includes(tipoRefeicao)
       ? titulo
-      : [titulo, tipoRefeicao].filter(Boolean).join(' Ã¢â‚¬â€œ ');
+      : [titulo, tipoRefeicao].filter(Boolean).join(' – ');
 
   const precoSomente =
     precoMedio === undefined || precoMedio === null || precoMedio === ''
@@ -36,10 +36,10 @@ export const CardRefeicao = ({ titulo, tipoRefeicao, tipo, precoMedio, descricao
       ? `$${precoMedio}`
       : `${precoMedio}`.trim();
 
-  // Linha ÃƒÂºnica: "PreÃƒÂ§o mÃƒÂ©dio: $12 - EconÃƒÂ´mico"
+  // Linha única: "Preço médio: $12 - Econômico"
   const linhaMeta =
     precoSomente && tipo
-      ? `PreÃƒÂ§o mÃƒÂ©dio: ${precoSomente} - ${tipo}`: precoSomente ? `PreÃƒÂ§o mÃƒÂ©dio: ${precoSomente}`
+      ? `Preço médio: ${precoSomente} - ${tipo}`: precoSomente ? `Preço médio: ${precoSomente}`
       : tipo
       ? `${tipo}`
       : '';

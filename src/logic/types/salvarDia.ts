@@ -1,12 +1,12 @@
-﻿ï»¿// src/logic/exportar/salvarPerfis.ts
+// src/logic/exportar/salvarPerfis.ts
 import { Platform } from 'react-native';
 
-export const perfisWeb: Record<string, string[]> = {}; // Ã¢Å“â€¦ agora estÃƒÂ¡ exportado
+export const perfisWeb: Record<string, string[]> = {}; // ✅ agora está exportado
 
 export async function salvarPerfis(tipo: string, opcoes: string[]) {
   if (Platform.OS === 'web') {
     perfisWeb[tipo] = opcoes;
-    console.warn(`Ã¢Å¡Â Ã¯Â¸Â [WEB] Perfil '${tipo}' salvo em memÃƒÂ³ria:`, opcoes);
+    console.warn(`⚠️ [WEB] Perfil '${tipo}' salvo em memória:`, opcoes);
     return;
   }
 
@@ -20,5 +20,5 @@ export async function salvarPerfis(tipo: string, opcoes: string[]) {
 
   const caminho = `${pasta}/${tipo}.json`;
   await FileSystem.writeAsStringAsync(caminho, JSON.stringify(opcoes, null, 2));
-  console.log(`Ã¢Å“â€¦ Perfil '${tipo}' salvo com sucesso em: ${caminho}`);
+  console.log(`✅ Perfil '${tipo}' salvo com sucesso em: ${caminho}`);
 }

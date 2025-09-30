@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/promocoes/PromocoesScreen.tsx
+// src/screens/promocoes/PromocoesScreen.tsx
 import React, { useMemo, useState, useEffect } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity,
@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import PromoCard from './PromoCard';
 import { PROMOCOES } from './promocoes';
@@ -24,7 +25,7 @@ const CATEGORIAS: Array<{ key: Promocao['categoria'] | 'todas'; label: string }>
   { key: 'todas', label: 'Todas' },
   { key: 'parques', label: 'Parques' },
   { key: 'restaurantes', label: 'Restaurantes' },
-  { key: 'hoteis', label: 'HotÃƒÂ©is' },
+  { key: 'hoteis', label: 'Hotéis' },
   { key: 'compras', label: 'Compras' },
   { key: 'transporte', label: 'Transporte' },
   { key: 'outros', label: 'Outros' },
@@ -34,7 +35,7 @@ export default function PromocoesScreen() {
   const navigation = useNavigation<any>();
   const [categoria, setCategoria] = useState<(typeof CATEGORIAS)[number]['key']>('todas');
 
-  // CabeÃƒÂ§alho com clima
+  // Cabeçalho com clima
   const [clima, setClima] = useState<any>(null);
   useEffect(() => { buscarClima('Orlando').then(setClima).catch(() => {}); }, []);
   const hoje = new Date();
@@ -53,17 +54,30 @@ export default function PromocoesScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={[
+        '#0077cc', // azul piscina
+        '#00c5d4', // turquesa
+        '#f5deb3', // areia clara
+        '#ffffff', // branco normal
+        '#ffffff', // branco final (rasinho bem claro)
+      ]}
+      locations={[0, 0.3, 0.6, 0.85, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.container}
+    >
+    
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
-      {/* ===== CabeÃƒÂ§alho ===== */}
+      {/* ===== Cabeçalho ===== */}
       <View style={styles.headerWrap}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || clima?.clima || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}Ã‚Â°C` : undefined}
+          temperatura={clima?.temp ? `${clima.temp}°C` : undefined}
           iconeClima={clima?.icone}
         />
 
@@ -72,7 +86,7 @@ export default function PromocoesScreen() {
         </View>
       </View>
 
-      {/* ConteÃƒÂºdo com filtros + lista */}
+      {/* Conteúdo com filtros + lista */}
       <ScrollView contentContainerStyle={{ paddingBottom: 160 }}>
         <View style={styles.filtrosRow}>
           {CATEGORIAS.map(f => {
@@ -96,19 +110,18 @@ export default function PromocoesScreen() {
           renderItem={({ item }) => <PromoCard item={item} onPress={abrir} />}
           ListEmptyComponent={
             <View style={{ padding: 24, alignItems: 'center' }}>
-              <Text style={{ color: '#fff' }}>Nenhuma promoÃƒÂ§ÃƒÂ£o nessa categoria ainda.</Text>
+              <Text style={{ color: '#fff' }}>Nenhuma promoção nessa categoria ainda.</Text>
             </View>
           }
         />
       </ScrollView>
 
-      {/* ===== RodapÃƒÂ© (faixa preta atÃƒÂ© o fundo) ===== */}
+      {/* ===== Rodapé com logo ===== */}
       <View style={styles.footerBlack} pointerEvents="none">
-        {/* Logo sobe 50px dentro da faixa */}
         <Image source={LOGO} style={styles.footerLogo} resizeMode="contain" />
       </View>
 
-      {/* ===== Seta flutuante para voltar (tambÃƒÂ©m 50px acima) ===== */}
+      {/* ===== Seta flutuante para voltar ===== */}
       <TouchableOpacity
         style={styles.bottomBackLeft}
         onPress={() => navigation.navigate('MenuPrincipal')}
@@ -118,12 +131,12 @@ export default function PromocoesScreen() {
           <Ionicons name="arrow-back-circle" size={44} color={AZUL_NEON} />
         </View>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#000' },
+  container: { flex: 1 },
   headerWrap: { paddingTop: Platform.OS === 'android' ? 40 : 20, paddingHorizontal: 16, paddingBottom: 8 },
   titleRow: { marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   headerTitle: { fontSize: 18, fontWeight: '800', color: '#E6F7FF' },
@@ -145,29 +158,33 @@ const styles = StyleSheet.create({
   },
   filtroAtivo: {
     borderColor: '#00FFFF',
-    backgroundColor: 'rgba(0, 191, 255, 0.18)',
+    backgroundColor: '#002B5B',
   },
   filtroTxt: { color: '#cfefff', fontWeight: '600', fontSize: 12 },
   filtroTxtAtivo: { color: '#00FFFF' },
 
-  // Ã¢Â¬â€¡Ã¯Â¸Â Faixa preta vai atÃƒÂ© a borda inferior (altura aumentada)
   footerBlack: {
     position: 'absolute',
-    left: 0, right: 0, bottom: 0,
-    height: 120,               // Ã¢â€ Â aumentado (era 70)
-    backgroundColor: '#000',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 120,              // ⬅️ antes estava 150, reduzimos
+    backgroundColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'flex-end',
     paddingRight: 16,
   },
-  // Logo elevado 50px dentro da faixa (mantido)
-  footerLogo: { width: 120, height: 36, opacity: 0.95, marginBottom: 50 },
+footerLogo: { 
+  width: 80, 
+  height: 36, 
+  opacity: 0.95, 
+  marginBottom: 60,   // ⬅️ sobe o logo dentro do rodapé
+},
 
-  // Seta elevada 50px acima da borda (mantida)
   bottomBackLeft: {
     position: 'absolute',
     left: 10,
-    bottom: 50,
+    bottom: 55,               // ⬅️ antes estava 10, subimos o botão
     zIndex: 999,
   },
   glowCircle: {
@@ -175,4 +192,5 @@ const styles = StyleSheet.create({
     padding: 6,
     backgroundColor: 'rgba(0,255,255,0.12)',
   },
+
 });

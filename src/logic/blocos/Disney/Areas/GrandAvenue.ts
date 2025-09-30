@@ -1,10 +1,10 @@
-﻿ï»¿export const GrandAvenue = {
+export const GrandAvenue = {
   parque: "Hollywood Studios",
   regiao: "Grand Avenue",
   latitude: 28.3551,
   longitude: -81.5615,
   descricao:
-    "Inspirada em Los Angeles, a Grand Avenue oferece uma atmosfera urbana com opÃƒÂ§ÃƒÂµes gastronÃƒÂ´micas e atraÃƒÂ§ÃƒÂµes temÃƒÂ¡ticas como Muppets e ambientes modernos.",
+    "Inspirada em Los Angeles, a Grand Avenue oferece uma atmosfera urbana com opções gastronômicas e atrações temáticas como Muppets e ambientes modernos.",
   imagem: "grandavenue.png",
   atracoes: [
     {
@@ -21,8 +21,8 @@
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao:
-        "EspetÃƒÂ¡culo divertido com os Muppets em 3D, efeitos especiais e piadas clÃƒÂ¡ssicas. Ideal para relaxar entre atraÃƒÂ§ÃƒÂµes mais intensas.",
-      icone: "Ã°Å¸Å½Â­",
+        "Espetáculo divertido com os Muppets em 3D, efeitos especiais e piadas clássicas. Ideal para relaxar entre atrações mais intensas.",
+      icone: "🎭",
       imagem: "muppet-vision.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -42,7 +42,7 @@
       turnoRecomendado: "noite",
       descricao:
         "Local moderno com cervejas artesanais e petiscos californianos. Excelente para adultos descansarem no fim do dia.",
-      icone: "Ã°Å¸ÂÂº",
+      icone: "🍺",
       imagem: "baseline-taphouse.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -51,7 +51,7 @@
       id: "grand-street-photo",
       titulo: "Grand Street Photo Spot",
       subtitulo: "Grand Avenue",
-      tipo: "Ponto para fotos temÃƒÂ¡ticas",
+      tipo: "Ponto para fotos temáticas",
       tipoPerfil: ["tematicas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -61,8 +61,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "CenÃƒÂ¡rio de rua urbana ideal para tirar fotos estilosas. Detalhes remetem ÃƒÂ  arquitetura de Los Angeles.",
-      icone: "Ã°Å¸â€œÂ¸",
+        "Cenário de rua urbana ideal para tirar fotos estilosas. Detalhes remetem à arquitetura de Los Angeles.",
+      icone: "📸",
       imagem: "grand-photo.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -71,7 +71,7 @@
       id: "grand-avenue-walk",
       titulo: "Passeio pela Grand Avenue",
       subtitulo: "Grand Avenue",
-      tipo: "ExploraÃƒÂ§ÃƒÂ£o urbana",
+      tipo: "Exploração urbana",
       tipoPerfil: ["imersivas", "tematicas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -81,8 +81,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "manha",
       descricao:
-        "Caminhe por calÃƒÂ§adas arborizadas com detalhes arquitetÃƒÂ´nicos da CalifÃƒÂ³rnia. Uma pausa tranquila com clima de cidade grande.",
-      icone: "Ã°Å¸Å¡Â¶Ã¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â",
+        "Caminhe por calçadas arborizadas com detalhes arquitetônicos da Califórnia. Uma pausa tranquila com clima de cidade grande.",
+      icone: "🚶‍♂️",
       imagem: "grand-walk.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"
@@ -91,7 +91,7 @@
       id: "muppet-shop",
       titulo: "Stage 1 Company Store",
       subtitulo: "Grand Avenue",
-      tipo: "Loja temÃƒÂ¡tica dos Muppets",
+      tipo: "Loja temática dos Muppets",
       tipoPerfil: ["interativas", "familiares"],
       alturaMinima: 0,
       filaExpress: false,
@@ -101,8 +101,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
       descricao:
-        "Loja colorida com produtos dos Muppets, itens colecionÃƒÂ¡veis e brinquedos exclusivos. Ideal apÃƒÂ³s o show Muppet*Vision 3D.",
-      icone: "Ã°Å¸â€ºÂÃ¯Â¸Â",
+        "Loja colorida com produtos dos Muppets, itens colecionáveis e brinquedos exclusivos. Ideal após o show Muppet*Vision 3D.",
+      icone: "🛍️",
       imagem: "muppet-store.jpg",
       regiao: "Grand Avenue",
       parque: "Hollywood Studios"

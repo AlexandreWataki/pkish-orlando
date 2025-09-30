@@ -1,10 +1,9 @@
-﻿ï»¿// src/screens/inicio/TelaAeroportoHotel.tsx
+// src/screens/inicio/TelaAeroportoHotel.tsx
 import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -20,38 +19,38 @@ import { ptBR } from 'date-fns/locale';
 
 const horariosVoo = [
   { label: 'Madrugada', value: 'madrugada' },
-  { label: 'ManhÃƒÂ£', value: 'manha' },
+  { label: 'Manhã', value: 'manha' },
   { label: 'Tarde', value: 'tarde' },
   { label: 'Noite', value: 'noite' },
 ];
 
 const sugestoesChegada: Record<string, string[]> = {
   madrugada: [
-    'Chegada durante a madrugada: siga para o hotel com transporte agendado, faÃƒÂ§a o check-in e descanse. Se disponÃƒÂ­vel, aproveite um jantar leve ou room service para relaxar apÃƒÂ³s a viagem.',
+    'Chegada durante a madrugada: siga para o hotel com transporte agendado, faça o check-in e descanse. Se disponível, aproveite um jantar leve ou room service para relaxar após a viagem.',
   ],
   manha: [
-    'Chegada pela manhÃƒÂ£: vÃƒÂ¡ atÃƒÂ© o hotel para deixar as malas, depois aproveite para visitar a Disney Springs e retirar ingressos. Finalize o dia com compras rÃƒÂ¡pidas no Walmart para abastecer o quarto.',
+    'Chegada pela manhã: vá até o hotel para deixar as malas, depois aproveite para visitar a Disney Springs e retirar ingressos. Finalize o dia com compras rápidas no Walmart para abastecer o quarto.',
   ],
   tarde: [
-    'Chegada ÃƒÂ  tarde: faÃƒÂ§a o check-in no hotel com tranquilidade, dÃƒÂª um passeio leve em Disney Springs ou em um outlet prÃƒÂ³ximo e encerre o dia com um jantar agradÃƒÂ¡vel em restaurante da regiÃƒÂ£o.',
+    'Chegada à tarde: faça o check-in no hotel com tranquilidade, dê um passeio leve em Disney Springs ou em um outlet próximo e encerre o dia com um jantar agradável em restaurante da região.',
   ],
   noite: [
-    'Chegada ÃƒÂ  noite: dirija-se diretamente ao hotel para o check-in. Descanse bem para aproveitar ao mÃƒÂ¡ximo o dia seguinte.',
+    'Chegada à noite: dirija-se diretamente ao hotel para o check-in. Descanse bem para aproveitar ao máximo o dia seguinte.',
   ],
 };
 
 const sugestoesSaida: Record<string, string[]> = {
   madrugada: [
-    'SaÃƒÂ­da durante a madrugada: organize as malas na noite anterior e descanse cedo. Programe o check-out noturno e garanta o transporte antecipado atÃƒÂ© o aeroporto.',
+    'Saída durante a madrugada: organize as malas na noite anterior e descanse cedo. Programe o check-out noturno e garanta o transporte antecipado até o aeroporto.',
   ],
   manha: [
-    'SaÃƒÂ­da pela manhÃƒÂ£: arrume as malas na noite anterior para um check-out sem pressa. Garanta o transporte com antecedÃƒÂªncia atÃƒÂ© o aeroporto.',
+    'Saída pela manhã: arrume as malas na noite anterior para um check-out sem pressa. Garanta o transporte com antecedência até o aeroporto.',
   ],
   tarde: [
-    'SaÃƒÂ­da ÃƒÂ  tarde: aproveite um cafÃƒÂ© da manhÃƒÂ£ tranquilo, faÃƒÂ§a as ÃƒÂºltimas compras ou um passeio leve prÃƒÂ³ximo ao hotel. Realize o check-out atÃƒÂ© o meio-dia e siga para o aeroporto.',
+    'Saída à tarde: aproveite um café da manhã tranquilo, faça as últimas compras ou um passeio leve próximo ao hotel. Realize o check-out até o meio-dia e siga para o aeroporto.',
   ],
   noite: [
-    'SaÃƒÂ­da ÃƒÂ  noite: aproveite a manhÃƒÂ£ e o inÃƒÂ­cio da tarde para atividades leves. ApÃƒÂ³s o check-out no horÃƒÂ¡rio, faÃƒÂ§a um almoÃƒÂ§o especial de despedida e vÃƒÂ¡ para o aeroporto no fim da tarde.',
+    'Saída à noite: aproveite a manhã e o início da tarde para atividades leves. Após o check-out no horário, faça um almoço especial de despedida e vá para o aeroporto no fim da tarde.',
   ],
 };
 
@@ -125,39 +124,37 @@ export default function TelaAeroportoHotel() {
   ) {
     return (
       <View style={styles.card}>
-  <TouchableOpacity
-    onPress={toggle}
-    style={[
-      styles.botaoEstiloFixado,
-      {
-        backgroundColor: completo ? '#004b87' : 'rgba(255,255,255,0.5)', // 40% branco
-        borderWidth: 0, // sem borda
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 12,
-      },
-    ]}
-  >
-
-         <Text
-  style={[
-    styles.textoFixado,
-    { color: completo ? 'white' : '#004b87' }
-  ]}
->
-  {label}
-</Text>
-{completo && (
-  <Ionicons
-    name="checkmark"
-    size={18}
-    color="#fff"
-    style={{ marginLeft: 6 }}
-  />
-)}
-</TouchableOpacity>
-
+        <TouchableOpacity
+          onPress={toggle}
+          style={[
+            styles.botaoEstiloFixado,
+            {
+              backgroundColor: completo ? '#004b87' : 'rgba(255,255,255,0.5)',
+              borderWidth: 0,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingHorizontal: 12,
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.textoFixado,
+              { color: completo ? 'white' : '#004b87' }
+            ]}
+          >
+            {label}
+          </Text>
+          {completo && (
+            <Ionicons
+              name="checkmark"
+              size={18}
+              color="#fff"
+              style={{ marginLeft: 6 }}
+            />
+          )}
+        </TouchableOpacity>
 
         {isVisivel && <View style={styles.conteudoAbaixo}>{children}</View>}
         {extra && <View style={styles.conteudoAbaixo}>{extra}</View>}
@@ -178,21 +175,36 @@ export default function TelaAeroportoHotel() {
     (!temSaida || !!horarioSaida);
 
   return (
-    <LinearGradient colors={['#0077cc', '#00bfff', '#add8e6']} style={{ flex: 1 }}>
+          <LinearGradient
+            colors={[
+              '#0077cc', // azul piscina
+              '#00c5d4', // turquesa
+              '#f5deb3', // areia clara
+              '#ffffff', // branco normal
+              '#ffffff', // branco final (rasinho bem claro)
+            ]}
+            locations={[0, 0.3, 0.6, 0.85, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={styles.container}
+          >
+          
+   
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           titulo=""
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
+          temperatura={clima ? `${clima.temp}°C` : '28°C'}
           iconeClima={clima?.icone}
         />
       </View>
 
-      <ScrollView contentContainerStyle={styles.scroll}>
+      {/* Conteúdo sem scroll */}
+      <View style={styles.content}>
         {renderCampo(
-          'Selecione sua regiÃƒÂ£o ou a mais prÃƒÂ³xima',
+          'Selecione sua região ou a mais próxima',
           visivel.regiao,
           () => setVisivel(v => ({ ...v, regiao: !v.regiao })),
           <SelectBox
@@ -208,12 +220,12 @@ export default function TelaAeroportoHotel() {
               setVisivel(v => ({ ...v, regiao: false }));
             }}
           />,
-          !!regiaoHospedagem && regiaoHospedagem.nome !== 'Nenhuma ÃƒÂ¡rea de hospedagem',
+          !!regiaoHospedagem && regiaoHospedagem.nome !== 'Nenhuma área de hospedagem',
           regiaoHospedagem ? renderDescricaoRegiao(regiaoHospedagem) : null
         )}
 
         {temChegada && renderCampo(
-          'HorÃƒÂ¡rio do Voo de Chegada',
+          'Horário do Voo de Chegada',
           visivel.chegada,
           () => setVisivel(v => ({ ...v, chegada: !v.chegada })),
           <SelectBox
@@ -230,7 +242,7 @@ export default function TelaAeroportoHotel() {
         )}
 
         {temSaida && renderCampo(
-          'HorÃƒÂ¡rio do Voo de SaÃƒÂ­da',
+          'Horário do Voo de Saída',
           visivel.saida,
           () => setVisivel(v => ({ ...v, saida: !v.saida })),
           <SelectBox
@@ -245,10 +257,9 @@ export default function TelaAeroportoHotel() {
           !!horarioSaida,
           renderTextoVoo('saida', horarioSaida)
         )}
+      </View>
 
-        <View style={{ height: 120 }} />
-      </ScrollView>
-
+      {/* Botões flutuantes */}
       <TouchableOpacity style={styles.floatingBackButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back-circle" size={48} color="#004b87" />
       </TouchableOpacity>
@@ -264,12 +275,14 @@ export default function TelaAeroportoHotel() {
 }
 
 const styles = StyleSheet.create({
-  scroll: {
-    alignItems: 'center',
+  container: { flex: 1, backgroundColor: '#ffffff' },
+  content: {
+    flexGrow: 1,
     paddingTop: 10,
-    paddingBottom: 180,
-    minHeight: 600,
+    paddingBottom: 120,
+    alignItems: 'center',
     width: '100%',
+    backgroundColor: 'transparent',
   },
   card: {
     width: '92%',
@@ -300,14 +313,15 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
   },
   conteudoAbaixo: { marginTop: 2 },
+
   floatingButton: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 70,
     right: 20,
   },
   floatingBackButton: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 70,
     left: 20,
   },
 });

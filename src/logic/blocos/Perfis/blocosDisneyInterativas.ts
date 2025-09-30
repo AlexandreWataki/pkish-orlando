@@ -1,4 +1,4 @@
-﻿// src/logic/blocos/parques/Perfis/blocosDisneyInterativas.ts
+// src/logic/blocos/parques/Perfis/blocosDisneyInterativas.ts
 
 import { BlocoPerfilParque } from '@/logic/types/turno';
 

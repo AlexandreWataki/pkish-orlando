@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/descanso/blocosWalmartTargetFiveBelow.ts
+// src/logic/blocos/descanso/blocosWalmartTargetFiveBelow.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
@@ -8,16 +8,16 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'Kissimmee Loop West',
     descricaoRegiao:
-      'Durante a manhÃƒÂ£: Clima fresco, pouco movimento e espaÃƒÂ§o aberto.\n' +
+      'Durante a manhã: Clima fresco, pouco movimento e espaço aberto.\n' +
       'Lojas: Ross, Five Below e utilidades diversas.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos ao ar livre prÃƒÂ³ximos ao cinema.\n' +
-      'Dica: VÃƒÂ¡ primeiro ÃƒÂ  Five Below e depois ÃƒÂ  Ross para achar os melhores itens.',
+      'Alimentação e descanso: Bancos ao ar livre próximos ao cinema.\n' +
+      'Dica: Vá primeiro à Five Below e depois à Ross para achar os melhores itens.',
     atividades: [
       {
         tipo: 'compras',
-        titulo: 'Five Below Ã¢â‚¬â€œ The Loop',
+        titulo: 'Five Below – The Loop',
         descricao:
-          'Produtos criativos, camisetas, doces, acessÃƒÂ³rios e papelaria por atÃƒÂ© $5.',
+          'Produtos criativos, camisetas, doces, acessórios e papelaria por até $5.',
         local: '3244 N John Young Pkwy, Kissimmee, FL',
         regiao: 'Kissimmee',
         latitude: 28.3439,
@@ -27,7 +27,7 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
         tipo: 'descanso',
         titulo: 'Bancos ao ar livre no The Loop',
         descricao:
-          'ÃƒÂrea tranquila com paisagismo e calÃƒÂ§adas largas, ideal para cafÃƒÂ© e pausa leve.',
+          'Área tranquila com paisagismo e calçadas largas, ideal para café e pausa leve.',
         local: '3208 N John Young Pkwy, Kissimmee, FL',
         regiao: 'Kissimmee',
         latitude: 28.3438,
@@ -41,16 +41,16 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
     horarioFim: '19:00',
     referencia: 'Target - Rolling Oaks Commons',
     descricaoRegiao:
-      'Durante a tarde: EspaÃƒÂ§o amplo e sombreado, movimento moderado.\n' +
+      'Durante a tarde: Espaço amplo e sombreado, movimento moderado.\n' +
       'Lojas: Target e Five Below.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos sob ÃƒÂ¡rvores entre as lojas.\n' +
-      'Dica: Comece pela seÃƒÂ§ÃƒÂ£o Dollar Spot da Target, itens criativos esgotam rÃƒÂ¡pido.',
+      'Alimentação e descanso: Bancos sob árvores entre as lojas.\n' +
+      'Dica: Comece pela seção Dollar Spot da Target, itens criativos esgotam rápido.',
     atividades: [
       {
         tipo: 'compras',
-        titulo: 'Target Ã¢â‚¬â€œ Rolling Oaks Commons',
+        titulo: 'Target – Rolling Oaks Commons',
         descricao:
-          'Ambiente moderno com roupas, brinquedos, snacks e decoraÃƒÂ§ÃƒÂ£o. SeÃƒÂ§ÃƒÂ£o Dollar Spot com achados sazonais.',
+          'Ambiente moderno com roupas, brinquedos, snacks e decoração. Seção Dollar Spot com achados sazonais.',
         local: '3200 Rolling Oaks Blvd, Kissimmee, FL',
         regiao: 'Kissimmee',
         latitude: 28.3272,
@@ -58,9 +58,9 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'compras',
-        titulo: 'Five Below Ã¢â‚¬â€œ Rolling Oaks Commons',
+        titulo: 'Five Below – Rolling Oaks Commons',
         descricao:
-          'Itens divertidos e acessÃƒÂ­veis, incluindo eletrÃƒÂ´nicos, brinquedos e presentes criativos.',
+          'Itens divertidos e acessíveis, incluindo eletrônicos, brinquedos e presentes criativos.',
         local: '3200 Rolling Oaks Blvd, Kissimmee, FL',
         regiao: 'Kissimmee',
         latitude: 28.3274,
@@ -68,7 +68,7 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'Bancos ÃƒÂ  sombra',
+        titulo: 'Bancos à sombra',
         descricao:
           'Local silencioso para pausa, organizar compras ou tomar algo gelado.',
         local: '3200 Rolling Oaks Blvd, Kissimmee, FL',
@@ -85,15 +85,15 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
     referencia: 'Walmart Supercenter - Kissimmee',
     descricaoRegiao:
       'Durante a noite: Movimento tranquilo e estacionamento iluminado.\n' +
-      'Lojas: Walmart aberto atÃƒÂ© tarde.\n' +
-      'AlimentaÃƒÂ§ÃƒÂ£o e descanso: Bancos sob ÃƒÂ¡rvores prÃƒÂ³ximos ÃƒÂ  entrada.\n' +
-      'Dica: Confira a seÃƒÂ§ÃƒÂ£o de doces e cereais americanos antes de sair.',
+      'Lojas: Walmart aberto até tarde.\n' +
+      'Alimentação e descanso: Bancos sob árvores próximos à entrada.\n' +
+      'Dica: Confira a seção de doces e cereais americanos antes de sair.',
     atividades: [
       {
         tipo: 'compras',
         titulo: 'Walmart Supercenter',
         descricao:
-          'Grande variedade de roupas, eletrÃƒÂ´nicos, snacks e itens para viagem. SeÃƒÂ§ÃƒÂ£o de doces e cereais ÃƒÂ© imperdÃƒÂ­vel.',
+          'Grande variedade de roupas, eletrônicos, snacks e itens para viagem. Seção de doces e cereais é imperdível.',
         local: '2855 N Old Lake Wilson Rd, Kissimmee, FL',
         regiao: 'Kissimmee',
         latitude: 28.3352,
@@ -101,9 +101,9 @@ export const blocosWalmartTargetFiveBelow: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'descanso',
-        titulo: 'Bancos prÃƒÂ³ximos ÃƒÂ  entrada',
+        titulo: 'Bancos próximos à entrada',
         descricao:
-          'Bom para reorganizar compras ou fazer um lanche rÃƒÂ¡pido antes de encerrar o dia.',
+          'Bom para reorganizar compras ou fazer um lanche rápido antes de encerrar o dia.',
         local: '2855 N Old Lake Wilson Rd, Kissimmee, FL',
         regiao: 'Kissimmee',
         latitude: 28.3352,

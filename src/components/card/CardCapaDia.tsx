@@ -1,4 +1,4 @@
-﻿ï»¿// src/components/card/CardCapaDia.tsx
+// src/components/card/CardCapaDia.tsx
 
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
@@ -14,7 +14,7 @@ type Props = {
 
 const tiposTraduzidos: Record<string, string> = {
   chegada: 'Chegada',
-  saida: 'SaÃƒÂ­da',
+  saida: 'Saída',
   disney: 'Parque Disney',
   universal: 'Parque Universal',
   compras: 'Compras',

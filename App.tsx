@@ -1,64 +1,60 @@
-﻿ï»¿// src/App.tsx
-import { LogBox } from 'react-native';
+import { LogBox, Platform } from 'react-native';
 
-// Ã°Å¸â€â€¢ Ignorar warning globalmente (logo no inÃƒÂ­cio, antes de qualquer outro import)
+// 🔕 Ignorar warnings chatos
 LogBox.ignoreLogs([
-  'setLayoutAnimationEnabledExperimental', // substring ampla
-  'no-op in the New Architecture',         // reforÃƒÂ§o para pegar qualquer quebra de linha
+  'setLayoutAnimationEnabledExperimental',
+  'no-op in the New Architecture',
 ]);
 
 import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ParkisheiroProvider } from '@/contexts/ParkisheiroContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 
-// telas de login
+// ── Splash / Inicio
 import SplashScreen from '@/screens/login/SplashScreen';
 import InicioScreen from '@/screens/login/InicioScreen';
-import LoginScreen from '@/screens/login/LoginScreen';
-import CadastroScreen from '@/screens/login/CadastroScreen';
 
-// inÃƒÂ­cio/fluxo principal
+// ── Fluxo principal
 import MenuPrincipal from '@/screens/inicio/MenuPrincipal';
 import TelaDefinirQuantidadeDias from '@/screens/inicio/TelaDefinirQuantidadeDias';
 import TelaDefinirTiposDias from '@/screens/inicio/TelaDefinirTiposDias';
 import TelaDistribuirDias from '@/screens/inicio/TelaDistribuirDias';
 import TelaAeroportoHotel from '@/screens/inicio/TelaAeroportoHotel';
 
-// mÃƒÂ­dias
+// ── Conteúdo / Lógicas
 import TelaAtracoes from '@/logic/media/TelaAtracoes';
 import TelaRefeicoes from '@/logic/menu/TelaRefeicoes';
 
-// perfis
+// ── Perfis
 import PerfilRefeicoesScreen from '@/screens/perfis/PerfilRefeicoes';
 import PerfilDescansoPorDiaScreen from '@/screens/perfis/PerfilDescansoPorDiaScreen';
 import PerfilComprasPorDiaScreen from '@/screens/perfis/PerfilComprasPorDiaScreen';
 import PerfilAtracoesScreen from '@/screens/perfis/PerfilAtracoesScreen';
 
-// dias
+// ── Dias
 import DiaDetalheScreen from '@/screens/dias/DiaDetalheScreen';
 
-// Ã°Å¸â€ºÂÃ¯Â¸Â Clube de Vantagens / PromoÃƒÂ§ÃƒÂµes (nova)
+// 🛍️ Clube de Vantagens
 import PromocoesScreen from '@/IA/PromocoesScreen';
 
-// Ã¢â€“Â¶Ã¯Â¸Â player de YouTube
+// ▶️ Player YouTube
 import YouTubePlayerScreen from '@/logic/media/YouTubePlayerScreen';
 
-// Ã°Å¸Â§Â¾ WebView para cardÃƒÂ¡pio
+// 🧾 WebView cardápio
 import MenuWebScreen from '@/logic/menu/MenuWebScreen';
+
+// 📑 PDFs dos Parques
+import ParquesPDFScreen from '@/screens/parquesPDF/ParquesPDFScreen';
+import VisualizarPDFScreen from '@/screens/parquesPDF/VisualizarPDFScreen';
 
 import { enableLayoutAnimationAndroidLegacy } from '@/logic/types/enableLayoutAnimationAndroidLegacy';
 
-// Ã°Å¸â€â€¡ Desabilitar logs em produÃƒÂ§ÃƒÂ£o
 if (!__DEV__) {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   console.log = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   console.warn = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   console.error = () => {};
 }
 
@@ -68,8 +64,6 @@ export type RootStackParamList = {
   // Splash / Auth
   Splash: undefined;
   Inicio: undefined;
-  Login: undefined;
-  Cadastro: undefined;
 
   // App principal
   MenuPrincipal: undefined;
@@ -78,7 +72,7 @@ export type RootStackParamList = {
   DistribuicaodeDias: undefined;
   'Aeroporto&Hotel': undefined;
 
-  // ConteÃƒÂºdo
+  // Conteúdo
   TelaAtracoes: undefined;
   TelaRefeicoes: undefined;
 
@@ -91,19 +85,22 @@ export type RootStackParamList = {
   // Dias
   DiaCompleto: { diaId?: string } | undefined;
 
-  // Ã°Å¸â€ºÂÃ¯Â¸Â PromoÃƒÂ§ÃƒÂµes
+  // 🛍️ Promoções
   Promocoes: undefined;
 
-  // MÃƒÂ­dia/Web
+  // Mídia/Web
   YouTubePlayer: { title?: string; idOrUrl: string };
   MenuWeb: { url: string; title?: string };
+
+  // 📑 PDFs dos Parques
+  ParquesPDF: undefined;
+  VisualizarPDF: { title: string; url: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   useEffect(() => {
-    // Habilita LayoutAnimation apenas quando seguro (Android legado)
     enableLayoutAnimationAndroidLegacy();
   }, []);
 
@@ -114,16 +111,13 @@ export default function App() {
           <Stack.Navigator
             initialRouteName="Splash"
             screenOptions={{
-              headerBackVisible: true,
-              ...(Platform.OS !== 'web' && { headerBackTitleVisible: false }),
               headerShown: false,
+              ...(Platform.OS !== 'web' && { headerBackTitleVisible: false }),
             }}
           >
-            {/* Fluxo de splash/autenticaÃƒÂ§ÃƒÂ£o */}
+            {/* Fluxo Splash/Auth */}
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen name="Inicio" component={InicioScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Cadastro" component={CadastroScreen} />
 
             {/* App */}
             <Stack.Screen name="MenuPrincipal" component={MenuPrincipal} />
@@ -143,22 +137,18 @@ export default function App() {
             {/* Dias */}
             <Stack.Screen name="DiaCompleto" component={DiaDetalheScreen} />
 
-            {/* Ã°Å¸â€ºÂÃ¯Â¸Â Clube de Vantagens / PromoÃƒÂ§ÃƒÂµes */}
+            {/* 🛍️ Promoções */}
             <Stack.Screen name="Promocoes" component={PromocoesScreen} />
 
-            {/* Ã¢â€“Â¶Ã¯Â¸Â VÃƒÂ­deo YouTube */}
-            <Stack.Screen
-              name="YouTubePlayer"
-              component={YouTubePlayerScreen}
-              options={{ headerShown: false }}
-            />
+            {/* ▶️ YouTube */}
+            <Stack.Screen name="YouTubePlayer" component={YouTubePlayerScreen} />
 
-            {/* Ã°Å¸Â§Â¾ CardÃƒÂ¡pio (WebView) */}
-            <Stack.Screen
-              name="MenuWeb"
-              component={MenuWebScreen}
-              options={{ headerShown: false }}
-            />
+            {/* 🧾 Cardápio */}
+            <Stack.Screen name="MenuWeb" component={MenuWebScreen} />
+
+            {/* 📑 PDFs dos Parques */}
+            <Stack.Screen name="ParquesPDF" component={ParquesPDFScreen} />
+            <Stack.Screen name="VisualizarPDF" component={VisualizarPDFScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ParkisheiroProvider>

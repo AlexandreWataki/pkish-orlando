@@ -1,9 +1,9 @@
-﻿ï»¿export const EchoLake = {
+export const EchoLake = {
   regiao: "Echo Lake",
   parque: "Hollywood Studios",
   latitude: 28.3574,
   longitude: -81.5606,
-  descricao: "Cinema clÃƒÂ¡ssico, shows ao vivo e atraÃƒÂ§ÃƒÂµes inspiradas em Indiana Jones, Star Wars e Frozen.",
+  descricao: "Cinema clássico, shows ao vivo e atrações inspiradas em Indiana Jones, Star Wars e Frozen.",
   imagem: "echolake.png",
   atracoes: [
     {
@@ -19,15 +19,15 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: `Show com dublÃƒÂªs, explosÃƒÂµes e cenas clÃƒÂ¡ssicas de Indiana Jones. Sente-se no centro para melhor visÃƒÂ£o das acrobacias.`,
-      icone: "Ã°Å¸Å½Â¬",
+      descricao: `Show com dublês, explosões e cenas clássicas de Indiana Jones. Sente-se no centro para melhor visão das acrobacias.`,
+      icone: "🎬",
       imagem: "indiana-jones.jpg",
       latitude: 28.3575,
       longitude: -81.5607
     },
     {
       id: "star-tours",
-      titulo: "Star Tours Ã¢â‚¬â€œ The Adventures Continue",
+      titulo: "Star Tours – The Adventures Continue",
       subtitulo: "Echo Lake",
       tipo: "Simulador 3D",
       tipoPerfil: ["imersivas", "radicais", "tematicas"],
@@ -39,7 +39,7 @@
       atracaoSemFila: false,
       turnoRecomendado: "manha",
       descricao: `Simulador 3D com aventuras variadas no universo Star Wars. Sente-se no meio da cabine para menos impacto.`,
-      icone: "Ã°Å¸Å¡â‚¬",
+      icone: "🚀",
       imagem: "star-tours.jpg",
       latitude: 28.3576,
       longitude: -81.5605
@@ -57,8 +57,8 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: `Fotos e interaÃƒÂ§ÃƒÂ£o com Olaf em cenÃƒÂ¡rio nevado. Leve caderno para autÃƒÂ³grafos e chegue cedo.`,
-      icone: "Ã¢ËœÆ’Ã¯Â¸Â",
+      descricao: `Fotos e interação com Olaf em cenário nevado. Leve caderno para autógrafos e chegue cedo.`,
+      icone: "☃️",
       imagem: "meet-olaf.jpg",
       latitude: 28.3573,
       longitude: -81.5608
@@ -76,8 +76,8 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "noite",
-      descricao: `Show musical de Frozen com efeitos e neve artificial. Sente-se no meio para melhor visÃƒÂ£o.`,
-      icone: "Ã°Å¸Å½Â¤",
+      descricao: `Show musical de Frozen com efeitos e neve artificial. Sente-se no meio para melhor visão.`,
+      icone: "🎤",
       imagem: "frozen-sing-along.jpg",
       latitude: 28.3578,
       longitude: -81.5604
@@ -86,7 +86,7 @@
       id: "dockside-diner",
       titulo: "Dockside Diner",
       subtitulo: "Echo Lake",
-      tipo: "ÃƒÂrea de alimentaÃƒÂ§ÃƒÂ£o e relaxamento",
+      tipo: "Área de alimentação e relaxamento",
       tipoPerfil: ["tematicas", "familiares", "interativas"],
       alturaMinima: 0,
       filaExpress: false,
@@ -95,8 +95,8 @@
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: true,
       turnoRecomendado: "tarde",
-      descricao: `Barco cenogrÃƒÂ¡fico com lanches e mesas ao ar livre. Sente ÃƒÂ  beira do lago para fotos incrÃƒÂ­veis.`,
-      icone: "Ã°Å¸Ââ€",
+      descricao: `Barco cenográfico com lanches e mesas ao ar livre. Sente à beira do lago para fotos incríveis.`,
+      icone: "🍔",
       imagem: "dockside-diner.jpg",
       latitude: 28.3577,
       longitude: -81.5606

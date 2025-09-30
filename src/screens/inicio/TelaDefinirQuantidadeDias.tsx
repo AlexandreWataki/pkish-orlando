@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/inicio/TelaDefinirQuantidadeDias.tsx
+// src/screens/inicio/TelaDefinirQuantidadeDias.tsx
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -156,24 +156,33 @@ export default function TelaDefinirQuantidadeDias() {
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
 
-  // Ã°Å¸â€Â§ NormalizaÃƒÂ§ÃƒÂ£o igual ao menu (agora inclui tempC)
+  // 🔧 Normalização igual ao menu (agora inclui tempC)
   const condicaoClima = clima?.condicao ?? clima?.descricao ?? 'Parcialmente nublado';
   const tempValor = clima?.temp ?? clima?.temperatura ?? clima?.tempC ?? 28;
   const temperaturaClima =
     typeof tempValor === 'number'
-      ? `${Math.round(tempValor)}Ã‚Â°C`
-      : String(tempValor).includes('Ã‚Â°')
+      ? `${Math.round(tempValor)}°C`
+      : String(tempValor).includes('°')
       ? String(tempValor)
-      : `${tempValor}Ã‚Â°C`;
+      : `${tempValor}°C`;
   const iconeClima = clima?.icone ?? clima?.icon;
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#add8e6']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.container}
-    >
+     <LinearGradient
+       colors={[
+         '#0077cc', // azul piscina
+         '#00c5d4', // turquesa
+         '#f5deb3', // areia clara
+         '#ffffff', // branco normal
+         '#ffffff', // branco final (rasinho bem claro)
+       ]}
+       locations={[0, 0.3, 0.6, 0.85, 1]}
+       start={{ x: 0, y: 0 }}
+       end={{ x: 0, y: 1 }}
+       style={styles.container}
+     >
+     
+
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
       <View style={{ marginTop: 40 }}>
@@ -182,7 +191,7 @@ export default function TelaDefinirQuantidadeDias() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={condicaoClima}
-          temperatura={temperaturaClima}  // Ã¢â€ Â agora aparece certinho na lateral
+          temperatura={temperaturaClima}  // ← agora aparece certinho na lateral
           iconeClima={iconeClima}
         />
       </View>
@@ -219,11 +228,11 @@ export default function TelaDefinirQuantidadeDias() {
           <View style={styles.cardWrapper}>
             <View style={styles.datasRow}>
               <Text style={styles.dataInfo}>
-                Ã°Å¸â€ºÂ¬ Chegada:{' '}
+                🛬 Chegada:{' '}
                 {startDate ? startDate.dateString.split('-').reverse().join('/') : '--'}
               </Text>
               <Text style={styles.dataInfo}>
-                Ã°Å¸â€ºÂ« SaÃƒÂ­da:{' '}
+                🛫 Saída:{' '}
                 {endDate ? endDate.dateString.split('-').reverse().join('/') : '--'}
               </Text>
             </View>

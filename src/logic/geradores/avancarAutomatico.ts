@@ -1,4 +1,4 @@
-﻿ï»¿type Navegador = {
+type Navegador = {
   navigate: (tela: string, params?: any) => void;
 };
 
@@ -16,7 +16,7 @@ export function avancarAutomatico({ dias, roteiroFinal, navigation }: DadosAvanc
 
   const todosTipos = dias.map((d) => d.tipo);
 
-  // Filtra tipos que geram perfis (ignora chegada e saÃƒÂ­da)
+  // Filtra tipos que geram perfis (ignora chegada e saída)
   const tipos = todosTipos.filter((t) => t !== 'chegada' && t !== 'saida');
 
   const tem = (tipo: string) => tipos.includes(tipo);
@@ -24,14 +24,14 @@ export function avancarAutomatico({ dias, roteiroFinal, navigation }: DadosAvanc
   const temPerfil = tipos.includes('compras') || tipos.includes('descanso') || temParque;
   const apenasChegadaSaida = tipos.length === 0;
 
-  // Monta sequÃƒÂªncia
+  // Monta sequência
   const sequencia: { nome: string; tela: string }[] = [];
 
-  // Sempre comeÃƒÂ§a com refeiÃƒÂ§ÃƒÂ£o
+  // Sempre começa com refeição
   sequencia.push({ nome: 'refeicao', tela: 'PerfilRefeicoes' });
 
   if (!apenasChegadaSaida) {
-    // Ordem fixa: Compras Ã¢â€ â€™ Descanso Ã¢â€ â€™ AtraÃƒÂ§ÃƒÂµes
+    // Ordem fixa: Compras → Descanso → Atrações
     if (tem('compras')) {
       sequencia.push({ nome: 'compras', tela: 'PerfilComprasPorDiaScreen' });
     }
@@ -46,7 +46,7 @@ export function avancarAutomatico({ dias, roteiroFinal, navigation }: DadosAvanc
   // Sempre termina no DiaCompleto
   sequencia.push({ nome: 'final', tela: 'DiaCompleto' });
 
-  // Executa sequÃƒÂªncia encadeada
+  // Executa sequência encadeada
   const proximo = (index: number) => {
     if (index >= sequencia.length) return;
     const etapa = sequencia[index];

@@ -1,15 +1,15 @@
-﻿ï»¿import { Parkisheiro } from '@/logic/types/parkisheiro';
+import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
-import { jantaresUniversal } from './JantarUniversal'; // Importa opÃƒÂ§ÃƒÂµes de jantar da Universal
+import { jantaresUniversal } from './JantarUniversal'; // Importa opções de jantar da Universal
 
-// Mapeia o nome do parque para a regiÃƒÂ£o de fogos correspondente
+// Mapeia o nome do parque para a região de fogos correspondente
 const mapaShowParaJantar: Record<string, string> = {
   'universal studios florida': 'FogosUniversalStudios',
   'islands of adventure': 'FogosIslandsOfAdventure',
   "universal's epic universe": 'FogosEpicoUniverse',
 };
 
-// FunÃƒÂ§ÃƒÂ£o de comparaÃƒÂ§ÃƒÂ£o que aceita tipo string, array ou string separada por vÃƒÂ­rgula (case insensitive)
+// Função de comparação que aceita tipo string, array ou string separada por vírgula (case insensitive)
 function tipoInclui(tipo: string | string[], perfil: string) {
   if (!tipo) return false;
   if (Array.isArray(tipo)) {
@@ -33,22 +33,22 @@ export const gerarUniversalJantar = (
   const perfilSelecionado = parkisheiro.perfis?.refeicoes?.perfil;
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: 'Ã°Å¸ÂÂ½Ã¯Â¸Â Jantar',
-      descricao: 'Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.',
+      titulo: '🍽️ Jantar',
+      descricao: 'Nenhum perfil de refeição selecionado.',
       horarioSugerido: '19:00',
       tipo: 'jantar',
     });
     return atividades;
   }
 
-  // Ã°Å¸â€Â¹ Converte regiao para a regiÃƒÂ£o de show (Fogos...), se for um parque da Universal
+  // 🔹 Converte regiao para a região de show (Fogos...), se for um parque da Universal
   let regiaoNormalizada = '';
   if (regiao) {
     const regiaoLower = regiao.toLowerCase().trim();
     regiaoNormalizada = mapaShowParaJantar[regiaoLower] || regiao;
   }
 
-  // 1Ã¯Â¸ÂÃ¢Æ’Â£ Busca por coordenadas (se latitude e longitude forem fornecidas)
+  // 1️⃣ Busca por coordenadas (se latitude e longitude forem fornecidas)
   if (latitude != null && longitude != null) {
     const jantarMaisProximo = jantaresUniversal
       .filter(j =>
@@ -67,7 +67,7 @@ export const gerarUniversalJantar = (
     }
   }
 
-  // 2Ã¯Â¸ÂÃ¢Æ’Â£ Busca por nome da regiÃƒÂ£o (usando regiÃƒÂ£o de fogos, se aplicÃƒÂ¡vel)
+  // 2️⃣ Busca por nome da região (usando região de fogos, se aplicável)
   if (regiaoNormalizada) {
     const jantarRegiao = jantaresUniversal.find(
       j => tipoInclui(j.tipo, perfilSelecionado) &&
@@ -79,17 +79,17 @@ export const gerarUniversalJantar = (
     }
   }
 
-  // 3Ã¯Â¸ÂÃ¢Æ’Â£ Busca por qualquer jantar com o tipo (fallback)
+  // 3️⃣ Busca por qualquer jantar com o tipo (fallback)
   const jantarQualquer = jantaresUniversal.find(j => tipoInclui(j.tipo, perfilSelecionado));
   if (jantarQualquer) {
     atividades.push(formatarJantarUniversal(jantarQualquer));
     return atividades;
   }
 
-  // 4Ã¯Â¸ÂÃ¢Æ’Â£ Nada encontrado
+  // 4️⃣ Nada encontrado
   atividades.push({
-    titulo: 'Ã°Å¸ÂÂ½Ã¯Â¸Â Jantar',
-    descricao: 'Nenhuma sugestÃƒÂ£o encontrada com seu perfil nesta regiÃƒÂ£o.',
+    titulo: '🍽️ Jantar',
+    descricao: 'Nenhuma sugestão encontrada com seu perfil nesta região.',
     horarioSugerido: '19:00',
     tipo: 'jantar',
   });
@@ -97,13 +97,13 @@ export const gerarUniversalJantar = (
   return atividades;
 };
 
-// Ã°Å¸â€Â§ FunÃƒÂ§ÃƒÂ£o auxiliar
+// 🔧 Função auxiliar
 function formatarJantarUniversal(jantar: any): AtividadeDia {
   return {
-    titulo: `Ã°Å¸ÂÂ½Ã¯Â¸Â ${jantar.nome} Ã¢â‚¬â€œ Jantar`,
+    titulo: `🍽️ ${jantar.nome} – Jantar`,
     descricao:
       `Tipo: ${Array.isArray(jantar.tipo) ? jantar.tipo.join(', ') : jantar.tipo}\n` +
-      `PreÃƒÂ§o mÃƒÂ©dio: $${jantar.precoMedio}` +
+      `Preço médio: $${jantar.precoMedio}` +
       (jantar.acesso ? `\nAcesso: ${jantar.acesso}` : '') +
       (jantar.destaque ? `\nDestaque: ${jantar.destaque}` : ''),
     horarioSugerido: '19:00',

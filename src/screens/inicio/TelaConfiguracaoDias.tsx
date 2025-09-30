@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/inicio/TelaDefinirTiposDias.tsx
+// src/screens/inicio/TelaDefinirTiposDias.tsx
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -45,7 +45,7 @@ export default function TelaDefinirTiposDias() {
   useEffect(() => {
     markVisited('TelaDefinirTiposDias');
     if (totalDias <= 0) {
-      Alert.alert('Erro', 'Total de dias nÃƒÂ£o definido. Volte ÃƒÂ  tela anterior.');
+      Alert.alert('Erro', 'Total de dias não definido. Volte à tela anterior.');
       navigation.goBack();
     }
   }, []);
@@ -66,10 +66,10 @@ export default function TelaDefinirTiposDias() {
   const handleAvancar = () => {
     if (!podeAvancar) {
       Alert.alert(
-        'Erro de DistribuiÃƒÂ§ÃƒÂ£o',
+        'Erro de Distribuição',
         restante > 0
           ? `Faltam ${restante} dia(s) para completar.`
-          : `VocÃƒÂª excedeu em ${-restante} dia(s).`
+          : `Você excedeu em ${-restante} dia(s).`
       );
       return;
     }
@@ -135,12 +135,21 @@ export default function TelaDefinirTiposDias() {
   }
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#add8e6']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.container}
-    >
+      <LinearGradient
+        colors={[
+          '#0077cc', // azul piscina
+          '#00c5d4', // turquesa
+          '#f5deb3', // areia clara
+          '#ffffff', // branco normal
+          '#ffffff', // branco final (rasinho bem claro)
+        ]}
+        locations={[0, 0.3, 0.6, 0.85, 1]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.container}
+      >
+      
+
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
       <View style={{ marginTop: 40 }}>
@@ -149,7 +158,7 @@ export default function TelaDefinirTiposDias() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
+          temperatura={clima ? `${clima.temp}°C` : '28°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -170,7 +179,7 @@ export default function TelaDefinirTiposDias() {
             <CardTipo label="Dias de Universal" value={universal} setValue={setUniversal} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para parques da Universal." />
             <CardTipo label="Dias de Compras" value={compras} setValue={setCompras} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para shoppings e outlets." />
             <CardTipo label="Dias de Descanso" value={descanso} setValue={setDescanso} min={0} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia para relaxar ou passeios leves." />
-            <CardTipo label="Dias de SaÃƒÂ­da" value={saida} setValue={setSaida} min={0} max={1} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia de voo de retorno." />
+            <CardTipo label="Dias de Saída" value={saida} setValue={setSaida} min={0} max={1} handleArrow={handleArrow} handleChangeInput={handleChangeInput} descricao="Dia de voo de retorno." />
           </View>
         </ScrollView>
 

@@ -1,4 +1,4 @@
-﻿ï»¿// src/logic/blocos/descanso/blocosSaboresDoMundo.ts
+// src/logic/blocos/descanso/blocosSaboresDoMundo.ts
 import { TurnoDescansoRegiao } from '@/logic/types/turno';
 
 export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
@@ -8,21 +8,21 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
     horarioFim: '12:00',
     referencia: 'International Drive',
     descricaoRegiao:
-      'Durante a manhÃƒÂ£: A I-Drive reÃƒÂºne padarias, mercados e cafÃƒÂ©s de vÃƒÂ¡rias culturas.\n' +
-      'AtraÃƒÂ§ÃƒÂµes: InfluÃƒÂªncias francesa, asiÃƒÂ¡tica e americana em um passeio gastronÃƒÂ´mico.\n' +
-      'Descanso e alimentaÃƒÂ§ÃƒÂ£o: Mesas externas e degustaÃƒÂ§ÃƒÂµes em mercados e docerias.\n' +
-      'Dica: Prove um doce asiÃƒÂ¡tico e fotografe a fachada do World Market.',
+      'Durante a manhã: A I-Drive reúne padarias, mercados e cafés de várias culturas.\n' +
+      'Atrações: Influências francesa, asiática e americana em um passeio gastronômico.\n' +
+      'Descanso e alimentação: Mesas externas e degustações em mercados e docerias.\n' +
+      'Dica: Prove um doce asiático e fotografe a fachada do World Market.',
     atividades: [
       {
         tipo: 'refeicao',
-        titulo: 'CafÃƒÂ© de Paris',
+        titulo: 'Café de Paris',
         regiao: 'International Drive',
         area: 'International Drive',
         latitude: 28.4685,
         longitude: -81.451,
         local: '5269 International Dr, Orlando, FL',
         descricao:
-          'Croissants e cafÃƒÂ© espresso em ambiente francÃƒÂªs com mesas externas.',
+          'Croissants e café espresso em ambiente francês com mesas externas.',
       },
       {
         tipo: 'refeicao',
@@ -33,7 +33,7 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
         longitude: -81.4502,
         local: '5295 International Dr, Orlando, FL',
         descricao:
-          'Produtos e snacks de diversos paÃƒÂ­ses com ÃƒÂ¡rea para degustaÃƒÂ§ÃƒÂ£o.',
+          'Produtos e snacks de diversos países com área para degustação.',
       },
       {
         tipo: 'refeicao',
@@ -54,10 +54,10 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
     horarioFim: '19:00',
     referencia: 'Sand Lake',
     descricaoRegiao:
-      'Durante a tarde: Sand Lake Road, a Ã¢â‚¬Å“Restaurant RowÃ¢â‚¬Â, ÃƒÂ© um polo gourmet.\n' +
-      'AtraÃƒÂ§ÃƒÂµes: Restaurantes japoneses, libaneses, brasileiros e italianos.\n' +
-      'Descanso e alimentaÃƒÂ§ÃƒÂ£o: Jardins e cafÃƒÂ©s modernos para pausas.\n' +
-      'Dica: Experimente uma culinÃƒÂ¡ria nova e diferente do seu hÃƒÂ¡bito.',
+      'Durante a tarde: Sand Lake Road, a “Restaurant Row”, é um polo gourmet.\n' +
+      'Atrações: Restaurantes japoneses, libaneses, brasileiros e italianos.\n' +
+      'Descanso e alimentação: Jardins e cafés modernos para pausas.\n' +
+      'Dica: Experimente uma culinária nova e diferente do seu hábito.',
     atividades: [
       {
         tipo: 'refeicao',
@@ -68,7 +68,7 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
         longitude: -81.4305,
         local: 'Sand Lake Rd, Orlando, FL',
         descricao:
-          'Pratos tÃƒÂ­picos de vÃƒÂ¡rias culturas em uma das avenidas mais gastronÃƒÂ´micas de Orlando.',
+          'Pratos típicos de várias culturas em uma das avenidas mais gastronômicas de Orlando.',
       },
       {
         tipo: 'refeicao',
@@ -79,7 +79,7 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
         longitude: -81.4363,
         local: '7600 Dr Phillips Blvd #14, Orlando, FL',
         descricao:
-          'CafÃƒÂ© artesanal e doces locais para uma pausa pÃƒÂ³s-almoÃƒÂ§o.',
+          'Café artesanal e doces locais para uma pausa pós-almoço.',
       },
       {
         tipo: 'refeicao',
@@ -100,10 +100,10 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
     horarioFim: '23:59',
     referencia: 'Disney Springs',
     descricaoRegiao:
-      'Durante a noite: Disney Springs ÃƒÂ© iluminado e gastronÃƒÂ´mico.\n' +
-      'AtraÃƒÂ§ÃƒÂµes: Restaurantes refinados e confeitarias sofisticadas.\n' +
-      'Descanso e alimentaÃƒÂ§ÃƒÂ£o: Mesas ao ar livre e clima romÃƒÂ¢ntico ÃƒÂ  beira do lago.\n' +
-      'Dica: Jante no BOATHOUSE e finalize com sobremesa na AmoretteÃ¢â‚¬â„¢s.',
+      'Durante a noite: Disney Springs é iluminado e gastronômico.\n' +
+      'Atrações: Restaurantes refinados e confeitarias sofisticadas.\n' +
+      'Descanso e alimentação: Mesas ao ar livre e clima romântico à beira do lago.\n' +
+      'Dica: Jante no BOATHOUSE e finalize com sobremesa na Amorette’s.',
     atividades: [
       {
         tipo: 'refeicao',
@@ -118,7 +118,7 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
       },
       {
         tipo: 'refeicao',
-        titulo: 'AmoretteÃ¢â‚¬â„¢s Patisserie',
+        titulo: 'Amorette’s Patisserie',
         regiao: 'Disney Springs',
         area: 'Disney Springs',
         latitude: 28.3709,
@@ -136,15 +136,15 @@ export const blocosSaboresDoMundo: TurnoDescansoRegiao[] = [
         longitude: -81.5144,
         local: '1486 Buena Vista Dr, Lake Buena Vista, FL',
         descricao:
-          'Croissant recheado ÃƒÂ  beira do lago com vista iluminada.',
+          'Croissant recheado à beira do lago com vista iluminada.',
       },
     ],
   },
 ];
 
 export const perfilSaboresDoMundo = {
-  icone: 'Ã°Å¸ÂÂ½Ã¯Â¸Â',
+  icone: '🍽️',
   nome: 'Sabores do Mundo',
   descricao:
-    'Roteiro gastronÃƒÂ´mico com cafÃƒÂ©s, restaurantes e mercados temÃƒÂ¡ticos de vÃƒÂ¡rias culturas.',
+    'Roteiro gastronômico com cafés, restaurantes e mercados temáticos de várias culturas.',
 };

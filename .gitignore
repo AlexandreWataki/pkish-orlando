@@ -1,19 +1,21 @@
-# Node / Expo
 node_modules/
 .expo/
 .expo-shared/
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-expo-error.log*
-
-# Sistema
-.DS_Store
-desktop.ini
-Thumbs.db
-
-# Configs locais
+dist/
+web-build/
+*.tsbuildinfo
 .env
-*.zip
+.env*.local
+*.key
+*.pem
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
+.metro-health-check*
+*.orig.*
+app-example

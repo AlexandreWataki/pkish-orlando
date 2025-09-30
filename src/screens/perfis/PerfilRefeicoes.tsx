@@ -1,4 +1,4 @@
-﻿ï»¿// src/screens/perfis/PerfilRefeicoesScreen.tsx
+// src/screens/perfis/PerfilRefeicoesScreen.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -15,62 +15,62 @@ type Opcao = { nome: string; valor: string; descricao: JSX.Element };
 
 const opcoes: Opcao[] = [
   {
-    nome: 'Ã°Å¸â€™Â° EconÃƒÂ´mico Ã¢â‚¬â€œ RÃƒÂ¡pido e barato',
+    nome: '💰 Econômico – Rápido e barato',
     valor: 'Economico',
     descricao: (
       <Text>
-        Para quem quer economizar e ganhar tempo, sem abrir mÃƒÂ£o de comer bem. Experimente o clÃƒÂ¡ssico{' '}
-        <Text style={{ fontWeight: 'bold' }}>Five Guys</Text> (hambÃƒÂºrguer artesanal suculento), o prÃƒÂ¡tico{' '}
-        <Text style={{ fontWeight: 'bold' }}>Panda Express</Text> (asiÃƒÂ¡tico rÃƒÂ¡pido e saboroso) ou o conveniente{' '}
-        <Text style={{ fontWeight: 'bold' }}>Walmart Deli</Text> (refeiÃƒÂ§ÃƒÂµes prontas e econÃƒÂ´micas).
+        Para quem quer economizar e ganhar tempo, sem abrir mão de comer bem. Experimente o clássico{' '}
+        <Text style={{ fontWeight: 'bold' }}>Five Guys</Text> (hambúrguer artesanal suculento), o prático{' '}
+        <Text style={{ fontWeight: 'bold' }}>Panda Express</Text> (asiático rápido e saboroso) ou o conveniente{' '}
+        <Text style={{ fontWeight: 'bold' }}>Walmart Deli</Text> (refeições prontas e econômicas).
       </Text>
     ),
   },
   {
-    nome: 'Ã°Å¸Å½Â  TemÃƒÂ¡tico Ã¢â‚¬â€œ ExperiÃƒÂªncia imersiva',
+    nome: '🎠 Temático – Experiência imersiva',
     valor: 'Tematico',
     descricao: (
       <Text>
-        Perfeito para quem busca comer em ambientes cenogrÃƒÂ¡ficos e divertidos. Visite o prÃƒÂ©-histÃƒÂ³rico{' '}
-        <Text style={{ fontWeight: 'bold' }}>T-Rex CafÃƒÂ©</Text> (dinossauros e efeitos especiais), o retrÃƒÂ´{' '}
-        <Text style={{ fontWeight: 'bold' }}>Sci-Fi Dine-In</Text> (cinema drive-in dos anos 50) ou o mÃƒÂ¡gico{' '}
+        Perfeito para quem busca comer em ambientes cenográficos e divertidos. Visite o pré-histórico{' '}
+        <Text style={{ fontWeight: 'bold' }}>T-Rex Café</Text> (dinossauros e efeitos especiais), o retrô{' '}
+        <Text style={{ fontWeight: 'bold' }}>Sci-Fi Dine-In</Text> (cinema drive-in dos anos 50) ou o mágico{' '}
         <Text style={{ fontWeight: 'bold' }}>Be Our Guest</Text> (castelo da Bela e a Fera).
       </Text>
     ),
   },
   {
-    nome: 'Ã°Å¸Âªâ€˜ Conforto Ã¢â‚¬â€œ Ambiente calmo',
+    nome: '🪑 Conforto – Ambiente calmo',
     valor: 'Conforto',
     descricao: (
       <Text>
-        Ideal para uma pausa relaxante com pratos bem servidos. ConheÃƒÂ§a o acolhedor{' '}
-        <Text style={{ fontWeight: 'bold' }}>Olive Garden</Text> (massas e pÃƒÂ£es ÃƒÂ  vontade), o moderno{' '}
-        <Text style={{ fontWeight: 'bold' }}>First Watch</Text> (brunch leve e saudÃƒÂ¡vel) ou o famoso{' '}
-        <Text style={{ fontWeight: 'bold' }}>The Cheesecake Factory</Text> (menu variado e sobremesas incrÃƒÂ­veis).
+        Ideal para uma pausa relaxante com pratos bem servidos. Conheça o acolhedor{' '}
+        <Text style={{ fontWeight: 'bold' }}>Olive Garden</Text> (massas e pães à vontade), o moderno{' '}
+        <Text style={{ fontWeight: 'bold' }}>First Watch</Text> (brunch leve e saudável) ou o famoso{' '}
+        <Text style={{ fontWeight: 'bold' }}>The Cheesecake Factory</Text> (menu variado e sobremesas incríveis).
       </Text>
     ),
   },
   {
-    nome: 'Ã°Å¸Å’Â± SaudÃƒÂ¡vel Ã¢â‚¬â€œ Leve e equilibrado',
+    nome: '🌱 Saudável – Leve e equilibrado',
     valor: 'Saudavel',
     descricao: (
       <Text>
-        Para manter a alimentaÃƒÂ§ÃƒÂ£o leve e saborosa durante o passeio. Visite o buffet fresco do{' '}
-        <Text style={{ fontWeight: 'bold' }}>Sweet Tomatoes</Text> (saladas e sopas ÃƒÂ  vontade), o completo{' '}
-        <Text style={{ fontWeight: 'bold' }}>Whole Foods Market</Text> (orgÃƒÂ¢nicos e comidas prontas) ou o acolhedor{' '}
+        Para manter a alimentação leve e saborosa durante o passeio. Visite o buffet fresco do{' '}
+        <Text style={{ fontWeight: 'bold' }}>Sweet Tomatoes</Text> (saladas e sopas à vontade), o completo{' '}
+        <Text style={{ fontWeight: 'bold' }}>Whole Foods Market</Text> (orgânicos e comidas prontas) ou o acolhedor{' '}
         <Text style={{ fontWeight: 'bold' }}>Freshii</Text> (bowls e wraps naturais).
       </Text>
     ),
   },
   {
-    nome: 'Ã°Å¸Ââ€ ClÃƒÂ¡ssico Ã¢â‚¬â€œ HambÃƒÂºrguer e fritas',
+    nome: '🍔 Clássico – Hambúrguer e fritas',
     valor: 'Americano',
     descricao: (
       <Text>
         Para sentir o verdadeiro sabor dos EUA em cada mordida. Prove o famoso{' '}
-        <Text style={{ fontWeight: 'bold' }}>Shake Shack</Text> (hambÃƒÂºrguer com batata crinkle), o vintage{' '}
+        <Text style={{ fontWeight: 'bold' }}>Shake Shack</Text> (hambúrguer com batata crinkle), o vintage{' '}
         <Text style={{ fontWeight: 'bold' }}>Johnny Rockets</Text> (lanchonete estilo anos 50) ou o popular{' '}
-        <Text style={{ fontWeight: 'bold' }}>WendyÃ¢â‚¬â„¢s</Text> (clÃƒÂ¡ssico fast-food americano).
+        <Text style={{ fontWeight: 'bold' }}>Wendy’s</Text> (clássico fast-food americano).
       </Text>
     ),
   },
@@ -89,7 +89,7 @@ export default function PerfilRefeicoesScreen() {
     // usar coordenadas de Orlando para evitar erro de geocoding
     buscarClima('28.5383,-81.3792').then(setClima);
 
-    // reidrata opÃƒÂ§ÃƒÂ£o salva (se houver)
+    // reidrata opção salva (se houver)
     const salvo = parkisheiroAtual?.perfis?.refeicoes?.perfil;
     if (salvo && typeof salvo === 'string') {
       const idx = opcoes.findIndex(o => o.valor === salvo);
@@ -104,7 +104,7 @@ export default function PerfilRefeicoesScreen() {
     salvarPerfil('refeicoes', { perfil: valor });
   }, [selecionado, salvarPerfil]);
 
-  // salva ao sair da tela tambÃƒÂ©m
+  // salva ao sair da tela também
   useFocusEffect(
     useCallback(() => {
       return () => {
@@ -118,7 +118,7 @@ export default function PerfilRefeicoesScreen() {
   const handleAvancar = async () => {
     if (selecionado === null) return;
 
-    // garante persistÃƒÂªncia antes de navegar
+    // garante persistência antes de navegar
     const valor = opcoes[selecionado].valor;
     await salvarPerfil('refeicoes', { perfil: valor });
 
@@ -140,8 +140,14 @@ export default function PerfilRefeicoesScreen() {
 
   return (
     <LinearGradient
-      colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]}
+      colors={[
+        '#0077cc', // azul piscina
+        '#00c5d4', // turquesa
+        '#f5deb3', // areia clara
+        '#ffffff', // branco normal
+        '#ffffff', // branco final (rasinho bem claro)
+      ]}
+      locations={[0, 0.3, 0.6, 0.85, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       style={styles.container}
@@ -151,14 +157,14 @@ export default function PerfilRefeicoesScreen() {
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
+          temperatura={clima?.temp ? `${clima.temp}°C` : '28°C'}
           iconeClima={clima?.icone}
         />
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.cardPergunta}>
-          <Text style={styles.pergunta}>Ã°Å¸ÂÂ½Ã¯Â¸Â Qual seu estilo de refeiÃƒÂ§ÃƒÂ£o?</Text>
+          <Text style={styles.pergunta}>🍽️ Qual seu estilo de refeição?</Text>
         </View>
 
         {opcoes.map((opcao, index) => (
@@ -207,7 +213,7 @@ const styles = StyleSheet.create({
   nome: { fontSize: 12, fontWeight: 'bold', color: '#003366' },
   descricao: { fontSize: 10, color: '#444', marginTop: 4, textAlign: 'justify', lineHeight: 12 },
   linha: { flexDirection: 'row', alignItems: 'center' },
-  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#52D6FF', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
+  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#ffffffff', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
   rodapeConteudo: { position: 'absolute', bottom: 50, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20 },
   botaoSeta: { justifyContent: 'center', alignItems: 'center' },
 });

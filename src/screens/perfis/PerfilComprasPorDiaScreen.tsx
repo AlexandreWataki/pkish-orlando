@@ -1,4 +1,5 @@
-﻿ï»¿import React, { useEffect, useState, useCallback } from 'react';
+// src/screens/perfis/PerfilComprasPorDiaScreen.tsx
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -12,113 +13,110 @@ import { ptBR } from 'date-fns/locale';
 
 const opcoes = [
   {
-    icone: 'Ã°Å¸â€ºâ€™',
+    icone: '🛒',
     nome: 'Orlando Premium Outlets',
     valor: 'orlandoPremiumOutlets',
     descricao: (
       <Text>
-        Perfeito para caÃƒÂ§adores de promoÃƒÂ§ÃƒÂµes em marcas famosas como{' '}
+        Perfeito para caçadores de promoções em marcas famosas como{' '}
         <Text style={{ fontWeight: 'bold' }}>Nike</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Adidas</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Coach</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Michael Kors</Text> e{' '}
-        <Text style={{ fontWeight: 'bold' }}>LeviÃ¢â‚¬â„¢s</Text>. Ambiente movimentado, ideal para{' '}
-        <Text style={{ fontWeight: 'bold' }}>compras intensas</Text> e oportunidades ÃƒÂºnicas.
+        <Text style={{ fontWeight: 'bold' }}>Levi’s</Text>. Ambiente movimentado, ideal para{' '}
+        <Text style={{ fontWeight: 'bold' }}>compras intensas</Text> e oportunidades únicas.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸â€™Å½',
+    icone: '💎',
     nome: 'The Mall at Millenia',
     valor: 'mallMillenia',
     descricao: (
       <Text>
-        Luxo e conforto com marcas de alto padrÃƒÂ£o como{' '}
+        Luxo e conforto com marcas de alto padrão como{' '}
         <Text style={{ fontWeight: 'bold' }}>Chanel</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Gucci</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Apple</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Prada</Text> e{' '}
         <Text style={{ fontWeight: 'bold' }}>Louis Vuitton</Text>. Perfeito para quem busca{' '}
-        <Text style={{ fontWeight: 'bold' }}>experiÃƒÂªncias refinadas</Text>.
+        <Text style={{ fontWeight: 'bold' }}>experiências refinadas</Text>.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸ÂÂ¬',
+    icone: '🏬',
     nome: 'Florida Mall',
     valor: 'floridaMall',
     descricao: (
       <Text>
-        Shopping tradicional e variado com opÃƒÂ§ÃƒÂµes para todas as idades:{' '}
-        <Text style={{ fontWeight: 'bold' }}>MacyÃ¢â‚¬â„¢s</Text>,{' '}
+        Shopping tradicional e variado com opções para todas as idades:{' '}
+        <Text style={{ fontWeight: 'bold' }}>Macy’s</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Apple</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>GameStop</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Sephora</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Disney Store</Text> e{' '}
-        <Text style={{ fontWeight: 'bold' }}>M&MÃ¢â‚¬â„¢s</Text>. Ideal para passeios em famÃƒÂ­lia.
+        <Text style={{ fontWeight: 'bold' }}>M&M’s</Text>. Ideal para passeios em família.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸Â§Â¸',
+    icone: '🧸',
     nome: 'Walmart, Target & Five Below',
     valor: 'walmartTargetFive',
     descricao: (
       <Text>
-        Ãƒâ€œtimo para{' '}
-        <Text style={{ fontWeight: 'bold' }}>lembrancinhas baratas</Text>,{' '}
+        Ótimo para <Text style={{ fontWeight: 'bold' }}>lembrancinhas baratas</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>snacks</Text>, itens infantis e utilidades do dia a dia. Perfeito para{' '}
-        <Text style={{ fontWeight: 'bold' }}>compras rÃƒÂ¡pidas e prÃƒÂ¡ticas</Text>.
+        <Text style={{ fontWeight: 'bold' }}>compras rápidas e práticas</Text>.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸Å½Â ',
+    icone: '🎠',
     nome: 'Disney Springs & CityWalk',
     valor: 'disneySpringsCityWalk',
     descricao: (
       <Text>
-        Passeio divertido com lojas temÃƒÂ¡ticas como{' '}
+        Passeio divertido com lojas temáticas como{' '}
         <Text style={{ fontWeight: 'bold' }}>Disney</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Universal</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>LEGO</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Coca-Cola</Text> e{' '}
         <Text style={{ fontWeight: 'bold' }}>Marvel</Text>. Ideal para{' '}
-        <Text style={{ fontWeight: 'bold' }}>curtir a noite</Text> com mÃƒÂºsica e gastronomia.
+        <Text style={{ fontWeight: 'bold' }}>curtir a noite</Text> com música e gastronomia.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸â€“Â¼Ã¯Â¸Â',
+    icone: '🖼️',
     nome: 'Lake Buena Vista Factory Stores',
     valor: 'lakeBuenaVista',
     descricao: (
       <Text>
         Outlet mais tranquilo, perfeito para{' '}
-        <Text style={{ fontWeight: 'bold' }}>evitar multidÃƒÂµes</Text>, com lojas como{' '}
+        <Text style={{ fontWeight: 'bold' }}>evitar multidões</Text>, com lojas como{' '}
         <Text style={{ fontWeight: 'bold' }}>Reebok</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Nike</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>Gap</Text>,{' '}
-        <Text style={{ fontWeight: 'bold' }}>LeviÃ¢â‚¬â„¢s</Text> e{' '}
-        <Text style={{ fontWeight: 'bold' }}>CarterÃ¢â‚¬â„¢s</Text>.
+        <Text style={{ fontWeight: 'bold' }}>Levi’s</Text> e{' '}
+        <Text style={{ fontWeight: 'bold' }}>Carter’s</Text>.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸Å½Â¨',
+    icone: '🎨',
     nome: 'Arte local e feirinhas',
     valor: 'arteLocalFeiras',
     descricao: (
       <Text>
-        Presentes ÃƒÂºnicos e{' '}
-        <Text style={{ fontWeight: 'bold' }}>produtos artesanais</Text> em feiras e mercados locais. Ideal para quem gosta de{' '}
-        <Text style={{ fontWeight: 'bold' }}>cultura</Text> e{' '}
+        Presentes únicos e <Text style={{ fontWeight: 'bold' }}>produtos artesanais</Text> em feiras e mercados locais.
+        Ideal para quem gosta de <Text style={{ fontWeight: 'bold' }}>cultura</Text> e{' '}
         <Text style={{ fontWeight: 'bold' }}>criatividade</Text>.
       </Text>
     ),
   },
 ];
-
 
 export default function PerfilComprasPorDiaScreen() {
   const navigation = useNavigation<any>();
@@ -127,6 +125,11 @@ export default function PerfilComprasPorDiaScreen() {
   const [clima, setClima] = useState<any>(null);
   const [respostas, setRespostas] = useState<Record<string, string>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // evita reidratar mais de 1x por dia (corrige o "treme-treme")
+  const hydratedDatesRef = useRef<Set<string>>(new Set());
+  // lock curtinho pra evitar duplo-toque acidental
+  const lockRef = useRef(false);
 
   const diasCompras =
     parkisheiroAtual?.roteiroFinal?.filter((dia: any) => dia.tipo === 'compras') || [];
@@ -140,23 +143,36 @@ export default function PerfilComprasPorDiaScreen() {
     if (diasCompras.length === 0) irParaProximaTela();
   }, []);
 
-  // Ã°Å¸â€â€ž Reidrata a seleÃƒÂ§ÃƒÂ£o a partir do CONTEXTO (string), nÃƒÂ£o de .valor
+  // Reidrata apenas UMA VEZ por data
   useEffect(() => {
-    if (!diaAtual) return;
+    if (!dataISOAtual) return;
+    if (hydratedDatesRef.current.has(dataISOAtual)) return;
     const salvo: string | undefined = (diaAtual as any)?.perfilCompras;
     setRespostas(prev => ({ ...prev, [dataISOAtual]: salvo || '' }));
-  }, [dataISOAtual, diaAtual, parkisheiroAtual?.id, parkisheiroAtual?.roteiroFinal?.length]);
+    hydratedDatesRef.current.add(dataISOAtual);
+  }, [dataISOAtual]); // <- só quando a data muda
 
-  // tocar em uma opÃƒÂ§ÃƒÂ£o -> salva no local e no contexto
-  const handleSelecionar = async (valor: string) => {
+  // Toque otimista (single-select). Sem await aqui.
+  const handleSelecionar = (valor: string) => {
     if (!diaAtual || !dataISOAtual) return;
-    setRespostas(prev => ({ ...prev, [dataISOAtual]: valor }));
-    await atualizarPerfilComprasPorDia(dataISOAtual, valor);
+    if (lockRef.current) return;
+    lockRef.current = true;
+    setTimeout(() => (lockRef.current = false), 120); // lock muito curto
+
+    setRespostas(prev => {
+      const atual = prev[dataISOAtual] || '';
+      const proximo = atual === valor ? '' : valor; // tocar de novo desmarca
+      const novo = { ...prev, [dataISOAtual]: proximo };
+      // salva sem bloquear a UI
+      atualizarPerfilComprasPorDia(dataISOAtual, proximo).catch(() => {});
+      return novo;
+    });
   };
 
   const handleAvancar = async () => {
-    if (diaAtual && respostas[dataISOAtual]) {
-      await atualizarPerfilComprasPorDia(dataISOAtual, respostas[dataISOAtual]);
+    const selecionado = respostas[dataISOAtual];
+    if (diaAtual && selecionado !== undefined) {
+      await atualizarPerfilComprasPorDia(dataISOAtual, selecionado);
     }
     if (currentIndex < diasCompras.length - 1) setCurrentIndex(prev => prev + 1);
     else irParaProximaTela();
@@ -167,12 +183,13 @@ export default function PerfilComprasPorDiaScreen() {
     else navigation.goBack();
   };
 
-  // Ã°Å¸â€™Â¾ salva no desfoco
+  // salva no desfoco (não interfere na UI local)
   useFocusEffect(
     useCallback(() => {
       return () => {
-        if (diaAtual && respostas[dataISOAtual]) {
-          atualizarPerfilComprasPorDia(dataISOAtual, respostas[dataISOAtual]);
+        const selecionado = respostas[dataISOAtual];
+        if (diaAtual && selecionado !== undefined) {
+          atualizarPerfilComprasPorDia(dataISOAtual, selecionado).catch(() => {});
         }
       };
     }, [dataISOAtual, respostas, diaAtual, atualizarPerfilComprasPorDia])
@@ -192,19 +209,25 @@ export default function PerfilComprasPorDiaScreen() {
   const valorSelecionado = dataISOAtual ? respostas[dataISOAtual] : '';
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={styles.container}
-    >
+      <LinearGradient
+        colors={[
+          '#0077cc', // azul piscina
+          '#00c5d4', // turquesa
+          '#f5deb3', // areia clara
+          '#ffffff', // branco normal
+          '#ffffff', // branco final (rasinho bem claro)
+        ]}
+        locations={[0, 0.3, 0.6, 0.85, 1]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.container}
+      >
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
+          temperatura={clima?.temp ? `${clima.temp}°C` : '28°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -213,9 +236,9 @@ export default function PerfilComprasPorDiaScreen() {
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.cardPergunta}>
             <Text style={styles.pergunta}>
-              Ã°Å¸â€ºÂÃ¯Â¸Â Escolha o melhor local de compras para este dia:{' '}
+              🛍️ Escolha o melhor local de compras para este dia:{' '}
               <Text style={styles.dataDia}>
-                {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} Ã¢â‚¬â€œ{' '}
+                {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} –{' '}
                 {format(new Date(diaAtual.data), 'EEEE', { locale: ptBR })}
               </Text>
             </Text>
@@ -229,6 +252,7 @@ export default function PerfilComprasPorDiaScreen() {
                   key={opcao.valor}
                   style={[styles.opcao, selecionado && styles.opcaoSelecionada]}
                   onPress={() => handleSelecionar(opcao.valor)}
+                  activeOpacity={0.9}
                 >
                   <View style={styles.linha}>
                     <Text style={styles.nome}>
@@ -281,7 +305,7 @@ const styles = StyleSheet.create({
   nome: { fontSize: 12, fontWeight: 'bold', color: '#003366' },
   descricao: { fontSize: 10, color: '#444', marginTop: 4, textAlign: 'justify', lineHeight: 12 },
   linha: { flexDirection: 'row', alignItems: 'center' },
-  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#52D6FF', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
+  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#ffffffff', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
   rodapeConteudo: { position: 'absolute', bottom: 50, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20 },
   botaoSeta: { justifyContent: 'center', alignItems: 'center' },
 });

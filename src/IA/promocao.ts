@@ -1,4 +1,4 @@
-﻿export type Promocao = {
+export type Promocao = {
   id: string;
   titulo: string;
   descricao: string;

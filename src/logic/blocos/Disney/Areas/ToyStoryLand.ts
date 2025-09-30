@@ -1,7 +1,7 @@
-﻿ï»¿export const ToyStoryLand = {
+export const ToyStoryLand = {
   parque: "Hollywood Studios",
   descricao:
-    "ÃƒÂrea onde vocÃƒÂª se sente do tamanho de um brinquedo no quintal de Andy. Com cores vibrantes, trilhos gigantes e brinquedos interativos, essa terra ÃƒÂ© puro charme e nostalgia.",
+    "Área onde você se sente do tamanho de um brinquedo no quintal de Andy. Com cores vibrantes, trilhos gigantes e brinquedos interativos, essa terra é puro charme e nostalgia.",
   imagem: "toystoryland.png",
   atracoes: [
     {
@@ -19,7 +19,7 @@
       atracaoSemFila: false,
       descricao:
         "Montanha-russa divertida com o corpo do Slinky correndo por curvas suaves e subidas no quintal de Andy.",
-      icone: "Ã°Å¸ÂÂ¶",
+      icone: "🐶",
       imagem: "slinky-dog-dash.jpg",
       regiao: "Toy Story Land",
       parque: "Hollywood Studios"
@@ -28,7 +28,7 @@
       id: "alien-swirling-saucers",
       titulo: "Alien Swirling Saucers",
       subtitulo: "Toy Story Land",
-      tipo: "Brinquedo giratÃƒÂ³rio",
+      tipo: "Brinquedo giratório",
       tipoPerfil: "familiares",
       alturaMinima: 81,
       filaExpress: true,
@@ -38,8 +38,8 @@
       turnoRecomendado: "manha",
       atracaoSemFila: false,
       descricao:
-        "Gire com os alienÃƒÂ­genas verdes em discos flutuantes ao som de mÃƒÂºsica galÃƒÂ¡ctica. Ideal para crianÃƒÂ§as pequenas.",
-      icone: "Ã°Å¸â€˜Â½",
+        "Gire com os alienígenas verdes em discos flutuantes ao som de música galáctica. Ideal para crianças pequenas.",
+      icone: "👽",
       imagem: "alien-saucers.jpg",
       regiao: "Toy Story Land",
       parque: "Hollywood Studios"
@@ -58,8 +58,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: false,
       descricao:
-        "AtraÃƒÂ§ÃƒÂ£o em 3D onde vocÃƒÂª compete com amigos em mini-jogos de tiro ao alvo usando um canhÃƒÂ£o virtual. Altamente interativa!",
-      icone: "Ã°Å¸Å½Â¯",
+        "Atração em 3D onde você compete com amigos em mini-jogos de tiro ao alvo usando um canhão virtual. Altamente interativa!",
+      icone: "🎯",
       imagem: "toy-story-mania.jpg",
       regiao: "Toy Story Land",
       parque: "Hollywood Studios"
@@ -78,8 +78,8 @@
       turnoRecomendado: "tarde",
       atracaoSemFila: false,
       descricao:
-        "Encontros com Woody, Jessie e Buzz Lightyear para tirar fotos e receber autÃƒÂ³grafos. Localizado prÃƒÂ³ximo ÃƒÂ  entrada da land.",
-      icone: "Ã°Å¸Â¤Â ",
+        "Encontros com Woody, Jessie e Buzz Lightyear para tirar fotos e receber autógrafos. Localizado próximo à entrada da land.",
+      icone: "🤠",
       imagem: "encontro-personagens.jpg",
       regiao: "Toy Story Land",
       parque: "Hollywood Studios"
@@ -88,7 +88,7 @@
       id: "roundup-rodeo-bbq",
       titulo: "Roundup Rodeo BBQ",
       subtitulo: "Toy Story Land",
-      tipo: "Restaurante temÃƒÂ¡tico",
+      tipo: "Restaurante temático",
       tipoPerfil: "refeicoes",
       alturaMinima: 0,
       filaExpress: false,
@@ -98,8 +98,8 @@
       atracaoSemFila: true,
       turnoRecomendado: "noite",
       descricao:
-        "Restaurante com serviÃƒÂ§o de mesa em ambiente totalmente tematizado de Toy Story, com pratos tÃƒÂ­picos de churrasco americano.",
-      icone: "Ã°Å¸Ââ€”",
+        "Restaurante com serviço de mesa em ambiente totalmente tematizado de Toy Story, com pratos típicos de churrasco americano.",
+      icone: "🍗",
       imagem: "roundup-rodeo.jpg",
       regiao: "Toy Story Land",
       parque: "Hollywood Studios"

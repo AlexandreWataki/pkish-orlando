@@ -1,4 +1,4 @@
-﻿// src/logic/clima/debugEnv.ts
+// src/logic/clima/debugEnv.ts
 import Constants from 'expo-constants';
 
 export function logClimaEnv() {

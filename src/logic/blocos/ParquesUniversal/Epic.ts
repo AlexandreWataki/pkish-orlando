@@ -1,1 +1,1 @@
-﻿export const VolcanoBay = [];
+export const VolcanoBay = [];

@@ -1,14 +1,14 @@
-﻿ï»¿import { Parkisheiro } from '@/logic/types/parkisheiro';
+import { Parkisheiro } from '@/logic/types/parkisheiro';
 import { AtividadeDia } from '@/logic/types/atividade';
-import { cafesUniversal } from './CafeUniversal'; // Importa opÃƒÂ§ÃƒÂµes de cafÃƒÂ© para a Universal
+import { cafesUniversal } from './CafeUniversal'; // Importa opções de café para a Universal
 
-// FunÃƒÂ§ÃƒÂ£o de comparaÃƒÂ§ÃƒÂ£o que aceita tipo string ou array (case insensitive)
+// Função de comparação que aceita tipo string ou array (case insensitive)
 function tipoInclui(tipo: string | string[], perfil: string) {
   if (!tipo) return false;
   if (Array.isArray(tipo)) {
     return tipo.map(t => t.toLowerCase().trim()).includes(perfil.toLowerCase().trim());
   }
-  // Caso tipo venha como string separada por vÃƒÂ­rgulas, tambÃƒÂ©m separa
+  // Caso tipo venha como string separada por vírgulas, também separa
   if (typeof tipo === 'string' && tipo.includes(',')) {
     return tipo
       .split(',')
@@ -29,8 +29,8 @@ export const gerarUniversalCafe = (
   const perfilSelecionado = parkisheiro.perfis?.refeicoes?.perfil;
   if (!perfilSelecionado) {
     atividades.push({
-      titulo: 'Ã¢Ëœâ€¢ CafÃƒÂ© da ManhÃƒÂ£',
-      descricao: 'Nenhum perfil de refeiÃƒÂ§ÃƒÂ£o selecionado.',
+      titulo: '☕ Café da Manhã',
+      descricao: 'Nenhum perfil de refeição selecionado.',
       horarioSugerido: '07:00',
       tipo: 'cafe',
     });
@@ -39,7 +39,7 @@ export const gerarUniversalCafe = (
 
   const nomeRegiaoNorm = regiao?.trim().toLowerCase();
 
-  // 1Ã¯Â¸ÂÃ¢Æ’Â£ Busca por coordenadas + priorizaÃƒÂ§ÃƒÂ£o da mesma regiÃƒÂ£o
+  // 1️⃣ Busca por coordenadas + priorização da mesma região
   if (latitude != null && longitude != null && nomeRegiaoNorm) {
     const cafesFiltrados = cafesUniversal
       .filter(c => tipoInclui(c.tipo, perfilSelecionado))
@@ -63,7 +63,7 @@ export const gerarUniversalCafe = (
     }
   }
 
-  // 2Ã¯Â¸ÂÃ¢Æ’Â£ Busca por nome da regiÃƒÂ£o (quando nÃƒÂ£o hÃƒÂ¡ coordenadas)
+  // 2️⃣ Busca por nome da região (quando não há coordenadas)
   const nomeRegiao = regiao ?? parkisheiro.regiaoHospedagem?.nome;
   if (nomeRegiao) {
     const nomeRegiaoNorm2 = nomeRegiao.trim().toLowerCase();
@@ -76,17 +76,17 @@ export const gerarUniversalCafe = (
     }
   }
 
-  // 3Ã¯Â¸ÂÃ¢Æ’Â£ Busca genÃƒÂ©rica por qualquer cafÃƒÂ© do perfil
+  // 3️⃣ Busca genérica por qualquer café do perfil
   const cafeQualquer = cafesUniversal.find(c => tipoInclui(c.tipo, perfilSelecionado));
   if (cafeQualquer) {
     atividades.push(formatarCafeUniversal(cafeQualquer));
     return atividades;
   }
 
-  // 4Ã¯Â¸ÂÃ¢Æ’Â£ Nenhum cafÃƒÂ© encontrado
+  // 4️⃣ Nenhum café encontrado
   atividades.push({
-    titulo: 'Ã¢Ëœâ€¢ CafÃƒÂ© da ManhÃƒÂ£',
-    descricao: 'Nenhuma sugestÃƒÂ£o encontrada com seu perfil nesta regiÃƒÂ£o.',
+    titulo: '☕ Café da Manhã',
+    descricao: 'Nenhuma sugestão encontrada com seu perfil nesta região.',
     horarioSugerido: '07:00',
     tipo: 'cafe',
   });
@@ -94,13 +94,13 @@ export const gerarUniversalCafe = (
   return atividades;
 };
 
-// Ã°Å¸â€Â§ FunÃƒÂ§ÃƒÂ£o auxiliar
+// 🔧 Função auxiliar
 function formatarCafeUniversal(cafe: any): AtividadeDia {
   return {
-    titulo: `Ã¢Ëœâ€¢ ${cafe.nome} Ã¢â‚¬â€œ CafÃƒÂ© da ManhÃƒÂ£`,
+    titulo: `☕ ${cafe.nome} – Café da Manhã`,
     descricao:
       `Tipo: ${Array.isArray(cafe.tipo) ? cafe.tipo.join(', ') : cafe.tipo}\n` +
-      `PreÃƒÂ§o mÃƒÂ©dio: $${cafe.precoMedio}` +
+      `Preço médio: $${cafe.precoMedio}` +
       (cafe.acesso ? `\nAcesso: ${cafe.acesso}` : '') +
       (cafe.destaque ? `\nDestaque: ${cafe.destaque}` : ''),
     horarioSugerido: '07:00',

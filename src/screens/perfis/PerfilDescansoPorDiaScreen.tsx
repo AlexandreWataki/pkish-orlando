@@ -1,5 +1,5 @@
-﻿ï»¿// src/screens/perfis/PerfilDescansoPorDiaScreen.tsx
-import React, { useEffect, useState, useCallback } from 'react';
+// src/screens/perfis/PerfilDescansoPorDiaScreen.tsx
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -13,20 +13,20 @@ import { ptBR } from 'date-fns/locale';
 
 const opcoes = [
   {
-    icone: 'Ã°Å¸â€ºÂÃ¯Â¸Â',
+    icone: '🛍️',
     nome: 'Compras leves + Descanso',
     valor: 'comprasLevesDescanso',
     descricao: (
       <Text>
         Prefere um dia tranquilo com pequenas compras em <Text style={{ fontWeight: 'bold' }}>lojas</Text>,{' '}
         <Text style={{ fontWeight: 'bold' }}>outlets</Text> ou <Text style={{ fontWeight: 'bold' }}>feirinhas</Text>, intercalando com momentos de{' '}
-        <Text style={{ fontWeight: 'bold' }}>descanso</Text> em cafÃƒÂ©s ou praÃƒÂ§as aconchegantes. <Text style={{ fontWeight: 'bold' }}>Dica:</Text> explore o{' '}
+        <Text style={{ fontWeight: 'bold' }}>descanso</Text> em cafés ou praças aconchegantes. <Text style={{ fontWeight: 'bold' }}>Dica:</Text> explore o{' '}
         <Text style={{ fontWeight: 'bold' }}>Pointe Orlando</Text> ou a charmosa <Text style={{ fontWeight: 'bold' }}>Celebration</Text>.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸Å’Â³',
+    icone: '🌳',
     nome: 'Natureza & Parques abertos',
     valor: 'naturezaParquesAbertos',
     descricao: (
@@ -37,35 +37,35 @@ const opcoes = [
     ),
   },
   {
-    icone: 'Ã°Å¸Ââ„¢Ã¯Â¸Â',
+    icone: '🏙️',
     nome: 'Passeios urbanos tranquilos',
     valor: 'passeiosUrbanos',
     descricao: (
       <Text>
-        Prefere explorar a cidade com calma, caminhando por <Text style={{ fontWeight: 'bold' }}>ÃƒÂ¡reas arborizadas</Text>, <Text style={{ fontWeight: 'bold' }}>centros de lazer</Text> e bairros charmosos como{' '}
+        Prefere explorar a cidade com calma, caminhando por <Text style={{ fontWeight: 'bold' }}>áreas arborizadas</Text>, <Text style={{ fontWeight: 'bold' }}>centros de lazer</Text> e bairros charmosos como{' '}
         <Text style={{ fontWeight: 'bold' }}>Winter Park</Text> ou <Text style={{ fontWeight: 'bold' }}>ICON Park</Text>.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸Â¦â€¦',
+    icone: '🦅',
     nome: 'Conhecendo os EUA',
     valor: 'conhecendoEUA',
     descricao: (
       <Text>
-        Curte a <Text style={{ fontWeight: 'bold' }}>cultura americana</Text>? Este perfil inclui <Text style={{ fontWeight: 'bold' }}>locais histÃƒÂ³ricos</Text>,{' '}
-        <Text style={{ fontWeight: 'bold' }}>memoriais</Text> e bairros tÃƒÂ­picos como <Text style={{ fontWeight: 'bold' }}>Downtown Orlando</Text> e a{' '}
-        <Text style={{ fontWeight: 'bold' }}>Kissimmee histÃƒÂ³rica</Text>.
+        Curte a <Text style={{ fontWeight: 'bold' }}>cultura americana</Text>? Este perfil inclui <Text style={{ fontWeight: 'bold' }}>locais históricos</Text>,{' '}
+        <Text style={{ fontWeight: 'bold' }}>memoriais</Text> e bairros típicos como <Text style={{ fontWeight: 'bold' }}>Downtown Orlando</Text> e a{' '}
+        <Text style={{ fontWeight: 'bold' }}>Kissimmee histórica</Text>.
       </Text>
     ),
   },
   {
-    icone: 'Ã°Å¸ÂÂ½Ã¯Â¸Â',
+    icone: '🍽️',
     nome: 'Sabores do Mundo',
     valor: 'saboresDoMundo',
     descricao: (
       <Text>
-        Ama comer bem e experimentar <Text style={{ fontWeight: 'bold' }}>culturas pela culinÃƒÂ¡ria</Text>? Visite cafÃƒÂ©s e <Text style={{ fontWeight: 'bold' }}>restaurantes temÃƒÂ¡ticos</Text> em{' '}
+        Ama comer bem e experimentar <Text style={{ fontWeight: 'bold' }}>culturas pela culinária</Text>? Visite cafés e <Text style={{ fontWeight: 'bold' }}>restaurantes temáticos</Text> em{' '}
         <Text style={{ fontWeight: 'bold' }}>Sand Lake Road</Text>, <Text style={{ fontWeight: 'bold' }}>Dr. Phillips</Text> e <Text style={{ fontWeight: 'bold' }}>Celebration</Text>.
       </Text>
     ),
@@ -80,42 +80,47 @@ export default function PerfilDescansoPorDiaScreen() {
   const [respostas, setRespostas] = useState<Record<string, string>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const diasDescanso = parkisheiroAtual?.roteiroFinal?.filter((dia: any) => dia.tipo === 'descanso') || [];
+  // === Anti "treme-treme" (mesmo padrão do Compras)
+  const hydratedDatesRef = useRef<Set<string>>(new Set()); // reidrata 1x por data
+  const lockRef = useRef(false); // trava toques muito rápidos
+
+  const diasDescanso =
+    parkisheiroAtual?.roteiroFinal?.filter((dia: any) => dia.tipo === 'descanso') || [];
   const diaAtual = diasDescanso[currentIndex];
   const dataISOAtual = diaAtual ? format(new Date(diaAtual.data), 'yyyy-MM-dd') : '';
 
   // primeira carga
   useEffect(() => {
     markVisited('PerfilDescansoPorDiaScreen');
-    // usar coordenadas para evitar "No matching location found"
-    buscarClima('28.5383,-81.3792').then(setClima);
-
+    buscarClima('28.5383,-81.3792').then(setClima).catch(() => {});
     if (diasDescanso.length === 0) {
       irParaProximaTela();
     }
   }, []);
 
-  // reidrata seleÃƒÂ§ÃƒÂ£o salva quando muda de dia/tela
+  // Reidrata apenas UMA VEZ por data (igual Compras)
   useEffect(() => {
-    if (!diaAtual) return;
-    const salvo = (diaAtual as any)?.perfilDescanso;
-    if (salvo && typeof salvo === 'string') {
-      setRespostas(prev => ({ ...prev, [dataISOAtual]: salvo }));
-    }
+    if (!dataISOAtual) return;
+    if (hydratedDatesRef.current.has(dataISOAtual)) return;
+    const salvo: string | undefined = (diaAtual as any)?.perfilDescanso;
+    setRespostas(prev => ({ ...prev, [dataISOAtual]: salvo || '' }));
+    hydratedDatesRef.current.add(dataISOAtual);
   }, [dataISOAtual, diaAtual]);
 
-  // autosave quando escolher
-  useEffect(() => {
-    if (!diaAtual) return;
-    const valor = respostas[dataISOAtual];
-    if (valor) {
-      atualizarPerfilDescansoPorDia(dataISOAtual, valor);
-    }
-  }, [dataISOAtual, respostas, diaAtual, atualizarPerfilDescansoPorDia]);
-
+  // Toque otimista (single-select). Salva em background, sem travar UI.
   const handleSelecionar = (valor: string) => {
-    if (!diaAtual) return;
-    setRespostas(prev => ({ ...prev, [dataISOAtual]: valor }));
+    if (!diaAtual || !dataISOAtual) return;
+    if (lockRef.current) return;
+    lockRef.current = true;
+    setTimeout(() => (lockRef.current = false), 120); // evita duplo-toque
+
+    setRespostas(prev => {
+      const atual = prev[dataISOAtual] || '';
+      const proximo = atual === valor ? '' : valor; // tocar de novo desmarca
+      const novo = { ...prev, [dataISOAtual]: proximo };
+      atualizarPerfilDescansoPorDia(dataISOAtual, proximo).catch(() => {});
+      return novo;
+    });
   };
 
   const irParaProximaTela = () => {
@@ -132,8 +137,8 @@ export default function PerfilDescansoPorDiaScreen() {
   const handleAvancar = async () => {
     if (diaAtual) {
       const perfil = respostas[dataISOAtual];
-      if (perfil) {
-        await atualizarPerfilDescansoPorDia(dataISOAtual, perfil);
+      if (perfil !== undefined) {
+        await atualizarPerfilDescansoPorDia(dataISOAtual, perfil).catch(() => {});
       }
     }
     if (currentIndex < diasDescanso.length - 1) {
@@ -144,21 +149,18 @@ export default function PerfilDescansoPorDiaScreen() {
   };
 
   const handleVoltar = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
-    } else {
-      navigation.goBack();
-    }
+    if (currentIndex > 0) setCurrentIndex(prev => prev - 1);
+    else navigation.goBack();
   };
 
-  // salva ao sair da tela (desfoque)
+  // salva ao sair da tela (não bloqueia a UI)
   useFocusEffect(
     useCallback(() => {
       return () => {
         if (!diaAtual) return;
         const valor = respostas[dataISOAtual];
-        if (valor) {
-          atualizarPerfilDescansoPorDia(dataISOAtual, valor);
+        if (valor !== undefined) {
+          atualizarPerfilDescansoPorDia(dataISOAtual, valor).catch(() => {});
         }
       };
     }, [dataISOAtual, respostas, diaAtual, atualizarPerfilDescansoPorDia])
@@ -169,18 +171,25 @@ export default function PerfilDescansoPorDiaScreen() {
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
-      locations={[0, 0.6, 0.9, 1]}
-      start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
-      style={styles.container}
-    >
+     <LinearGradient
+       colors={[
+         '#0077cc', // azul piscina
+         '#00c5d4', // turquesa
+         '#f5deb3', // areia clara
+         '#ffffff', // branco normal
+         '#ffffff', // branco final (rasinho bem claro)
+       ]}
+       locations={[0, 0.3, 0.6, 0.85, 1]}
+       start={{ x: 0, y: 0 }}
+       end={{ x: 0, y: 1 }}
+       style={styles.container}
+     >
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
           data={dataFormatada}
           diaSemana={diaSemana}
           clima={clima?.condicao || 'Parcialmente nublado'}
-          temperatura={clima?.temp ? `${clima.temp}Ã‚Â°C` : '28Ã‚Â°C'}
+          temperatura={clima?.temp ? `${clima.temp}°C` : '28°C'}
           iconeClima={clima?.icone}
         />
       </View>
@@ -189,10 +198,10 @@ export default function PerfilDescansoPorDiaScreen() {
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.cardPergunta}>
             <Text style={styles.pergunta}>
-              Ã°Å¸Â§ËœÃ¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â Selecione o estilo ideal de descanso para este dia:{' '}
+              🧘‍♂️ Selecione o estilo ideal de descanso para este dia:{' '}
               {diaAtual && (
                 <Text style={styles.dataDia}>
-                  {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} Ã¢â‚¬â€œ {format(new Date(diaAtual.data), 'EEEE', { locale: ptBR })}
+                  {format(new Date(diaAtual.data), 'dd/MM/yyyy', { locale: ptBR })} – {format(new Date(diaAtual.data), 'EEEE', { locale: ptBR })}
                 </Text>
               )}
             </Text>
@@ -207,6 +216,7 @@ export default function PerfilDescansoPorDiaScreen() {
                     key={opcao.valor}
                     style={[styles.opcao, selecionado && styles.opcaoSelecionada]}
                     onPress={() => handleSelecionar(opcao.valor)}
+                    activeOpacity={0.9}
                   >
                     <View style={styles.linha}>
                       <Text style={styles.nome}>{opcao.icone} {opcao.nome}</Text>
@@ -258,7 +268,7 @@ const styles = StyleSheet.create({
   nome: { fontSize: 12, fontWeight: 'bold', color: '#003366' },
   descricao: { fontSize: 10, color: '#444', marginTop: 4, textAlign: 'justify', lineHeight: 12 },
   linha: { flexDirection: 'row', alignItems: 'center' },
-  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#52D6FF', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
+  rodapeFundo: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 100, backgroundColor: '#ffffffff', borderBottomLeftRadius: 20, borderBottomRightRadius: 20 },
   rodapeConteudo: { position: 'absolute', bottom: 50, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20 },
   botaoSeta: { justifyContent: 'center', alignItems: 'center' },
 });

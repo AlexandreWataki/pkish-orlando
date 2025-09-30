@@ -1,4 +1,4 @@
-﻿// src/logic/media/entries/indexEntries.ts
+// src/logic/media/entries/indexEntries.ts
 import type { Entry } from './types';
 
 import { ENTRIES_ANIMAL }    from './entriesAnimal';

@@ -1,7 +1,7 @@
-﻿ï»¿export type ItemChecklist = {
-  id: string; // Identificador ÃƒÂºnico do item
-  nome: string; // Nome do item, ex: "Passaporte", "ChapÃƒÂ©u", "RemÃƒÂ©dio"
-  categoria: 'documento' | 'vestuÃƒÂ¡rio' | 'eletrÃƒÂ´nico' | 'saÃƒÂºde' | 'outro';
-  obrigatorio: boolean; // Indica se ÃƒÂ© obrigatÃƒÂ³rio levar
-  observacoes?: string; // InformaÃƒÂ§ÃƒÂµes extras, ex: "ver validade", "carregar antes"
+export type ItemChecklist = {
+  id: string; // Identificador único do item
+  nome: string; // Nome do item, ex: "Passaporte", "Chapéu", "Remédio"
+  categoria: 'documento' | 'vestuário' | 'eletrônico' | 'saúde' | 'outro';
+  obrigatorio: boolean; // Indica se é obrigatório levar
+  observacoes?: string; // Informações extras, ex: "ver validade", "carregar antes"
 };

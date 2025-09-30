@@ -1,12 +1,12 @@
-﻿ï»¿import { AtividadeDia } from '@/logic/types/atividade';
+import { AtividadeDia } from '@/logic/types/atividade';
 import { gerarAtracoesUniversalPorPerfilFluxo } from './gerarAtracoesUniversalPorPerfilFluxo';
 
-// ExperiÃƒÂªncias noturnas dos parques da Universal
+// Experiências noturnas dos parques da Universal
 import { experienciaEpicoUniverseNoite } from './AreasUniversal/FogosEpicoUniverse';
 import { experienciaIslandsOfAdventureNoite } from './AreasUniversal/FogosIslandsOfAdventure';
 import { experienciaUniversalStudiosNoite } from './AreasUniversal/FogosUniversalStudios';
 
-// ÃƒÂreas que representam as experiÃƒÂªncias noturnas em cada parque da Universal
+// Áreas que representam as experiências noturnas em cada parque da Universal
 const areasComExperienciaPorParque: Record<string, string[]> = {
   "Universal's Epic Universe": ["Universal's Epic Universe"],
   'Islands of Adventure': ['Islands of Adventure'],
@@ -22,7 +22,7 @@ export function gerarAtracoesNoiteComFogosUniversal(
   const atracoesNoite = gerarAtracoesUniversalPorPerfilFluxo('noite', parque, perfis)
     .flatMap((area) => area.atracoes);
 
-  // Verifica se o parque tem experiÃƒÂªncias noturnas fixas
+  // Verifica se o parque tem experiências noturnas fixas
   const temExperiencia =
     areasComExperienciaPorParque[parque]?.some((area) => areasNoite.includes(area)) ?? false;
 
@@ -40,6 +40,6 @@ export function gerarAtracoesNoiteComFogosUniversal(
     }
   }
 
-  // Retorna as experiÃƒÂªncias fixas + atraÃƒÂ§ÃƒÂµes extras da noite
+  // Retorna as experiências fixas + atrações extras da noite
   return [...experienciasNoturnas, ...atracoesNoite];
 }
