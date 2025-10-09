@@ -52,6 +52,9 @@ import VisualizarPDFScreen from '@/screens/parquesPDF/VisualizarPDFScreen';
 
 import { enableLayoutAnimationAndroidLegacy } from '@/logic/types/enableLayoutAnimationAndroidLegacy';
 
+// 🔷 Barra de navegação Android branca
+import * as NavigationBar from 'expo-navigation-bar';
+
 if (!__DEV__) {
   console.log = () => {};
   console.warn = () => {};
@@ -102,6 +105,21 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   useEffect(() => {
     enableLayoutAnimationAndroidLegacy();
+  }, []);
+
+  // ▶️ Configura a barra de navegação Android
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      // Deixa a barra branca com ícones escuros
+      NavigationBar.setBackgroundColorAsync('#ffffff').catch(() => {});
+      NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+
+      // Se quiser **ocultar** a barra (modo imersivo), troque pelas linhas abaixo:
+      // NavigationBar.setVisibilityAsync('hidden').catch(() => {});
+      // NavigationBar.setBehaviorAsync('overlay-swipe').catch(() => {});
+      // NavigationBar.setBackgroundColorAsync('#ffffff').catch(() => {});
+      // NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+    }
   }, []);
 
   return (

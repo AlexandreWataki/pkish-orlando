@@ -1,34 +1,71 @@
 {
   "cli": {
-    "version": ">= 3.18.0",
+    "version": ">= 13.5.0",
     "appVersionSource": "remote"
   },
+
   "build": {
-    "preview-apk": {
-      "android": { "buildType": "apk" },
-      "autoIncrement": true,
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
       "node": "18.20.3",
+      "android": { "buildType": "apk" },
+      "autoIncrement": false,
       "env": {
-        "EXPO_PUBLIC_API_HOST": "192.168.0.23",
-        "EXPO_PUBLIC_API_PORT": "3000",
-        "EXPO_PUBLIC_ALLOW_HTTP_NATIVE": "true",
+        "EXPO_PUBLIC_API_URL": "https://pkish-api-417776644821.us-east4.run.app",
+        "EXPO_PUBLIC_ALLOW_HTTP_NATIVE": "false",
+        "EXPO_PUBLIC_FORCE_HTTPS_NATIVE": "true",
         "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
-        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "417776644821-8dl1hjj0ks7pcej93t766a0c7ddts0lt.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2.apps.googleusercontent.com",
         "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "417776644821-79b4qvfutmo5v2f95q0sje5736aiblc7.apps.googleusercontent.com"
       }
     },
-    "production": {
-      "android": { "buildType": "app-bundle" },
-      "autoIncrement": true,
+
+    "preview-apk": {
+      "channel": "preview",
       "node": "18.20.3",
+      "android": { "buildType": "apk" },
+      "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://SEU_DOMINIO_REAL_AQUI",
+        "EXPO_PUBLIC_API_URL": "https://pkish-api-417776644821.us-east4.run.app",
+        "EXPO_PUBLIC_ALLOW_HTTP_NATIVE": "false",
         "EXPO_PUBLIC_FORCE_HTTPS_NATIVE": "true",
         "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
-        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "417776644821-8dl1hjj0ks7pcej93t766a0c7ddts0lt.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "417776644821-79b4qvfutmo5v2f95q0sje5736aiblc7.apps.googleusercontent.com"
+      }
+    },
+
+    "prod-apk": {
+      "channel": "production",
+      "node": "18.20.3",
+      "android": { "buildType": "apk" },
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://pkish-api-417776644821.us-east4.run.app",
+        "EXPO_PUBLIC_ALLOW_HTTP_NATIVE": "false",
+        "EXPO_PUBLIC_FORCE_HTTPS_NATIVE": "true",
+        "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "417776644821-79b4qvfutmo5v2f95q0sje5736aiblc7.apps.googleusercontent.com"
+      }
+    },
+
+    "production": {
+      "channel": "production",
+      "node": "18.20.3",
+      "android": { "buildType": "app-bundle" },
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://pkish-api-417776644821.us-east4.run.app",
+        "EXPO_PUBLIC_ALLOW_HTTP_NATIVE": "false",
+        "EXPO_PUBLIC_FORCE_HTTPS_NATIVE": "true",
+        "EXPO_PUBLIC_WEATHER_API_KEY": "8845ca9751d042579a3114714251205",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2.apps.googleusercontent.com",
         "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "417776644821-79b4qvfutmo5v2f95q0sje5736aiblc7.apps.googleusercontent.com"
       }
     }
   },
+
   "submit": { "production": {} }
 }

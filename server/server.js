@@ -1,24 +1,24 @@
-// server/server.js
+// server/server.js — Express + Google Auth + Postgres (Cloud Run + Neon)
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const express = require('express');
-const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
+let listEndpoints = null;
+try { listEndpoints = require('express-list-endpoints'); } catch {}
 
 const app = express();
 
 /* ----------------- Config ----------------- */
-const PORT = Number(process.env.PORT || 3000);
+const PORT = Number(process.env.PORT || 8080); // <- padrão Cloud Run
 const JWT_SECRET = process.env.JWT_SECRET || 'change-me';
 
-// Aceita os 2 Client IDs (Android + Web)
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';        // ANDROID
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';         // ANDROID
 const GOOGLE_WEB_CLIENT_ID = process.env.GOOGLE_WEB_CLIENT_ID || ''; // WEB
 const GOOGLE_AUDIENCES = [GOOGLE_CLIENT_ID, GOOGLE_WEB_CLIENT_ID].filter(Boolean);
 
@@ -27,32 +27,37 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
   .map(s => s.trim())
   .filter(Boolean);
 
-// Cliente Google
+// APK/app nativo costuma vir sem Origin → permitir se ALLOW_NO_ORIGIN=true
+const ALLOW_NO_ORIGIN = (process.env.ALLOW_NO_ORIGIN || 'true') === 'true';
+
+// Cloud Run/proxies
+app.set('trust proxy', true);
+
+// Google OAuth client
 const googleClient = new OAuth2Client();
 
-// MySQL Pool
-const db = mysql
-  .createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || '',
-    database: process.env.DB_NAME || 'roteiro_disney_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    dateStrings: true, // evita timezone confusa em DATETIME
-  })
-  .promise();
+/* -------------- Conexão Neon (pg + TLS) ------------- */
+/**
+ * Importante:
+ * - DATABASE_URL deve usar host COM '-pooler' e query 'sslmode=require', por ex.:
+ *   postgres://user:pass@ep-xxxx-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require
+ */
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+  max: 5,
+});
+pool.on('error', (err) => console.error('PG pool error:', err?.message || err));
 
 /* --------------- Middlewares -------------- */
 app.use(express.json({ limit: '100kb' }));
 
-// CORS: em dev pode deixar *, em prod use ALLOWED_ORIGINS
 app.use(
   cors({
     origin: (origin, cb) => {
-      if (!origin) return cb(null, true); // apps nativos não mandam Origin
-      if (!ALLOWED_ORIGINS.length) return cb(null, true); // dev: qualquer
+      if (!origin) return ALLOW_NO_ORIGIN ? cb(null, true) : cb(new Error('No Origin'), false);
+      if (!ALLOWED_ORIGINS.length) return cb(null, true);
       return ALLOWED_ORIGINS.includes(origin)
         ? cb(null, true)
         : cb(new Error('Origin not allowed: ' + origin), false);
@@ -60,66 +65,76 @@ app.use(
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200,
+    credentials: false,
   })
 );
+app.options('*', cors());
 
-// Helmet básico (só API JSON)
-app.use(
-  helmet({
-    crossOriginResourcePolicy: false,
-  })
-);
+app.use(helmet({ crossOriginResourcePolicy: false }));
 
-// Morgan (opcional)
 try {
   const morgan = require('morgan');
-  app.use(morgan('dev'));
+  app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 } catch {}
 
-/* ---------- Rate limit p/ rotas sensíveis ----------- */
+/* ---------- Rate limit ----------- */
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 120,
   standardHeaders: true,
   legacyHeaders: false,
 });
-app.use(['/login', '/register', '/auth/login', '/auth/register', '/auth/google'], authLimiter);
+app.use(
+  [
+    '/login','/register','/auth/login','/auth/register','/auth/google',
+    '/api/login','/api/register','/api/auth/login','/api/auth/register','/api/auth/google'
+  ],
+  authLimiter
+);
 
-/* ------- Boot: testa conexão e cria tabela se faltar -------- */
+/* ------- Boot DB -------- */
 (async () => {
   try {
-    await db.query('SELECT 1');
-    console.log('✅ Conectado ao MySQL.');
+    await pool.query('SELECT 1');
+    console.log('✅ Conectado ao Postgres (Neon).');
 
-    // cria tabela se não existir
-    await db.query(`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(100) UNIQUE,
-        email VARCHAR(255) UNIQUE,
-        password_hash VARCHAR(255),
-        google_id VARCHAR(50) UNIQUE,
-        name VARCHAR(255),
-        picture VARCHAR(500),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        id BIGSERIAL PRIMARY KEY,
+        username TEXT UNIQUE,
+        email TEXT UNIQUE,
+        password_hash TEXT,
+        google_id TEXT UNIQUE,
+        name TEXT,
+        picture TEXT,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
     `);
-  } catch (err) {
-    console.error('❌ Erro ao inicializar MySQL:', err);
+    console.log('✅ Tabela users ok.');
+  } catch (e) {
+    console.error('❌ Erro ao iniciar DB:', e?.message || e);
   }
 })();
 
-/* --------------- Helpers JWT ------------- */
+/* -------------- Helpers --------------- */
 function signJwt(userId) {
-  return jwt.sign({ sub: String(userId), uid: userId }, JWT_SECRET, { expiresIn: '30d' });
+  return jwt.sign({ sub: String(userId), uid: String(userId) }, JWT_SECRET, { expiresIn: '7d' });
 }
 
-function requireAuth(req, res, next) {
-  const auth = req.headers.authorization || '';
-  const m = auth.match(/^Bearer\s+(.+)$/i);
-  if (!m) return res.status(401).json({ message: 'Sem token.' });
+async function verifyGoogleIdToken(idToken) {
+  const ticket = await googleClient.verifyIdToken({
+    idToken,
+    audience: GOOGLE_AUDIENCES.length ? GOOGLE_AUDIENCES : undefined, // aceita Android e Web
+  });
+  return ticket.getPayload();
+}
+
+function authMiddleware(req, res, next) {
   try {
+    const hdr = req.headers.authorization || '';
+    const m = hdr.match(/^Bearer (.+)$/i);
+    if (!m) return res.status(401).json({ message: 'Token ausente.' });
     const payload = jwt.verify(m[1], JWT_SECRET);
     req.userId = Number(payload.uid || payload.sub);
     if (!req.userId) throw new Error('sem uid');
@@ -129,188 +144,215 @@ function requireAuth(req, res, next) {
   }
 }
 
-/* ----------------- Rotas ------------------ */
+/* ----------------- Rotas base ------------------ */
+app.get('/', (_req, res) => res.json({ service: 'pkish-api', status: 'ok' }));
 
-// health com ping no DB
-app.get('/health', async (_req, res) => {
+async function checkDbVerbose() {
   try {
-    await db.query('SELECT 1');
-    res.json({ status: 'ok', db: 'up' });
-  } catch {
-    res.status(500).json({ status: 'fail', db: 'down' });
+    await pool.query('SELECT 1');
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: e?.message || String(e) };
   }
+}
+app.get('/health', async (_req, res) => {
+  const { ok, error } = await checkDbVerbose();
+  if (ok) return res.json({ service: 'pkish-api', status: 'ok', db: 'up' });
+  console.error('Health DB error:', error);
+  return res.status(500).json({ status: 'fail', db: 'down', error });
 });
+app.head('/health', async (_req, res) => {
+  const { ok } = await checkDbVerbose();
+  return res.sendStatus(ok ? 200 : 500);
+});
+app.get('/healthz', (_req, res) => res.send('ok'));
 
-/** 🔐 Login com Google
- * Body: { idToken: string }
- * Res:  { ok: true, token, user: { id, email, name?, picture? } }
- */
+/* -------- Google Auth -------- */
 app.post('/auth/google', async (req, res) => {
   try {
     const { idToken } = req.body || {};
-    if (!idToken) {
-      return res.status(400).json({ message: 'idToken ausente' });
-    }
-    if (!GOOGLE_AUDIENCES.length) {
-      return res
-        .status(500)
-        .json({ message: 'Configure GOOGLE_CLIENT_ID e/ou GOOGLE_WEB_CLIENT_ID.' });
-    }
+    if (!idToken) return res.status(400).json({ message: 'idToken ausente.' });
 
-    // 1) valida idToken no Google aceitando Android e Web
-    let payload;
-    try {
-      const ticket = await googleClient.verifyIdToken({
-        idToken,
-        audience: GOOGLE_AUDIENCES,
-      });
-      payload = ticket.getPayload();
-    } catch (e) {
-      console.error('verifyIdToken:', e?.message || e);
-      return res.status(401).json({ message: 'Token Google inválido.' });
+    const payload = await verifyGoogleIdToken(idToken);
+    const googleId = String(payload.sub || '');
+    const email = String(payload.email || '').toLowerCase();
+    const name = payload.name || null;
+    const picture = payload.picture || null;
+
+    if (!googleId || !email) {
+      return res.status(401).json({ message: 'Token do Google inválido.' });
     }
 
-    const googleId = payload?.sub;
-    const email = (payload?.email || '').toLowerCase() || null;
-    const name = payload?.name || null;
-    const picture = payload?.picture || null;
-
-    if (!googleId) {
-      return res.status(400).json({ message: 'sub (googleId) ausente no token.' });
-    }
-
-    // 2) upsert no MySQL (por google_id ou email)
-    const [foundRows] = await db.query(
-      'SELECT id, email, username, name, picture FROM users WHERE google_id = ? OR email = ? LIMIT 1',
+    const { rows: foundRows } = await pool.query(
+      'SELECT id, email, username, name, picture FROM users WHERE google_id = $1 OR email = $2 LIMIT 1',
       [googleId, email]
     );
-    let userId;
 
-    if (Array.isArray(foundRows) && foundRows.length) {
-      const u = foundRows[0];
-      userId = u.id;
-      await db.query(
-        'UPDATE users SET google_id = ?, name = COALESCE(?, name), picture = COALESCE(?, picture), email = COALESCE(?, email) WHERE id = ?',
+    let userId;
+    if (foundRows.length) {
+      userId = foundRows[0].id;
+      await pool.query(
+        `UPDATE users
+           SET google_id = $1,
+               name = COALESCE($2, name),
+               picture = COALESCE($3, picture),
+               email = COALESCE($4, email),
+               updated_at = NOW()
+         WHERE id = $5`,
         [googleId, name, picture, email, userId]
       );
     } else {
       const placeholderHash = await bcrypt.hash(`${googleId}.${Date.now()}`, 10);
       const username = email || `g_${String(googleId).slice(0, 12)}`;
-      const [ins] = await db.query(
-        'INSERT INTO users (username, email, password_hash, google_id, name, picture) VALUES (?, ?, ?, ?, ?, ?)',
+      const { rows: ins } = await pool.query(
+        `INSERT INTO users (username, email, password_hash, google_id, name, picture)
+         VALUES ($1, $2, $3, $4, $5, $6)
+         RETURNING id`,
         [username, email, placeholderHash, googleId, name, picture]
       );
-      userId = ins.insertId;
+      userId = ins[0].id;
     }
 
-    // 3) JWT + payload p/ app
     const token = signJwt(userId);
-    return res.json({ ok: true, token, user: { id: userId, email, name, picture } });
+    return res.json({
+      message: 'Login via Google OK',
+      token,
+      user: { id: userId, email, name, picture },
+    });
   } catch (error) {
-    console.error('❌ /auth/google:', error);
-    return res.status(500).json({ message: 'Erro no servidor. Tente novamente.' });
+    console.error('❌ /auth/google:', error?.message || error);
+    return res.status(401).json({ message: 'Falha na validação do Google.' });
   }
 });
 
-// Cadastro (senha) — mantém e espelha em /auth/register
+/* -------- Registro -------- */
 async function handleRegister(req, res) {
   try {
-    const { username, password } = req.body || {};
-    if (!username || !password) {
-      return res.status(400).json({ message: 'Preencha usuário e senha.' });
+    const { username, email, password } = req.body || {};
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: 'Preencha username, email e senha.' });
     }
-    if (String(username).length < 3) {
-      return res.status(400).json({ message: 'Usuário deve ter ao menos 3 caracteres.' });
-    }
-    if (String(password).length < 6) {
-      return res.status(400).json({ message: 'Senha deve ter ao menos 6 caracteres.' });
-    }
+    const exists = await pool.query(
+      'SELECT 1 FROM users WHERE username = $1 OR email = $2 LIMIT 1', [username, email]
+    );
+    if (exists.rowCount) return res.status(409).json({ message: 'Usuário ou email já cadastrado.' });
 
-    const [rows] = await db.query('SELECT id FROM users WHERE username = ? LIMIT 1', [username]);
-    if (Array.isArray(rows) && rows.length > 0) {
-      return res.status(409).json({ message: 'Nome de usuário já existe.' });
-    }
-
-    const hashed = await bcrypt.hash(password, 10);
-    const [result] = await db.query(
-      'INSERT INTO users (username, password_hash) VALUES (?, ?)',
-      [username, hashed]
+    const password_hash = await bcrypt.hash(password, 10);
+    const { rows: inserted } = await pool.query(
+      `INSERT INTO users (username, email, password_hash)
+       VALUES ($1, $2, $3)
+       RETURNING id`,
+      [username, email, password_hash]
     );
 
-    const token = signJwt(result.insertId);
-    return res
-      .status(201)
-      .json({ message: 'Usuário cadastrado com sucesso!', token, user: { id: result.insertId, username } });
+    const token = signJwt(inserted[0].id);
+    return res.status(201).json({
+      message: 'Usuário cadastrado com sucesso!',
+      token,
+      user: { id: inserted[0].id, username },
+    });
   } catch (error) {
-    console.error('❌ /register:', error);
-    if (error && error.code === 'ER_DUP_ENTRY') {
-      return res.status(409).json({ message: 'Nome de usuário já existe.' });
-    }
+    console.error('❌ /register:', error?.message || error);
     return res.status(500).json({ message: 'Erro no servidor. Tente novamente.' });
   }
 }
 app.post('/register', handleRegister);
 app.post('/auth/register', handleRegister);
 
-// Login (senha) — mantém e espelha em /auth/login; agora devolve JWT
+/* -------- Login -------- */
 async function handleLogin(req, res) {
   try {
     const { username, password } = req.body || {};
-    if (!username || !password) {
-      return res.status(400).json({ message: 'Preencha usuário e senha.' });
-    }
+    if (!username || !password) return res.status(400).json({ message: 'Preencha usuário e senha.' });
 
-    const [rows] = await db.query(
-      'SELECT id, username, password_hash FROM users WHERE username = ? LIMIT 1',
+    const { rows } = await pool.query(
+      'SELECT id, username, password_hash FROM users WHERE username = $1 LIMIT 1',
       [username]
     );
-    const user = Array.isArray(rows) ? rows[0] : null;
+    const user = rows[0];
     if (!user) return res.status(401).json({ message: 'Usuário ou senha incorretos.' });
 
     const ok = await bcrypt.compare(password, user.password_hash);
     if (!ok) return res.status(401).json({ message: 'Usuário ou senha incorretos.' });
 
     const token = signJwt(user.id);
-    return res.status(200).json({ message: 'Login bem-sucedido!', token, user: { id: user.id, username: user.username } });
+    return res.json({ message: 'Login OK', token, user: { id: user.id, username: user.username } });
   } catch (error) {
-    console.error('❌ /login:', error);
+    console.error('❌ /login:', error?.message || error);
     return res.status(500).json({ message: 'Erro no servidor. Tente novamente.' });
   }
 }
 app.post('/login', handleLogin);
 app.post('/auth/login', handleLogin);
 
-// Rota autenticada de exemplo
-app.get('/me', requireAuth, async (req, res) => {
+/* -------- rota autenticada -------- */
+app.get('/me', authMiddleware, async (req, res) => {
   try {
-    const [rows] = await db.query(
-      'SELECT id, email, username, name, picture FROM users WHERE id = ? LIMIT 1',
+    const { rows } = await pool.query(
+      'SELECT id, username, email, name, picture, created_at FROM users WHERE id = $1 LIMIT 1',
       [req.userId]
     );
-    const u = Array.isArray(rows) ? rows[0] : null;
-    if (!u) return res.status(404).json({ message: 'Usuário não encontrado.' });
-    res.json({ user: u });
-  } catch (e) {
+    const me = rows[0];
+    if (!me) return res.status(404).json({ message: 'Usuário não encontrado.' });
+    res.json({ user: me });
+  } catch {
     res.status(500).json({ message: 'Erro ao carregar perfil.' });
   }
 });
 
-/* --------------- 404 genérico ------------- */
+/* ===== /api raiz ===== */
+app.get('/api', (req, res) => {
+  const info = { service: 'pkish-api', base: '/api' };
+  if (listEndpoints) {
+    const eps = listEndpoints(app).map(e => `${e.methods.join(',')} ${e.path}`);
+    return res.json({ ...info, endpoints: eps });
+  }
+  return res.json(info);
+});
+
+/* ===== /api/health ===== */
+app.get('/api/health', async (_req, res) => {
+  const { ok, error } = await checkDbVerbose();
+  if (ok) return res.json({ status: 'ok', db: 'up' });
+  console.error('API Health DB error:', error);
+  return res.status(500).json({ status: 'fail', db: 'down', error });
+});
+
+/* ===== Aliases ===== */
+app.post('/api/auth/google', (req, res) => res.redirect(307, '/auth/google'));
+app.post('/api/login', (req, res) => res.redirect(307, '/login'));
+app.post('/api/auth/login', (req, res) => res.redirect(307, '/auth/login'));
+app.post('/api/register', (req, res) => res.redirect(307, '/register'));
+app.post('/api/auth/register', (req, res) => res.redirect(307, '/auth/register'));
+app.get('/api/me', (req, res) => res.redirect(307, '/me'));
+
+/* -------- 404 -------- */
 app.use((req, res) =>
   res.status(404).json({ message: `Rota não encontrada: ${req.method} ${req.originalUrl}` })
 );
 
-/* --------- Start / Shutdown --------------- */
+/* -------- Handler global -------- */
+app.use((err, _req, res, _next) => {
+  const msg = err?.message || 'Erro interno';
+  const code = /CORS|Origin/.test(msg) ? 403 : 500;
+  if (process.env.NODE_ENV !== 'production') console.error('GlobalError:', err);
+  res.status(code).json({ message: msg });
+});
+
+/* -------- Start / Shutdown -------- */
 const server = app.listen(PORT, '0.0.0.0', () =>
-  console.log(`🚀 API em http://0.0.0.0:${PORT} (acesse via IP da sua máquina)`),
+  console.log(`🚀 API em http://0.0.0.0:${PORT}`),
 );
 
 function shutdown(signal) {
   console.log(`\nRecebido ${signal}. Encerrando...`);
-  server.close(() => {
-    db.end?.().catch(() => {});
+  server.close(async () => {
+    try { await pool.end(); } catch {}
     process.exit(0);
   });
 }
 process.on('SIGINT', () => shutdown('SIGINT'));
 process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('unhandledRejection', (reason) => {
+  console.error('UnhandledRejection:', reason);
+});
