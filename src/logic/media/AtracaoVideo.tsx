@@ -2,9 +2,7 @@
 import React, { useMemo, useRef, useEffect, useCallback } from 'react';
 import { TouchableOpacity, Animated, StyleProp, ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '@/navigation/RootStack';
+import { openYouTube } from '@/logic/media/openYouTube'; // ✅ usa helper centralizado
 
 type Props = {
   /** ID do YouTube (11 chars) ou URL (watch/shorts/embed/youtu.be). Se nada válido vier, não renderiza. */
@@ -13,9 +11,9 @@ type Props = {
   size?: number;
   /** Estilo extra para posicionamento — por padrão já fica absolute no canto superior esquerdo */
   style?: StyleProp<ViewStyle>;
+  /** Define se o ícone “pisca”. Default: false (sem flashes) */
+  blink?: boolean;
 };
-
-type Nav = NativeStackNavigationProp<RootStackParamList, 'YouTubePlayer'>;
 
 function extractId(input?: string | null): string | null {
   if (!input) return null;
@@ -26,13 +24,13 @@ function extractId(input?: string | null): string | null {
   return m ? m[1] : null;
 }
 
-export default function AtracaoVideo({ videoIdOrUrl, size = 18, style }: Props) {
-  const navigation = useNavigation<Nav>();
+export default function AtracaoVideo({ videoIdOrUrl, size = 18, style, blink = false }: Props) {
   const videoId = useMemo(() => extractId(videoIdOrUrl ?? ''), [videoIdOrUrl]);
 
-  // animação de “piscar”
+  // animação opcional (por padrão DESLIGADA para evitar “flashes”)
   const opacity = useRef(new Animated.Value(1)).current;
   useEffect(() => {
+    if (!blink) return;
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, { toValue: 0.7, duration: 900, useNativeDriver: true }),
@@ -41,13 +39,13 @@ export default function AtracaoVideo({ videoIdOrUrl, size = 18, style }: Props) 
     );
     loop.start();
     return () => loop.stop();
-  }, [opacity]);
+  }, [opacity, blink]);
 
   const open = useCallback(() => {
     if (!videoIdOrUrl && !videoId) return;
-    // Passa exatamente o que você tiver; a screen resolve ID/URL e abre watch
-    navigation.navigate('YouTubePlayer', { idOrUrl: videoIdOrUrl || videoId! });
-  }, [navigation, videoIdOrUrl, videoId]);
+    // ✅ usa função global (abre app YouTube no mobile ou aba no web)
+    openYouTube(videoIdOrUrl || videoId!);
+  }, [videoIdOrUrl, videoId]);
 
   if (!videoIdOrUrl && !videoId) return null;
 
@@ -68,6 +66,8 @@ export default function AtracaoVideo({ videoIdOrUrl, size = 18, style }: Props) 
         },
         style,
       ]}
+      accessibilityRole="button"
+      accessibilityLabel="Abrir vídeo no YouTube"
     >
       <Animated.View style={{ opacity }}>
         <Ionicons name="logo-youtube" size={size} color="#FF0000" />

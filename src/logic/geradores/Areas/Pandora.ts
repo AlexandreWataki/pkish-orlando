@@ -3,7 +3,8 @@ export const Pandora = {
   regiao: "Pandora – The World of Avatar",
   latitude: 28.3564,
   longitude: -81.5916,
-  descricao: "Área imersiva inspirada no mundo de Avatar, com florestas bioluminescentes, cachoeiras flutuantes e experiências únicas, dia e noite. Vale visitar também à noite, quando tudo ganha vida com luzes vibrantes.",
+  descricao:
+    "Área imersiva inspirada no mundo de Avatar, com florestas bioluminescentes, cachoeiras flutuantes e experiências únicas, dia e noite. À noite, a iluminação bioluminescente transforma o ambiente em um espetáculo de cores.",
   imagem: "pandora.png",
   atracoes: [
     {
@@ -12,13 +13,15 @@ export const Pandora = {
       subtitulo: "Pandora – The World of Avatar",
       tipo: "Simulador 3D",
       tipoPerfil: ["imersivas", "radicais", "tematicas"],
-      alturaMinima: 112,
-      filaExpress: true,
+      alturaMinima: 112, // 44"
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 80,
       filaAceitavel: 45,
       idadeRecomendada: "7+",
+      atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Voe nas costas de um Banshee com vento, aromas e sensação de liberdade total. Experiência intensa e realista, mas pode causar enjoo em sensíveis a simuladores. Se possível, agende no fim do dia para aproveitar o visual noturno da fila e da área.",
+      descricao:
+        "Voe nas costas de um Banshee com efeitos de vento, aromas e movimento sincronizado. Experiência intensa e realista — pode causar enjoo em sensíveis a simuladores. À noite, a fila externa fica ainda mais bonita iluminada.",
       icone: "🦋",
       imagem: "flight-of-passage.jpg",
       regiao: "Pandora – The World of Avatar",
@@ -33,39 +36,20 @@ export const Pandora = {
       tipo: "Passeio de barco",
       tipoPerfil: ["familiares", "imersivas", "tematicas"],
       alturaMinima: 0,
-      filaExpress: true,
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 45,
       filaAceitavel: 30,
       idadeRecomendada: "Todas as idades",
+      atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: "Passeio de barco pela floresta bioluminescente com criaturas mágicas e trilha relaxante. Tranquilo e encantador, ideal para descansar e admirar os detalhes. Melhor aproveitado de manhã, quando a fila é menor.",
+      descricao:
+        "Passeio tranquilo de barco pela floresta bioluminescente de Pandora, com criaturas místicas e trilha sonora envolvente. Ideal pela manhã, quando a fila é menor.",
       icone: "🌌",
       imagem: "navi-river.jpg",
       regiao: "Pandora – The World of Avatar",
       parque: "Animal Kingdom",
       latitude: 28.3562,
       longitude: -81.5911
-    },
-    {
-      id: "pandora-ambiente-imersivo",
-      titulo: "Ambiente Imersivo de Pandora",
-      subtitulo: "Pandora – The World of Avatar",
-      tipo: "Experiência interativa ao ar livre",
-      tipoPerfil: ["tematicas", "imersivas", "familiares"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "noite",
-      descricao: "Trilhas com vegetação bioluminescente, cachoeiras e sons da natureza. Melhor vivida à noite, quando as plantas brilham e a atmosfera fica mágica. Tire fotos sem flash para capturar o efeito natural.",
-      icone: "🌠",
-      imagem: "pandora-imersiva.jpg",
-      regiao: "Pandora – The World of Avatar",
-      parque: "Animal Kingdom",
-      latitude: 28.3560,
-      longitude: -81.5919
     }
   ]
 };

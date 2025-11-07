@@ -3,7 +3,8 @@ export const StarWars = {
   regiao: "Star Wars: Galaxy’s Edge",
   latitude: 28.3541,
   longitude: -81.5909,
-  descricao: "Área imersiva que recria o planeta Batuu, com naves em escala real, lojas, personagens e duas atrações épicas da saga. Vale explorar à noite, quando as luzes e sons criam uma atmosfera ainda mais intensa.",
+  descricao:
+    "Área imersiva que recria o planeta Batuu, com naves em escala real, lojas e personagens. À noite, luzes e sons criam uma atmosfera ainda mais intensa.",
   imagem: "starwarsgalaxyedge.png",
   atracoes: [
     {
@@ -12,19 +13,21 @@ export const StarWars = {
       subtitulo: "Star Wars: Galaxy’s Edge",
       tipo: "Aventura imersiva",
       tipoPerfil: ["imersivas", "tematicas", "radicais"],
-      alturaMinima: 102,
-      filaExpress: false,
+      alturaMinima: 102, // 40"
+      filaExpress: true, // Lightning Lane (individual)
       tempoMedioFila: 80,
       filaAceitavel: 50,
       idadeRecomendada: "7+",
       turnoRecomendado: "manha",
-      descricao: "Missão épica com múltiplos cenários, efeitos e personagens da saga. Surpreendente e intensa, podendo assustar levemente crianças pequenas. Chegue cedo para filas menores e repare nos detalhes dos cenários.",
+      atracaoSemFila: false,
+      descricao:
+        "Missão épica em múltiplos ambientes com efeitos e elenco da Primeira Ordem e Resistência. Chegue cedo para filas menores e repare nos detalhes dos cenários.",
       icone: "🚀",
       imagem: "rise-of-the-resistance.jpg",
-      regiao: "Star Wars: Galaxy’s Edge",
-      parque: "Hollywood Studios",
       latitude: 28.3545,
-      longitude: -81.5914
+      longitude: -81.5914,
+      regiao: "Star Wars: Galaxy’s Edge",
+      parque: "Hollywood Studios"
     },
     {
       id: "millennium-falcon-smugglers-run",
@@ -32,82 +35,21 @@ export const StarWars = {
       subtitulo: "Star Wars: Galaxy’s Edge",
       tipo: "Simulador interativo",
       tipoPerfil: ["interativas", "imersivas", "tematicas"],
-      alturaMinima: 97,
-      filaExpress: true,
+      alturaMinima: 97, // 38"
+      filaExpress: true, // Lightning Lane (Genie+/Multi Pass)
       tempoMedioFila: 60,
       filaAceitavel: 40,
       idadeRecomendada: "6+",
       turnoRecomendado: "tarde",
-      descricao: "Simulador onde cada um assume um papel na Millennium Falcon, com resultado variando conforme o desempenho. Pode causar leve enjoo, mas é divertido e único a cada rodada. Peça para ser piloto para a experiência mais disputada.",
+      atracaoSemFila: false,
+      descricao:
+        "Simulador na Millennium Falcon onde cada pessoa assume um papel (piloto, atirador ou engenheiro). Peça para ser piloto para a experiência mais disputada.",
       icone: "🛸",
       imagem: "millennium-falcon.jpg",
-      regiao: "Star Wars: Galaxy’s Edge",
-      parque: "Hollywood Studios",
       latitude: 28.3537,
-      longitude: -81.5912
-    },
-    {
-      id: "encontro-chewbacca",
-      titulo: "Encontro com Chewbacca",
-      subtitulo: "Star Wars: Galaxy’s Edge",
-      tipo: "Personagem para fotos",
-      tipoPerfil: ["tematicas", "familiares", "imersivas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "manha",
-      descricao: "Fotos e abraços com Chewbacca, sempre interagindo de forma divertida e carismática. Chegue cedo para evitar filas e peça uma pose especial para a foto.",
-      icone: "🧸",
-      imagem: "chewbacca.jpg",
+      longitude: -81.5912,
       regiao: "Star Wars: Galaxy’s Edge",
-      parque: "Hollywood Studios",
-      latitude: 28.3542,
-      longitude: -81.5908
-    },
-    {
-      id: "encontro-kylo-ren",
-      titulo: "Encontro com Kylo Ren",
-      subtitulo: "Star Wars: Galaxy’s Edge",
-      tipo: "Personagem para fotos",
-      tipoPerfil: ["tematicas", "imersivas", "radicais"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "tarde",
-      descricao: "Kylo Ren interage de forma intensa e séria, podendo intimidar crianças pequenas. Fique atento aos horários e prepare-se para uma foto única.",
-      icone: "🖤",
-      imagem: "kylo-ren.jpg",
-      regiao: "Star Wars: Galaxy’s Edge",
-      parque: "Hollywood Studios",
-      latitude: 28.3540,
-      longitude: -81.5906
-    },
-    {
-      id: "patrulha-stormtroopers",
-      titulo: "Patrulha de Stormtroopers",
-      subtitulo: "Star Wars: Galaxy’s Edge",
-      tipo: "Interação temática",
-      tipoPerfil: ["tematicas", "interativas", "imersivas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "manha",
-      descricao: "Stormtroopers patrulham a área, interagindo de forma divertida e imprevisível. Responda às perguntas para reações engraçadas e registre em vídeo.",
-      icone: "⚔️",
-      imagem: "stormtroopers.jpg",
-      regiao: "Star Wars: Galaxy’s Edge",
-      parque: "Hollywood Studios",
-      latitude: 28.3543,
-      longitude: -81.5911
+      parque: "Hollywood Studios"
     }
   ]
 };

@@ -11,7 +11,7 @@ export const MinionsLand = {
       subtitulo: "Minions Land",
       tipo: "Simulador 3D",
       tipoPerfil: ["familiares", "tematicas", "interativas"],
-      alturaMinima: 102,
+      alturaMinima: 102, // 40"
       filaExpress: true,
       tempoMedioFila: 30,
       filaAceitavel: 20,
@@ -32,11 +32,11 @@ export const MinionsLand = {
       subtitulo: "Minions Land",
       tipo: "Tiro interativo",
       tipoPerfil: ["familiares", "interativas", "tematicas"],
-      alturaMinima: 107,
-      filaExpress: false,
+      alturaMinima: 0, // sem altura mínima
+      filaExpress: true, // aceita Universal Express
       tempoMedioFila: 35,
       filaAceitavel: 25,
-      idadeRecomendada: "A partir de 7 anos",
+      idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
       descricao: "Aventura de tiro interativo em esteiras, com desafios e placar. Mire nos alvos raros para pontuação extra.",
@@ -58,7 +58,7 @@ export const MinionsLand = {
       tempoMedioFila: 15,
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
+      atracaoSemFila: false, // há fila para os encontros
       turnoRecomendado: "manha",
       descricao: "Fotos e interação com Minions, Gru e amigos no teatro da Illumination. Momentos ótimos para crianças.",
       icone: "📸",

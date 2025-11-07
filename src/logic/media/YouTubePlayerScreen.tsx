@@ -1,11 +1,11 @@
 // src/logic/media/YouTubePlayerScreen.tsx
-import React, { useMemo, useState } from 'react';
-import { View, ActivityIndicator, TouchableOpacity, StyleSheet, Platform, Text } from 'react-native';
+import React, { useEffect, useMemo, useState, useCallback, useRef } from 'react';
+import { View, ActivityIndicator, TouchableOpacity, StyleSheet, Platform, Text, Alert } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
-import { WebView } from 'react-native-webview';
-import type { RootStackParamList } from '@/navigation/RootStack'; // ✅ AJUSTADO
+import type { RootStackParamList } from '@/navigation/RootStack';
+import { openYouTube } from '@/logic/media/openYouTube'; // ✅ helper global (Web + iOS/Android)
 
 type Nav = NativeStackNavigationProp<RootStackParamList, 'YouTubePlayer'>;
 type Rt = RouteProp<RootStackParamList, 'YouTubePlayer'>;
@@ -24,55 +24,54 @@ export default function YouTubePlayerScreen() {
   const route = useRoute<Rt>();
   const { idOrUrl } = route.params ?? {};
 
-  const [loading, setLoading] = useState(true);
+  const [opening, setOpening] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const videoId = useMemo(() => extractId(idOrUrl), [idOrUrl]);
 
-  const embedUrl = useMemo(() => {
-    const id = extractId(idOrUrl);
-    if (!id) return null;
-    // inicia com áudio (sem mute), e com suporte a fullscreen
-    return `https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&fs=1`;
-  }, [idOrUrl]);
+  const didGoBack = useRef(false);
 
-  // Fallback simples se não houver vídeo
-  if (!embedUrl) {
-    return (
-      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <Text style={{ color: '#fff', marginBottom: 12 }}>Vídeo indisponível</Text>
-        <TouchableOpacity
-          style={styles.backBtn}
-          onPress={() => navigation.goBack()}
-          activeOpacity={0.9}
-        >
-          <Ionicons name="arrow-back" size={26} color="#000" />
-        </TouchableOpacity>
-      </View>
-    );
-  }
+  const openAndReturn = useCallback(async () => {
+    if (!idOrUrl && !videoId) {
+      setOpening(false);
+      setError('Vídeo inválido.');
+      return;
+    }
+
+    try {
+      // 🔗 abre via helper unificado (Web abre sem popup; Mobile tenta app e faz fallback)
+      await openYouTube(idOrUrl as string);
+
+      // ⏳ dá um respiro para o sistema trocar de app/aba e voltamos
+      // Evita "double back" caso o usuário toque no botão Voltar manualmente
+      if (!didGoBack.current) {
+        didGoBack.current = true;
+        setTimeout(() => {
+          try { navigation.goBack(); } catch {}
+        }, Platform.OS === 'web' ? 0 : 250);
+      }
+    } catch (e) {
+      setError('Não foi possível abrir o YouTube.');
+      setOpening(false);
+    }
+  }, [idOrUrl, videoId, navigation]);
+
+  // abre automaticamente ao montar
+  useEffect(() => {
+    openAndReturn();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={styles.container}>
-      {/* Caixa 16:9 centralizada */}
-      <View style={styles.playerBox}>
-        <WebView
-          source={{ uri: embedUrl }}
-          style={styles.webview}
-          javaScriptEnabled
-          domStorageEnabled
-          allowsInlineMediaPlayback
-          mediaPlaybackRequiresUserAction={false}
-          allowsFullscreenVideo
-          originWhitelist={['*']}
-          androidLayerType="hardware"
-          setBuiltInZoomControls={false}
-          setDisplayZoomControls={false}
-          onLoadEnd={() => setLoading(false)}
-        />
-      </View>
-
-      {/* 🔴 Botão voltar no canto SUPERIOR DIREITO */}
+      {/* Botão voltar (canto superior direito) */}
       <TouchableOpacity
         style={styles.backBtn}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          if (!didGoBack.current) {
+            didGoBack.current = true;
+            navigation.goBack();
+          }
+        }}
         activeOpacity={0.9}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         accessibilityLabel="Voltar"
@@ -80,9 +79,26 @@ export default function YouTubePlayerScreen() {
         <Ionicons name="arrow-back" size={30} color="#000" />
       </TouchableOpacity>
 
-      {loading && (
+      {opening ? (
         <View style={styles.loader}>
           <ActivityIndicator size="large" />
+          <Text style={styles.helperText}>Abrindo no YouTube…</Text>
+        </View>
+      ) : (
+        <View style={styles.fallbackBox}>
+          <Text style={styles.fallbackText}>
+            {error ?? 'Vídeo indisponível.'}
+          </Text>
+          {!!(videoId || idOrUrl) && (
+            <TouchableOpacity
+              style={styles.tryBtn}
+              onPress={openAndReturn}
+              activeOpacity={0.9}
+            >
+              <Ionicons name="logo-youtube" size={20} color="#fff" />
+              <Text style={styles.tryBtnText}>Tentar abrir novamente</Text>
+            </TouchableOpacity>
+          )}
         </View>
       )}
     </View>
@@ -90,28 +106,14 @@ export default function YouTubePlayerScreen() {
 }
 
 const styles = StyleSheet.create({
-  // Fundo preto e conteúdo centralizado verticalmente
+  // Fundo escuro simples
   container: { flex: 1, backgroundColor: '#000', justifyContent: 'center' },
 
-  // Caixa com proporção 16:9 ocupando toda a largura
-  playerBox: {
-    width: '100%',
-    aspectRatio: 16 / 9,
-    alignSelf: 'center',
-    backgroundColor: '#000',
-  },
-
-  // WebView ocupa a caixa 16:9 exatamente
-  webview: {
-    width: '100%',
-    height: '100%',
-  },
-
-  // 🔴 seta vermelha no canto DIREITO
+  // seta vermelha no canto DIREITO
   backBtn: {
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 312 : 312,
-    left: 16,                 // ✅ trocado de left -> right
+    top: Platform.OS === 'ios' ? 50 : 30,
+    right: 16,
     backgroundColor: 'red',
     borderRadius: 22,
     padding: 6,
@@ -119,5 +121,36 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 
-  loader: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
+  loader: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  helperText: {
+    marginTop: 12,
+    color: '#fff',
+  },
+
+  fallbackBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  fallbackText: {
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  tryBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: '#cc0000',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+  },
+  tryBtnText: {
+    color: '#fff',
+    fontWeight: '600',
+  },
 });

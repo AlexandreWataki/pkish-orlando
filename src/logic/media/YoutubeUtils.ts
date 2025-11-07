@@ -6,6 +6,7 @@ export type AttrLike = { id?: string; titulo?: string; parque?: string; regiao?:
 export type Entry = { attrKey: string; titleKey: string; yt: string };
 
 const EMBED_BASE = 'https://www.youtube.com/embed/';
+const WATCH_BASE = 'https://www.youtube.com/watch?v=';
 const CACHE_PREFIX = '@yt:atr:';
 const CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 dias
 
@@ -30,11 +31,18 @@ export function toYouTubeId(input?: string | null): string | null {
   return m ? m[1] : null;
 }
 
+/** ⚠️ Mantido por compatibilidade; prefira `toWatchUrl`. */
 export function toEmbedUrl(videoIdOrUrl: string): string {
   const id = toYouTubeId(videoIdOrUrl);
   return id
     ? `${EMBED_BASE}${id}?autoplay=1&playsinline=1&fs=1&rel=0&modestbranding=1&enablejsapi=1&origin=https://example.com`
     : videoIdOrUrl;
+}
+
+/** ✅ Recomendado: gera watch URL canônica. */
+export function toWatchUrl(videoIdOrUrl: string): string {
+  const id = toYouTubeId(videoIdOrUrl);
+  return id ? `${WATCH_BASE}${id}` : videoIdOrUrl;
 }
 
 export function getYouTubeSearchUrl(q: string): string {
@@ -68,6 +76,7 @@ const YT_BY_TITLE: Record<string, string> = Object.fromEntries(
   ALL_ENTRIES.map((e) => [e.titleKey, e.yt])
 );
 
+/** Retorna ID/URL bruto mapeado (sem transformar). */
 export function getVideoIdOrUrlFromMap(atr: AttrLike): string | null {
   if (atr?.id && YT_BY_ATTR_ID[atr.id]) return YT_BY_ATTR_ID[atr.id];
   const keyTitle = normalize(atr?.titulo);
@@ -78,9 +87,10 @@ export function getVideoIdOrUrlFromMap(atr: AttrLike): string | null {
   return null;
 }
 
+/** ✅ Agora retorna a watch URL (antes retornava embed). */
 export function getVideoUrlFromMap(atr: AttrLike): string | null {
   const found = getVideoIdOrUrlFromMap(atr);
-  return found ? toEmbedUrl(found) : null;
+  return found ? toWatchUrl(found) : null;
 }
 
 /* ============================================================
@@ -131,7 +141,10 @@ async function fetchWithTimeout(url: string, ms = 8000): Promise<Response> {
   }
 }
 
-/** Busca vídeo do YouTube via API oficial (embed url preferencial) */
+/* ============================================================
+   Busca via API do YouTube
+   ============================================================ */
+/** ✅ Busca e retorna watch URL (com cache). */
 export async function searchYouTubeForAttraction(
   a: AttrLike,
   apiKey: string
@@ -169,9 +182,9 @@ export async function searchYouTubeForAttraction(
     const firstId = items.find((it) => it?.id?.videoId)?.id?.videoId;
     if (!firstId) return null;
 
-    const embedUrl = toEmbedUrl(firstId);
-    await saveToCache(key, embedUrl);
-    return embedUrl;
+    const watchUrl = toWatchUrl(firstId);
+    await saveToCache(key, watchUrl);
+    return watchUrl;
   } catch {
     return null;
   }

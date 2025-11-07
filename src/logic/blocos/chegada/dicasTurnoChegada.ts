@@ -6,7 +6,7 @@ const dicasTurnoChegada: Record<string, { titulo: string; descricao: string }> =
       'Transporte: Uber e Lyft funcionam mesmo de madrugada mas podem demorar então confira placa e nome.',
       'Chegada: Vá direto descansar e evite desfazer as malas.',
       'Cuidados: Beba bastante água ao acordar.',
-      'Atividades: Evite parques e prefira mercados ou locais leves como Disney Springs ou ICON Park.',
+      'Atividades: Evite parques e prefira mercados ou locais leves como Disney Springs ou ICON Park. Boas opções de compras: Walmart Supercenter, Target, Ross Dress for Less, Marshalls e Five Below — todos com unidades próximas à International Drive.',
       'Apps úteis: Uber, Lyft, Google Maps, Wise, My Disney Experience.',
       'Preparação: Deixe prontos roupas, ingressos, mochila e carregadores para o dia seguinte.'
     ].join('\n'),
@@ -17,7 +17,7 @@ const dicasTurnoChegada: Record<string, { titulo: string; descricao: string }> =
     descricao: [
       'Check-in: Faça logo que chegar e saia com apenas o necessário.',
       'Atividades: Evite parques nesse primeiro dia e foque em se organizar.',
-      'Compras: Vá ao mercado ou farmácia buscar o que falta como snacks, água, adaptadores e protetor solar.',
+      'Compras: Vá a mercados como Walmart, Target ou Publix e a farmácias como CVS e Walgreens para comprar snacks, água, adaptadores e protetor solar.',
       'Ingressos: Pegue físicos se necessário em pontos de retirada.',
       'Mochila: Organize com documentos, ingresso, boné e eletrônicos.',
       'Apps recomendados: Uber, Walmart, Disney App, iFood.',
@@ -30,7 +30,7 @@ const dicasTurnoChegada: Record<string, { titulo: string; descricao: string }> =
     descricao: [
       'Imigração: Pode estar cheia então mantenha paciência.',
       'Hotel: Pegue só o essencial como roupa leve e carregadores.',
-      'Compras rápidas: Se puder, passe em mercado ou farmácia.',
+      'Compras rápidas: Se puder, passe em mercados como Walmart, Target ou Publix, ou em farmácias como CVS e Walgreens.',
       'Alimentação: Peça comida por delivery se preferir algo prático.',
       'Passeio leve: Se estiver disposto, vá até Disney Springs ou caminhe pela região do hotel.',
       'Apps: Uber, Eats, Disney App, Calm.',

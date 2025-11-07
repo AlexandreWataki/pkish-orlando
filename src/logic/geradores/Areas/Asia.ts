@@ -1,6 +1,7 @@
 export const Asia = {
   parque: "Animal Kingdom",
-  descricao: "Inspirada no Himalaia e na selva asiática, mistura montanhas-russas radicais, aventuras aquáticas e trilhas com vida selvagem.",
+  descricao:
+    "Inspirada no Himalaia e na selva asiática, mistura montanhas-russas radicais, aventuras aquáticas e um show com aves treinadas.",
   imagem: "asia.png",
   latitude: 28.3588,
   longitude: -81.5915,
@@ -12,13 +13,14 @@ export const Asia = {
       tipo: "Montanha-russa",
       tipoPerfil: ["radicais", "imersivas", "tematicas"],
       alturaMinima: 112,
-      filaExpress: true,
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 55,
       filaAceitavel: 40,
       idadeRecomendada: "8+",
       atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: `Montanha-russa veloz com ré, túneis escuros e encontro com o Yeti. Para mais emoção, sente nos primeiros vagões; para curtir o visual e o suspense, escolha os últimos.`,
+      descricao:
+        "Montanha-russa veloz com trecho em ré, túneis escuros e encontro com o Yeti. Mais emoção nos primeiros vagões; mais visual e suspense nos últimos.",
       icone: "🏔️",
       imagem: "expedition-everest.jpg",
       regiao: "Asia",
@@ -33,13 +35,14 @@ export const Asia = {
       tipo: "Aventura aquática",
       tipoPerfil: ["familiares", "radicais", "interativas"],
       alturaMinima: 96,
-      filaExpress: true,
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 50,
       filaAceitavel: 35,
       idadeRecomendada: "6+",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: `Descida de bote por corredeiras com respingos e quedas refrescantes. Leve capa ou troca de roupa, pois quem senta de costas nas quedas se molha mais.`,
+      descricao:
+        "Descida de bote por corredeiras com respingos e quedas. Leve capa ou troca de roupa — quem senta de costas nas quedas costuma molhar mais.",
       icone: "🌊",
       imagem: "kali-river-rapids.jpg",
       regiao: "Asia",
@@ -47,68 +50,28 @@ export const Asia = {
       latitude: 28.3590,
       longitude: -81.5914
     },
-    {
-      id: "maharajah-jungle-trek",
-      titulo: "Maharajah Jungle Trek",
-      subtitulo: "Asia",
-      tipo: "Trilha de observação",
-      tipoPerfil: ["familiares", "tematicas", "imersivas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "tarde",
-      descricao: `Trilha por jardins e ruínas com tigres, aves exóticas e outros animais. Os melhores ângulos para fotos dos tigres ficam no meio do percurso.`,
-      icone: "🐅",
-      imagem: "maharajah-jungle-trek.jpg",
-      regiao: "Asia",
-      parque: "Animal Kingdom",
-      latitude: 28.3586,
-      longitude: -81.5909
-    },
+    // SHOW PRINCIPAL DA ÁREA (incluído mesmo sem Lightning Lane)
     {
       id: "feathered-friends-in-flight",
       titulo: "Feathered Friends in Flight!",
       subtitulo: "Asia",
-      tipo: "Apresentação com aves",
+      tipo: "Show com aves treinadas",
       tipoPerfil: ["tematicas", "imersivas", "familiares"],
       alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
+      filaExpress: false, // entrada por sessões
+      tempoMedioFila: 10, // espera média até a próxima sessão
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
+      atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: `Show educativo com aves treinadas voando sobre o público. Sente nas pontas das fileiras para vê-las passando bem perto e garantir fotos incríveis.`,
+      descricao:
+        "Apresentação educativa com aves voando sobre o público. Sente nas pontas das fileiras para vê-las passarem bem perto e garantir ótimas fotos.",
       icone: "🦜",
       imagem: "feathered-friends.jpg",
       regiao: "Asia",
       parque: "Animal Kingdom",
       latitude: 28.3591,
       longitude: -81.5910
-    },
-    {
-      id: "serpent-statue",
-      titulo: "Serpent Shrine",
-      subtitulo: "Asia",
-      tipo: "Ponto temático para fotos",
-      tipoPerfil: ["tematicas", "imersivas", "familiares"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "tarde",
-      descricao: `Estátua sagrada em ruínas asiáticas, cenário perfeito para fotos. A luz do fim da tarde deixa o visual ainda mais bonito.`,
-      icone: "🐍",
-      imagem: "serpent-shrine.jpg",
-      regiao: "Asia",
-      parque: "Animal Kingdom",
-      latitude: 28.3589,
-      longitude: -81.5908
     }
   ]
 };

@@ -1,28 +1,30 @@
-// CelestialPark.ts — corrigido (ids alinhados com ENTRIES_EPIC)
+// CelestialPark.ts — enxuto (apenas filas + show principal)
 export const CelestialPark = {
   parque: "Universal's Epic Universe",
   regiao: "Celestial Park",
   latitude: 28.4719,
   longitude: -81.4719,
-  descricao: "Coração do Epic Universe com jardins, lagos e fontes coreografadas, conectando todos os mundos por portais.",
+  descricao:
+    "Coração do Epic Universe com jardins, lagos e fontes coreografadas, conectando todos os mundos por portais.",
   imagem: "celestial-park.png",
   atracoes: [
     {
-      id: "starfall-racers", // <- antes estava "stardust-racers"
-      titulo: "Starfall Racers", // nome oficial
+      id: "starfall-racers",
+      titulo: "Starfall Racers",
       subtitulo: "Celestial Park",
       tipo: "Montanha-russa lançada (dueling)",
       tipoPerfil: ["radicais", "imersivas", "tematicas"],
-      alturaMinima: 122,
-      filaExpress: true,
+      alturaMinima: 122, // 48"
+      filaExpress: true, // Express/LL quando disponível
       tempoMedioFila: 90,
       filaAceitavel: 60,
       idadeRecomendada: "7+",
       atracaoSemFila: false,
       turnoRecomendado: "noite",
-      descricao: "Dueling coaster de alta velocidade com elemento Celestial Spin. À noite os trens iluminados ficam incríveis.",
+      descricao:
+        "Dueling coaster de alta velocidade com o elemento Celestial Spin. À noite, os trens iluminados ficam incríveis.",
       icone: "✨",
-      imagem: "starfall-racers.jpg", // renomeie o arquivo se preciso
+      imagem: "starfall-racers.jpg",
       regiao: "Celestial Park",
       parque: "Universal's Epic Universe",
       latitude: 28.4722,
@@ -35,13 +37,14 @@ export const CelestialPark = {
       tipo: "Carrossel 360°",
       tipoPerfil: ["familiares", "tematicas", "imersivas"],
       alturaMinima: 0,
-      filaExpress: false,
+      filaExpress: false, // fila comum
       tempoMedioFila: 15,
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Criaturas celestiais giram 360°; ótimo para fotos ao pôr do sol.",
+      descricao:
+        "Criaturas celestiais giram 360°; ótimo para fotos ao pôr do sol.",
       icone: "🪐",
       imagem: "constellation-carousel.jpg",
       regiao: "Celestial Park",
@@ -49,27 +52,8 @@ export const CelestialPark = {
       latitude: 28.4717,
       longitude: -81.4721
     },
-    {
-      id: "astronomica",
-      titulo: "Astronomica",
-      subtitulo: "Celestial Park",
-      tipo: "Playground aquático",
-      tipoPerfil: ["familiares", "interativas", "tematicas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "tarde",
-      descricao: "Splash pad com jatos, mapas celestes e muito calor aliviado. Leve troca de roupa.",
-      icone: "💧",
-      imagem: "astronomica.jpg",
-      regiao: "Celestial Park",
-      parque: "Universal's Epic Universe",
-      latitude: 28.4718,
-      longitude: -81.4723
-    },
+
+    // SHOW PRINCIPAL DA ÁREA
     {
       id: "neptunes-pool",
       titulo: "Neptune’s Pool & Fountains",
@@ -77,13 +61,14 @@ export const CelestialPark = {
       tipo: "Show de fontes e luzes",
       tipoPerfil: ["tematicas", "imersivas", "familiares"],
       alturaMinima: 0,
-      filaExpress: false,
+      filaExpress: false, // entrada por sessão / livre
       tempoMedioFila: 0,
-      filaAceitavel: 0,
+      filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
+      atracaoSemFila: false,
       turnoRecomendado: "noite",
-      descricao: "Fontes coreografadas com iluminação — sequência especial à noite.",
+      descricao:
+        "Fontes coreografadas com iluminação e trilha — sequência especial à noite.",
       icone: "🌊",
       imagem: "neptunes-pool.jpg",
       regiao: "Celestial Park",

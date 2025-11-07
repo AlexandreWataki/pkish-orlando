@@ -3,7 +3,8 @@ export const Fantasyland = {
   regiao: "Fantasyland",
   latitude: 28.4194,
   longitude: -81.5812,
-  descricao: "Encantadora área inspirada nos contos de fadas, com princesas, castelos e atrações mágicas para todas as idades.",
+  descricao:
+    "Encantadora área inspirada nos contos de fadas, com princesas, castelos e atrações mágicas para todas as idades.",
   imagem: "fantasyland.png",
   atracoes: [
     {
@@ -18,7 +19,8 @@ export const Fantasyland = {
       filaAceitavel: 40,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "manha",
-      descricao: "Voe sobre Londres até a Terra do Nunca num carrinho suspenso. Vá cedo e sente à direita para melhor vista.",
+      descricao:
+        "Voe sobre Londres até a Terra do Nunca num carrinho suspenso. Vá cedo e sente à direita para melhor vista.",
       icone: "🧚",
       imagem: "peter-pan.jpg",
       latitude: 28.4196,
@@ -36,7 +38,8 @@ export const Fantasyland = {
       filaAceitavel: 45,
       idadeRecomendada: "5+",
       turnoRecomendado: "manha",
-      descricao: "Montanha-russa leve por minas cheias de anões animatrônicos. Últimos vagões dão mais balanço.",
+      descricao:
+        "Montanha-russa leve por minas cheias de anões animatrônicos. Últimos vagões dão mais balanço.",
       icone: "⛏️",
       imagem: "mine-train.jpg",
       latitude: 28.4192,
@@ -54,7 +57,8 @@ export const Fantasyland = {
       filaAceitavel: 20,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Passeio de barco por cenários e culturas do mundo com a icônica música. Olhe para todos os lados para ver os detalhes.",
+      descricao:
+        "Passeio de barco por cenários e culturas do mundo com a icônica música. Olhe para todos os lados para ver os detalhes.",
       icone: "🌍",
       imagem: "small-world.jpg",
       latitude: 28.4198,
@@ -72,7 +76,8 @@ export const Fantasyland = {
       filaAceitavel: 25,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Acompanhe o Pooh em cenas fofas com abelhas, sonhos e tigger-pulos. Brinque nas telas interativas da fila.",
+      descricao:
+        "Acompanhe o Pooh em cenas fofas com abelhas, sonhos e tigger-pulos. Brinque nas telas interativas da fila.",
       icone: "🐻🍯",
       imagem: "winnie-the-pooh.jpg",
       latitude: 28.4190,
@@ -90,7 +95,8 @@ export const Fantasyland = {
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "noite",
-      descricao: "Gire em xícaras coloridas ao som de Alice. Controle o volante para mais ou menos velocidade; à noite fica ainda mais bonito.",
+      descricao:
+        "Gire em xícaras coloridas ao som de Alice. Controle o volante para mais ou menos velocidade; à noite fica ainda mais bonito.",
       icone: "🍵",
       imagem: "mad-tea-party.jpg",
       latitude: 28.4191,
@@ -108,7 +114,8 @@ export const Fantasyland = {
       filaAceitavel: 20,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Passeio em conchas pelo mundo de Ariel com músicas clássicas e cenários coloridos. Observe os detalhes das animações nas paredes.",
+      descricao:
+        "Passeio em conchas pelo mundo de Ariel com músicas clássicas e cenários coloridos. Observe os detalhes das animações nas paredes.",
       icone: "🧜‍♀️",
       imagem: "under-the-sea.jpg",
       latitude: 28.4200,
@@ -126,7 +133,8 @@ export const Fantasyland = {
       filaAceitavel: 20,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Participe da história com a Bela em uma sala mágica com espelho-portal. Crianças podem atuar; chegue um pouco antes para garantir lugar.",
+      descricao:
+        "Participe da história com a Bela em uma sala mágica com espelho-portal. Crianças podem atuar; chegue um pouco antes para garantir lugar.",
       icone: "📖🌹",
       imagem: "enchanted-belle.jpg",
       latitude: 28.4199,
@@ -144,7 +152,8 @@ export const Fantasyland = {
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "manha",
-      descricao: "Carrossel vintage com cavalos detalhados em frente ao castelo. Fotos ficam lindas ao amanhecer.",
+      descricao:
+        "Carrossel vintage com cavalos detalhados em frente ao castelo. Fotos ficam lindas ao amanhecer.",
       icone: "🎠",
       imagem: "regal-carrousel.jpg",
       latitude: 28.4195,
@@ -162,12 +171,14 @@ export const Fantasyland = {
       filaAceitavel: 20,
       idadeRecomendada: "4+",
       turnoRecomendado: "manha",
-      descricao: "Mini-coaster do Pateta com curvas rápidas e trajeto curto — perfeita como ‘primeira montanha-russa’.",
+      descricao:
+        "Mini-coaster do Pateta com curvas rápidas e trajeto curto — perfeita como ‘primeira montanha-russa’.",
       icone: "✈️",
       imagem: "barnstormer.jpg",
       latitude: 28.4203,
       longitude: -81.5806
     },
+    // SHOW PRINCIPAL DA ÁREA
     {
       id: "mickeys-philharmagic",
       titulo: "Mickey’s PhilharMagic",
@@ -180,7 +191,8 @@ export const Fantasyland = {
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "noite",
-      descricao: "Filme 3D com músicas clássicas e efeitos de vento e aromas. Ótimo para descansar e curtir ar-condicionado.",
+      descricao:
+        "Filme 3D com músicas clássicas e efeitos de vento e aromas. Ótimo para descansar e curtir ar-condicionado.",
       icone: "🎬🎶",
       imagem: "philharmagic.jpg",
       latitude: 28.4197,
@@ -198,7 +210,8 @@ export const Fantasyland = {
       filaAceitavel: 20,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Voe com o Dumbo controlando a altura da sua gôndola. A área de fila tem playground climatizado para as crianças.",
+      descricao:
+        "Voe com o Dumbo controlando a altura da sua gôndola. A área de fila tem playground climatizado para as crianças.",
       icone: "🐘",
       imagem: "dumbo.jpg",
       latitude: 28.4204,
@@ -216,7 +229,8 @@ export const Fantasyland = {
       filaAceitavel: 25,
       idadeRecomendada: "Todas as idades",
       turnoRecomendado: "tarde",
-      descricao: "Encontro com princesas como Cinderela, Rapunzel e Tiana. Leve caderno para autógrafos e perguntas para interagir.",
+      descricao:
+        "Encontro com princesas como Cinderela, Rapunzel e Tiana. Leve caderno para autógrafos e perguntas para interagir.",
       icone: "👑",
       imagem: "princess-hall.jpg",
       latitude: 28.4195,

@@ -3,7 +3,8 @@ export const SunsetBoulevard = {
   regiao: "Sunset Boulevard",
   latitude: 28.3554,
   longitude: -81.5618,
-  descricao: "Avenida com visual de cinema clássico que leva a atrações radicais, shows e encontros com personagens. Ótima para fotos ao pôr do sol e para curtir a iluminação noturna.",
+  descricao:
+    "Avenida com visual de cinema clássico que leva a atrações radicais e grandes espetáculos. Fica ainda mais bonita ao pôr do sol, com letreiros iluminados.",
   imagem: "sunsetboulevard.png",
   atracoes: [
     {
@@ -12,14 +13,16 @@ export const SunsetBoulevard = {
       subtitulo: "Sunset Boulevard",
       tipo: "Queda livre temática",
       tipoPerfil: ["radicais", "tematicas", "imersivas"],
-      alturaMinima: 102,
-      filaExpress: true,
+      alturaMinima: 102, // 40"
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 55,
       filaAceitavel: 35,
       idadeRecomendada: "8+",
+      atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Hotel mal-assombrado com elevadores desgovernados, quedas inesperadas e clima de suspense. Indicado para quem gosta de sustos e frio na barriga; sente-se perto das janelas para uma vista incrível.",
-      icone: "🏨",
+      descricao:
+        "Hotel mal-assombrado com elevadores desgovernados, quedas imprevisíveis e atmosfera de suspense. Sente-se próximo às janelas para vistas incríveis de Hollywood Studios.",
+      icone: "🏨⚡",
       imagem: "tower-of-terror.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",
@@ -32,13 +35,15 @@ export const SunsetBoulevard = {
       subtitulo: "Sunset Boulevard",
       tipo: "Montanha-russa no escuro",
       tipoPerfil: ["radicais", "imersivas", "tematicas"],
-      alturaMinima: 122,
-      filaExpress: true,
+      alturaMinima: 122, // 48"
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 50,
       filaAceitavel: 35,
       idadeRecomendada: "9+",
+      atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Montanha-russa veloz com trilha do Aerosmith, loopings e curvas no escuro. Guarde os objetos antes da largada e sente-se nos primeiros carros para sentir mais vento.",
+      descricao:
+        "Montanha-russa acelerada ao som de Aerosmith, com loopings e curvas no escuro. Guarde os objetos antes da largada e sente-se nos primeiros carros para mais emoção.",
       icone: "🎸",
       imagem: "rockn-roller.jpg",
       regiao: "Sunset Boulevard",
@@ -46,6 +51,7 @@ export const SunsetBoulevard = {
       latitude: 28.3561,
       longitude: -81.5614
     },
+    // SHOW PRINCIPAL DA ÁREA
     {
       id: "beauty-and-the-beast",
       titulo: "Beauty and the Beast – Live on Stage",
@@ -53,61 +59,20 @@ export const SunsetBoulevard = {
       tipo: "Show musical ao vivo",
       tipoPerfil: ["tematicas", "familiares", "imersivas"],
       alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 10,
+      filaExpress: false, // entrada por sessão
+      tempoMedioFila: 15, // chegada antecipada recomendada
+      filaAceitavel: 15,
       idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
+      atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: "Musical com figurinos e cenários encantadores, recriando a história da Bela e a Fera. Chegue 20 minutos antes para escolher bons lugares e aproveite para descansar à sombra.",
-      icone: "🌹",
+      descricao:
+        "Musical encantador que recria a história de Bela e a Fera com figurinos, danças e canções clássicas. Chegue 20 minutos antes para escolher bons lugares.",
+      icone: "🌹🎶",
       imagem: "beauty-and-the-beast.jpg",
       regiao: "Sunset Boulevard",
       parque: "Hollywood Studios",
       latitude: 28.3550,
       longitude: -81.5620
-    },
-    {
-      id: "encontro-com-bela",
-      titulo: "Encontro com a Bela",
-      subtitulo: "Sunset Boulevard",
-      tipo: "Personagem para fotos",
-      tipoPerfil: ["tematicas", "personagens", "familiares"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "manha",
-      descricao: "Fotos com a Bela em traje dourado, próximas ao teatro do musical. Leve algo para autógrafo e pergunte sobre o baile para ter interações únicas.",
-      icone: "👸",
-      imagem: "encontro-bela.jpg",
-      regiao: "Sunset Boulevard",
-      parque: "Hollywood Studios",
-      latitude: 28.3549,
-      longitude: -81.5621
-    },
-    {
-      id: "encontro-com-mickey-sorcerer",
-      titulo: "Encontro com Mickey Feiticeiro",
-      subtitulo: "Sunset Boulevard",
-      tipo: "Personagem para fotos",
-      tipoPerfil: ["tematicas", "personagens", "familiares"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "noite",
-      descricao: "Fotos com o Mickey como feiticeiro do Fantasia, chapéu azul estrelado e túnica vermelha. Peça para ele fazer pose com a varinha mágica para fotos mais divertidas.",
-      icone: "🧙‍♂️",
-      imagem: "mickey-feiticeiro.jpg",
-      regiao: "Sunset Boulevard",
-      parque: "Hollywood Studios",
-      latitude: 28.3553,
-      longitude: -81.5623
     }
   ]
 };

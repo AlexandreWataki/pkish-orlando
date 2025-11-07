@@ -3,9 +3,11 @@ export const MainStreet = {
   regiao: "Main Street, U.S.A.",
   latitude: 28.4187,
   longitude: -81.5818,
-  descricao: "Entrada principal do parque, inspirada em cidade americana do início do século 20, com vista para o Castelo da Cinderela, lojas, restaurantes e paradas mágicas ao longo do dia.",
+  descricao:
+    "Entrada principal do parque, inspirada em cidade americana do início do século 20, com vista para o Castelo da Cinderela, lojas e o grande desfile do parque.",
   imagem: "mainstreetusa.png",
   atracoes: [
+    // SHOW PRINCIPAL DA ÁREA (incluído mesmo sem Lightning Lane)
     {
       id: "main-street-parade",
       titulo: "Festival of Fantasy Parade",
@@ -13,13 +15,14 @@ export const MainStreet = {
       tipo: "Desfile temático",
       tipoPerfil: ["tematicas", "familiares", "imersivas"],
       alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
+      filaExpress: false, // não há LL; espera para posicionamento
+      tempoMedioFila: 20, // tempo médio de antecedência p/ garantir bom lugar
+      filaAceitavel: 15,
       idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
+      atracaoSemFila: false,
       turnoRecomendado: "tarde",
-      descricao: "Desfile com carros alegóricos, músicas e personagens Disney. Multidão animada e clima festivo, sem sustos. Chegue cedo para garantir sombra e um bom lugar para fotos.",
+      descricao:
+        "Desfile com carros alegóricos, músicas e personagens Disney. Chegue 15–20 min antes e busque sombra para fotos melhores.",
       icone: "🎉",
       imagem: "festival-of-fantasy.jpg",
       regiao: "Main Street, U.S.A.",
@@ -34,13 +37,14 @@ export const MainStreet = {
       tipo: "Passeio de trem nostálgico",
       tipoPerfil: ["familiares", "tematicas", "imersivas"],
       alturaMinima: 0,
-      filaExpress: false,
+      filaExpress: false, // embarque por horários; fila leve
       tempoMedioFila: 10,
       filaAceitavel: 10,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: "Trem a vapor que percorre o parque com paradas em Frontierland e Fantasyland. Passeio tranquilo e refrescante. Sente-se do lado direito para melhores vistas.",
+      descricao:
+        "Trem a vapor que percorre o parque com paradas em Frontierland e Fantasyland. Sente-se do lado direito para melhores vistas.",
       icone: "🚂",
       imagem: "main-street-train.jpg",
       regiao: "Main Street, U.S.A.",
@@ -49,67 +53,26 @@ export const MainStreet = {
       longitude: -81.5819
     },
     {
-      id: "dapper-dans",
-      titulo: "Dapper Dans",
-      subtitulo: "Main Street, U.S.A.",
-      tipo: "Show musical de calçada",
-      tipoPerfil: ["tematicas", "familiares", "imersivas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "manha",
-      descricao: "Quarteto vocal clássico cantando músicas Disney e canções tradicionais. Clima nostálgico e animado. Fique próximo aos músicos para ouvir melhor e aproveitar as piadas.",
-      icone: "🎩",
-      imagem: "dapper-dans.jpg",
-      regiao: "Main Street, U.S.A.",
-      parque: "Magic Kingdom",
-      latitude: 28.4186,
-      longitude: -81.5816
-    },
-    {
       id: "character-greetings-town-square",
       titulo: "Encontro com Mickey na Town Square Theater",
       subtitulo: "Main Street, U.S.A.",
       tipo: "Encontro com personagem",
       tipoPerfil: ["personagens", "familiares", "tematicas"],
       alturaMinima: 0,
-      filaExpress: true,
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 30,
       filaAceitavel: 20,
       idadeRecomendada: "Todas as idades",
       atracaoSemFila: false,
       turnoRecomendado: "manha",
-      descricao: "Fotos e autógrafos com Mickey em trajes clássicos. Ambiente climatizado e alegre. Leve algo para assinar e registre o abraço na primeira foto.",
+      descricao:
+        "Fotos e autógrafos com Mickey em trajes clássicos, em ambiente climatizado. Leve algo para autógrafo e registre o abraço na primeira foto.",
       icone: "🎭",
       imagem: "mickey-town-square.jpg",
       regiao: "Main Street, U.S.A.",
       parque: "Magic Kingdom",
       latitude: 28.4185,
       longitude: -81.5820
-    },
-    {
-      id: "let-the-magic-begin",
-      titulo: "Let the Magic Begin",
-      subtitulo: "Main Street, U.S.A.",
-      tipo: "Show de abertura do parque",
-      tipoPerfil: ["tematicas", "familiares", "imersivas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      atracaoSemFila: true,
-      turnoRecomendado: "manha",
-      descricao: "Show de abertura com personagens em frente ao Castelo da Cinderela. Muita música e animação. Chegue cedo e posicione-se de frente para o castelo para melhores fotos.",
-      icone: "✨",
-      imagem: "let-the-magic-begin.jpg",
-      regiao: "Main Street, U.S.A.",
-      parque: "Magic Kingdom",
-      latitude: 28.4191,
-      longitude: -81.5815
     }
   ]
 };

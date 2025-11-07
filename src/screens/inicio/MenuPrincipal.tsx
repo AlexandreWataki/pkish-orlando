@@ -1,5 +1,5 @@
 // src/screens/inicio/MenuPrincipal.tsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   View,
   StyleSheet,
@@ -7,6 +7,8 @@ import {
   Platform,
   Image,
   Alert,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -19,14 +21,27 @@ import { CabecalhoDia } from '@/components/card/CabecalhoDia';
 import { buscarClima } from '@/logic/clima/buscarclima';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { useAuth } from '@/contexts/AuthContext'; // ⬅️ add
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function MenuPrincipal() {
   const navigation = useNavigation<any>();
   const { parkisheiroAtual, limparRoteiroFinal } = useParkisheiro();
-  const { signOut } = useAuth(); // ⬅️ add
+  const { user, signOut } = useAuth();
+
   const [clima, setClima] = useState<any>(null);
   const navigatingRef = useRef(false);
+
+  // ===== Clima =====
+  useEffect(() => {
+    (async () => {
+      try {
+        const c = await buscarClima('Orlando');
+        setClima(c);
+      } catch {
+        setClima(null);
+      }
+    })();
+  }, []);
 
   const rotasImplementadas = new Set<string>([
     'Calendario',
@@ -39,21 +54,10 @@ export default function MenuPrincipal() {
     'TelaRefeicoes',
     'Cadastro',
     'Login',
-    // ⬇️ novas rotas usadas pelos PDFs
     'ParquesPDF',
     'VisualizarPDF',
+    'Promocoes',
   ]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const c = await buscarClima('Orlando');
-        setClima(c);
-      } catch {
-        setClima(null);
-      }
-    })();
-  }, []);
 
   const irParaUltimaBusca = () => {
     const rf = parkisheiroAtual?.roteiroFinal;
@@ -174,27 +178,25 @@ export default function MenuPrincipal() {
     },
   ] as const;
 
-  // Sair e voltar para a tela de início (sem sessão)
+  const signingOutRef = useRef(false);
   const voltarAoCadastro = async () => {
-    if (navigatingRef.current) return;
-    navigatingRef.current = true;
+    if (signingOutRef.current) return;
+    signingOutRef.current = true;
     try {
-      await signOut(); // ⬅️ encerra a sessão
+      await signOut();
       navigation.reset({ index: 0, routes: [{ name: 'Inicio' }] });
     } finally {
-      setTimeout(() => { navigatingRef.current = false; }, 200);
+      setTimeout(() => {
+        signingOutRef.current = false;
+      }, 200);
     }
   };
 
+  const isGoogle = !!user?.idToken || !!user?.email;
+
   return (
     <LinearGradient
-      colors={[
-        '#0077cc', // azul piscina
-        '#00c5d4', // turquesa
-        '#f5deb3', // areia clara
-        '#ffffff', // branco normal
-        '#ffffff', // branco final (rasinho bem claro)
-      ]}
+      colors={['#0077cc', '#00c5d4', '#f5deb3', '#ffffff', '#ffffff']}
       locations={[0, 0.3, 0.6, 0.85, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
@@ -202,6 +204,13 @@ export default function MenuPrincipal() {
     >
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <CabecalhoDia titulo="" data={dataFormatada} diaSemana={diaSemana} clima={clima} />
+
+      {/* Selo “G” pequeno quando conectado com Google */}
+      {user && isGoogle && (
+        <View style={styles.googleBadgeTop}>
+          <Text style={styles.googleBadgeText}>G</Text>
+        </View>
+      )}
 
       <View style={styles.menu}>
         {botoesMenu.map((btn) => (
@@ -235,14 +244,15 @@ export default function MenuPrincipal() {
                   }
                   navigation.navigate(btn.destino as any);
                 } finally {
-                  setTimeout(() => { navigatingRef.current = false; }, 200);
+                  setTimeout(() => {
+                    navigatingRef.current = false;
+                  }, 200);
                 }
               }}
             />
           </View>
         ))}
 
-        {/* Botão Clube de Vantagens Orlando */}
         <View style={styles.cardWrapper}>
           <BotaoMenuNeon
             titulo="Clube de Vantagens Orlando"
@@ -252,13 +262,12 @@ export default function MenuPrincipal() {
           />
         </View>
 
-        {/* NOVO: Visualização de PDFs dos Parques */}
         <View style={styles.cardWrapper}>
           <BotaoMenuCard
             titulo="Mapas Oficiais dos Parques (PDF)"
             emoji="📑"
-            corFundo="#B00020"   // vermelho PDF (Material)
-            corBorda="#FF5252"   // borda mais clara
+            corFundo="#B00020"
+            corBorda="#FF5252"
             corTexto="#FFFFFF"
             subtitulo="Disney • Universal • Epic Universe"
             onPress={() => navigation.navigate('ParquesPDF')}
@@ -266,13 +275,12 @@ export default function MenuPrincipal() {
           />
         </View>
 
-        {/* ÚLTIMO: Voltar ao Cadastro */}
         <View style={styles.cardWrapper}>
           <BotaoMenuCard
             titulo="Voltar ao Cadastro"
             emoji="👤"
-            corFundo="#001F3F"   // azul Disney bem escuro
-            corBorda="#0B3D91"   // azul Disney
+            corFundo="#001F3F"
+            corBorda="#0B3D91"
             corTexto="#FFFFFF"
             subtitulo="Acesse ou crie sua conta"
             onPress={voltarAoCadastro}
@@ -300,7 +308,6 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: 0,
     paddingTop: 40,
     marginTop: -10,
   },
@@ -323,5 +330,28 @@ const styles = StyleSheet.create({
   logo: {
     width: 96,
     height: 96,
+  },
+  /* Selo Google no topo */
+  googleBadgeTop: {
+    position: 'absolute',
+    top: Platform.select({ ios: 56, android: 56, default: 56 }),
+    right: 16,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: '#4285F4',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1.5,
+    borderColor: '#00FFFF',
+    shadowColor: '#00FFFF',
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  googleBadgeText: {
+    color: '#fff',
+    fontSize: 13,
+    fontWeight: '800',
   },
 });

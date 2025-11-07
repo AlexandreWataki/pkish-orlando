@@ -19,13 +19,13 @@ import CardAtracao from '@/components/card/CardAtracao';
 import CardAtracaoUniversal from '@/components/card/CardAtracaoUniversal';
 import { CardSecao } from '@/components/card/CardSecao';
 
-import { getVideoUrlFromMap, searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
+import { getVideoUrlFromMap } from '@/logic/media/YoutubeUtils';
+import { searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
+import { openYouTube } from '@/logic/media/openYouTube'; // ✅ usa helper global
 
-// Dados
 import * as disneyData from '@/logic/geradores/todasAtracoesDisney';
 import * as universalData from '@/logic/geradores/todasAtracoesUniversal';
 
-// Navegação tipada para abrir a YouTubePlayer screen
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/navigation/RootStack';
 
@@ -137,42 +137,32 @@ export default function TelaAtracoes() {
   const { markVisited } = useParkisheiro?.() || {};
 
   const [clima, setClima] = useState<any>(null);
-  const [avisoAceito, setAvisoAceito] = useState(true); // já aceito
-  const [step, setStep] = useState<Step>('rede');       // começa em "selecione o complexo"
-
+  const [avisoAceito, setAvisoAceito] = useState(false);
+  const [step, setStep] = useState<Step>('rede');
   const [rede, setRede] = useState<'disney' | 'universal' | ''>('');
   const [parque, setParque] = useState<string>('');
   const [area, setArea] = useState<string>('');
-
   const [videoById, setVideoById] = useState<Record<string, string>>({});
+
   const YT_API_KEY = (Constants?.expoConfig?.extra as any)?.YT_API_KEY || '';
 
-  // clima para cabeçalho
+  // animação do aviso
+  const avisoBlink = useRef(new Animated.Value(1)).current;
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(avisoBlink, { toValue: 0.78, duration: 900, useNativeDriver: true }),
+        Animated.timing(avisoBlink, { toValue: 1, duration: 900, useNativeDriver: true }),
+      ])
+    ).start();
+  }, [avisoBlink]);
+
   useEffect(() => { buscarClima('Orlando').then(setClima).catch(() => setClima(null)); }, []);
   useEffect(() => { markVisited?.('TelaAtracoes'); }, []);
-
-  // ⚠️ Sem auto-pular: sempre reseta pro passo "rede" ao abrir
-  useEffect(() => {
-    setRede('');
-    setParque('');
-    setArea('');
-    setStep('rede');
-  }, [route.params]);
 
   const hoje = new Date();
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
-
-  const climaHeader = useMemo(() => {
-    if (clima && typeof clima.temp === 'number' && !Number.isNaN(clima.temp)) {
-      return {
-        tempC: Math.round(clima.temp),
-        condition: clima.condicao ?? '',
-        iconUrl: clima.icone ?? undefined,
-      };
-    }
-    return null;
-  }, [clima]);
 
   const listaDisney = useMemo(() => flattenModule(disneyData), []);
   const listaUniversal = useMemo(() => flattenModule(universalData), []);
@@ -182,6 +172,36 @@ export default function TelaAtracoes() {
     for (const a of lista) if (a.parque) set.add(String(a.parque));
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   };
+
+  const bootRef = useRef(false);
+  useEffect(() => {
+    if (bootRef.current) return;
+    bootRef.current = true;
+
+    const redeInicial: 'disney' | 'universal' =
+      route.params?.redeInicial === 'universal' ? 'universal' : 'disney';
+    const parquesBase =
+      redeInicial === 'disney' ? getParquesFromList(listaDisney) : getParquesFromList(listaUniversal);
+
+    const parqueInicial: string = (route.params?.parqueInicial as string) || parquesBase[0] || '';
+    const areaInicialParam = route.params?.areaInicial as string | undefined;
+    const areaInicial = areaInicialParam === 'Todas as áreas' || !areaInicialParam ? AREA_TODAS : areaInicialParam;
+
+    if (!parqueInicial) {
+      setAvisoAceito(true);
+      setRede(redeInicial);
+      setParque('');
+      setArea('');
+      setStep('rede');
+      return;
+    }
+
+    setAvisoAceito(true);
+    setRede(redeInicial);
+    setParque(parqueInicial);
+    setArea(areaInicial);
+    setStep('lista');
+  }, [listaDisney, listaUniversal, route.params]);
 
   const listaRede = useMemo(
     () => (rede === 'disney' ? listaDisney : rede === 'universal' ? listaUniversal : []),
@@ -250,11 +270,13 @@ export default function TelaAtracoes() {
     const m = input.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
     return m ? m[1] : null;
   };
+
   const toWatchUrl = (maybeEmbedOrWatch: string): string => {
     const id = extractYouTubeId(maybeEmbedOrWatch);
     return id ? `https://www.youtube.com/watch?v=${id}` : maybeEmbedOrWatch;
   };
 
+  // 🔗 Abre vídeo direto com helper global
   const handleOpenVideo = async (a: AtracaoExt) => {
     let watch = videoById[a.id];
 
@@ -279,9 +301,10 @@ export default function TelaAtracoes() {
     }
 
     setVideoById(prev => ({ ...prev, [a.id]: watch }));
-    navigation.navigate('YouTubePlayer', { idOrUrl: watch });
+    await openYouTube(watch); // ✅ usa helper global
   };
 
+  // --- UI ---
   const renderTopStep = () => {
     if (!avisoAceito) {
       return (
@@ -402,20 +425,14 @@ export default function TelaAtracoes() {
   };
 
   return (
-    <LinearGradient
-      colors={['#0077cc', '#00bfff', '#add8e6', '#ffffff', '#ffffff']}
-      locations={[0, 0.25, 0.5, 0.78, 1]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={{ flex: 1 }}
-    >
-      {/* Cabeçalho SEMPRE visível */}
+    <LinearGradient colors={['#0077cc', '#00bfff', '#52D6FF', '#52D6FF']}
+      locations={[0, 0.6, 0.9, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={{ flex: 1 }}>
+
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
-          titulo=""
-          data={dataFormatada}
-          diaSemana={diaSemana}
-          clima={climaHeader}
+          titulo="" data={dataFormatada} diaSemana={diaSemana}
+          clima={clima?.condicao || 'Parcialmente nublado'} temperatura={clima ? `${clima.temp}°C` : '—°C'}
+          iconeClima={clima?.icone}
         />
       </View>
 
@@ -456,7 +473,7 @@ export default function TelaAtracoes() {
         <View style={{ height: 120 }} />
       </ScrollView>
 
-      {/* Rodapé SEMPRE visível */}
+      {/* Rodapé */}
       <View style={styles.rodapeFundo} />
       <View style={styles.rodapeConteudo}>
         <TouchableOpacity
@@ -467,18 +484,18 @@ export default function TelaAtracoes() {
           <Ionicons name="arrow-back-circle" size={40} color="#0077cc" />
         </TouchableOpacity>
 
-        <Animated.View style={[styles.avisoLegalCard, { opacity: 1 }]}>
+        {/* Card piscando */}
+        <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
           <Text style={styles.avisoLegalTexto}>
-            Guia independente e não oficial, sem vínculo com Disney ou Universal. Vídeos incorporados do YouTube, exibidos apenas para visualização.
-          </Text>
+Guia independente e não oficial, sem vínculo com Disney ou Universal. Ao tocar no ícone, o vídeo será aberto diretamente no app do YouTube (ou no navegador).          </Text>
         </Animated.View>
       </View>
+
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  // Seletores
   wrapSeletor: { width: '90%', alignSelf: 'center', marginTop: 8, marginBottom: 6 },
   btnSeletorBranco: {
     backgroundColor: '#fff', borderRadius: 10, paddingVertical: 10, paddingHorizontal: 12,
@@ -488,22 +505,16 @@ const styles = StyleSheet.create({
   listaContainer: { width: '100%', marginTop: 6, backgroundColor: 'transparent' },
   linhaItem: { paddingVertical: 8, paddingHorizontal: 10, width: '100%', backgroundColor: 'transparent' },
   textoItem: { color: '#FFFFFF', fontSize: 11, textAlign: 'left' },
-
   avisoBox: { width: '100%', backgroundColor: 'rgba(0,0,0,0.25)', borderRadius: 10, padding: 12 },
   avisoTitulo: { color: '#FFFFFF', fontSize: 12, fontWeight: '800', marginBottom: 6 },
   avisoTexto: { color: '#FFFFFF', fontSize: 11, lineHeight: 15, marginBottom: 4 },
-
   scrollArea: { flex: 1 },
   scrollContainer: { padding: 10, paddingBottom: 10, alignItems: 'center' },
-
   areaBloco: { marginTop: 0, marginBottom: 0 },
-
   areaTitle: {
     fontSize: 12, fontWeight: 'bold', color: '#FFFFFF', textAlign: 'left', width: '100%',
     textShadowColor: '#00BFFF', textShadowOffset: { width: 0, height: 0 }, textShadowRadius: 16, marginBottom: 4,
   },
-
-  // Ícone do YouTube — sem fundo escuro
   videoIconTouch: {
     position: 'absolute',
     right: 5,
@@ -513,8 +524,6 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     zIndex: 5,
   },
-
-  // Rodapé
   avisoLegalCard: {
     flex: 1,
     backgroundColor: '#004b87',
@@ -532,7 +541,7 @@ const styles = StyleSheet.create({
   },
   rodapeFundo: {
     position: 'absolute', bottom: 0, left: 0, right: 0, height: 130,
-    backgroundColor: '#ffffffff', borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
+    backgroundColor: '#52D6FF', borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
   },
   rodapeConteudo: {
     position: 'absolute', bottom: 50, left: 0, right: 0,

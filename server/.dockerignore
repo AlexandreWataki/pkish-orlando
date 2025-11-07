@@ -1,0 +1,22 @@
+# dependências / cache
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# VCS
+.git
+.gitignore
+
+# envs locais (NÃO vão pro container)
+.env
+*.env
+.env.*
+
+# sistema/IDE
+.DS_Store
+.idea
+.vscode
+.expo
+dist
+coverage

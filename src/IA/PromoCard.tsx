@@ -8,7 +8,7 @@ const AZUL_BORDA = '#00BFFF';
 const AZUL_ESCURO = '#002B5B';
 
 type Props = {
-  item: Promocao & { sobre?: string; oQueTem?: string[] };
+  item: Promocao & { sobre?: string; oQueTem?: string[]; imperdivel?: boolean }; // <- garante o campo
   onPress?: (p: Promocao) => void;
 };
 
@@ -35,14 +35,21 @@ const PromoCard = ({ item, onPress }: Props) => {
       activeOpacity={0.9}
       style={styles.card}
       onPress={() => onPress?.(item)}
+      accessibilityRole="button"
+      accessibilityLabel={`${item.titulo}. ${item.parceiro ?? ''}`}
     >
       <View style={styles.right}>
         <Text numberOfLines={2} style={styles.title}>{item.titulo}</Text>
         {item.parceiro ? <Text style={styles.parceiro}>{item.parceiro}</Text> : null}
-
-        {/* Descritivo único justificado */}
         <Text style={styles.textJust}>{texto}</Text>
       </View>
+
+      {/* Selo IMPERDÍVEL piscante (fica à esquerda do megafone) */}
+      {item.imperdivel ? (
+        <Animated.View style={[styles.badgeImperdivel, { opacity: blink }]}>
+          <Text style={styles.badgeText}>IMPERDÍVEL</Text>
+        </Animated.View>
+      ) : null}
 
       {/* Megafone piscante no canto */}
       <Animated.View style={[styles.megafoneIcon, { opacity: blink }]}>
@@ -73,7 +80,6 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   right: { flex: 1 },
-  // ⬇️ cores alinhadas aos filtros
   title: { flex: 1, color: AZUL_NEON, fontWeight: '700', fontSize: 16 },
   parceiro: { color: '#bfefff', fontSize: 12, marginTop: 2 },
   textJust: {
@@ -83,6 +89,8 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     lineHeight: 19,
   },
+
+  /* ---- CANTO SUPERIOR DIREITO ---- */
   megafoneIcon: {
     position: 'absolute',
     top: 8,
@@ -100,5 +108,30 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 0 },
     elevation: 8,
+  },
+  // Badge fica ANTES do megafone (mais à esquerda)
+  badgeImperdivel: {
+    position: 'absolute',
+    top: 8,
+    right: 40,                 // <- desloca para a esquerda do megafone
+    paddingHorizontal: 10,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: '#001a33',
+    borderWidth: 1.5,
+    borderColor: AZUL_NEON,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: AZUL_NEON,
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 8,
+  },
+  badgeText: {
+    color: AZUL_NEON,
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 0.5,
   },
 });

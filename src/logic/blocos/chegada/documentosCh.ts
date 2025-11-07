@@ -1,16 +1,17 @@
 const documentosCh = {
   titulo: '📌 Documentos obrigatórios na Imigração',
-  itens: [
-    'Passaporte com visto B1/B2 (mín. 6 meses)',
+itens: [
+    'Passaporte com visto B1/B2 (válido por pelo menos 6 meses)',
     'Passagem de volta ao Brasil',
-    'Endereço ou reserva da hospedagem',
-    'Seguro viagem com cobertura médica',
-    'Ingressos ou vouchers',
-    'Comprovante da compra (site, app ou agência)',
-    'Cartão internacional ou multimoeda',
-    'US$ 50 a 100 em espécie',
-    'Extrato bancário (opcional)',
-  ],
+    'Endereço ou comprovante da hospedagem',
+    'Seguro viagem com cobertura médica internacional',
+    'Ingressos ou vouchers impressos ou salvos no celular',
+    'Comprovante da compra (site, aplicativo ou agência)',
+    'Cartão internacional ou multimoeda habilitado para uso no exterior',
+    'US$ 50 a 100 em espécie para pequenas despesas e gorjetas',
+    'Extrato bancário impresso (opcional, pode ser solicitado na imigração)',
+],
+
   postura: [
     'Seja calmo e direto',
     'Responda só o necessário',
@@ -19,7 +20,8 @@ const documentosCh = {
     'Sorria e mantenha a calma'
   ],
   dicas: [
-    'Tenha tudo à mão e bem organizado'
+    'Tenha tudo à mão e bem organizado',
+    'Leve todos os documentos impressos em uma pasta transparente e também salvos no celular — caso a internet falhe, você ainda poderá apresentá-los facilmente.'
   ],
 };
 

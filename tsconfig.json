@@ -16,9 +16,7 @@
     "resolveJsonModule": true,
     "jsx": "react-native",
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "paths": { "@/*": ["src/*"] }
   },
   "include": ["src", "index.js", "declarations.d.ts"]
 }

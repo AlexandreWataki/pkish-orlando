@@ -1,3 +1,4 @@
+// src/App.tsx
 import { LogBox, Platform } from 'react-native';
 
 // 🔕 Ignorar warnings chatos
@@ -11,7 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ParkisheiroProvider } from '@/contexts/ParkisheiroContext';
-import { AuthProvider } from '@/contexts/AuthContext';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext'; // ✅ useAuth
 
 // ── Splash / Inicio
 import SplashScreen from '@/screens/login/SplashScreen';
@@ -102,6 +103,69 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+/**
+ * Decide rota inicial:
+ * - enquanto `loading` -> Splash
+ * - se `user` existe -> MenuPrincipal
+ * - senão -> Inicio (com botão Google)
+ */
+function RootNavigator() {
+  const { user, loading } = useAuth(); // ✅ sem useContext(AuthContext)
+
+  if (loading) {
+    return <SplashScreen />;
+  }
+
+  // remonta navigator ao mudar estado de auth
+  const navigatorKey = user ? 'auth' : 'guest';
+
+  return (
+    <Stack.Navigator
+      key={navigatorKey}
+      initialRouteName={user ? 'MenuPrincipal' : 'Inicio'}
+      screenOptions={{
+        headerShown: false,
+        ...(Platform.OS !== 'web' && { headerBackTitleVisible: false }),
+      }}
+    >
+      {/* Fluxo Splash/Auth */}
+      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="Inicio" component={InicioScreen} />
+
+      {/* App */}
+      <Stack.Screen name="MenuPrincipal" component={MenuPrincipal} />
+      <Stack.Screen name="Calendario" component={TelaDefinirQuantidadeDias} />
+      <Stack.Screen name="TiposdeDias" component={TelaDefinirTiposDias} />
+      <Stack.Screen name="DistribuicaodeDias" component={TelaDistribuirDias} />
+      <Stack.Screen name="Aeroporto&Hotel" component={TelaAeroportoHotel} />
+      <Stack.Screen name="TelaAtracoes" component={TelaAtracoes} />
+      <Stack.Screen name="TelaRefeicoes" component={TelaRefeicoes} />
+
+      {/* Perfis */}
+      <Stack.Screen name="PerfilComprasPorDiaScreen" component={PerfilComprasPorDiaScreen} />
+      <Stack.Screen name="PerfilDescansoPorDiaScreen" component={PerfilDescansoPorDiaScreen} />
+      <Stack.Screen name="PerfilAtracoes" component={PerfilAtracoesScreen} />
+      <Stack.Screen name="PerfilRefeicoes" component={PerfilRefeicoesScreen} />
+
+      {/* Dias */}
+      <Stack.Screen name="DiaCompleto" component={DiaDetalheScreen} />
+
+      {/* 🛍️ Promoções */}
+      <Stack.Screen name="Promocoes" component={PromocoesScreen} />
+
+      {/* ▶️ YouTube */}
+      <Stack.Screen name="YouTubePlayer" component={YouTubePlayerScreen} />
+
+      {/* 🧾 Cardápio */}
+      <Stack.Screen name="MenuWeb" component={MenuWebScreen} />
+
+      {/* 📑 PDFs dos Parques */}
+      <Stack.Screen name="ParquesPDF" component={ParquesPDFScreen} />
+      <Stack.Screen name="VisualizarPDF" component={VisualizarPDFScreen} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   useEffect(() => {
     enableLayoutAnimationAndroidLegacy();
@@ -110,15 +174,8 @@ export default function App() {
   // ▶️ Configura a barra de navegação Android
   useEffect(() => {
     if (Platform.OS === 'android') {
-      // Deixa a barra branca com ícones escuros
       NavigationBar.setBackgroundColorAsync('#ffffff').catch(() => {});
       NavigationBar.setButtonStyleAsync('dark').catch(() => {});
-
-      // Se quiser **ocultar** a barra (modo imersivo), troque pelas linhas abaixo:
-      // NavigationBar.setVisibilityAsync('hidden').catch(() => {});
-      // NavigationBar.setBehaviorAsync('overlay-swipe').catch(() => {});
-      // NavigationBar.setBackgroundColorAsync('#ffffff').catch(() => {});
-      // NavigationBar.setButtonStyleAsync('dark').catch(() => {});
     }
   }, []);
 
@@ -126,48 +183,7 @@ export default function App() {
     <AuthProvider>
       <ParkisheiroProvider>
         <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="Splash"
-            screenOptions={{
-              headerShown: false,
-              ...(Platform.OS !== 'web' && { headerBackTitleVisible: false }),
-            }}
-          >
-            {/* Fluxo Splash/Auth */}
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Inicio" component={InicioScreen} />
-
-            {/* App */}
-            <Stack.Screen name="MenuPrincipal" component={MenuPrincipal} />
-            <Stack.Screen name="Calendario" component={TelaDefinirQuantidadeDias} />
-            <Stack.Screen name="TiposdeDias" component={TelaDefinirTiposDias} />
-            <Stack.Screen name="DistribuicaodeDias" component={TelaDistribuirDias} />
-            <Stack.Screen name="Aeroporto&Hotel" component={TelaAeroportoHotel} />
-            <Stack.Screen name="TelaAtracoes" component={TelaAtracoes} />
-            <Stack.Screen name="TelaRefeicoes" component={TelaRefeicoes} />
-
-            {/* Perfis */}
-            <Stack.Screen name="PerfilComprasPorDiaScreen" component={PerfilComprasPorDiaScreen} />
-            <Stack.Screen name="PerfilDescansoPorDiaScreen" component={PerfilDescansoPorDiaScreen} />
-            <Stack.Screen name="PerfilAtracoes" component={PerfilAtracoesScreen} />
-            <Stack.Screen name="PerfilRefeicoes" component={PerfilRefeicoesScreen} />
-
-            {/* Dias */}
-            <Stack.Screen name="DiaCompleto" component={DiaDetalheScreen} />
-
-            {/* 🛍️ Promoções */}
-            <Stack.Screen name="Promocoes" component={PromocoesScreen} />
-
-            {/* ▶️ YouTube */}
-            <Stack.Screen name="YouTubePlayer" component={YouTubePlayerScreen} />
-
-            {/* 🧾 Cardápio */}
-            <Stack.Screen name="MenuWeb" component={MenuWebScreen} />
-
-            {/* 📑 PDFs dos Parques */}
-            <Stack.Screen name="ParquesPDF" component={ParquesPDFScreen} />
-            <Stack.Screen name="VisualizarPDF" component={VisualizarPDFScreen} />
-          </Stack.Navigator>
+          <RootNavigator />
         </NavigationContainer>
       </ParkisheiroProvider>
     </AuthProvider>

@@ -10,4 +10,5 @@ export type Promocao = {
   validade?: string; // texto livre ou ISO
   parceiro?: string; // ex.: "Parceiro Oficial"
   link?: string;     // URL externa (opcional)
+  imperdivel?: boolean; // <-- opcional
 };

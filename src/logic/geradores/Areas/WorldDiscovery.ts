@@ -3,7 +3,8 @@ export const WorldDiscovery = {
   regiao: "World Discovery",
   latitude: 28.3742,
   longitude: -81.5472,
-  descricao: "Área dedicada à ciência, espaço e inovação, reunindo algumas das atrações mais radicais e tecnológicas do EPCOT. Combina experiências futuristas e interativas que agradam desde exploradores curiosos até amantes de adrenalina.",
+  descricao:
+    "Área dedicada à ciência, espaço e inovação, reunindo algumas das atrações mais radicais e tecnológicas do EPCOT. Ideal para quem busca velocidade, imersão e experiências futuristas.",
   imagem: "worlddiscovery.png",
   atracoes: [
     {
@@ -12,13 +13,15 @@ export const WorldDiscovery = {
       subtitulo: "World Discovery",
       tipo: "Montanha-russa indoor com rotação",
       tipoPerfil: ["radicais", "imersivas", "tematicas"],
-      alturaMinima: 107,
-      filaExpress: false,
+      alturaMinima: 107, // 42"
+      filaExpress: true, // Lightning Lane individual / Virtual Queue
       tempoMedioFila: 75,
       filaAceitavel: 45,
       idadeRecomendada: "7+",
       turnoRecomendado: "tarde",
-      descricao: "Montanha-russa inovadora com rotação dos carros e trilha sonora dos Guardiões da Galáxia. Alta adrenalina com curvas inesperadas, giros e músicas que mudam a cada passeio; aproveite a fila tematizada cheia de detalhes.",
+      atracaoSemFila: false,
+      descricao:
+        "Montanha-russa inovadora com rotação dos veículos e trilha dos Guardiões da Galáxia. Alta velocidade, giros suaves e diferentes músicas em cada passeio.",
       icone: "🌌",
       imagem: "cosmic-rewind.jpg",
       regiao: "World Discovery",
@@ -32,13 +35,15 @@ export const WorldDiscovery = {
       subtitulo: "World Discovery",
       tipo: "Simulador de carro de alta velocidade",
       tipoPerfil: ["radicais", "interativas", "familiares"],
-      alturaMinima: 102,
-      filaExpress: true,
+      alturaMinima: 102, // 40"
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 60,
       filaAceitavel: 40,
       idadeRecomendada: "6+",
       turnoRecomendado: "manha",
-      descricao: "Projete seu próprio carro e teste aceleração, curvas e frenagens em pista real, finalizando com alta velocidade ao ar livre. Personalize bem o veículo antes de entrar e sente-se nas laterais para sentir mais o vento.",
+      atracaoSemFila: false,
+      descricao:
+        "Projete seu carro e teste aceleração, curvas e frenagens em uma pista real. O trecho final ao ar livre chega a 100 km/h — sente-se nas laterais para mais vento.",
       icone: "🏎️",
       imagem: "test-track.jpg",
       regiao: "World Discovery",
@@ -52,39 +57,21 @@ export const WorldDiscovery = {
       subtitulo: "World Discovery",
       tipo: "Simulador espacial com força G",
       tipoPerfil: ["imersivas", "radicais", "tematicas"],
-      alturaMinima: 102,
-      filaExpress: true,
+      alturaMinima: 102, // 40"
+      filaExpress: true, // Lightning Lane disponível
       tempoMedioFila: 35,
       filaAceitavel: 30,
       idadeRecomendada: "8+",
       turnoRecomendado: "tarde",
-      descricao: "Simulação de lançamento ao espaço com duas intensidades: Verde (leve) e Laranja (intensa, com força G). A versão laranja é mais radical e pode causar tontura; a verde é suave e indicada para todos. Respire fundo e siga as instruções para aproveitar melhor.",
+      atracaoSemFila: false,
+      descricao:
+        "Simulação de lançamento ao espaço com duas intensidades: Verde (leve) e Laranja (intensa, com força G real). Escolha conforme seu nível de coragem.",
       icone: "🚀",
       imagem: "mission-space.jpg",
       regiao: "World Discovery",
       parque: "EPCOT",
       latitude: 28.3742,
       longitude: -81.5473
-    },
-    {
-      id: "advanced-training-lab",
-      titulo: "Advanced Training Lab",
-      subtitulo: "World Discovery",
-      tipo: "Espaço interativo pós-ride",
-      tipoPerfil: ["interativas", "familiares", "tematicas"],
-      alturaMinima: 0,
-      filaExpress: false,
-      tempoMedioFila: 0,
-      filaAceitavel: 0,
-      idadeRecomendada: "Todas as idades",
-      turnoRecomendado: "tarde",
-      descricao: "Área interativa com jogos e simuladores de tema espacial, localizada na saída do Mission: SPACE. Ideal para brincar em grupo e aproveitar o ar-condicionado; experimente o simulador de astronauta e explore todos os desafios disponíveis.",
-      icone: "🧪",
-      imagem: "advanced-training-lab.jpg",
-      regiao: "World Discovery",
-      parque: "EPCOT",
-      latitude: 28.3743,
-      longitude: -81.5471
     }
   ]
 };
