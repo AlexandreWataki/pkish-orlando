@@ -1,5 +1,5 @@
 // src/screens/inicio/MenuPrincipal.tsx
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,10 +8,10 @@ import {
   Image,
   Alert,
   Text,
-  TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // ⬅️ ADICIONADO
 
 import BotaoMenuCard from '@/components/card/BotaoMenuCard';
 import BotaoMenuNeon from '@/components/card/BotaoMenuNeon';
@@ -40,6 +40,19 @@ export default function MenuPrincipal() {
       } catch {
         setClima(null);
       }
+    })();
+  }, []);
+
+  // ✅ Mensagem de boas-vindas após gravação bem-sucedida
+  useEffect(() => {
+    (async () => {
+      try {
+        const flag = await AsyncStorage.getItem('@gravou_usage_ok');
+        if (flag === 'true') {
+          Alert.alert('Bem-vindo', '✅ Seja bem-vindo ao seu Roteiro!');
+          await AsyncStorage.removeItem('@gravou_usage_ok'); // mostra só uma vez
+        }
+      } catch {}
     })();
   }, []);
 

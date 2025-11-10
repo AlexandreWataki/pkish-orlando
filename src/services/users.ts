@@ -1,5 +1,4 @@
 // src/services/users.ts
-import { Alert } from "react-native";
 import { env } from "@/config/env";
 
 type UpsertBody = {
@@ -31,7 +30,6 @@ async function httpJSON<T = any>(path: string, body?: unknown): Promise<T> {
     console.error(`❌ HTTP ${res.status} ${res.statusText}:`, text);
     throw new Error(`HTTP ${res.status}: ${text}`);
   }
-
   return res.json();
 }
 
@@ -44,17 +42,13 @@ export async function syncGoogleUser(profile: UpsertBody) {
     picture: profile.picture ?? null,
   };
 
-  try {
-    const data = await httpJSON<{ ok: boolean; user: AnyUser }>(
-      "/users/upsert-google",
-      payload
-    );
-    console.log("✅ Google salvo no Neon:", data.user?.email || data.user?.name);
-    return data.user;
-  } catch (e: any) {
-    console.warn("⚠️ syncGoogleUser erro:", e?.message || e);
-    throw e;
-  }
+  // ✅ seu backend atual expõe /users/upsert
+  const data = await httpJSON<{ ok: boolean; user: AnyUser }>(
+    "/users/upsert",
+    payload
+  );
+  console.log("✅ Google salvo no Neon:", data.user?.email || data.user?.name);
+  return data.user;
 }
 
 /** 🔸 Cria ou retorna um usuário convidado (não trava se falhar) */

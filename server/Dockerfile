@@ -1,31 +1,32 @@
-# Node 18 LTS
+# === Node 18 LTS ===
 FROM node:18-alpine
 
+# Diretório de trabalho
 WORKDIR /app
 
-# Copia manifestos (cobre package.json e package-lock.json)
+# Copia manifestos (package.json e package-lock.json)
 COPY package*.json ./
 
-# Instala dependências de produção
+# Instala apenas dependências de produção
 RUN npm ci --omit=dev --no-audit --no-fund
 
-# Copia somente a aplicação (layout atual: index.js na raiz do server)
-COPY index.js ./
+# Copia o restante da aplicação (inclui index.js e pastas auxiliares)
+COPY . .
 
-# Ambiente
+# Define ambiente e porta
 ENV NODE_ENV=production
 ENV PORT=8080
 EXPOSE 8080
 
-# Utilitário de saúde para o HEALTHCHECK
+# Adiciona utilitário curl para o healthcheck
 RUN apk add --no-cache curl
 
-# HEALTHCHECK (ajuda diagnóstico em runtime)
+# Healthcheck (Cloud Run verifica automaticamente)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD curl -fsS http://localhost:8080/health || exit 1
 
-# Segurança: não rodar como root
+# Segurança — não roda como root
 USER node
 
-# Vars sensíveis (DATABASE_URL, ENSURE_DB, ALLOWED_ORIGINS, etc.) vêm do Cloud Run
+# As variáveis sensíveis (DATABASE_URL, ENSURE_DB, etc.) vêm do Cloud Run
 CMD ["npm", "start"]

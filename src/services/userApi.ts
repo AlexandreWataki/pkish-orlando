@@ -1,22 +1,17 @@
-// src/services/usersApi.ts
 import axios from "axios";
 import { Platform } from "react-native";
 
-/**
- * ✅ IP local do seu computador na rede
- * (você achou pelo ipconfig → 192.168.0.181)
- */
 const LAN_IP = "192.168.0.181";
 
 function resolveBaseURL(): string {
-  // Emulador Android
   if (__DEV__ && Platform.OS === "android") {
     return "http://10.0.2.2:8080";
   }
-  // Celular físico / APK / iOS / Web (mesma rede)
   return `http://${LAN_IP}:8080`;
 }
 
+// Produção: defina EXPO_PUBLIC_USERS_API_URL (https://sua-api)
+// Dev: cai no resolveBaseURL()
 const BASE_URL = process.env.EXPO_PUBLIC_USERS_API_URL || resolveBaseURL();
 
 export const usersApi = axios.create({

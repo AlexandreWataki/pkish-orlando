@@ -13,6 +13,7 @@ import {
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Application from "expo-application"; // ⬅️ ADICIONADO
 import { useAuth } from "@/contexts/AuthContext";
 import { env } from "@/config/env";
 import { syncUser } from "@/services/users";
@@ -37,6 +38,32 @@ function genGuestId() {
   return `guest-${Date.now().toString(36)}-${Math.random()
     .toString(36)
     .slice(2, 8)}`;
+}
+
+/** ⬇️ NOVO: registra uso no servidor e marca flag local se ok */
+async function registrarUso(extra: Record<string, any> = {}) {
+  try {
+    const deviceId =
+      (Application.getAndroidId && Application.getAndroidId()) || "unknown";
+    const appVersion = Application.nativeApplicationVersion || "0";
+    const res = await fetch(`${env.apiUrl}/usage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        deviceId,
+        appVersion,
+        data: { action: "comecar", ...extra },
+      }),
+    });
+    const json = await res.json().catch(() => ({} as any));
+    const ok = !!json?.ok;
+    if (ok) {
+      await AsyncStorage.setItem("@gravou_usage_ok", "true");
+    }
+    return ok;
+  } catch {
+    return false;
+  }
 }
 
 export default function InicioScreen() {
@@ -85,9 +112,12 @@ export default function InicioScreen() {
         isGuest: true,
       };
       await AsyncStorage.setItem("@user", JSON.stringify(guest));
-      // sync “best effort” (não bloqueia se falhar)
+      // best effort Neon users
       syncUser(guest).catch(() => {});
       if (reason) console.log("Entrando como convidado:", reason);
+
+      // ⬇️ TENTA GRAVAR USO (se ok, flag @gravou_usage_ok=true)
+      await registrarUso({ mode: "guest", reason });
     } catch (e) {
       console.log("Falha ao salvar convidado localmente, mas seguindo:", e);
     } finally {
@@ -147,6 +177,10 @@ export default function InicioScreen() {
       if (u?.id) {
         // Sincroniza em background (não bloqueia)
         syncUser(u).catch(() => {});
+
+        // ⬇️ TENTA GRAVAR USO (se ok, flag @gravou_usage_ok=true)
+        await registrarUso({ mode: "google", userId: u.id });
+
         irParaMenu();
       } else {
         // Fallback total: entra sem login

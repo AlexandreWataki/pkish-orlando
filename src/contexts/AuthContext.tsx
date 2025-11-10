@@ -8,13 +8,13 @@ import React, {
   ReactNode,
 } from "react";
 import * as WebBrowser from "expo-web-browser";
-import * as AuthSession from "expo-auth-session";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { Platform, Alert } from "react-native";
 import { env } from "@/config/env";
 import { syncGoogleUser, syncAnonymousUser } from "@/services/users";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
+import { useGoogleIdTokenAuth } from '../auth/useGoogleIdToken';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -33,13 +33,6 @@ type AuthContextType = {
   signOut: () => Promise<void>;
 };
 
-const discovery: AuthSession.DiscoveryDocument = {
-  authorizationEndpoint: "https://accounts.google.com/o/oauth2/v2/auth",
-  tokenEndpoint: "https://oauth2.googleapis.com/token",
-  revocationEndpoint: "https://oauth2.googleapis.com/revoke",
-};
-
-// ✅ criação do contexto
 const AuthContext = createContext<AuthContextType | null>(null);
 AuthContext.displayName = "AuthContext";
 
@@ -50,20 +43,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isStandalone = Constants.appOwnership === "standalone";
   const isAndroid = Platform.OS === "android";
 
-  const redirectUri = AuthSession.makeRedirectUri({
-    native: `${env.appScheme ?? "pkish"}:/oauth2redirect/google`,
-    useProxy: false,
-  });
-
-  // Logs úteis no APK
   useEffect(() => {
     console.log("🔎 Auth DEBUG", {
       appOwnership: Constants.appOwnership,
       platform: Platform.OS,
-      androidId: env.googleAndroidClientId?.slice(0, 30) || "(vazio)",
-      webId: env.googleWebClientId?.slice(0, 30) || "(vazio)",
-      redirectUri,
+      androidClientId: env.googleAndroidClientId?.slice(0, 30) || "(vazio)",
       apiUrl: env.apiUrl,
+      appScheme: env.appScheme,
     });
   }, []);
 
@@ -127,63 +113,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await AsyncStorage.setItem("@user", JSON.stringify(u));
   };
 
-  /** 🔹 Login via Google (APK) com fallback anônimo */
-  const signInWithGoogle = async () => {
-    if (!(isAndroid && isStandalone)) {
-      console.log("⚠️ Login Google indisponível fora do APK");
-      await loginAsGuest();
-      return;
-    }
-
-    const clientId = env.googleAndroidClientId;
-    if (!clientId) {
-      Alert.alert(
-        "Config ausente",
-        "ANDROID_CLIENT_ID não embedado no APK.\nConfira seu eas.json."
-      );
-      await loginAsGuest();
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const authUrl =
-        `${discovery.authorizationEndpoint}?` +
-        new URLSearchParams({
-          client_id: clientId,
-          redirect_uri: redirectUri,
-          response_type: "id_token",
-          scope: "openid email profile",
-          nonce: String(Date.now()),
-          prompt: "select_account",
-        }).toString();
-
-      const result = await AuthSession.startAsync({ authUrl });
-
-      if (result.type === "success") {
-        const idToken =
-          (result.params as any)?.id_token ||
-          (result as any)?.authentication?.idToken;
-        if (!idToken) throw new Error("Sem id_token retornado.");
-
-        await finishLogin(idToken);
-        console.log("✅ Login Google OK (APK)");
-      } else if (result.type === "dismiss" || result.type === "cancel") {
-        console.log("⚠️ Login cancelado — segue como anônimo");
-        await loginAsGuest();
-      } else {
-        const err = (result as any)?.error ?? "Falha na autenticação.";
-        throw new Error(String(err));
-      }
-    } catch (err: any) {
-      console.error("❌ Erro no login Google:", err?.message || err);
-      await loginAsGuest(); // fallback
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  /** 🔸 Login Anônimo (sem Google, sempre permite entrar) */
+  /** 🔸 Login Anônimo (sem Google) */
   const loginAsGuest = async () => {
     try {
       const anon = await syncAnonymousUser("Pkish");
@@ -198,19 +128,49 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log("✅ Entrou como visitante");
     } catch (err) {
       console.error("❌ Falha ao criar visitante, mas segue offline:", err);
-      const fallback: User = {
-        id: String(Date.now()),
-        name: "Visitante",
-      };
+      const fallback: User = { id: String(Date.now()), name: "Visitante" };
       await AsyncStorage.setItem("@user", JSON.stringify(fallback));
       setUser(fallback);
     }
   };
 
-  /** 🔸 Logout simples */
+  // ✅ Hook do Google (pega id_token e chama finishLogin)
+  const { promptAsync } = useGoogleIdTokenAuth(
+    async (idToken) => {
+      await finishLogin(idToken);
+      console.log("✅ Login Google OK (APK)");
+    },
+    async (e) => {
+      console.error("❌ Erro no login Google:", e);
+      await loginAsGuest();
+    }
+  );
+
+  /** 🔹 Login via Google (APK) usando o hook; fallback anônimo */
+  const signInWithGoogle = async () => {
+    if (!(isAndroid && isStandalone)) {
+      console.log("⚠️ Login Google indisponível fora do APK");
+      await loginAsGuest();
+      return;
+    }
+    if (!env.googleAndroidClientId) {
+      Alert.alert("Config ausente", "ANDROID_CLIENT_ID não embedado no APK.\nConfira seu eas.json.");
+      await loginAsGuest();
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await promptAsync();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /** 🔸 Logout simples (limpa user + flag de gravação) */
   const signOut = async () => {
     try {
-      await AsyncStorage.removeItem("@user");
+      await AsyncStorage.multiRemove(["@user", "@gravou_usage_ok"]);
       setUser(null);
       Alert.alert("Sessão encerrada", "Você saiu da sua conta.");
     } catch (err) {
@@ -224,9 +184,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [user, loading]
   );
 
-  return (
-    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 /** Hook de acesso rápido */
