@@ -8,12 +8,15 @@ const { Client } = require('pg');
     ssl: { rejectUnauthorized: false },
     connectionTimeoutMillis: 10000,
   });
+
   try {
     await client.connect();
     const ping = await client.query('SELECT 1 as ok');
     console.log('Ping DB ->', ping.rows[0]);
 
-    const u = await client.query('SELECT id, email, name FROM users ORDER BY created_at DESC LIMIT 10');
+    const u = await client.query(
+      'SELECT id, email, name FROM users ORDER BY created_at DESC LIMIT 10'
+    );
     console.log('Últimos usuários:', u.rows);
   } catch (e) {
     console.error('ERRO Neon ->', e.message);

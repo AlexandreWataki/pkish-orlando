@@ -1,5 +1,8 @@
+// src/services/usersApi.ts
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
+import { env } from "@/config/env";
 
 const LAN_IP = "192.168.0.181";
 
@@ -10,15 +13,31 @@ function resolveBaseURL(): string {
   return `http://${LAN_IP}:8080`;
 }
 
-// Produção: defina EXPO_PUBLIC_USERS_API_URL (https://sua-api)
-// Dev: cai no resolveBaseURL()
-const BASE_URL = process.env.EXPO_PUBLIC_USERS_API_URL || resolveBaseURL();
+// ✅ Produção: usa env.apiUrl (Cloud Run); dev: resolveBaseURL()
+const BASE_URL = env.apiUrl || resolveBaseURL();
 
 export const usersApi = axios.create({
   baseURL: BASE_URL,
   timeout: 10000,
 });
 
+// ✅ Interceptor para anexar o JWT salvo no AsyncStorage
+usersApi.interceptors.request.use(async (config) => {
+  try {
+    const raw = await AsyncStorage.getItem("@user");
+    if (raw) {
+      const user = JSON.parse(raw);
+      if (user?.jwtToken) {
+        config.headers.Authorization = `Bearer ${user.jwtToken}`;
+      }
+    }
+  } catch {
+    // ignora erros silenciosamente
+  }
+  return config;
+});
+
+// ===== Tipagens =====
 export type GoogleProfile = {
   sub: string;
   name?: string;
@@ -37,13 +56,14 @@ export type NeonUser = {
   last_login: string;
 };
 
+// ===== Endpoints =====
 export async function health() {
   const { data } = await usersApi.get("/health");
   return data;
 }
 
 export async function upsertGoogleUser(profile: GoogleProfile): Promise<NeonUser> {
-  const { data } = await usersApi.post("/users/upsert-google", profile);
+  const { data } = await usersApi.post("/users/upsert", profile);
   return data?.user;
 }
 

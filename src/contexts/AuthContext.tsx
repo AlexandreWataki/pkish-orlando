@@ -12,9 +12,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { Platform, Alert } from "react-native";
 import { env } from "@/config/env";
-import { syncGoogleUser, syncAnonymousUser } from "@/services/users";
+import { syncAnonymousUser } from "@/services/users";
 import { jwtDecode } from "jwt-decode";
-import { useGoogleIdTokenAuth } from '../auth/useGoogleIdToken';
+import { useGoogleIdTokenAuth } from "../auth/useGoogleIdToken";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -24,6 +24,7 @@ export type User = {
   email?: string;
   picture?: string;
   idToken?: string;
+  jwtToken?: string; // JWT do backend
 };
 
 type AuthContextType = {
@@ -47,9 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     console.log("🔎 Auth DEBUG", {
       appOwnership: Constants.appOwnership,
       platform: Platform.OS,
-      androidClientId: env.googleAndroidClientId?.slice(0, 30) || "(vazio)",
       apiUrl: env.apiUrl,
-      appScheme: env.appScheme,
     });
   }, []);
 
@@ -70,47 +69,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })();
   }, []);
 
-  /** ✅ Monta perfil e salva local + Neon */
+  /** ✅ Envia o idToken ao backend e salva JWT */
   const finishLogin = async (idToken: string) => {
-    type GoogleJwt = {
-      sub: string;
-      name?: string;
-      email?: string;
-      picture?: string;
-    };
-
-    let payload: GoogleJwt | null = null;
     try {
-      payload = jwtDecode<GoogleJwt>(idToken);
-    } catch {
-      throw new Error("Token inválido retornado pelo Google.");
-    }
-    if (!payload?.sub) throw new Error("Token inválido retornado pelo Google.");
+      // Envia o token do Google para validação no backend
+      const res = await fetch(`${env.apiUrl}/auth/google`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
 
-    const profile = {
-      sub: payload.sub,
-      name: payload.name,
-      email: payload.email,
-      picture: payload.picture,
-    };
+      const data = await res.json();
 
-    try {
-      const saved = await syncGoogleUser(profile);
-      console.log("✅ Usuário Google sincronizado com Neon:", saved?.email || saved?.name);
+      if (!data.ok || !data.user) {
+        console.error("❌ Falha no backend:", data.error);
+        throw new Error("Falha na autenticação.");
+      }
+
+      console.log("✅ Login validado no backend:", data.user.email);
+
+      const u: User = {
+        id: data.user.id,
+        name: data.user.name,
+        email: data.user.email,
+        picture: data.user.picture,
+        idToken,
+        jwtToken: data.token, // salva o JWT do backend
+      };
+
+      setUser(u);
+      await AsyncStorage.setItem("@user", JSON.stringify(u));
     } catch (e) {
-      console.log("⚠️ Falha ao salvar no Neon, seguindo offline:", e);
+      console.error("❌ Erro ao finalizar login:", e);
+      throw e;
     }
-
-    const u: User = {
-      id: payload.sub,
-      name: payload.name,
-      email: payload.email,
-      picture: payload.picture,
-      idToken,
-    };
-
-    setUser(u);
-    await AsyncStorage.setItem("@user", JSON.stringify(u));
   };
 
   /** 🔸 Login Anônimo (sem Google) */
@@ -153,11 +145,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await loginAsGuest();
       return;
     }
-    if (!env.googleAndroidClientId) {
-      Alert.alert("Config ausente", "ANDROID_CLIENT_ID não embedado no APK.\nConfira seu eas.json.");
-      await loginAsGuest();
-      return;
-    }
 
     setLoading(true);
     try {
@@ -167,7 +154,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  /** 🔸 Logout simples (limpa user + flag de gravação) */
+  /** 🔸 Logout simples */
   const signOut = async () => {
     try {
       await AsyncStorage.multiRemove(["@user", "@gravou_usage_ok"]);

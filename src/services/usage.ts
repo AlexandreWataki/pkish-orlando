@@ -6,7 +6,8 @@ import { env } from '@/config/env';
 
 const STORAGE_FLAG = '@gravou_usage_ok';
 
-async function getDeviceId() {
+/** Obtém um ID único do dispositivo (Android ou iOS) */
+async function getDeviceId(): Promise<string> {
   try {
     if (Platform.OS === 'android') {
       // ✅ método correto do expo-application
@@ -17,27 +18,31 @@ async function getDeviceId() {
     // ✅ iOS: usa o ID do fornecedor (vendor)
     const iosId = await Application.getIosIdForVendorAsync?.();
     return iosId || 'unknown';
-  } catch {
+  } catch (err) {
+    console.warn('⚠️ Falha ao obter deviceId:', err);
     return 'unknown';
   }
 }
 
-export async function tentarGravarUso(payload: Record<string, any> = {}) {
+/** Envia um registro leve de uso da aplicação para o backend (/usage) */
+export async function tentarGravarUso(payload: Record<string, any> = {}): Promise<boolean> {
   try {
     const deviceId = await getDeviceId();
     const appVersion = Application.nativeApplicationVersion || '0';
+    const body = JSON.stringify({
+      deviceId,
+      appVersion,
+      data: { action: 'comecar', ...payload },
+    });
 
     const res = await fetch(`${env.apiUrl}/usage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        deviceId,
-        appVersion,
-        data: { action: 'comecar', ...payload },
-      }),
+      body,
     });
 
-    const json = await res.json().catch(() => ({} as any));
+    // garante parsing seguro do JSON
+    const json = (await res.json().catch(() => ({}))) as { ok?: boolean };
     const ok = !!json?.ok;
 
     if (ok) {
@@ -45,17 +50,20 @@ export async function tentarGravarUso(payload: Record<string, any> = {}) {
     }
 
     return ok;
-  } catch {
+  } catch (err) {
+    console.warn('⚠️ Falha ao gravar uso:', err);
     // não bloqueia o fluxo caso falhe
     return false;
   }
 }
 
-export async function leFlagGravou() {
+/** Lê se já foi gravado uso anteriormente */
+export async function leFlagGravou(): Promise<boolean> {
   const v = await AsyncStorage.getItem(STORAGE_FLAG);
   return v === 'true';
 }
 
-export async function limpaFlagGravou() {
+/** Limpa a flag de uso gravado */
+export async function limpaFlagGravou(): Promise<void> {
   await AsyncStorage.removeItem(STORAGE_FLAG);
 }

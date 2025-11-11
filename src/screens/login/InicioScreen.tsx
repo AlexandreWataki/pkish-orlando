@@ -13,10 +13,9 @@ import {
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Application from "expo-application"; // ⬅️ ADICIONADO
+import * as Application from "expo-application";
 import { useAuth } from "@/contexts/AuthContext";
 import { env } from "@/config/env";
-import { syncUser } from "@/services/users";
 
 import logoImg from "../../assets/imagens/logo4.png";
 import fraseImg from "../../assets/imagens/frase.png";
@@ -40,11 +39,11 @@ function genGuestId() {
     .slice(2, 8)}`;
 }
 
-/** ⬇️ NOVO: registra uso no servidor e marca flag local se ok */
+/** Registra uso no servidor e marca flag local se ok */
 async function registrarUso(extra: Record<string, any> = {}) {
   try {
     const deviceId =
-      (Application.getAndroidId && Application.getAndroidId()) || "unknown";
+      (Application.getAndroidId && (await Application.getAndroidId())) || "unknown";
     const appVersion = Application.nativeApplicationVersion || "0";
     const res = await fetch(`${env.apiUrl}/usage`, {
       method: "POST",
@@ -75,7 +74,6 @@ export default function InicioScreen() {
   const syncedOnceRef = useRef(false);
   const lastTapRef = useRef(0);
 
-  // no APK, se faltar o clientId, não dá pra logar com Google
   const semIds = Platform.OS !== "web" && !env.googleAndroidClientId;
 
   const irParaMenu = useCallback(() => {
@@ -112,11 +110,7 @@ export default function InicioScreen() {
         isGuest: true,
       };
       await AsyncStorage.setItem("@user", JSON.stringify(guest));
-      // best effort Neon users
-      syncUser(guest).catch(() => {});
       if (reason) console.log("Entrando como convidado:", reason);
-
-      // ⬇️ TENTA GRAVAR USO (se ok, flag @gravou_usage_ok=true)
       await registrarUso({ mode: "guest", reason });
     } catch (e) {
       console.log("Falha ao salvar convidado localmente, mas seguindo:", e);
@@ -125,20 +119,15 @@ export default function InicioScreen() {
     }
   }
 
-  // Se já tem sessão → sincroniza (uma vez) e entra
   useEffect(() => {
     if (!loading && user) {
       if (!syncedOnceRef.current) {
         syncedOnceRef.current = true;
-        syncUser(user as AnyUser).catch((e) =>
-          console.warn("Sync Neon falhou:", e?.message || e)
-        );
       }
       irParaMenu();
     }
   }, [loading, user, irParaMenu]);
 
-  // Logs úteis e alerta de config ausente no APK
   useEffect(() => {
     console.log("APK CHECK (Inicio):", {
       androidClientId: env.googleAndroidClientId?.slice(0, 18),
@@ -153,37 +142,27 @@ export default function InicioScreen() {
     }
   }, []);
 
-  // Clique em “Começar”
   const iniciar = async () => {
     const now = Date.now();
-    if (now - lastTapRef.current < 700) return; // evita duplo clique
+    if (now - lastTapRef.current < 700) return;
     lastTapRef.current = now;
 
     if (busy || loading || navigatingRef.current) return;
 
     setBusy(true);
     try {
-      // Se faltar clientId no APK, pula direto como convidado
       if (semIds) {
         await enterAsGuest("ANDROID_CLIENT_ID ausente no APK.");
         return;
       }
 
-      // Tenta Google
       await signInWithGoogle();
 
-      // Espera a sessão aparecer (AuthContext salva @user ao logar)
       const u = await waitForSession(8000);
       if (u?.id) {
-        // Sincroniza em background (não bloqueia)
-        syncUser(u).catch(() => {});
-
-        // ⬇️ TENTA GRAVAR USO (se ok, flag @gravou_usage_ok=true)
         await registrarUso({ mode: "google", userId: u.id });
-
         irParaMenu();
       } else {
-        // Fallback total: entra sem login
         await enterAsGuest("Não confirmamos a sessão do Google a tempo.");
       }
     } catch (err: any) {

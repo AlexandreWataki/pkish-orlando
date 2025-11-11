@@ -1,8 +1,0 @@
-**/node_modules
-.git
-android
-ios
-.expo
-assets
-*.md
-*.log
