@@ -21,7 +21,7 @@ import { CardSecao } from '@/components/card/CardSecao';
 
 import { getVideoUrlFromMap } from '@/logic/media/YoutubeUtils';
 import { searchYouTubeForAttraction } from '@/logic/media/YoutubeUtils';
-import { openYouTube } from '@/logic/media/openYouTube'; // ✅ usa helper global
+import { openYouTube } from '@/logic/media/openYouTube';
 
 import * as disneyData from '@/logic/geradores/todasAtracoesDisney';
 import * as universalData from '@/logic/geradores/todasAtracoesUniversal';
@@ -97,7 +97,6 @@ function flattenModule(mod: AnyObj): AtracaoExt[] {
 
 const AREA_TODAS = '__TODAS__';
 
-// Título animado da área
 const AreaTitle: React.FC<{ text: string }> = ({ text }) => {
   const anim = useRef(new Animated.Value(1)).current;
   useEffect(() => {
@@ -111,7 +110,6 @@ const AreaTitle: React.FC<{ text: string }> = ({ text }) => {
   return <Animated.Text style={[styles.areaTitle, { opacity: anim }]} numberOfLines={2}>✨ {text.toUpperCase()} ✨</Animated.Text>;
 };
 
-// Ícone piscando (YouTube)
 const BlinkingIcon: React.FC<{ name: any; size?: number; style?: any }> = ({ name, size = 30, style }) => {
   const opacity = useRef(new Animated.Value(1)).current;
   useEffect(() => {
@@ -163,6 +161,18 @@ export default function TelaAtracoes() {
   const hoje = new Date();
   const dataFormatada = format(hoje, 'dd/MM/yyyy');
   const diaSemana = format(hoje, 'EEEE', { locale: ptBR });
+
+  // 👇 mesmo shape da TelaRefeicoes (evita “-c”/placeholders)
+  const climaHeader = useMemo(() => {
+    if (clima && typeof clima.temp === 'number' && !Number.isNaN(clima.temp)) {
+      return {
+        tempC: Math.round(clima.temp),
+        condition: clima.condicao ?? '',
+        iconUrl: clima.icone ?? undefined,
+      };
+    }
+    return null;
+  }, [clima]);
 
   const listaDisney = useMemo(() => flattenModule(disneyData), []);
   const listaUniversal = useMemo(() => flattenModule(universalData), []);
@@ -262,7 +272,8 @@ export default function TelaAtracoes() {
   }, [listaRede, parque, area]);
 
   const tituloCard = parque ? parque : 'Atrações';
-  const subtituloCard = area ? (area === AREA_TODAS ? '— Todas as áreas' : `— ${area}`) : '';
+  // 🔹 sem travessão — usamos bullet
+  const subtituloCard = area ? (area === AREA_TODAS ? '• Todas as áreas' : `• ${area}`) : '';
   const tipoCard: 'disney' | 'universal' | 'area' = rede === 'disney' ? 'disney' : rede === 'universal' ? 'universal' : 'area';
 
   const extractYouTubeId = (input?: string | null): string | null => {
@@ -276,7 +287,6 @@ export default function TelaAtracoes() {
     return id ? `https://www.youtube.com/watch?v=${id}` : maybeEmbedOrWatch;
   };
 
-  // 🔗 Abre vídeo direto com helper global
   const handleOpenVideo = async (a: AtracaoExt) => {
     let watch = videoById[a.id];
 
@@ -301,10 +311,9 @@ export default function TelaAtracoes() {
     }
 
     setVideoById(prev => ({ ...prev, [a.id]: watch }));
-    await openYouTube(watch); // ✅ usa helper global
+    await openYouTube(watch);
   };
 
-  // --- UI ---
   const renderTopStep = () => {
     if (!avisoAceito) {
       return (
@@ -317,7 +326,7 @@ export default function TelaAtracoes() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="information-circle-outline" size={18} color="#004b87" />
               <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-                Guia não oficial — toque para continuar
+                Guia não oficial • toque para continuar
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color="#004b87" />
@@ -366,7 +375,7 @@ export default function TelaAtracoes() {
             onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('rede'); }}
           >
             <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-              Selecione o Parque — {rede === 'disney' ? 'Complexo Disney' : 'Complexo Universal'}
+              Selecione o Parque • {rede === 'disney' ? 'Complexo Disney' : 'Complexo Universal'}
             </Text>
             <Ionicons name="chevron-up" size={18} color="#004b87" />
           </TouchableOpacity>
@@ -391,7 +400,7 @@ export default function TelaAtracoes() {
             onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('parque'); }}
           >
             <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-              Selecione a Área — {parque}
+              Selecione a Área • {parque}
             </Text>
             <Ionicons name="chevron-up" size={18} color="#004b87" />
           </TouchableOpacity>
@@ -416,7 +425,7 @@ export default function TelaAtracoes() {
           onPress={() => { LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); setStep('area'); }}
         >
           <Text numberOfLines={1} style={[styles.btnSeletorTxt, { color: '#004b87' }]}>
-            {area === AREA_TODAS ? 'Todas as áreas' : `${area} (Área)`} — {parque}
+            {(area === AREA_TODAS ? 'Todas as áreas' : `${area} (Área)`)} • {parque}
           </Text>
           <Ionicons name="chevron-up" size={18} color="#004b87" />
         </TouchableOpacity>
@@ -430,9 +439,10 @@ export default function TelaAtracoes() {
 
       <View style={{ marginTop: 40 }}>
         <CabecalhoDia
-          titulo="" data={dataFormatada} diaSemana={diaSemana}
-          clima={clima?.condicao || 'Parcialmente nublado'} temperatura={clima ? `${clima.temp}°C` : '—°C'}
-          iconeClima={clima?.icone}
+          titulo=""
+          data={dataFormatada}
+          diaSemana={diaSemana}
+          clima={climaHeader}   // 👈 sem placeholder “—°C”
         />
       </View>
 
@@ -484,10 +494,11 @@ export default function TelaAtracoes() {
           <Ionicons name="arrow-back-circle" size={40} color="#0077cc" />
         </TouchableOpacity>
 
-        {/* Card piscando */}
         <Animated.View style={[styles.avisoLegalCard, { opacity: avisoBlink }]}>
           <Text style={styles.avisoLegalTexto}>
-Guia independente e não oficial, sem vínculo com Disney ou Universal. Ao tocar no ícone, o vídeo será aberto diretamente no app do YouTube (ou no navegador).          </Text>
+            Guia independente e não oficial, sem vínculo com Disney ou Universal.
+            Ao tocar no ícone, o vídeo será aberto diretamente no app do YouTube (ou no navegador).
+          </Text>
         </Animated.View>
       </View>
 

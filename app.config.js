@@ -6,7 +6,6 @@ export default {
   version: "1.0.0",
   userInterfaceStyle: "light",
 
-  // Deep Link scheme
   scheme: "pkish",
 
   updates: {
@@ -20,7 +19,6 @@ export default {
   android: {
     package: "com.matheuswataki.pkish",
     permissions: ["INTERNET", "VIBRATE"],
-    // aceita pkish:// qualquer caminho (inclui /oauth2redirect/google)
     intentFilters: [
       {
         action: "VIEW",
@@ -44,22 +42,27 @@ export default {
 
   extra: {
     /** === Google OAuth === */
-    // Web Client ID — deve ser o mesmo do Cloud Run (GOOGLE_CLIENT_ID)
+    // 🔹 WEB Client ID (usado no backend)
     EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID:
       process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID ??
       "417776644821-79b4qvfutmo5v2f95q0sje5736aiblc7.apps.googleusercontent.com",
 
-    // Android Client ID — usado apenas para UX do fluxo Google no Android
+    // 🔹 ANDROID Client ID (corrigido com letras certas)
     EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID:
       process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID ??
-      "417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2.apps.googleusercontent.com",
+      "417776644821-1e6uf2sp43bdlj8ib6fhata30q06i2s.apps.googleusercontent.com",
+
+    // 🔹 iOS Client ID (faltava este)
+    EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID:
+      process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID ??
+      "417776644821-1ksfbonjbdc85b4sbvcga15ieq0jdhm.apps.googleusercontent.com",
 
     /** === API (Cloud Run) === */
     EXPO_PUBLIC_API_URL:
       process.env.EXPO_PUBLIC_API_URL ??
       "https://pkish-api-417776644821.us-east4.run.app",
 
-    /** === Comportamento de rede === */
+    /** === Rede === */
     EXPO_PUBLIC_ALLOW_HTTP_NATIVE:
       process.env.EXPO_PUBLIC_ALLOW_HTTP_NATIVE ?? "false",
     EXPO_PUBLIC_FORCE_HTTPS_NATIVE:
@@ -73,11 +76,11 @@ export default {
     EXPO_PUBLIC_APP_SCHEME:
       process.env.EXPO_PUBLIC_APP_SCHEME ?? "pkish",
 
-    /** === Ambiente (opcional p/ logs/debug) === */
+    /** === Ambiente === */
     EXPO_PUBLIC_ENVIRONMENT:
       process.env.EXPO_PUBLIC_ENVIRONMENT ?? "production",
 
-    /** === EAS Project === */
+    /** === EAS === */
     eas: { projectId: "4d5a9e0c-eda5-4fa7-88c5-84ba39fbc8e0" },
   },
 };

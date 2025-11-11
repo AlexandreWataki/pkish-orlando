@@ -106,68 +106,35 @@ app.get("/health", async (_req, res) => {
   }
 });
 
-/* === USERS: criar anônimo + upsert Google === */
-app.post("/users/create-anon", async (req, res) => {
-  try {
-    if (!pool) return res.status(500).json({ ok: false, error: "db_unavailable" });
-    if (ENSURE_DB) await ensureDb();
+/* === Helper de Upsert (somente usado após login Google) === */
+async function upsertUser({ sub, email, name, picture }) {
+  if (!pool) throw new Error("db_unavailable");
 
-    const id = uuid();
-    const { hint } = req.body || {};
-    const anonName = hint ? `Guest ${hint}` : "Guest";
-    const fakeEmail = `${id.slice(0, 8)}@guest.local`;
+  const id = uuid();
+  const sql = sub
+    ? `INSERT INTO users (id, sub, name, email, picture, is_anonymous, last_login)
+       VALUES ($1,$2,$3,$4,$5,FALSE,NOW())
+       ON CONFLICT (sub) DO UPDATE
+         SET name=EXCLUDED.name,
+             email=EXCLUDED.email,
+             picture=EXCLUDED.picture,
+             last_login=NOW()
+       RETURNING *;`
+    : `INSERT INTO users (id, email, name, picture, is_anonymous, last_login)
+       VALUES ($1,$2,$3,$4,FALSE,NOW())
+       ON CONFLICT (email) DO UPDATE
+         SET name=EXCLUDED.name,
+             picture=EXCLUDED.picture,
+             last_login=NOW()
+       RETURNING *;`;
 
-    const sql = `
-      INSERT INTO users (id, name, email, is_anonymous, last_login)
-      VALUES ($1, $2, $3, TRUE, NOW())
-      RETURNING *;
-    `;
-    const { rows } = await pool.query(sql, [id, anonName, fakeEmail]);
-    res.json({ ok: true, user: rows[0] });
-  } catch (e) {
-    console.error("POST /users/create-anon", e);
-    res.status(500).json({ ok: false, error: "fail_create_anon" });
-  }
-});
+  const params = sub
+    ? [id, sub, name || null, email || null, picture || null]
+    : [id, email, name || null, picture || null];
 
-app.post("/users/upsert", async (req, res) => {
-  try {
-    if (!pool) return res.status(500).json({ ok: false, error: "db_unavailable" });
-    if (ENSURE_DB) await ensureDb();
-
-    const { sub, email, name, picture } = req.body || {};
-    if (!sub && !email)
-      return res.status(400).json({ ok: false, error: "missing_sub_or_email" });
-
-    const id = uuid();
-    const sql = sub
-      ? `INSERT INTO users (id, sub, name, email, picture, is_anonymous, last_login)
-         VALUES ($1,$2,$3,$4,$5,FALSE,NOW())
-         ON CONFLICT (sub) DO UPDATE
-           SET name=EXCLUDED.name,
-               email=EXCLUDED.email,
-               picture=EXCLUDED.picture,
-               last_login=NOW()
-         RETURNING *;`
-      : `INSERT INTO users (id, email, name, picture, is_anonymous, last_login)
-         VALUES ($1,$2,$3,$4,FALSE,NOW())
-         ON CONFLICT (email) DO UPDATE
-           SET name=EXCLUDED.name,
-               picture=EXCLUDED.picture,
-               last_login=NOW()
-         RETURNING *;`;
-
-    const params = sub
-      ? [id, sub, name || null, email || null, picture || null]
-      : [id, email, name || null, picture || null];
-
-    const { rows } = await pool.query(sql, params);
-    res.json({ ok: true, user: rows[0] });
-  } catch (e) {
-    console.error("POST /users/upsert", e);
-    res.status(500).json({ ok: false, error: "fail_upsert" });
-  }
-});
+  const { rows } = await pool.query(sql, params);
+  return rows[0];
+}
 
 /* === Google Auth === */
 const googleClient = new OAuth2Client();
@@ -190,31 +157,8 @@ app.post("/auth/google", async (req, res) => {
       return res.status(400).json({ ok: false, error: "no_sub_or_email" });
 
     if (ENSURE_DB) await ensureDb();
-    const id = uuid();
 
-    const sql = sub
-      ? `INSERT INTO users (id, sub, name, email, picture, is_anonymous, last_login)
-         VALUES ($1,$2,$3,$4,$5,FALSE,NOW())
-         ON CONFLICT (sub) DO UPDATE
-           SET name=EXCLUDED.name,
-               email=EXCLUDED.email,
-               picture=EXCLUDED.picture,
-               last_login=NOW()
-         RETURNING *;`
-      : `INSERT INTO users (id, email, name, picture, is_anonymous, last_login)
-         VALUES ($1,$2,$3,$4,FALSE,NOW())
-         ON CONFLICT (email) DO UPDATE
-           SET name=EXCLUDED.name,
-               picture=EXCLUDED.picture,
-               last_login=NOW()
-         RETURNING *;`;
-
-    const params = sub
-      ? [id, sub, name || null, email || null, picture || null]
-      : [id, email, name || null, picture || null];
-
-    const { rows } = await pool.query(sql, params);
-    const user = rows[0];
+    const user = await upsertUser({ sub, email, name, picture });
     const token = signJwt(user);
 
     console.log("✅ Login Google:", email || "(sem email)", name || "", payload.aud);
@@ -245,7 +189,7 @@ app.get("/me", (req, res) => {
 app.get("/", (_req, res) =>
   res.json({
     name: "Users API",
-    routes: ["/health", "/users/create-anon", "/users/upsert", "/auth/google", "/me"],
+    routes: ["/health", "/auth/google", "/me"],
   })
 );
 

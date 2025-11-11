@@ -1,54 +1,54 @@
 // src/auth/useGoogleIdToken.ts
-import * as WebBrowser from 'expo-web-browser';
-import * as AuthSession from 'expo-auth-session';
-import * as Google from 'expo-auth-session/providers/google';
-import { useEffect } from 'react';
-import { env } from '@/config/env';
+import * as WebBrowser from "expo-web-browser";
+import * as AuthSession from "expo-auth-session";
+import * as Google from "expo-auth-session/providers/google";
+import { useEffect } from "react";
+import { Platform } from "react-native";
+import { env } from "@/config/env";
 
 WebBrowser.maybeCompleteAuthSession();
 
 type SuccessCb = (idToken: string) => Promise<void> | void;
 type ErrorCb = (error: unknown) => Promise<void> | void;
 
-/**
- * Hook para obter um Google ID Token (OIDC) via AuthSession/PKCE.
- * - Emite o id_token com audience = WEB CLIENT ID (env.googleWebClientId).
- * - Mantém androidClientId para compatibilidade com o fluxo Google no Android.
- * - O back-end deve validar contra GOOGLE_CLIENT_ID = WEB CLIENT ID (ou aceitar múltiplas audiences).
- */
 export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
-  const redirectUri = AuthSession.makeRedirectUri({
-    native: `${env.appScheme ?? 'pkish'}:/oauth2redirect/google`,
-  });
+  const isWeb = Platform.OS === "web";
+
+  // WEB: força exatamente origem + barra → http://localhost:8081/
+  // NATIVO: usa scheme pkish:/oauth2redirect/google
+  const redirectUri = isWeb
+    ? `${globalThis?.location?.origin ?? ""}/`
+    : AuthSession.makeRedirectUri({
+        native: `${env.appScheme ?? "pkish"}:/oauth2redirect/google`,
+      });
+
+  // Logs de diagnóstico (abra F12 → Console)
+  console.log("[GoogleAuth] platform:", Platform.OS);
+  console.log("[GoogleAuth] redirectUri:", redirectUri);
+  console.log("[GoogleAuth] webClientId:", env.googleWebClientId);
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    // Importante: usamos o WEB CLIENT ID como clientId principal
-    clientId: env.googleWebClientId,
-    // Mantemos o androidClientId para compatibilidade de UX no Android
-    androidClientId: env.googleAndroidClientId,
+    clientId: env.googleWebClientId,            // Web
+    androidClientId: env.googleAndroidClientId, // Android
+    iosClientId: env.googleIosClientId,         // iOS
     redirectUri,
-    scopes: ['openid', 'email', 'profile'],
+    scopes: ["openid", "email", "profile"],
     selectAccount: true,
   });
 
   useEffect(() => {
     if (!response) return;
     try {
-      if (response.type === 'success') {
+      if (response.type === "success") {
         const idToken =
-          // Expo retorna id_token em params (AuthSession) OU em authentication.idToken
           (response.params as any)?.id_token ||
           (response as any)?.authentication?.idToken;
-
-        if (idToken) {
-          onSuccess(idToken);
-        } else {
-          onError(new Error('Sem id_token retornado.'));
-        }
-      } else if (response.type === 'error') {
-        onError((response as any)?.error ?? new Error('Falha na autenticação do Google.'));
-      } else if (response.type === 'dismiss' || response.type === 'cancel') {
-        onError(new Error('Login cancelado pelo usuário.'));
+        if (idToken) onSuccess(idToken);
+        else onError(new Error("Sem id_token retornado."));
+      } else if (response.type === "error") {
+        onError((response as any)?.error ?? new Error("Falha na autenticação do Google."));
+      } else if (response.type === "dismiss" || response.type === "cancel") {
+        onError(new Error("Login cancelado pelo usuário."));
       }
     } catch (err) {
       onError(err);

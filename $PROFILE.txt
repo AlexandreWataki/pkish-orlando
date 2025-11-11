@@ -1,0 +1,7 @@
+function git-tudo {
+    git add .
+    $mensagem = Read-Host "Mensagem do commit"
+    if ($mensagem -eq "") { $mensagem = "Atualização geral" }
+    git commit -m "$mensagem"
+    git push
+}

@@ -1,4 +1,3 @@
-// src/contexts/AuthContext.tsx
 import React, {
   createContext,
   useContext,
@@ -9,12 +8,10 @@ import React, {
 } from "react";
 import * as WebBrowser from "expo-web-browser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Constants from "expo-constants";
-import { Platform, Alert } from "react-native";
-import { env } from "@/config/env";
-import { syncAnonymousUser } from "@/services/users";
+import { Alert } from "react-native";
 import { jwtDecode } from "jwt-decode";
 import { useGoogleIdTokenAuth } from "../auth/useGoogleIdToken";
+import { loginWithGoogle } from "@/services/users";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -24,7 +21,6 @@ export type User = {
   email?: string;
   picture?: string;
   idToken?: string;
-  jwtToken?: string; // JWT do backend
 };
 
 type AuthContextType = {
@@ -41,23 +37,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const isStandalone = Constants.appOwnership === "standalone";
-  const isAndroid = Platform.OS === "android";
-
-  useEffect(() => {
-    console.log("🔎 Auth DEBUG", {
-      appOwnership: Constants.appOwnership,
-      platform: Platform.OS,
-      apiUrl: env.apiUrl,
-    });
-  }, []);
-
   useEffect(() => {
     WebBrowser.warmUpAsync().catch(() => {});
     return () => WebBrowser.coolDownAsync().catch(() => {});
   }, []);
 
-  // restaura sessão local
+  // 🔹 Restaura sessão local
   useEffect(() => {
     (async () => {
       try {
@@ -69,83 +54,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })();
   }, []);
 
-  /** ✅ Envia o idToken ao backend e salva JWT */
+  /** 🔹 Finaliza login com dados do Google e registra no backend */
   const finishLogin = async (idToken: string) => {
     try {
-      // Envia o token do Google para validação no backend
-      const res = await fetch(`${env.apiUrl}/auth/google`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idToken }),
-      });
+      const data = await loginWithGoogle(idToken);
+      if (!data?.ok) throw new Error("Falha no login Google");
 
-      const data = await res.json();
-
-      if (!data.ok || !data.user) {
-        console.error("❌ Falha no backend:", data.error);
-        throw new Error("Falha na autenticação.");
-      }
-
-      console.log("✅ Login validado no backend:", data.user.email);
+      const { token, user } = data;
 
       const u: User = {
-        id: data.user.id,
-        name: data.user.name,
-        email: data.user.email,
-        picture: data.user.picture,
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        picture: user.picture,
         idToken,
-        jwtToken: data.token, // salva o JWT do backend
       };
+
+      await AsyncStorage.multiSet([
+        ["@user", JSON.stringify(u)],
+        ["@jwt", token],
+      ]);
 
       setUser(u);
-      await AsyncStorage.setItem("@user", JSON.stringify(u));
+      console.log("✅ Login Google OK:", u.email || u.name);
     } catch (e) {
-      console.error("❌ Erro ao finalizar login:", e);
-      throw e;
+      console.error("⚠️ Falha ao registrar Google:", e);
+      Alert.alert("Erro", "Não foi possível concluir o login com o Google.");
     }
   };
 
-  /** 🔸 Login Anônimo (sem Google) */
-  const loginAsGuest = async () => {
-    try {
-      const anon = await syncAnonymousUser("Pkish");
-      const guestUser: User = {
-        id: (anon as any)?.id || String(Date.now()),
-        name: (anon as any)?.name || "Convidado",
-        email: (anon as any)?.email || "",
-        picture: (anon as any)?.picture || "",
-      };
-      await AsyncStorage.setItem("@user", JSON.stringify(guestUser));
-      setUser(guestUser);
-      console.log("✅ Entrou como visitante");
-    } catch (err) {
-      console.error("❌ Falha ao criar visitante, mas segue offline:", err);
-      const fallback: User = { id: String(Date.now()), name: "Visitante" };
-      await AsyncStorage.setItem("@user", JSON.stringify(fallback));
-      setUser(fallback);
-    }
-  };
-
-  // ✅ Hook do Google (pega id_token e chama finishLogin)
+  // ✅ Hook universal de autenticação com Google
   const { promptAsync } = useGoogleIdTokenAuth(
-    async (idToken) => {
-      await finishLogin(idToken);
-      console.log("✅ Login Google OK (APK)");
-    },
-    async (e) => {
-      console.error("❌ Erro no login Google:", e);
-      await loginAsGuest();
+    async (idToken) => await finishLogin(idToken),
+    async (err) => {
+      console.warn("⚠️ Erro login Google:", err);
+      Alert.alert("Login cancelado", "Tente novamente com o Google.");
     }
   );
 
-  /** 🔹 Login via Google (APK) usando o hook; fallback anônimo */
+  /** 🔹 Login Google (funciona em todas as plataformas) */
   const signInWithGoogle = async () => {
-    if (!(isAndroid && isStandalone)) {
-      console.log("⚠️ Login Google indisponível fora do APK");
-      await loginAsGuest();
-      return;
-    }
-
     setLoading(true);
     try {
       await promptAsync();
@@ -157,11 +105,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   /** 🔸 Logout simples */
   const signOut = async () => {
     try {
-      await AsyncStorage.multiRemove(["@user", "@gravou_usage_ok"]);
+      await AsyncStorage.multiRemove(["@user", "@jwt", "@gravou_usage_ok"]);
       setUser(null);
       Alert.alert("Sessão encerrada", "Você saiu da sua conta.");
-    } catch (err) {
-      console.error("Erro ao sair:", err);
+    } catch {
       Alert.alert("Erro", "Não foi possível encerrar a sessão.");
     }
   };
@@ -174,7 +121,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-/** Hook de acesso rápido */
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth deve ser usado dentro de <AuthProvider>");
