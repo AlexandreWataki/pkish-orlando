@@ -12,7 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ParkisheiroProvider } from '@/contexts/ParkisheiroContext';
-import { AuthProvider, useAuth } from '@/contexts/AuthContext'; // ✅ useAuth
+import { AuthProvider } from '@/contexts/AuthContext'; // 🔹 tirei o useAuth aqui
 
 // ── Splash / Inicio
 import SplashScreen from '@/screens/login/SplashScreen';
@@ -104,25 +104,13 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 /**
- * Decide rota inicial:
- * - enquanto `loading` -> Splash
- * - se `user` existe -> MenuPrincipal
- * - senão -> Inicio (com botão Google)
+ * Agora o RootNavigator é “burro”: a rota inicial é SEMPRE Splash.
+ * Quem decide se vai pra Inicio ou MenuPrincipal é a própria SplashScreen.
  */
 function RootNavigator() {
-  const { user, loading } = useAuth(); // ✅ sem useContext(AuthContext)
-
-  if (loading) {
-    return <SplashScreen />;
-  }
-
-  // remonta navigator ao mudar estado de auth
-  const navigatorKey = user ? 'auth' : 'guest';
-
   return (
     <Stack.Navigator
-      key={navigatorKey}
-      initialRouteName={user ? 'MenuPrincipal' : 'Inicio'}
+      initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
         ...(Platform.OS !== 'web' && { headerBackTitleVisible: false }),
@@ -142,8 +130,14 @@ function RootNavigator() {
       <Stack.Screen name="TelaRefeicoes" component={TelaRefeicoes} />
 
       {/* Perfis */}
-      <Stack.Screen name="PerfilComprasPorDiaScreen" component={PerfilComprasPorDiaScreen} />
-      <Stack.Screen name="PerfilDescansoPorDiaScreen" component={PerfilDescansoPorDiaScreen} />
+      <Stack.Screen
+        name="PerfilComprasPorDiaScreen"
+        component={PerfilComprasPorDiaScreen}
+      />
+      <Stack.Screen
+        name="PerfilDescansoPorDiaScreen"
+        component={PerfilDescansoPorDiaScreen}
+      />
       <Stack.Screen name="PerfilAtracoes" component={PerfilAtracoesScreen} />
       <Stack.Screen name="PerfilRefeicoes" component={PerfilRefeicoesScreen} />
 

@@ -1,16 +1,16 @@
 {
-  "name": "disney-users-api",
+  "name": "pkish-api",
   "version": "1.0.0",
   "description": "API de usuários (Google + anônimos) com Express e Neon Postgres para o app Disney/PKish",
-  "type": "commonjs",
-  "main": "index.js",
+  "private": true,
+  "main": "server.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node index.js",
-    "start": "node index.js",
-    "serve": "node index.js"
+    "start": "node server.js",
+    "serve": "node server.js",
+    "dev": "node server.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18.17.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -21,7 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
     "pg": "^8.16.3",
-    "uuid": "^13.0.0"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

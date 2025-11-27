@@ -8,10 +8,12 @@ import {
   Image,
   Alert,
   Text,
+  BackHandler,
+  InteractionManager,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // ⬅️ ADICIONADO
+import { useNavigation, CommonActions, useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import BotaoMenuCard from '@/components/card/BotaoMenuCard';
 import BotaoMenuNeon from '@/components/card/BotaoMenuNeon';
@@ -23,38 +25,167 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useAuth } from '@/contexts/AuthContext';
 
+const OURO = '#FFD700';
+const AZUL_REI = '#0B3D91';
+const AZUL_BORDA = '#B9DEFF';
+const FUNDO_BADGE = ['#0B3D91', '#1F66D1', '#49A7FF'];
+
 export default function MenuPrincipal() {
   const navigation = useNavigation<any>();
   const { parkisheiroAtual, limparRoteiroFinal } = useParkisheiro();
   const { user, signOut } = useAuth();
 
   const [clima, setClima] = useState<any>(null);
+  const [mostrarBadge, setMostrarBadge] = useState(false); // começa oculto
   const navigatingRef = useRef(false);
+  const signingOutRef = useRef<string | null>(null); // token anti-duplo-toque
+  const isMountedRef = useRef(true);
 
-  // ===== Clima =====
+  // controla "mostrar só na 1ª abertura"
+  const badgeJaMostradoRef = useRef(false);
+  const badgeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // ---------- efeitos de ciclo de vida ----------
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      if (badgeTimerRef.current) clearTimeout(badgeTimerRef.current);
+    };
+  }, []);
+
+  // Clima com proteção (não setar state desmontado)
   useEffect(() => {
     (async () => {
       try {
         const c = await buscarClima('Orlando');
-        setClima(c);
+        if (isMountedRef.current) setClima(c);
       } catch {
-        setClima(null);
+        if (isMountedRef.current) setClima(null);
       }
     })();
   }, []);
 
-  // ✅ Mensagem de boas-vindas após gravação bem-sucedida
+  // Boas-vindas uma vez (opcional)
   useEffect(() => {
     (async () => {
       try {
         const flag = await AsyncStorage.getItem('@gravou_usage_ok');
         if (flag === 'true') {
           Alert.alert('Bem-vindo', '✅ Seja bem-vindo ao seu Roteiro!');
-          await AsyncStorage.removeItem('@gravou_usage_ok'); // mostra só uma vez
+          await AsyncStorage.removeItem('@gravou_usage_ok');
         }
       } catch {}
     })();
   }, []);
+
+  // ✅ Mostra o badge AZUL só na primeira vez que a tela foca, por ~2,5s
+  useFocusEffect(
+    React.useCallback(() => {
+      // zera travas de navegação a cada foco
+      navigatingRef.current = false;
+      signingOutRef.current = null;
+
+      // mostra badge somente na 1ª vez que entrar aqui (e só se houver user)
+      if (!badgeJaMostradoRef.current && !!user) {
+        setMostrarBadge(true);
+        if (badgeTimerRef.current) clearTimeout(badgeTimerRef.current);
+        badgeTimerRef.current = setTimeout(() => {
+          setMostrarBadge(false);
+          badgeJaMostradoRef.current = true; // não mostra de novo neste ciclo de app
+        }, 2500); // 2–3 segundos, mais rapidinho
+      }
+
+      return () => {
+        if (badgeTimerRef.current) {
+          clearTimeout(badgeTimerRef.current);
+          badgeTimerRef.current = null;
+        }
+      };
+    }, [user])
+  );
+
+  // util: timeout em promessas
+  const withTimeout = <T,>(p: Promise<T>, ms = 1500): Promise<T> =>
+    new Promise((resolve, reject) => {
+      const t = setTimeout(() => reject(new Error('timeout')), ms);
+      p.then((v) => {
+        clearTimeout(t);
+        resolve(v);
+      })
+        .catch((e) => {
+          clearTimeout(t);
+          reject(e);
+        });
+    });
+
+  // ✅ Logout + Splash idempotente (pode apertar várias vezes)
+  const sairESplash = async () => {
+    // esconde o badge azul imediatamente (e cancela timer se existir)
+    if (badgeTimerRef.current) {
+      clearTimeout(badgeTimerRef.current);
+      badgeTimerRef.current = null;
+    }
+    setMostrarBadge(false);
+
+    // evita reentrância
+    if (signingOutRef.current) return;
+    const token = String(Date.now());
+    signingOutRef.current = token;
+
+    try {
+      // signOut tolerante
+      try {
+        await withTimeout(signOut(), 1500).catch(() => {});
+      } catch {}
+
+      // limpa storage e contexto sem travar
+      await Promise.allSettled([
+        AsyncStorage.multiRemove([
+          '@gravou_usage_ok',
+          '@auth_token',
+          '@refresh_token',
+          '@google_profile',
+          '@user',
+          '@roteiroFinal',
+          '@diasDistribuidos',
+          '@diasDistribuidosManuais',
+          '@perfis',
+          '@vooChegada',
+          '@vooSaida',
+        ]),
+        (async () => {
+          try {
+            await limparRoteiroFinal?.();
+          } catch {}
+        })(),
+      ]);
+
+      // garante fim de animações
+      await new Promise((r) => InteractionManager.runAfterInteractions(r));
+
+      // reset para Splash
+      navigation.dispatch(
+        CommonActions.reset({ index: 0, routes: [{ name: 'Splash' }] })
+      );
+    } finally {
+      // libera nova tentativa depois de 1s
+      setTimeout(() => {
+        if (signingOutRef.current === token) signingOutRef.current = null;
+      }, 1000);
+    }
+  };
+
+  // 🔙 Botão físico de voltar (Android) -> faz sairESplash
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBack = () => {
+        sairESplash();
+        return true;
+      };
+      BackHandler.addEventListener('hardwareBackPress', onBack);
+      return () => BackHandler.removeEventListener('hardwareBackPress', onBack);
+    }, [])
+  );
 
   const rotasImplementadas = new Set<string>([
     'Calendario',
@@ -70,37 +201,41 @@ export default function MenuPrincipal() {
     'ParquesPDF',
     'VisualizarPDF',
     'Promocoes',
+    'Splash',
   ]);
 
   const irParaUltimaBusca = () => {
     const rf = parkisheiroAtual?.roteiroFinal;
     if (!rf || (Array.isArray(rf) && rf.length === 0)) {
-      Alert.alert('Roteiro não encontrado', 'Monte um roteiro primeiro para acessar a última busca.');
+      Alert.alert(
+        'Roteiro não encontrado',
+        'Monte um roteiro primeiro para acessar a última busca.'
+      );
       return;
     }
-
     let ultimoDia: any | undefined;
     if (Array.isArray(rf)) {
       ultimoDia = rf[rf.length - 1];
     } else if (typeof rf === 'object') {
       const dias = Object.values(rf) as any[];
       if (!dias.length) {
-        Alert.alert('Roteiro não encontrado', 'Monte um roteiro primeiro para acessar a última busca.');
+        Alert.alert(
+          'Roteiro não encontrado',
+          'Monte um roteiro primeiro para acessar a última busca.'
+        );
         return;
       }
-      dias.sort((a: any, b: any) => {
-        const da = new Date(a.data || a.date || 0).getTime();
-        const db = new Date(b.data || b.date || 0).getTime();
-        return da - db;
-      });
+      dias.sort(
+        (a: any, b: any) =>
+          new Date(a.data || a.date || 0).getTime() -
+          new Date(b.data || b.date || 0).getTime()
+      );
       ultimoDia = dias[dias.length - 1];
     }
-
     if (!ultimoDia?.id) {
       Alert.alert('Erro', 'Dia do roteiro inválido.');
       return;
     }
-
     navigation.navigate('DiaCompleto', { diaId: ultimoDia.id });
   };
 
@@ -110,38 +245,26 @@ export default function MenuPrincipal() {
       !!rf &&
       ((Array.isArray(rf) && rf.length > 0) ||
         (typeof rf === 'object' && Object.keys(rf).length > 0));
-
     if (!temRoteiro) {
       navigation.reset({ index: 0, routes: [{ name: 'Calendario' }] });
       return;
     }
-
-    Alert.alert(
-      'Apagar último roteiro?',
-      'Ao confirmar, seu último roteiro será apagado.',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'OK',
-          onPress: async () => {
-            await limparRoteiroFinal();
-            Alert.alert(
-              'Último roteiro apagado',
-              'Seu último roteiro foi removido.',
-              [
-                {
-                  text: 'OK',
-                  onPress: () =>
-                    navigation.reset({ index: 0, routes: [{ name: 'Calendario' }] }),
-                },
-              ],
-              { cancelable: true }
-            );
-          },
+    Alert.alert('Apagar último roteiro?', 'Ao confirmar, seu último roteiro será apagado.', [
+      { text: 'Cancelar', style: 'cancel' },
+      {
+        text: 'OK',
+        onPress: async () => {
+          await limparRoteiroFinal();
+          Alert.alert('Último roteiro apagado', 'Seu último roteiro foi removido.', [
+            {
+              text: 'OK',
+              onPress: () =>
+                navigation.reset({ index: 0, routes: [{ name: 'Calendario' }] }),
+            },
+          ]);
         },
-      ],
-      { cancelable: true }
-    );
+      },
+    ]);
   };
 
   const hoje = new Date();
@@ -152,7 +275,7 @@ export default function MenuPrincipal() {
     {
       titulo: 'Criar Roteiro Orlando',
       emoji: '📖',
-      corFundo: '#0B3D91',
+      corFundo: AZUL_REI,
       corBorda: '#00FFFF',
       corTexto: '#FFFFFF',
       destino: 'Calendario',
@@ -191,22 +314,6 @@ export default function MenuPrincipal() {
     },
   ] as const;
 
-  const signingOutRef = useRef(false);
-  const voltarAoCadastro = async () => {
-    if (signingOutRef.current) return;
-    signingOutRef.current = true;
-    try {
-      await signOut();
-      navigation.reset({ index: 0, routes: [{ name: 'Inicio' }] });
-    } finally {
-      setTimeout(() => {
-        signingOutRef.current = false;
-      }, 200);
-    }
-  };
-
-  const isGoogle = !!user?.idToken || !!user?.email;
-
   return (
     <LinearGradient
       colors={['#0077cc', '#00c5d4', '#f5deb3', '#ffffff', '#ffffff']}
@@ -217,13 +324,6 @@ export default function MenuPrincipal() {
     >
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <CabecalhoDia titulo="" data={dataFormatada} diaSemana={diaSemana} clima={clima} />
-
-      {/* Selo “G” pequeno quando conectado com Google */}
-      {user && isGoogle && (
-        <View style={styles.googleBadgeTop}>
-          <Text style={styles.googleBadgeText}>G</Text>
-        </View>
-      )}
 
       <View style={styles.menu}>
         {botoesMenu.map((btn) => (
@@ -240,11 +340,17 @@ export default function MenuPrincipal() {
                 navigatingRef.current = true;
                 try {
                   if (!btn.ativo) {
-                    Alert.alert('Em breve', `${btn.titulo} estará disponível em uma próxima atualização.`);
+                    Alert.alert(
+                      'Em breve',
+                      `${btn.titulo} estará disponível em uma próxima atualização.`
+                    );
                     return;
                   }
                   if (!rotasImplementadas.has(btn.destino)) {
-                    Alert.alert('Indisponível', `A rota "${btn.destino}" ainda não está disponível.`);
+                    Alert.alert(
+                      'Indisponível',
+                      `A rota "${btn.destino}" ainda não está disponível.`
+                    );
                     return;
                   }
                   if (btn.destino === 'Calendario') {
@@ -288,83 +394,103 @@ export default function MenuPrincipal() {
           />
         </View>
 
-        <View style={styles.cardWrapper}>
-          <BotaoMenuCard
-            titulo="Voltar ao Cadastro"
-            emoji="👤"
-            corFundo="#001F3F"
-            corBorda="#0B3D91"
-            corTexto="#FFFFFF"
-            subtitulo="Acesse ou crie sua conta"
-            onPress={voltarAoCadastro}
-            noShadow
-            forceWhiteEmoji
-          />
-        </View>
+        {/* 👇 O card "Voltar ao Cadastro" foi removido daqui, conforme pedido */}
       </View>
 
-      <View style={styles.bottomContainer}>
-        <Image source={logo} style={styles.logo} resizeMode="contain" />
+      {/* Rodapé: badge aparece só se tiver user E se o timer de ~2,5s estiver ativo */}
+      <View style={styles.footerRow}>
+        <View style={styles.footerCardCol}>
+          {mostrarBadge && !!user && (
+            <LinearGradient
+              colors={FUNDO_BADGE}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.userBadge}
+            >
+              <View style={styles.avatarWrap}>
+                <Image
+                  source={{ uri: user?.picture || 'https://i.pravatar.cc/120' }}
+                  style={styles.avatar}
+                />
+                <View style={styles.avatarRing} />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.userName} numberOfLines={1}>
+                  {user?.name}
+                </Text>
+                <Text style={styles.userEmail} numberOfLines={1}>
+                  {user?.email}
+                </Text>
+                <View style={styles.badgeLine} />
+                <Text style={styles.subtleText} numberOfLines={1}>
+                  Bem-vindo ao seu roteiro mágico ✨
+                </Text>
+              </View>
+            </LinearGradient>
+          )}
+        </View>
+
+        <View style={styles.footerLogoCol}>
+          <Image source={logo} style={styles.logoSide} resizeMode="contain" />
+        </View>
       </View>
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Platform.OS === 'android' ? 40 : 0,
-    justifyContent: 'flex-start',
-  },
+  container: { flex: 1, paddingTop: Platform.OS === 'android' ? 40 : 0, paddingBottom: 120 },
   menu: {
     flex: 1,
     width: '100%',
-    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 40,
-    marginTop: -10,
+    paddingTop: 18,
   },
-  cardWrapper: {
-    width: '100%',
-    alignItems: 'center',
-    marginBottom: 5,
-  },
-  bottomContainer: {
+  cardWrapper: { width: '100%', alignItems: 'center', marginBottom: 6 },
+
+  footerRow: {
     position: 'absolute',
+    bottom: 0,
     left: 0,
     right: 0,
-    bottom: 0,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    paddingHorizontal: 30,
-    paddingBottom: 30,
+    justifyContent: 'space-between',
+    paddingBottom: 16,
+    paddingHorizontal: 10,
   },
-  logo: {
-    width: 96,
-    height: 96,
-  },
-  /* Selo Google no topo */
-  googleBadgeTop: {
-    position: 'absolute',
-    top: Platform.select({ ios: 56, android: 56, default: 56 }),
-    right: 16,
-    width: 26,
-    height: 26,
-    borderRadius: 13,
-    backgroundColor: '#4285F4',
+  footerCardCol: { flex: 2, justifyContent: 'center' },
+  footerLogoCol: { flex: 1, alignItems: 'flex-end', justifyContent: 'center' },
+
+  userBadge: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    gap: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: AZUL_BORDA,
+    shadowColor: OURO,
+    shadowOpacity: 0.22,
+    shadowRadius: 12,
+    elevation: 5,
+    minHeight: 64,
+    marginLeft: 25,
+  },
+  avatarWrap: { width: 48, height: 48, justifyContent: 'center', alignItems: 'center' },
+  avatar: { width: 44, height: 44, borderRadius: 22, borderWidth: 2, borderColor: '#FFFFFFaa' },
+  avatarRing: {
+    position: 'absolute',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     borderWidth: 1.5,
-    borderColor: '#00FFFF',
-    shadowColor: '#00FFFF',
-    shadowOpacity: 0.8,
-    shadowRadius: 8,
-    elevation: 6,
+    borderColor: OURO,
   },
-  googleBadgeText: {
-    color: '#fff',
-    fontSize: 13,
-    fontWeight: '800',
-  },
+  userName: { fontWeight: '800', fontSize: 16, color: '#FFFFFF' },
+  userEmail: { fontSize: 12.5, color: '#EAF4FF', marginTop: 1 },
+  subtleText: { fontSize: 11.5, color: '#FFFFFF', opacity: 0.92, marginTop: 4 },
+  badgeLine: { height: 1, backgroundColor: '#FFFFFF33', marginTop: 6, marginBottom: 2 },
+  logoSide: { width: 96, height: 96, marginRight: 25 },
 });

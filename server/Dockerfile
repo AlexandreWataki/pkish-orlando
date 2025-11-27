@@ -1,28 +1,30 @@
 # === Node 18 LTS ===
 FROM node:18-alpine
 
-# Diretório de trabalho
+# Define o ambiente como produção
+ENV NODE_ENV=production
+
+# Diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia manifestos
+# Copia os manifestos e instala apenas dependências de produção
 COPY package*.json ./
-
-# Instala apenas dependências de produção
 RUN npm ci --omit=dev --no-audit --no-fund
 
 # Copia o restante da aplicação
 COPY . .
 
-# Expõe a porta exigida pelo Cloud Run
+# (Opcional) adiciona curl — útil se quiser testar o /health dentro do container
+RUN apk add --no-cache curl
+
+# Corrige permissões para o usuário 'node' (boa prática)
+RUN chown -R node:node /app
+
+# Expõe a porta padrão usada pelo Cloud Run
 EXPOSE 8080
 
-# Saúde básica (opcional, ajuda em debug local; Cloud Run usa a própria checagem)
-RUN apk add --no-cache curl
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD curl -fsS http://localhost:8080/health || exit 1
-
-# Segurança — não roda como root
+# Segurança: roda como usuário não-root
 USER node
 
-# Entrypoint
+# Comando de inicialização
 CMD ["npm", "start"]
