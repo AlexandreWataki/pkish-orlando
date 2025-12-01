@@ -31,7 +31,7 @@
       </intent-filter>
       <intent-filter data-generated="true">
         <action android:name="android.intent.action.VIEW"/>
-        <data android:scheme="com.googleusercontent.apps.417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2"/>
+        <data android:scheme="pkish"/>
         <data android:scheme="exp+pkish"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
