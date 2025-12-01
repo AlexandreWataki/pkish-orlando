@@ -67,11 +67,10 @@ async function registrarUso(extra: Record<string, any> = {}) {
 
 export default function InicioScreen() {
   const navigation = useNavigation<any>();
-  const { user, loading, signInWithGoogle } = useAuth();
+  const { loading, signInWithGoogle } = useAuth(); // ❌ não usa mais user pra pular pro menu
 
   const [busy, setBusy] = useState(false);
   const navigatingRef = useRef(false);
-  const syncedOnceRef = useRef(false);
   const lastTapRef = useRef(0);
 
   const semIds = Platform.OS !== "web" && !env.googleAndroidClientId;
@@ -119,15 +118,7 @@ export default function InicioScreen() {
     }
   }
 
-  useEffect(() => {
-    if (!loading && user) {
-      if (!syncedOnceRef.current) {
-        syncedOnceRef.current = true;
-      }
-      irParaMenu();
-    }
-  }, [loading, user, irParaMenu]);
-
+  // 👉 Só verifica config de clientId e mostra alerta se faltar
   useEffect(() => {
     console.log("APK CHECK (Inicio):", {
       androidClientId: env.googleAndroidClientId?.slice(0, 18),
@@ -142,6 +133,7 @@ export default function InicioScreen() {
     }
   }, []);
 
+  // 🚀 Fluxo do botão "Começar"
   const iniciar = async () => {
     const now = Date.now();
     if (now - lastTapRef.current < 700) return;
@@ -151,13 +143,16 @@ export default function InicioScreen() {
 
     setBusy(true);
     try {
+      // Se não tem clientId, entra como convidado
       if (semIds) {
         await enterAsGuest("ANDROID_CLIENT_ID ausente no APK.");
         return;
       }
 
+      // Tenta login Google
       await signInWithGoogle();
 
+      // Espera sessão ser gravada no AsyncStorage
       const u = await waitForSession(8000);
       if (u?.id) {
         await registrarUso({ mode: "google", userId: u.id });

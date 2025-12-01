@@ -1,5 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { View, ActivityIndicator, StatusBar, Platform, StyleSheet, Image } from "react-native";
+import {
+  View,
+  ActivityIndicator,
+  StatusBar,
+  Platform,
+  StyleSheet,
+  Image,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useAuth } from "@/contexts/AuthContext";
@@ -8,35 +15,36 @@ const MIN_SPLASH_MS = 900;
 
 export default function SplashScreen() {
   const navigation = useNavigation<any>();
-  const { user, loading } = useAuth();
+  const { loading } = useAuth(); // não usa mais user pra decidir rota
   const mountedAtRef = useRef<number>(Date.now());
   const navigatedRef = useRef(false);
 
+  // 👉 Sempre manda para "Inicio" depois do splash
   useEffect(() => {
     if (loading || navigatedRef.current) return;
 
-    const next = user ? "MenuPrincipal" : "Inicio";
     const elapsed = Date.now() - mountedAtRef.current;
     const wait = Math.max(0, MIN_SPLASH_MS - elapsed);
 
     const t = setTimeout(() => {
       if (navigatedRef.current) return;
       navigatedRef.current = true;
-      navigation.reset({ index: 0, routes: [{ name: next }] });
+      navigation.reset({ index: 0, routes: [{ name: "Inicio" }] });
     }, wait);
 
     return () => clearTimeout(t);
-  }, [loading, user, navigation]);
+  }, [loading, navigation]);
 
+  // Fallback: se ficar carregando demais, ainda assim vai pra Inicio
   useEffect(() => {
     const t = setTimeout(() => {
-      if (!navigatedRef.current && loading) {
+      if (!navigatedRef.current) {
         navigatedRef.current = true;
         navigation.reset({ index: 0, routes: [{ name: "Inicio" }] });
       }
     }, 5000);
     return () => clearTimeout(t);
-  }, [loading, navigation]);
+  }, [navigation]);
 
   return (
     <LinearGradient
@@ -48,7 +56,11 @@ export default function SplashScreen() {
     >
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View style={styles.center}>
-        <Image source={require("@/assets/imagens/logo4.png")} style={styles.logo} resizeMode="contain" />
+        <Image
+          source={require("@/assets/imagens/logo4.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <ActivityIndicator size="large" color="#fff" />
       </View>
     </LinearGradient>
