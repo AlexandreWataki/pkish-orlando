@@ -14,20 +14,23 @@ type ErrorCb = (error: unknown) => Promise<void> | void;
 export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
   const isWeb = Platform.OS === "web";
 
+  // === Redirect URI ===
   const redirectUri = isWeb
     ? `${globalThis?.location?.origin ?? ""}/`
     : AuthSession.makeRedirectUri({
-        native: `${env.appScheme ?? "pkish"}:/oauth2redirect/google`,
+        native: `${env.appScheme}:/oauth2redirect/google`,
       });
 
+  // === Debug completo ===
   console.log("[GoogleAuth] platform:", Platform.OS);
   console.log("[GoogleAuth] redirectUri:", redirectUri);
   console.log("[GoogleAuth] webClientId:", env.googleWebClientId);
   console.log("[GoogleAuth] androidClientId:", env.googleAndroidClientId);
   console.log("[GoogleAuth] iosClientId:", env.googleIosClientId);
 
+  // === AUTH REQUEST ===
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId: env.googleWebClientId, // web
+    clientId: env.googleWebClientId, // WEB CLIENT → backend aceita
     androidClientId: env.googleAndroidClientId,
     iosClientId: env.googleIosClientId,
     redirectUri,
@@ -35,6 +38,7 @@ export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
     selectAccount: true,
   });
 
+  // === Handle Response ===
   useEffect(() => {
     if (!response) return;
 
@@ -47,6 +51,7 @@ export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
           (response as any)?.authentication?.idToken;
 
         if (idToken) {
+          console.log("[GoogleAuth] idToken OK");
           onSuccess(idToken);
         } else {
           onError(new Error("Sem id_token retornado."));
