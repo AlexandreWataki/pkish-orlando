@@ -10,7 +10,7 @@ import React, {
 import * as WebBrowser from "expo-web-browser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
-import { useGoogleIdTokenAuth } from "../auth/useGoogleIdToken";
+import { useGoogleIdTokenAuth } from "@/auth/useGoogleIdToken";
 import { loginWithGoogle } from "@/services/users";
 
 WebBrowser.maybeCompleteAuthSession();
@@ -40,12 +40,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // aquece WebBrowser
   useEffect(() => {
     WebBrowser.warmUpAsync().catch(() => {});
-    return () => {
-      WebBrowser.coolDownAsync().catch(() => {});
-    };
+    return () => WebBrowser.coolDownAsync().catch(() => {});
   }, []);
 
-  // Restaura sessão local
+  // restaura sessão a partir do storage
   useEffect(() => {
     (async () => {
       try {
@@ -66,6 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const finishLogin = async (idToken: string) => {
     const data = await loginWithGoogle(idToken); // pode lançar erro
+
     const { token, user } = data;
 
     const u: User = {
@@ -82,29 +81,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ]);
 
     setUser(u);
+
     console.log("✅ Login Google OK:", u.email || u.name);
   };
 
+  // hook Google OAuth
   const { promptAsync, ready } = useGoogleIdTokenAuth(
     async (idToken) => {
       try {
         await finishLogin(idToken);
-      } catch (e) {
-        console.error("⚠️ Falha ao registrar Google:", e);
-        Alert.alert("Erro", "Não foi possível concluir o login com o Google.");
+      } catch (e: any) {
+        console.error("⚠️ Erro backend ao registrar Google:", e);
+
+        const backendMessage =
+          e?.response?.data?.message ||
+          e?.response?.data?.error ||
+          e?.message ||
+          "Não foi possível concluir o login com o Google.";
+
+        Alert.alert("Erro no servidor", backendMessage);
       }
     },
     async (err) => {
-      console.warn("⚠️ Erro login Google:", err);
-      Alert.alert("Login cancelado", "Tente novamente com o Google.");
+      console.warn("⚠️ Erro login Google (callback):", err);
+
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Falha na autenticação do Google.";
+
+      Alert.alert("Erro", msg);
     }
   );
 
   const signInWithGoogle = async () => {
+    // ainda não montou a request
     if (!ready) {
+      console.log("[Auth] Google request ainda não pronta (ready = false)");
       Alert.alert(
         "Config Google",
-        "Login com Google ainda não está pronto. Tente novamente em alguns segundos."
+        "Login com Google ainda não está pronto. Aguarde alguns segundos e tente novamente."
       );
       return;
     }
@@ -122,7 +138,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await AsyncStorage.multiRemove(["@user", "@jwt", "@gravou_usage_ok"]);
       setUser(null);
       Alert.alert("Sessão encerrada", "Você saiu da sua conta.");
-    } catch {
+    } catch (e) {
+      console.error("⚠️ Erro ao sair:", e);
       Alert.alert("Erro", "Não foi possível encerrar a sessão.");
     }
   };
