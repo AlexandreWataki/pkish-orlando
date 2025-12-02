@@ -1,3 +1,4 @@
+// src/screens/inicio/SplashScreen.tsx
 import React, { useEffect, useRef } from "react";
 import {
   View,
@@ -9,20 +10,15 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useAuth } from "@/contexts/AuthContext";
 
 const MIN_SPLASH_MS = 900;
 
 export default function SplashScreen() {
   const navigation = useNavigation<any>();
-  const { loading } = useAuth(); // não usa mais user pra decidir rota
   const mountedAtRef = useRef<number>(Date.now());
   const navigatedRef = useRef(false);
 
-  // 👉 Sempre manda para "Inicio" depois do splash
   useEffect(() => {
-    if (loading || navigatedRef.current) return;
-
     const elapsed = Date.now() - mountedAtRef.current;
     const wait = Math.max(0, MIN_SPLASH_MS - elapsed);
 
@@ -33,9 +29,8 @@ export default function SplashScreen() {
     }, wait);
 
     return () => clearTimeout(t);
-  }, [loading, navigation]);
+  }, [navigation]);
 
-  // Fallback: se ficar carregando demais, ainda assim vai pra Inicio
   useEffect(() => {
     const t = setTimeout(() => {
       if (!navigatedRef.current) {

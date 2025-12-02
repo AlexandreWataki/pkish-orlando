@@ -14,23 +14,22 @@ type ErrorCb = (error: unknown) => Promise<void> | void;
 export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
   const isWeb = Platform.OS === "web";
 
-  // WEB: força exatamente origem + barra → http://localhost:8081/
-  // NATIVO: usa scheme pkish:/oauth2redirect/google
   const redirectUri = isWeb
     ? `${globalThis?.location?.origin ?? ""}/`
     : AuthSession.makeRedirectUri({
         native: `${env.appScheme ?? "pkish"}:/oauth2redirect/google`,
       });
 
-  // Logs de diagnóstico (abra F12 → Console)
   console.log("[GoogleAuth] platform:", Platform.OS);
   console.log("[GoogleAuth] redirectUri:", redirectUri);
   console.log("[GoogleAuth] webClientId:", env.googleWebClientId);
+  console.log("[GoogleAuth] androidClientId:", env.googleAndroidClientId);
+  console.log("[GoogleAuth] iosClientId:", env.googleIosClientId);
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId: env.googleWebClientId,            // Web
-    androidClientId: env.googleAndroidClientId, // Android
-    iosClientId: env.googleIosClientId,         // iOS
+    clientId: env.googleWebClientId, // web
+    androidClientId: env.googleAndroidClientId,
+    iosClientId: env.googleIosClientId,
     redirectUri,
     scopes: ["openid", "email", "profile"],
     selectAccount: true,
@@ -38,15 +37,25 @@ export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
 
   useEffect(() => {
     if (!response) return;
+
+    console.log("[GoogleAuth] response:", response);
+
     try {
       if (response.type === "success") {
         const idToken =
           (response.params as any)?.id_token ||
           (response as any)?.authentication?.idToken;
-        if (idToken) onSuccess(idToken);
-        else onError(new Error("Sem id_token retornado."));
+
+        if (idToken) {
+          onSuccess(idToken);
+        } else {
+          onError(new Error("Sem id_token retornado."));
+        }
       } else if (response.type === "error") {
-        onError((response as any)?.error ?? new Error("Falha na autenticação do Google."));
+        onError(
+          (response as any)?.error ??
+            new Error("Falha na autenticação do Google.")
+        );
       } else if (response.type === "dismiss" || response.type === "cancel") {
         onError(new Error("Login cancelado pelo usuário."));
       }

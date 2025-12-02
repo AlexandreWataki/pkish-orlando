@@ -1,3 +1,4 @@
+// src/screens/inicio/InicioScreen.tsx
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
@@ -30,16 +31,8 @@ type AnyUser = {
   email?: string;
   picture?: string;
   idToken?: string;
-  isGuest?: boolean;
 };
 
-function genGuestId() {
-  return `guest-${Date.now().toString(36)}-${Math.random()
-    .toString(36)
-    .slice(2, 8)}`;
-}
-
-/** Registra uso no servidor e marca flag local se ok */
 async function registrarUso(extra: Record<string, any> = {}) {
   try {
     const deviceId =
@@ -67,7 +60,7 @@ async function registrarUso(extra: Record<string, any> = {}) {
 
 export default function InicioScreen() {
   const navigation = useNavigation<any>();
-  const { loading, signInWithGoogle } = useAuth(); // ❌ não usa mais user pra pular pro menu
+  const { loading, signInWithGoogle } = useAuth(); // não usamos mais user aqui
 
   const [busy, setBusy] = useState(false);
   const navigatingRef = useRef(false);
@@ -99,26 +92,6 @@ export default function InicioScreen() {
     []
   );
 
-  async function enterAsGuest(reason?: string) {
-    try {
-      const guest: AnyUser = {
-        id: genGuestId(),
-        name: "Convidado",
-        email: "",
-        picture: "",
-        isGuest: true,
-      };
-      await AsyncStorage.setItem("@user", JSON.stringify(guest));
-      if (reason) console.log("Entrando como convidado:", reason);
-      await registrarUso({ mode: "guest", reason });
-    } catch (e) {
-      console.log("Falha ao salvar convidado localmente, mas seguindo:", e);
-    } finally {
-      irParaMenu();
-    }
-  }
-
-  // 👉 Só verifica config de clientId e mostra alerta se faltar
   useEffect(() => {
     console.log("APK CHECK (Inicio):", {
       androidClientId: env.googleAndroidClientId?.slice(0, 18),
@@ -128,41 +101,61 @@ export default function InicioScreen() {
     if (Platform.OS !== "web" && !env.googleAndroidClientId) {
       Alert.alert(
         "Config Google",
-        "Android Client ID não encontrado no APK. Refaça o build com EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID no profile."
+        "Android Client ID não encontrado no APK. Reinstale a versão atualizada do app com o Google configurado."
       );
     }
   }, []);
 
-  // 🚀 Fluxo do botão "Começar"
   const iniciar = async () => {
+    console.log("[Inicio] iniciar chamado");
     const now = Date.now();
-    if (now - lastTapRef.current < 700) return;
+    if (now - lastTapRef.current < 700) {
+      console.log("[Inicio] toque ignorado (duplo clique)");
+      return;
+    }
     lastTapRef.current = now;
 
-    if (busy || loading || navigatingRef.current) return;
+    if (busy || loading || navigatingRef.current) {
+      console.log("[Inicio] bloqueado por busy/loading/navigating", {
+        busy,
+        loading,
+        navigating: navigatingRef.current,
+      });
+      return;
+    }
 
     setBusy(true);
     try {
-      // Se não tem clientId, entra como convidado
       if (semIds) {
-        await enterAsGuest("ANDROID_CLIENT_ID ausente no APK.");
+        Alert.alert(
+          "Login indisponível",
+          "Este aplicativo foi instalado sem a configuração do Google. Atualize o app para continuar."
+        );
         return;
       }
 
-      // Tenta login Google
+      console.log("[Inicio] chamando signInWithGoogle");
       await signInWithGoogle();
 
-      // Espera sessão ser gravada no AsyncStorage
+      console.log("[Inicio] aguardando sessão @user no AsyncStorage");
       const u = await waitForSession(8000);
+      console.log("[Inicio] sessão encontrada:", u);
+
       if (u?.id) {
         await registrarUso({ mode: "google", userId: u.id });
         irParaMenu();
       } else {
-        await enterAsGuest("Não confirmamos a sessão do Google a tempo.");
+        Alert.alert(
+          "Erro de login",
+          "Não foi possível confirmar sua sessão do Google. Tente novamente."
+        );
       }
     } catch (err: any) {
       console.warn("LOGIN_ERR:", err?.message || err);
-      await enterAsGuest("Falha no login Google.");
+      Alert.alert(
+        "Erro de login",
+        err?.message || "Ocorreu um erro ao entrar com o Google. Tente novamente."
+      );
     } finally {
       setBusy(false);
     }
@@ -189,16 +182,20 @@ export default function InicioScreen() {
           onPress={iniciar}
           activeOpacity={0.9}
           disabled={busy || loading}
-          testID="btn-comecar"
+          testID="btn-google"
         >
           {busy || loading ? (
             <ActivityIndicator color="#fff" />
           ) : (
             <Text style={styles.botaoTexto} allowFontScaling={false}>
-              Começar
+              Entrar com Google
             </Text>
           )}
         </TouchableOpacity>
+
+        <Text style={styles.textoAjuda}>
+          Entre com sua conta Google para abrir o app.
+        </Text>
       </View>
     </LinearGradient>
   );
@@ -216,6 +213,7 @@ const styles = StyleSheet.create({
     bottom: 110,
     alignItems: "center",
     gap: 10,
+    paddingHorizontal: 24,
   },
   botao: {
     backgroundColor: "#007acc",
@@ -228,6 +226,12 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: PADRAO_FONT_SIZE,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  textoAjuda: {
+    marginTop: 8,
+    fontSize: 12,
+    color: "#004466",
     textAlign: "center",
   },
 });

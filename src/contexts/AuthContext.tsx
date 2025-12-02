@@ -1,3 +1,4 @@
+// src/contexts/AuthContext.tsx
 import React, {
   createContext,
   useContext,
@@ -9,7 +10,6 @@ import React, {
 import * as WebBrowser from "expo-web-browser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
-import { jwtDecode } from "jwt-decode";
 import { useGoogleIdTokenAuth } from "../auth/useGoogleIdToken";
 import { loginWithGoogle } from "@/services/users";
 
@@ -37,63 +37,78 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // aquece WebBrowser
   useEffect(() => {
     WebBrowser.warmUpAsync().catch(() => {});
-    return () => WebBrowser.coolDownAsync().catch(() => {});
+    return () => {
+      WebBrowser.coolDownAsync().catch(() => {});
+    };
   }, []);
 
-  // 🔹 Restaura sessão local
+  // Restaura sessão local
   useEffect(() => {
     (async () => {
       try {
         const raw = await AsyncStorage.getItem("@user");
-        if (raw) setUser(JSON.parse(raw));
+        if (raw) {
+          try {
+            const u = JSON.parse(raw) as User;
+            if (u?.id) setUser(u);
+          } catch {
+            await AsyncStorage.removeItem("@user");
+          }
+        }
       } finally {
         setLoading(false);
       }
     })();
   }, []);
 
-  /** 🔹 Finaliza login com dados do Google e registra no backend */
   const finishLogin = async (idToken: string) => {
-    try {
-      const data = await loginWithGoogle(idToken);
-      if (!data?.ok) throw new Error("Falha no login Google");
+    const data = await loginWithGoogle(idToken); // pode lançar erro
+    const { token, user } = data;
 
-      const { token, user } = data;
+    const u: User = {
+      id: user!.id,
+      name: user!.name,
+      email: user!.email,
+      picture: user!.picture,
+      idToken,
+    };
 
-      const u: User = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        picture: user.picture,
-        idToken,
-      };
+    await AsyncStorage.multiSet([
+      ["@user", JSON.stringify(u)],
+      ["@jwt", token!],
+    ]);
 
-      await AsyncStorage.multiSet([
-        ["@user", JSON.stringify(u)],
-        ["@jwt", token],
-      ]);
-
-      setUser(u);
-      console.log("✅ Login Google OK:", u.email || u.name);
-    } catch (e) {
-      console.error("⚠️ Falha ao registrar Google:", e);
-      Alert.alert("Erro", "Não foi possível concluir o login com o Google.");
-    }
+    setUser(u);
+    console.log("✅ Login Google OK:", u.email || u.name);
   };
 
-  // ✅ Hook universal de autenticação com Google
-  const { promptAsync } = useGoogleIdTokenAuth(
-    async (idToken) => await finishLogin(idToken),
+  const { promptAsync, ready } = useGoogleIdTokenAuth(
+    async (idToken) => {
+      try {
+        await finishLogin(idToken);
+      } catch (e) {
+        console.error("⚠️ Falha ao registrar Google:", e);
+        Alert.alert("Erro", "Não foi possível concluir o login com o Google.");
+      }
+    },
     async (err) => {
       console.warn("⚠️ Erro login Google:", err);
       Alert.alert("Login cancelado", "Tente novamente com o Google.");
     }
   );
 
-  /** 🔹 Login Google (funciona em todas as plataformas) */
   const signInWithGoogle = async () => {
+    if (!ready) {
+      Alert.alert(
+        "Config Google",
+        "Login com Google ainda não está pronto. Tente novamente em alguns segundos."
+      );
+      return;
+    }
+
     setLoading(true);
     try {
       await promptAsync();
@@ -102,7 +117,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  /** 🔸 Logout simples */
   const signOut = async () => {
     try {
       await AsyncStorage.multiRemove(["@user", "@jwt", "@gravou_usage_ok"]);
