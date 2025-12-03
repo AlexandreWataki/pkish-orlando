@@ -2,7 +2,7 @@
 import * as WebBrowser from "expo-web-browser";
 import * as AuthSession from "expo-auth-session";
 import * as Google from "expo-auth-session/providers/google";
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { Platform } from "react-native";
 import { env } from "@/config/env";
 
@@ -14,35 +14,47 @@ type ErrorCb = (error: unknown) => Promise<void> | void;
 export function useGoogleIdTokenAuth(onSuccess: SuccessCb, onError: ErrorCb) {
   const isWeb = Platform.OS === "web";
 
-  // === Redirect URI ===
+  // === redirectUri EXATO que o Google espera ===
+  // WEB  -> http://localhost:8081/  (igual ao que você cadastrou)
+  // NATIVO -> pkish:/oauth2redirect/google
   const redirectUri = isWeb
-    ? `${globalThis?.location?.origin ?? ""}/`
+    ? "http://localhost:8081/"
     : AuthSession.makeRedirectUri({
         native: `${env.appScheme}:/oauth2redirect/google`,
       });
 
-  // === Debug completo ===
   console.log("[GoogleAuth] platform:", Platform.OS);
   console.log("[GoogleAuth] redirectUri:", redirectUri);
-  console.log("[GoogleAuth] webClientId:", env.googleWebClientId);
-  console.log("[GoogleAuth] androidClientId:", env.googleAndroidClientId);
-  console.log("[GoogleAuth] iosClientId:", env.googleIosClientId);
 
-  // === AUTH REQUEST ===
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId: env.googleWebClientId, // WEB CLIENT → backend aceita
+  const baseConfig: Google.GoogleIdTokenRequestConfig = {
+    clientId: env.googleWebClientId,        // WEB CLIENT
     androidClientId: env.googleAndroidClientId,
     iosClientId: env.googleIosClientId,
-    redirectUri,
+    redirectUri,                            // 👈 sempre envia o mesmo redirectUri
     scopes: ["openid", "email", "profile"],
     selectAccount: true,
-  });
+  };
 
-  // === Handle Response ===
+  const [request, response, promptAsyncOriginal] =
+    Google.useIdTokenAuthRequest(baseConfig);
+
+  // evita tratar a mesma resposta 2x
+  const responseHandled = useRef(false);
+
+  const promptAsync = useCallback(
+    async (...args: Parameters<typeof promptAsyncOriginal>) => {
+      responseHandled.current = false;
+      return promptAsyncOriginal(...args);
+    },
+    [promptAsyncOriginal]
+  );
+
   useEffect(() => {
     if (!response) return;
+    if (responseHandled.current) return;
+    responseHandled.current = true;
 
-    console.log("[GoogleAuth] response:", response);
+    console.log("[GoogleAuth] response.type:", response.type);
 
     try {
       if (response.type === "success") {

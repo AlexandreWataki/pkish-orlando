@@ -3,7 +3,7 @@ export default {
   name: "Pkish",
   slug: "pkish",
   owner: "matheuswataki",
-  version: "1.0.0",
+  version: "1.0.1",
   userInterfaceStyle: "light",
 
   scheme: "pkish",
@@ -42,17 +42,17 @@ export default {
 
   extra: {
     /** === Google OAuth === */
-    // 🔹 WEB Client ID (usado no backend)
+    // 🔹 WEB Client ID
     EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID:
       process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID ??
       "417776644821-79b4qvfutmo5v2f95q0sje5736aiblc7.apps.googleusercontent.com",
 
-    // 🔹 ANDROID Client ID (corrigido com letras certas)
+    // 🔹 ANDROID Client ID (CORRIGIDO!)
     EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID:
       process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID ??
-      "417776644821-1e6uf2sp43bdlj8ib6fhata30q06i2s.apps.googleusercontent.com",
+      "417776644821-1e6uf2sp43bdl8jibi6fhata30q06is2.apps.googleusercontent.com",
 
-    // 🔹 iOS Client ID (faltava este)
+    // 🔹 iOS Client ID
     EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID:
       process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID ??
       "417776644821-1ksfbonjbdc85b4sbvcga15ieq0jdhm.apps.googleusercontent.com",

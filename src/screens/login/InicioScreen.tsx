@@ -36,7 +36,8 @@ type AnyUser = {
 async function registrarUso(extra: Record<string, any> = {}) {
   try {
     const deviceId =
-      (Application.getAndroidId && (await Application.getAndroidId())) || "unknown";
+      (Application.getAndroidId && (await Application.getAndroidId())) ||
+      "unknown";
     const appVersion = Application.nativeApplicationVersion || "0";
     const res = await fetch(`${env.apiUrl}/usage`, {
       method: "POST",
@@ -66,6 +67,7 @@ export default function InicioScreen() {
   const navigatingRef = useRef(false);
   const lastTapRef = useRef(0);
 
+  // se for APK e não tiver androidClientId carregado
   const semIds = Platform.OS !== "web" && !env.googleAndroidClientId;
 
   const irParaMenu = useCallback(() => {
@@ -94,14 +96,19 @@ export default function InicioScreen() {
 
   useEffect(() => {
     console.log("APK CHECK (Inicio):", {
-      androidClientId: env.googleAndroidClientId?.slice(0, 18),
-      webClientId: env.googleWebClientId?.slice(0, 18),
+      platform: Platform.OS,
+      androidClientId: env.googleAndroidClientId,
+      webClientId: env.googleWebClientId,
       apiUrl: env.apiUrl,
+      envName: env.envName,
     });
+
     if (Platform.OS !== "web" && !env.googleAndroidClientId) {
       Alert.alert(
         "Config Google",
-        "Android Client ID não encontrado no APK. Reinstale a versão atualizada do app com o Google configurado."
+        `Login com Google ainda não está pronto neste app.\n\nandroidClientId: ${
+          env.googleAndroidClientId || "VAZIO"
+        }\n\nReinstale a versão atualizada do aplicativo.`
       );
     }
   }, []);
@@ -126,10 +133,13 @@ export default function InicioScreen() {
 
     setBusy(true);
     try {
-      if (semIds) {
+      if (Platform.OS !== "web" && !env.googleAndroidClientId) {
+        // mesma checagem do semIds, mas com debug mais claro
         Alert.alert(
-          "Login indisponível",
-          "Este aplicativo foi instalado sem a configuração do Google. Atualize o app para continuar."
+          "Config Google",
+          `Login com Google ainda não está pronto.\n\nandroidClientId: ${
+            env.googleAndroidClientId || "VAZIO"
+          }`
         );
         return;
       }
@@ -169,7 +179,11 @@ export default function InicioScreen() {
       end={{ x: 0, y: 1 }}
       style={styles.container}
     >
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
 
       <View style={styles.topArea}>
         <Image source={logoImg} style={styles.logo} resizeMode="contain" />
