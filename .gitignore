@@ -3,6 +3,8 @@ node_modules/
 .expo-shared/
 dist/
 web-build/
+build/
+
 *.tsbuildinfo
 .env
 .env*.local
@@ -12,10 +14,14 @@ web-build/
 *.p8
 *.p12
 *.mobileprovision
+
+android/keystore.jks
+ios/*.mobileprovision
+
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+
 .DS_Store
 .metro-health-check*
 *.orig.*
-app-example
